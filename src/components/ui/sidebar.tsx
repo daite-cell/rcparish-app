@@ -16,7 +16,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
-const SIDEBAR_WIDTH = '19rem';
+const SIDEBAR_WIDTH = '17rem';
 const SIDEBAR_WIDTH_MOBILE = '18rem';
 const SIDEBAR_WIDTH_ICON = '3rem';
 const SIDEBAR_KEYBOARD_SHORTCUT = 'b';
@@ -152,7 +152,7 @@ function Sidebar({
 		return (
 			<div
 				data-slot="sidebar"
-				className={cn('bg-sidebar text-sidebar-foreground flex h-full w-(--sidebar-width) flex-col', className)}
+				className={cn('bg-secondary text-sidebar-foreground flex min-h-screen w-(--sidebar-width) flex-col', className)}
 				{...props}
 			>
 				{children}
@@ -179,7 +179,7 @@ function Sidebar({
 						<SheetTitle>Sidebar</SheetTitle>
 						<SheetDescription>Displays the mobile sidebar.</SheetDescription>
 					</SheetHeader>
-					<div className="flex h-full w-full flex-col">{children}</div>
+					<div className="flex flex-col w-full h-full">{children}</div>
 				</SheetContent>
 			</Sheet>
 		);
@@ -187,7 +187,7 @@ function Sidebar({
 
 	return (
 		<div
-			className="group peer text-sidebar-foreground hidden md:block"
+			className="hidden group peer text-sidebar-foreground md:block"
 			data-state={state}
 			data-collapsible={state === 'collapsed' ? collapsible : ''}
 			data-variant={variant}
@@ -344,7 +344,7 @@ function SidebarContent({ className, ...props }: React.ComponentProps<'div'>) {
 			data-slot="sidebar-content"
 			data-sidebar="content"
 			className={cn(
-				'flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden',
+				'flex min-h-[405px] flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden',
 				className
 			)}
 			{...props}
@@ -577,7 +577,7 @@ function SidebarMenuSkeleton({
 			className={cn('flex h-8 items-center gap-2 rounded-md px-2', className)}
 			{...props}
 		>
-			{showIcon && <Skeleton className="size-4 rounded-md" data-sidebar="menu-skeleton-icon" />}
+			{showIcon && <Skeleton className="rounded-md size-4" data-sidebar="menu-skeleton-icon" />}
 			<Skeleton
 				className="h-4 max-w-(--skeleton-width) flex-1"
 				data-sidebar="menu-skeleton-text"

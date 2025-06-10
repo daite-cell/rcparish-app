@@ -6,10 +6,11 @@ import AppNavbar from '@/components/app-navbar';
 
 const MainLayout = () => {
 	return (
-		<div className="overflow-auto flex flex-col w-full">
+		<div className="flex h-screen overflow-hidden">
 			<SidebarProvider>
 				<AppSideBar />
-				<div className="w-full">
+
+				<div className="flex flex-col flex-1 overflow-auto">
 					<AppNavbar />
 					<Outlet />
 				</div>
