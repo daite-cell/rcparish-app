@@ -10,7 +10,7 @@ const MainLayout = () => {
 			<SidebarProvider>
 				<AppSideBar />
 
-				<div className="flex flex-col flex-1 overflow-auto">
+				<div className=" flex-1 overflow-auto">
 					<AppNavbar />
 					<Outlet />
 				</div>

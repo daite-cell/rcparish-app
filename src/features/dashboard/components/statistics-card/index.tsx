@@ -25,7 +25,7 @@ const StatisticsCard = ({
 	}
 	return (
 		<div className="px-5 py-2 text-gray-700 transition duration-300 bg-white rounded shadow-md hover:shadow-lg">
-			<Link to={link} className="block p-4">
+			<Link to={link} className="block p-4 lg:p-0 xl:p-4">
 				<div className="flex items-center justify-between">
 					<div className="flex flex-col items-center gap-2">
 						{icon && isIconKey(icon) && <span>{React.createElement(Icons[icon], {})}</span>}

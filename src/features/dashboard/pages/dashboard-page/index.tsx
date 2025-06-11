@@ -1,12 +1,12 @@
-import { statistics_cards_content } from '@/features/data';
 import {
 	SectionHeading,
 	StatisticsCard,
 	StatisticsSection,
 	StatisticsSectionRow,
 	OccasionalSection,
-} from '../components';
+} from '../../components';
 import React from 'react';
+import { statistics_cards_content } from '../../data';
 
 const DashBoard = () => {
 	return (

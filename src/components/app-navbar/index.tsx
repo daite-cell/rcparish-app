@@ -3,16 +3,22 @@ import { Link } from 'react-router-dom';
 import navImage1 from '/nav-images/nav-image1.jpg';
 import navImage2 from '/nav-images/nav-image2.jpg';
 import navItems from '@/data/navbar-content';
+import { memo } from 'react';
 
-const AppNavbar = () => {
+const AppNavbar = memo(() => {
 	const { state } = useSidebar();
+
+	const renderSidebarTrigger = (additionalClasses: string) => (
+		<SidebarTrigger
+			className={`absolute left-0 top-4 text-white bg-[#343148] z-50 p-2 hover:bg-[#413e52] ${additionalClasses}`}
+		/>
+	);
+
 	return (
 		<>
 			<div className="w-full h-[90px] bg-secondary border-l border-[#413e52] flex items-center justify-between relative ">
-				{state !== 'expanded' && (
-					<SidebarTrigger className="absolute left-0 top-4 text-white bg-[#343148] z-50 p-2 hover:bg-[#413e52] hidden md:block " />
-				)}
-				<SidebarTrigger className="absolute left-0 top-4 text-white bg-[#343148] z-50 p-2 hover:bg-[#413e52] md:hidden " />
+				{state !== 'expanded' && renderSidebarTrigger('hidden md:block')}
+				{renderSidebarTrigger('md:hidden')}
 
 				<div className="md:w-[15%] pl-2 md:pl-5 pt-[5px]">
 					<img
@@ -55,6 +61,6 @@ const AppNavbar = () => {
 			</div>
 		</>
 	);
-};
+});
 
 export default AppNavbar;

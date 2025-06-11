@@ -1,7 +1,7 @@
 const side_nav_links = [
 	{
 		page_path_name: 'dashboard',
-		label: 'Dashboard',
+		label: '',
 		page_nav_links: [
 			{
 				path_url: '/dashboard',
@@ -31,7 +31,7 @@ const side_nav_links = [
 				icon: 'Folder',
 			},
 			{
-				path_url: '/sermon',
+				path_url: '/',
 				label: 'Sermon',
 				icon: 'Folder',
 			},
@@ -48,7 +48,7 @@ const side_nav_links = [
 		],
 	},
 	{
-		page_path_name: 'diocese',
+		page_path_name: '/diocese/history',
 		label: 'Diocese',
 		page_nav_links: [
 			{
@@ -157,73 +157,165 @@ const side_nav_links = [
 		],
 	},
 	{
+		page_path_name: '/parish/parish_history',
+		label: 'Parish',
+		page_nav_links: [
+			{
+				path_url: '/parish/parish_history',
+				label: 'Parish History',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/parish/patron_saint',
+				label: 'Patron Saint',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/parish/present_parish_priest',
+				label: 'Present Parish Priest',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/parish/former_parish_priest',
+				label: 'Parish Activities',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/parish/sub_stations',
+				label: 'Main Station / Sub Station',
+				icon: 'BookText',
+			},
+		],
+	},
+	{
 		page_path_name: 'religious_people',
 		label: 'Religious People',
 		page_nav_links: [
 			{
-				path_url: '',
+				path_url: '/religious_people',
 				label: 'Parish Priest',
 				icon: 'BookText',
 			},
 			{
-				path_url: '',
+				path_url: '/religious_people',
 				label: 'Asst. Parish Priest',
 				icon: 'BookText',
 			},
 			{
-				path_url: '',
+				path_url: '/religious_people',
 				label: 'Congregation',
 				icon: 'BookText',
 			},
 			{
-				path_url: '',
+				path_url: '/religious_people',
 				label: 'Special Ministry',
 				icon: 'BookText',
 			},
 			{
-				path_url: '',
+				path_url: '/religious_people',
 				label: 'Spiritual Priests',
 				icon: 'BookText',
 			},
 			{
-				path_url: '',
+				path_url: '/religious_people',
 				label: 'On Leave',
 				icon: 'BookText',
 			},
 			{
-				path_url: '',
+				path_url: '/religious_people',
 				label: 'Foreign Ministry',
 				icon: 'BookText',
 			},
 			{
-				path_url: '',
+				path_url: '/religious_people',
 				label: 'VF',
 				icon: 'BookText',
 			},
 
 			{
-				path_url: '',
+				path_url: '/religious_people',
 				label: 'Commissions',
 				icon: 'BookText',
 			},
 			{
-				path_url: '',
+				path_url: '/religious_people',
 				label: 'Committees',
 				icon: 'BookText',
 			},
 			{
-				path_url: '',
+				path_url: '/religious_people',
 				label: 'Curia',
 				icon: 'BookText',
 			},
 			{
-				path_url: '',
+				path_url: '/religious_people',
 				label: 'Obituary',
 				icon: 'BookText',
 			},
 			{
-				path_url: '',
+				path_url: '/religious_people',
 				label: 'Working Else',
+				icon: 'BookText',
+			},
+		],
+	},
+	{
+		page_path_name: '/pious_group/parish_council_members',
+		label: 'Internal Order',
+		page_nav_links: [
+			{
+				path_url: '/pious_group/parish_council_members',
+				label: 'Parish Council Members',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/pious_group/religious_people_parish',
+				label: 'Religious People in Parish',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/pious_group/priest_nun_parish',
+				label: 'Sons and Daughters of the Soil',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/pious_group/family_members',
+				label: 'Members in Families',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/pious_group/families',
+				label: 'Families',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/pious_group/school_students',
+				label: 'School Students',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/pious_group/college_students',
+				label: 'College Students',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/pious_group/anbiams',
+				label: 'Anbiam',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/pious_group/associations_club',
+				label: 'Associations & Club',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/pious_group/anbiam_incharge',
+				label: 'Anbiam Incharge',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/pious_group/associations_incharge',
+				label: 'Associations Incharge',
 				icon: 'BookText',
 			},
 		],
