@@ -9,6 +9,7 @@ export interface AppRoute {
 
 export interface NavLinkSectionProps {
 	page_path_name: string;
+	nav_side_heading?: string;
 	label: string;
 	page_nav_links: NavLinkProps[];
 }
@@ -18,4 +19,16 @@ export interface NavLinkProps {
 	label: string;
 	icon: string;
 	child_nav_links?: NavLinkProps[];
+}
+
+export interface CircularProgressProps {
+	size?: number;
+	strokeWidth?: number;
+	color?: string;
+	speed?: number;
+}
+
+export interface FormButtonProps {
+	label?: string;
+	onClick?: () => void;
 }

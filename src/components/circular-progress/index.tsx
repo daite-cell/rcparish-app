@@ -1,11 +1,5 @@
+import type { CircularProgressProps } from '@/types';
 import React, { useEffect, useState } from 'react';
-
-interface CircularProgressProps {
-	size?: number;
-	strokeWidth?: number;
-	color?: string;
-	speed?: number;
-}
 
 const CircularProgress: React.FC<CircularProgressProps> = ({
 	size = 120,
@@ -56,13 +50,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
 				cx={size / 2}
 				cy={size / 2}
 			/>
-			<text
-				x="50%"
-				y="50%"
-				dominantBaseline="middle"
-				textAnchor="middle"
-				className="fill-current text-sm  text-primary"
-			>
+			<text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" className="text-sm fill-current text-primary">
 				{`${value}%`}
 			</text>
 		</svg>

@@ -5,9 +5,9 @@ import { Sidebar, SidebarContent, SidebarTrigger } from '@/components/ui/sidebar
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { side_nav_links } from '@/data/side-navbar-content';
-import CircularProgress from '../circular-progress';
 import { getSectionByPathname } from '@/utils/getSectionByPathname';
 import NavLinksSection from '../navlinks-section';
+import { CircularProgress, TodayDate } from '@/components';
 
 export default function AppSideBar() {
 	const { pathname: pathName } = useLocation();
@@ -34,9 +34,7 @@ export default function AppSideBar() {
 					</div>
 					<div className="p-5 shadow-sm">
 						<div className="flex flex-col">
-							<div className="mb-5 text-sm text-[#a8926c] " id="today_date">
-								June 9, Monday, 2025
-							</div>
+							<TodayDate />
 
 							<div className="text-sm ">
 								Welcome Father, <strong>Fr. Gnanasekar S A</strong>
@@ -72,7 +70,6 @@ export default function AppSideBar() {
 						</span>
 					</div>
 					<div className="px-5 py-3">{haveDashboardNavigation && <h1 className="font-bold text-primary">Menu</h1>}</div>
-
 					<NavLinksSection navData={filter_nav_links} pathName={pathName} />
 				</SidebarContent>
 			</div>

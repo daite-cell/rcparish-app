@@ -320,6 +320,257 @@ const side_nav_links = [
 			},
 		],
 	},
+	{
+		page_path_name: '/sacraments/chronicles',
+		label: 'Register',
+		page_nav_links: [
+			{
+				path_url: '/sacraments/chronicles',
+				label: 'Chronicles',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/sacraments/baptism',
+				label: 'Baptism Register',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/sacraments/confirmations',
+				label: 'Confirmation Register',
+				icon: 'BookText',
+			},
+
+			{
+				path_url: '/sacraments/marriage_registration',
+				label: 'Marriage Register',
+				icon: 'BookText',
+				child_nav_links: [
+					{
+						path_url: '/sacraments/marriage_registration',
+						label: 'Marriage Registration',
+						icon: 'Folder',
+					},
+					{
+						path_url: '/sacraments/marriage_proposal',
+						label: 'Marriage Proposal Form',
+						icon: 'Folder',
+					},
+				],
+			},
+			{
+				path_url: '/sacraments/death_register',
+				label: 'Death Register',
+				icon: 'BookText',
+			},
+		],
+	},
+	{
+		page_path_name: '/properties/rent_details',
+		label: 'Properties',
+		page_nav_links: [
+			{
+				path_url: '/properties/rent_details',
+				label: 'Rent House or Shop Details',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/properties/land_properties',
+				label: 'Land Properties',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/properties/cemetery',
+				label: 'Cemetery',
+				icon: 'BookText',
+			},
+
+			{
+				path_url: '/properties/church_inventory',
+				label: 'Church Inventory',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/properties/other_inventory',
+				label: 'Other Inventory',
+				icon: 'BookText',
+			},
+		],
+	},
+	{
+		page_path_name: '/accounting/subscription',
+		label: 'Accounting',
+		page_nav_links: [
+			{
+				path_url: '/accounting/subscription',
+				label: 'Subscriptions',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/accounting/donations',
+				label: 'Donations',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/accounting/church_collections',
+				label: 'Church Collections',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/accounting/rent_shop',
+				label: 'Rent & Shop',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/accounting/workers',
+				label: 'Workers (Employers)',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/accounting/employers_salary',
+				label: 'Employers - Salary',
+				icon: 'BookText',
+			},
+
+			{
+				path_url: '/accounting/day_book',
+				label: 'Day Book',
+				icon: 'BookText',
+			},
+
+			{
+				path_url: '/accounting/auditing_income',
+				label: 'For Auditing',
+				icon: 'BookText',
+				child_nav_links: [
+					{
+						path_url: '/accounting/auditing_income',
+						label: 'Auditing - Income',
+						icon: 'Folder',
+					},
+					{
+						path_url: '/accounting/auditing_expense',
+						label: 'For Auditing - Expenses',
+						icon: 'Folder',
+					},
+				],
+			},
+		],
+	},
+	{
+		page_path_name: '/houses/institutions',
+		label: 'Houses',
+		page_nav_links: [
+			{
+				path_url: '/houses/institutions',
+				label: 'Institutions',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/houses/vocational_institutions',
+				label: 'Vocational Institutions',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/houses/communities',
+				label: 'Communities / Presbytery',
+				icon: 'BookText',
+			},
+		],
+	},
+	{
+		page_path_name: '/common_pool/search_family',
+		label: 'Common Pool',
+		page_nav_links: [
+			{
+				path_url: '/common_pool/search_family',
+				label: 'Search By Family',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/common_pool/search_member',
+				label: 'Search By Member',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/common_pool/admitted_list',
+				label: 'Re-Admitted List',
+				icon: 'BookText',
+			},
+		],
+	},
 ];
 
-export { side_nav_links };
+const rules_sub_links = [
+	{
+		label: 'Baptism',
+		nav_links: [
+			{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/baptism_canal_rule' },
+			{ nav_link_name: 'Rule of Parish', nav_url: '/parish/baptism_parish_rule' },
+		],
+	},
+	{
+		label: 'First Holy Communion',
+		nav_links: [
+			{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/fhc_canal_rule' },
+			{ nav_link_name: 'Rule of Parish', nav_url: 'parish/baptism_canal_rule' },
+		],
+	},
+	{
+		label: 'Confirmation',
+		nav_links: [
+			{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/confirmation_canal_rule' },
+			{ nav_link_name: 'Rule of Parish', nav_url: '/parish/confirmation_parish_rule' },
+		],
+	},
+	{
+		label: 'Marriage',
+		nav_links: [
+			{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/marriage_canal_rule' },
+			{ nav_link_name: 'Rule of Parish', nav_url: '/parish/marriage_parish_rule' },
+		],
+	},
+	{
+		label: 'Anointing the Sick',
+		nav_links: [
+			{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/anointing_canal_rule' },
+			{ nav_link_name: 'Rule of Parish', nav_url: '/parish/anointing_parish_rule' },
+		],
+	},
+	{
+		label: 'Confession',
+		nav_links: [
+			{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/confession_canal_rule' },
+			{ nav_link_name: 'Rule of Parish', nav_url: '/parish/confession_parish_rule' },
+		],
+	},
+	{
+		label: 'Funeral Procedure of Canon Law',
+		nav_links: [
+			{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/funeral_canal_rule' },
+			{ nav_link_name: 'Rule of Parish', nav_url: '/parish/funeral_parish_rule' },
+		],
+	},
+	{
+		label: 'Mass Offering',
+		nav_links: [
+			{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/mass_offerings_canal_rule' },
+			{ nav_link_name: 'Rule of Parish', nav_url: '/parish/mass_offerings_parish_rule' },
+		],
+	},
+	{
+		label: 'Penal Sanction',
+		nav_links: [
+			{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/penal_canal_rule' },
+			{ nav_link_name: 'Rule of Parish', nav_url: '/parish/penal_parish_rule' },
+		],
+	},
+	{
+		label: 'Duties',
+		nav_links: [
+			{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/priest_duty_rule' },
+			{ nav_link_name: 'Rule of Parish', nav_url: '/parish/general_duty_rule' },
+		],
+	},
+];
+
+export { side_nav_links, rules_sub_links };

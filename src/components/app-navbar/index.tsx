@@ -3,10 +3,15 @@ import { Link } from 'react-router-dom';
 import navImage1 from '/nav-images/nav-image1.jpg';
 import navImage2 from '/nav-images/nav-image2.jpg';
 import navItems from '@/data/navbar-content';
-import { memo } from 'react';
+import { memo, useState } from 'react';
 
 const AppNavbar = memo(() => {
+	const [activeTab, setActiveTab] = useState<number | null>(0);
 	const { state } = useSidebar();
+
+	const handleActiveTabChange = (index: number) => {
+		setActiveTab(activeTab === index ? null : index);
+	};
 
 	const renderSidebarTrigger = (additionalClasses: string) => (
 		<SidebarTrigger
@@ -51,9 +56,10 @@ const AppNavbar = memo(() => {
 			<div className="w-full text-[13px] bg-[#343148] border border-[#413e52] overflow-auto whitespace-nowrap text-center flex justify-between">
 				{navItems.map((item, index) => (
 					<Link
+						onClick={() => handleActiveTabChange(index)}
 						key={index}
 						to={item.to}
-						className={`inline-block text-[#d7c49e] text-center px-[15px] py-[13px] border-b-4 border-[#343148] hover:border-[#d7c49e] transition-all hover:bg-[#48453f]`}
+						className={`inline-block text-[#d7c49e] text-center px-[15px] py-[13px] border-b-4 border-[#343148] ${activeTab === index ? 'border-[#d7c49e] hover:border-[#d7c49e] transition-all bg-[#483f44]' : ''} hover:border-[#d7c49e] transition-all hover:bg-[#48453f]`}
 					>
 						{item.label}
 					</Link>

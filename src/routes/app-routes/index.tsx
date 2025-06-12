@@ -9,12 +9,21 @@ const AppRoutes = (): JSX.Element => {
 		<Suspense fallback={<Loading />}>
 			<Routes>
 				<Route path="/" element={<Navigate to="/dashboard" replace />} />
+
 				<Route element={<MainLayout />}>
 					{appRoutes
 						.filter((route) => route.layout)
 						.map(({ path, element }, index) => (
 							<Route key={index} path={path} element={element} />
 						))}
+					<Route
+						path="*"
+						element={
+							<div className="h-[500px] flex items-center justify-center text-2xl text-red-600">
+								404 - Page Not Found
+							</div>
+						}
+					/>
 				</Route>
 			</Routes>
 		</Suspense>
