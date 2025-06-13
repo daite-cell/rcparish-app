@@ -1,14 +1,19 @@
 import { TabsLayout } from '@/components';
-const tabs = [
-	{ label: 'CLOSED REQUEST', content: 'Data will be added' },
-	{ label: 'OPEN REQUEST', content: 'Data will be added' },
-	{ label: 'CREATE REQUEST', content: 'Data will be added' },
-];
+import { useState } from 'react';
+const tabs = [{ label: 'CLOSED REQUEST' }, { label: 'OPEN REQUEST' }, { label: 'CREATE REQUEST' }];
 
 const RequestToBishop = () => {
+	const [activeTab, setActiveTab] = useState(1);
+
+	const handleToggleTab = (index: number) => {
+		setActiveTab(index);
+	};
+
 	return (
 		<div>
-			<TabsLayout tabs={tabs} activeTabId={1} />
+			<TabsLayout onTabChange={handleToggleTab} tabs={tabs} activeTabId={activeTab}>
+				<h1 className="text-red-600">data will be added</h1>
+			</TabsLayout>
 		</div>
 	);
 };

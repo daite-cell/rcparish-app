@@ -1,4 +1,4 @@
-import { SidebarGroup, SidebarGroupContent, SidebarMenuButton } from '@/components/ui/sidebar';
+import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton } from '@/components/ui/sidebar';
 import { parish_nav_links_data } from '../../data';
 import { House, Newspaper, Folder, Link as LinkIcon, BookText, CalendarDays } from 'lucide-react';
 
@@ -19,24 +19,32 @@ const ParishNavLinks = () => {
 	}
 	return (
 		<>
+			<h1 className="font-bold text-[14px] ml-4">Parish</h1>
 			{parish_nav_links_data.page_nav_links.map((section, index) => (
-				<SidebarGroup key={index}>
+				<SidebarGroup className="px-2 py-1" key={index}>
 					<SidebarGroupContent>
-						<NavLink to={section.path_url}>
-							<SidebarMenuButton asChild>
-								<div className="flex hover:bg-transparent text-[#a8926c]  ">
-									{isIconKey(section.icon) && (
-										<span className="text-primary bg-[#413e52] p-1">
-											{React.createElement(Icons[section.icon], {
-												className: 'w-4 h-4',
-											})}
-										</span>
-									)}
+						<SidebarMenu>
+							<NavLink
+								className={({ isActive }) =>
+									` hover:text-primary  ${isActive ? 'text-shadow-beige !text-primary bg-[#EED9B32E]' : ''}`
+								}
+								to={section.path_url}
+							>
+								<SidebarMenuButton className="hover:bg-transparent ">
+									<div className="flex hover:bg-transparent text-[#a8926c]   ">
+										{isIconKey(section.icon) && (
+											<span className="text-primary bg-[#413e52] p-1">
+												{React.createElement(Icons[section.icon], {
+													className: 'w-4 h-4 ',
+												})}
+											</span>
+										)}
 
-									<span className="ml-3 hover:text-primary">{section.label}</span>
-								</div>
-							</SidebarMenuButton>
-						</NavLink>
+										<span className="ml-4 hover:text-primary">{section.label}</span>
+									</div>
+								</SidebarMenuButton>
+							</NavLink>
+						</SidebarMenu>
 					</SidebarGroupContent>
 				</SidebarGroup>
 			))}

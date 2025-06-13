@@ -19,15 +19,16 @@ const RuleInParishPage = () => {
 	};
 
 	return (
-		<div className="px-5">
-			<TabsLayout tabs={tabs} activeTabId={activeTab} onTabChange={handleToggleTab} />
-			<div className="p-4 border border-gray-300 rounded min-h-[300px]">
-				<h1 className="text-[16px] font-semibold">
-					{parish_rules_generic_content[routeName as keyof typeof parish_rules_generic_content]}
-				</h1>
+		<>
+			<TabsLayout
+				tabs={tabs}
+				activeTabId={activeTab}
+				onTabChange={handleToggleTab}
+				pageHeading={parish_rules_generic_content[routeName as keyof typeof parish_rules_generic_content]}
+			>
 				{activeTab === 1 && <RulesEditForm />}
-			</div>
-		</div>
+			</TabsLayout>
+		</>
 	);
 };
 

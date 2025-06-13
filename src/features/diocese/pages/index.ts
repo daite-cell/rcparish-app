@@ -1,1 +1,1 @@
-export { default as DiocesePage } from './diocese-page';
+export { default as DioceseGenericPage } from './diocese-generic-page';

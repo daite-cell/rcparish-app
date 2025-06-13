@@ -7,3 +7,4 @@ export { default as NavLinksSection } from './navlinks-section';
 export { default as RulesNavSection } from './rules-nav-section';
 export { default as TodayDate } from './today-date';
 export { default as FormButton } from './form-button';
+export { default as SectionHeading } from './section-heading';

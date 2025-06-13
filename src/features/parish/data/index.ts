@@ -9,6 +9,7 @@ const parish_rules_generic_content = {
 	mass_offerings_parish_rule: 'MASS OFFERING RULE IN PARISH',
 	penal_parish_rule: 'PENAL SANCTION RULE IN PARISH',
 	general_duty_rule: 'PARISH GENERAL DUTIES RULES',
+	query_from_bishop: 'OPEN QUERIES',
 };
 
 const parish_nav_links_data = {
@@ -32,6 +33,11 @@ const parish_nav_links_data = {
 		},
 		{
 			path_url: '/parish/former_parish_priest',
+			label: 'Former Parish Priest',
+			icon: 'BookText',
+		},
+		{
+			path_url: '/parish/parish_activities',
 			label: 'Parish Activities',
 			icon: 'BookText',
 		},

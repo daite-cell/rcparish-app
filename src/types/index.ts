@@ -14,10 +14,15 @@ export interface NavLinkSectionProps {
 	page_nav_links: NavLinkProps[];
 }
 
+export interface TabsProps {
+	label: string;
+}
+
 export interface NavLinkProps {
 	path_url: string;
 	label: string;
 	icon: string;
+	tabs?: TabsProps[];
 	child_nav_links?: NavLinkProps[];
 }
 

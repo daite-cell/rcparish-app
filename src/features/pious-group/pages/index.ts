@@ -1,1 +1,1 @@
-export { default as PiousGroupPage } from './pious-group-page';
+export { default as PiousGroupGenericPage } from './pious-group-generic-page';

@@ -1,1 +1,1 @@
-export { default as AccountingPage } from './accounting-page';
+export { default as AccountingGenericPage } from './accounting-generic-page';
