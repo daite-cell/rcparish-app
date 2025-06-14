@@ -3,7 +3,6 @@ import type { AppRoute } from '../types';
 
 const DashBoardPage = lazy(() => import('../features/dashboard/pages/dashboard-page'));
 const QueriesFormPage = lazy(() => import('../features/dashboard/pages/queries-form'));
-const ReligiousPeople = lazy(() => import('../features/religious-people/pages'));
 const RequestToBishop = lazy(() => import('../features/dashboard/pages/request-to-bishop'));
 const RegisterPage = lazy(() => import('../features/register/pages/register-page'));
 const ReligiousPeopleGenericPage = lazy(
@@ -11,19 +10,20 @@ const ReligiousPeopleGenericPage = lazy(
 );
 const RegisterGenericPage = lazy(() => import('../features/register/pages/register-generic-page'));
 const AccountingGenericPage = lazy(() => import('../features/accounting/pages/accounting-generic-page'));
+const ParishGenericPage = lazy(() => import('../features/parish/pages/parish-generic-page'));
 const HousesGenericPage = lazy(() => import('../features/houses/pages/houses-generic-page'));
 const CommonPoolGenericPage = lazy(() => import('../features/common-pool/pages/common-pool-generic-page'));
 const PiousGroupGenericPage = lazy(() => import('../features/pious-group/pages/pious-group-generic-page'));
-const ParishGenericPage = lazy(() => import('../features/parish/pages/parish-generic-page'));
 const PropertiesGenericPage = lazy(() => import('../features/properties/pages/properties-generic-page'));
 const DioceseGenericPage = lazy(() => import('../features/diocese/pages/diocese-generic-page'));
+const DioceseStatutesGenericPage = lazy(() => import('../features/diocese/pages/diocese-statutes-generic-page'));
+const RulesOfParishGenericPage = lazy(() => import('../features/parish/pages/rule-of-parish-page'));
 
 export const appRoutes: AppRoute[] = [
 	{ path: '/dashboard', name: 'Dashboard', element: <DashBoardPage />, layout: true },
 	{ path: '/query_from_bishop', name: 'QueriesFormBishop', element: <QueriesFormPage />, layout: true },
 	{ path: '/query_from_people', name: 'QueriesFormPeople', element: <QueriesFormPage />, layout: true },
 	{ path: '/request_to_bishop', name: 'RequestToBishop', element: <RequestToBishop />, layout: true },
-	{ path: '/religious_people', name: 'ReligiousPeople', element: <ReligiousPeople />, layout: true },
 	{ path: '/sacraments', name: 'Register', element: <RegisterPage />, layout: true },
 	{
 		path: '/religious_people/:type',
@@ -44,6 +44,12 @@ export const appRoutes: AppRoute[] = [
 		layout: true,
 	},
 	{
+		path: '/parish/:type',
+		name: 'ParishGeneric',
+		element: <ParishGenericPage />,
+		layout: true,
+	},
+	{
 		path: '/houses/:type',
 		name: 'HousesGeneric',
 		element: <HousesGenericPage />,
@@ -61,12 +67,7 @@ export const appRoutes: AppRoute[] = [
 		element: <PiousGroupGenericPage />,
 		layout: true,
 	},
-	{
-		path: '/parish/:type',
-		name: 'ParishGeneric',
-		element: <ParishGenericPage />,
-		layout: true,
-	},
+
 	{
 		path: '/properties/:type',
 		name: 'PropertiesGeneric',
@@ -77,6 +78,18 @@ export const appRoutes: AppRoute[] = [
 		path: '/diocese/:type',
 		name: 'DioceseGeneric',
 		element: <DioceseGenericPage />,
+		layout: true,
+	},
+	{
+		path: '/diocese/statutes/:rule',
+		name: 'DioceseStatutesGeneric',
+		element: <DioceseStatutesGenericPage />,
+		layout: true,
+	},
+	{
+		path: 'parish/rules/:rule',
+		name: 'RulesOfParishGeneric',
+		element: <RulesOfParishGenericPage />,
 		layout: true,
 	},
 ];

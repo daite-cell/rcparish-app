@@ -1,8 +1,8 @@
 import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton } from '@/components/ui/sidebar';
-import { parish_nav_links_data } from '../../data';
+import { dynamic_navLinks_data } from '@/data/side-navbar-content';
 import { House, Newspaper, Folder, Link as LinkIcon, BookText, CalendarDays } from 'lucide-react';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import React from 'react';
 import { RulesNavSection } from '@/components';
 const Icons = {
@@ -13,14 +13,17 @@ const Icons = {
 	BookText,
 	CalendarDays,
 };
-const ParishNavLinks = () => {
+const GenericNavLinks = () => {
 	function isIconKey(icon: string): icon is keyof typeof Icons {
 		return icon in Icons;
 	}
+	const location = useLocation();
+	const mainPathName = location.pathname.split('/')[1];
+	const navLinksData = dynamic_navLinks_data.find((link) => link.page_path_name === `${mainPathName}`);
 	return (
 		<>
-			<h1 className="font-bold text-[14px] ml-4">Parish</h1>
-			{parish_nav_links_data.page_nav_links.map((section, index) => (
+			<h1 className="font-bold text-[14px] ml-4">{navLinksData?.label}</h1>
+			{navLinksData?.page_nav_links.map((section, index) => (
 				<SidebarGroup className="px-2 py-1" key={index}>
 					<SidebarGroupContent>
 						<SidebarMenu>
@@ -30,7 +33,7 @@ const ParishNavLinks = () => {
 								}
 								to={section.path_url}
 							>
-								<SidebarMenuButton className="hover:bg-transparent ">
+								<SidebarMenuButton className="hover:bg-transparent active:bg-transparent ">
 									<div className="flex hover:bg-transparent text-[#a8926c]   ">
 										{isIconKey(section.icon) && (
 											<span className="text-primary bg-[#413e52] p-1">
@@ -53,4 +56,4 @@ const ParishNavLinks = () => {
 	);
 };
 
-export default ParishNavLinks;
+export default GenericNavLinks;

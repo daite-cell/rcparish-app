@@ -2,12 +2,9 @@ import { side_nav_links } from '@/data/side-navbar-content';
 import { getSectionByPathname } from '@/utils/getSectionByPathname';
 import { useLocation } from 'react-router-dom';
 
-import { parish_rules_generic_content } from '@/features/parish/data';
-import { useRouteName } from '@/utils/useRouteName';
-
 const SectionHeading = () => {
 	const location = useLocation();
-	const routeName = useRouteName('rule');
+
 	const data = getSectionByPathname(side_nav_links, location.pathname);
 	const sectionHeading = data?.page_nav_links.find((link) => link.path_url === location.pathname)?.label;
 	const dashBoardHeading = ['/query_from_bishop', '/query_from_people'].includes(location.pathname);
@@ -30,11 +27,7 @@ const SectionHeading = () => {
 		},
 	].find((link) => link.path_url === location.pathname)?.label;
 
-	const sectionMainHeading =
-		parish_rules_generic_content[routeName as keyof typeof parish_rules_generic_content] ||
-		(dashBoardHeading && 'OPEN Query') ||
-		getHeadingBaseFromPath ||
-		sectionHeading;
+	const sectionMainHeading = (dashBoardHeading && 'OPEN Query') || getHeadingBaseFromPath || sectionHeading;
 
 	return <h1 className="text-[16px] font-bold uppercase">{sectionMainHeading}</h1>;
 };

@@ -1,4 +1,4 @@
-import { TabsLayout } from '@/components';
+import { DynamicDataTable, TabsLayout } from '@/components';
 import { useState } from 'react';
 const QueriesFormPage = () => {
 	const [activeTab, setActiveTab] = useState(0);
@@ -12,7 +12,7 @@ const QueriesFormPage = () => {
 	return (
 		<div>
 			<TabsLayout onTabChange={handleToggleTab} tabs={tabs} activeTabId={activeTab}>
-				<h1>data will be added</h1>
+				{activeTab === 1 && <DynamicDataTable />}
 			</TabsLayout>
 		</div>
 	);

@@ -1,27 +1,31 @@
-import { rules_sub_links } from '@/data/side-navbar-content';
+import { rules } from '@/data/side-navbar-content';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '../ui/collapsible';
 import { SidebarMenu, SidebarMenuButton } from '../ui/sidebar';
 import { ChevronRight, Gem, Circle } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const RulesNavSection = () => {
+	const location = useLocation();
+	const mainPathName = location.pathname.split('/')[1];
+	const navLinksData = rules.find((link) => link.page_path_name === `${mainPathName}`);
+
 	return (
-		<Collapsible className="ml-2 group/collapsible  ">
-			<SidebarMenuButton className="hover:!bg-transparent hover:text-primary " asChild>
+		<Collapsible className="ml-2 group/collapsible   ">
+			<SidebarMenuButton className="hover:!bg-transparent hover:text-primary active:bg-transparent " asChild>
 				<CollapsibleTrigger className="flex w-full  items-center text-[#a8926c] justify-between  ">
 					<div className="flex items-center w-full gap-2">
 						<span className="text-primary bg-[#413e52] p-1 hover:bg-[#413e52]">
 							<Gem className="w-4 h-4" />
 						</span>
 
-						<span className="ml-2">Rules & Regulations</span>
+						<span className="ml-2">{navLinksData?.label_heading}</span>
 					</div>
 
 					<ChevronRight className="text-[#a8926c]" />
 				</CollapsibleTrigger>
 			</SidebarMenuButton>
 
-			{rules_sub_links.map((section, index) => (
+			{navLinksData?.rules_sub_links.map((section, index) => (
 				<div key={index}>
 					<CollapsibleContent className="mt-4">
 						<div className="px-5 ">
@@ -36,7 +40,7 @@ const RulesNavSection = () => {
 										key={index}
 										to={link.nav_url}
 									>
-										<SidebarMenuButton className="hover:bg-transparent">
+										<SidebarMenuButton className="hover:bg-transparent active:bg-transparent">
 											<div className="flex items-center hover:bg-transparent text-[#a8926c]   ">
 												<span>
 													<Circle className="w-2 h-2" />

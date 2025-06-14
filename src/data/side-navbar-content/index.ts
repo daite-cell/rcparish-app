@@ -170,12 +170,12 @@ const side_nav_links = [
 				label: 'Vocational List',
 				icon: 'Folder',
 			},
-			{
-				path_url: '/diocese/statutes',
-				label: 'Statutes (Rules)',
-				icon: 'Folder',
-				tabs: [{ label: 'view' }],
-			},
+			// {
+			// 	path_url: '/diocese/statutes',
+			// 	label: 'Statutes (Rules)',
+			// 	icon: 'Folder',
+			// 	tabs: [{ label: 'view' }],
+			// },
 		],
 	},
 	{
@@ -615,4 +615,285 @@ const rules_sub_links = [
 	},
 ];
 
-export { side_nav_links, rules_sub_links };
+const rules = [
+	{
+		page_path_name: 'parish',
+		label_heading: 'Rules & Regulations',
+		rules_sub_links: [
+			{
+				label: 'Baptism',
+				nav_links: [
+					{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/rules/baptism_canal_rule' },
+					{ nav_link_name: 'Rule of Parish', nav_url: '/parish/rules/baptism_parish_rule' },
+				],
+			},
+			{
+				label: 'First Holy Communion',
+				nav_links: [
+					{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/rules/fhc_canal_rule' },
+					{ nav_link_name: 'Rule of Parish', nav_url: '/parish/rules/fhc_parish_rule' },
+				],
+			},
+			{
+				label: 'Confirmation',
+				nav_links: [
+					{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/rules/confirmation_canal_rule' },
+					{ nav_link_name: 'Rule of Parish', nav_url: '/parish/rules/confirmation_parish_rule' },
+				],
+			},
+			{
+				label: 'Marriage',
+				nav_links: [
+					{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/rules/marriage_canal_rule' },
+					{ nav_link_name: 'Rule of Parish', nav_url: '/parish/rules/marriage_parish_rule' },
+				],
+			},
+			{
+				label: 'Anointing the Sick',
+				nav_links: [
+					{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/rules/anointing_canal_rule' },
+					{ nav_link_name: 'Rule of Parish', nav_url: '/parish/rules/anointing_parish_rule' },
+				],
+			},
+			{
+				label: 'Confession',
+				nav_links: [
+					{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/rules/confession_canal_rule' },
+					{ nav_link_name: 'Rule of Parish', nav_url: '/parish/rules/confession_parish_rule' },
+				],
+			},
+			{
+				label: 'Funeral Procedure of Canon Law',
+				nav_links: [
+					{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/rules/funeral_canal_rule' },
+					{ nav_link_name: 'Rule of Parish', nav_url: '/parish/rules/funeral_parish_rule' },
+				],
+			},
+			{
+				label: 'Mass Offering',
+				nav_links: [
+					{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/rules/mass_offerings_canal_rule' },
+					{ nav_link_name: 'Rule of Parish', nav_url: '/parish/rules/mass_offerings_parish_rule' },
+				],
+			},
+			{
+				label: 'Penal Sanction',
+				nav_links: [
+					{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/rules/penal_canal_rule' },
+					{ nav_link_name: 'Rule of Parish', nav_url: '/parish/rules/penal_parish_rule' },
+				],
+			},
+			{
+				label: 'Duties',
+				nav_links: [
+					{ nav_link_name: 'Rule of Canon Law', nav_url: '/parish/rules/priest_duty_rule' },
+					{ nav_link_name: 'Rule of Parish', nav_url: '/parish/rules/general_duty_rule' },
+				],
+			},
+		],
+	},
+	{
+		page_path_name: 'diocese',
+		label_heading: 'Statutes (Rules)',
+		rules_sub_links: [
+			{
+				label: 'Baptism',
+				nav_links: [{ nav_link_name: 'Rule of Canon Law', nav_url: '/diocese/statutes/baptism_canal_rule' }],
+			},
+			{
+				label: 'First Holy Communion',
+				nav_links: [{ nav_link_name: 'Rule of Canon Law', nav_url: '/diocese/statutes/fhc_canal_rule' }],
+			},
+			{
+				label: 'Confirmation',
+				nav_links: [{ nav_link_name: 'Rule of Canon Law', nav_url: '/diocese/statutes/confirmation_canal_rule' }],
+			},
+			{
+				label: 'Marriage',
+				nav_links: [{ nav_link_name: 'Rule of Canon Law', nav_url: '/diocese/statutes/marriage_canal_rule' }],
+			},
+			{
+				label: 'Anointing the Sick',
+				nav_links: [{ nav_link_name: 'Rule of Canon Law', nav_url: '/diocese/statutes/anointing_canal_rule' }],
+			},
+			{
+				label: 'Confession',
+				nav_links: [{ nav_link_name: 'Rule of Canon Law', nav_url: '/diocese/statutes/confession_canal_rule' }],
+			},
+			{
+				label: 'Funeral Procedure of Canon Law',
+				nav_links: [{ nav_link_name: 'Rule of Canon Law', nav_url: '/diocese/statutes/funeral_canal_rule' }],
+			},
+			{
+				label: 'Mass Offering',
+				nav_links: [{ nav_link_name: 'Rule of Canon Law', nav_url: '/diocese/statutes/mass_offerings_canal_rule' }],
+			},
+			{
+				label: 'Penal Sanction',
+				nav_links: [{ nav_link_name: 'Rule of Canon Law', nav_url: '/diocese/statutes/penal_canal_rule' }],
+			},
+			{
+				label: 'Duties',
+				nav_links: [
+					{ nav_link_name: 'Rule of Canon Law', nav_url: '/diocese/statutes/priest_duty_rule' },
+					{ nav_link_name: 'Duty of Priest', nav_url: '/diocese/statutes/general_duty_rule' },
+				],
+			},
+		],
+	},
+];
+
+const dynamic_navLinks_data = [
+	{
+		page_path_name: 'parish',
+		label: 'Parish',
+		page_nav_links: [
+			{
+				path_url: '/parish/parish_history',
+				label: 'Parish History',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/parish/patron_saint',
+				label: 'Patron Saint',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/parish/present_parish_priest',
+				label: 'Present Parish Priest',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/parish/former_parish_priest',
+				label: 'Former Parish Priest',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/parish/parish_activities',
+				label: 'Parish Activities',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/parish/sub_stations',
+				label: 'Main Station / Sub Station',
+				icon: 'BookText',
+			},
+		],
+	},
+	{
+		page_path_name: 'diocese',
+		label: 'Diocese',
+		page_nav_links: [
+			{
+				path_url: '/diocese/history',
+				label: 'History',
+				icon: 'BookText',
+				tabs: [{ label: 'view' }],
+			},
+			{
+				path_url: '/diocese/patron_saints',
+				label: 'Patron Saints',
+				icon: 'BookText',
+				tabs: [{ label: 'view' }],
+			},
+			{
+				path_url: '/diocese/bishop',
+				label: 'Bishop',
+				icon: 'CalendarDays',
+				tabs: [{ label: 'RETIRED / EMERITUS BISHOPS' }, { label: 'view' }, { label: 'edit' }],
+			},
+			{
+				path_url: '/diocese/retired_bishops',
+				label: 'Emeritus / Retired Bishops',
+				icon: 'CalendarDays',
+				tabs: [{ label: 'view' }],
+			},
+			{
+				path_url: '/diocese/priests',
+				label: 'Priests',
+				icon: 'Folder',
+			},
+			{
+				path_url: '/diocese/calender_dates',
+				label: 'Calender Dates',
+				icon: 'CalendarDays',
+				tabs: [{ label: 'view' }],
+			},
+			{
+				path_url: '/diocese/curia_members',
+				label: 'Members of Curia',
+				icon: 'Folder',
+				tabs: [{ label: 'view' }, { label: 'edit' }],
+			},
+			{
+				path_url: '/diocese/commissions',
+				label: 'Commissions',
+				icon: 'Folder',
+			},
+
+			{
+				path_url: '/diocese/committees',
+				label: 'Committees',
+				icon: 'Folder',
+			},
+			{
+				path_url: '/diocese/vsss',
+				label: 'Social Service Society',
+				icon: 'Folder',
+			},
+			{
+				path_url: '/diocese/college_consulters',
+				label: 'College of Consultors',
+				icon: 'Folder',
+				tabs: [{ label: 'PRIOR DIGNITARIES' }, { label: 'view' }, { label: 'edit' }],
+			},
+			{
+				path_url: '/diocese/senate_members',
+				label: 'Senate Members',
+				icon: 'Folder',
+				tabs: [{ label: 'PRIOR DIGNITARIES' }, { label: 'edit' }],
+			},
+
+			{
+				path_url: '/diocese/vf',
+				label: 'Vicariate Forane',
+				icon: 'Folder',
+				tabs: [{ label: 'view' }],
+			},
+			{
+				path_url: '/diocese/vicariates',
+				label: 'Vicariates',
+				icon: 'Folder',
+				tabs: [{ label: 'print' }],
+			},
+			{
+				path_url: '/diocese/parishes',
+				label: 'Parishes',
+				icon: 'Folder',
+			},
+
+			{
+				path_url: '/diocese/properties',
+				label: 'Land Properties',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/diocese/houses_list',
+				label: 'Houses',
+				icon: 'Folder',
+			},
+			{
+				path_url: '/diocese/institutions_list',
+				label: 'Institutions List',
+				icon: 'Folder',
+			},
+			{
+				path_url: '/diocese/vocational_list',
+				label: 'Vocational List',
+				icon: 'Folder',
+			},
+		],
+	},
+];
+
+export { side_nav_links, rules_sub_links, rules, dynamic_navLinks_data };

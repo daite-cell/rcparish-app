@@ -11,7 +11,7 @@ import { ChevronRight, Circle } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { House, Newspaper, Folder, Link as LinkIcon, BookText, CalendarDays } from 'lucide-react';
 import type { NavLinkProps, NavLinkSectionProps } from '@/types';
-import { ParishNavLinks } from '@/features/parish/components';
+import GenericNavLinks from '@/components/generic-nav-links';
 
 const Icons = {
 	House,
@@ -32,7 +32,7 @@ const NavLinksSection = ({ navData, pathName }: { navData: NavLinkSectionProps[]
 		[pathName]
 	);
 
-	const isParish = pathName.split('/')[1] === 'parish';
+	const isParish = pathName.split('/')[1] === 'parish' || pathName.split('/')[1] === 'diocese';
 
 	return (
 		<SidebarContent>
@@ -50,7 +50,7 @@ const NavLinksSection = ({ navData, pathName }: { navData: NavLinkSectionProps[]
 				</div>
 			)}
 			{isParish ? (
-				<ParishNavLinks />
+				<GenericNavLinks />
 			) : (
 				navData.map((section: { page_path_name: string; label: string; page_nav_links: NavLinkProps[] }) => (
 					<SidebarGroup key={section?.page_path_name}>
@@ -62,9 +62,9 @@ const NavLinksSection = ({ navData, pathName }: { navData: NavLinkSectionProps[]
 										if (item.child_nav_links && item.child_nav_links.length > 0) {
 											return (
 												<Collapsible key={item.label} className="group/collapsible ">
-													<SidebarMenuButton className="hover:!bg-transparent hover:text-primary " asChild>
+													<SidebarMenuButton className="hover:!bg-transparent hover:text-primary  " asChild>
 														<CollapsibleTrigger className="flex w-full  items-center text-[#a8926c] justify-between  ">
-															<div className="flex items-center w-full gap-2">
+															<div className="flex items-center w-full gap-2 hover:text-primary ">
 																{isIconKey(item.icon) && (
 																	<span className="text-primary bg-[#413e52] p-1 hover:bg-[#413e52]">
 																		{React.createElement(Icons[item.icon], {
@@ -82,13 +82,15 @@ const NavLinksSection = ({ navData, pathName }: { navData: NavLinkSectionProps[]
 													<CollapsibleContent className="px-6">
 														<SidebarMenu>
 															{item.child_nav_links.map((child) => (
-																<div className="flex items-center" key={child.label}>
+																<div className="flex items-center  px-4" key={child.label}>
 																	<span>
 																		<Circle className="w-2 h-2" />
 																	</span>
-																	<SidebarMenuButton asChild>
+																	<SidebarMenuButton className="hover:text-primary" asChild>
 																		<NavLink
-																			className="text-[#a8926c]  hover:text-primary hover:bg-transparent active:bg-transparent "
+																			className={() =>
+																				`text-[#a8926c]  hover:text-primary hover:bg-transparent active:bg-transparent `
+																			}
 																			to={child.path_url}
 																		>
 																			{child.label}
@@ -104,13 +106,14 @@ const NavLinksSection = ({ navData, pathName }: { navData: NavLinkSectionProps[]
 
 										return (
 											<NavLink
+												key={item.label}
 												to={item.path_url}
 												className={({ isActive }) =>
 													` hover:text-primary ${isActive ? 'text-shadow-beige !text-primary bg-[#EED9B32E]' : ''}`
 												}
 											>
 												<SidebarMenu>
-													<SidebarMenuButton className=" hover:text-primary" asChild>
+													<SidebarMenuButton className=" hover:text-primary active:bg-transparent" asChild>
 														<div className="flex hover:bg-transparent text-[#a8926c]  ">
 															{isIconKey(item.icon) && (
 																<span className="text-primary bg-[#413e52] p-1">

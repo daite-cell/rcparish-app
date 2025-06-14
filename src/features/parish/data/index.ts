@@ -8,45 +8,18 @@ const parish_rules_generic_content = {
 	funeral_parish_rule: 'FUNERAL PROCEDURE RULE IN PARISH',
 	mass_offerings_parish_rule: 'MASS OFFERING RULE IN PARISH',
 	penal_parish_rule: 'PENAL SANCTION RULE IN PARISH',
-	general_duty_rule: 'PARISH GENERAL DUTIES RULES',
 	query_from_bishop: 'OPEN QUERIES',
+	baptism_canal_rule: 'BAPTISM RULE OF CANON LAW',
+	fhc_canal_rule: 'FIRST HOLY COMMUNION RULE OF CANON LAW',
+	confirmation_canal_rule: 'CONFIRMATION RULE OF CANON LAW',
+	marriage_canal_rule: 'MARRIAGE RULE OF CANON LAW',
+	anointing_canal_rule: 'ANOINTING THE SICK RULE OF CANON LAW',
+	confession_canal_rule: 'CONFESSION RULE OF CANON LAW',
+	funeral_canal_rule: 'FUNERAL PROCEDURE RULE OF CANON LAW',
+	mass_offerings_canal_rule: 'MASS OFFERING RULE OF CANON LAW',
+	penal_canal_rule: 'PENAL SANCTION RULE OF CANON LAW',
+	priest_duty_rule: 'PRIEST DUTY RULE',
+	general_duty_rule: 'DUTY OF PRIEST',
 };
 
-const parish_nav_links_data = {
-	page_path_name: '/parish/parish_history',
-	label: 'Parish',
-	page_nav_links: [
-		{
-			path_url: '/parish/parish_history',
-			label: 'Parish History',
-			icon: 'BookText',
-		},
-		{
-			path_url: '/parish/patron_saint',
-			label: 'Patron Saint',
-			icon: 'BookText',
-		},
-		{
-			path_url: '/parish/present_parish_priest',
-			label: 'Present Parish Priest',
-			icon: 'BookText',
-		},
-		{
-			path_url: '/parish/former_parish_priest',
-			label: 'Former Parish Priest',
-			icon: 'BookText',
-		},
-		{
-			path_url: '/parish/parish_activities',
-			label: 'Parish Activities',
-			icon: 'BookText',
-		},
-		{
-			path_url: '/parish/sub_stations',
-			label: 'Main Station / Sub Station',
-			icon: 'BookText',
-		},
-	],
-};
-
-export { parish_rules_generic_content, parish_nav_links_data };
+export { parish_rules_generic_content };
