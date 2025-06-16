@@ -1,4 +1,4 @@
-import { TabsLayout } from '@/components';
+import { DynamicDataTable, TabsLayout } from '@/components';
 import { side_nav_links } from '@/data/side-navbar-content';
 import { getSectionByPathname } from '@/utils/getSectionByPathname';
 import { useState } from 'react';
@@ -21,7 +21,7 @@ const HousesGenericPage = () => {
 				activeTabId={activeIndex}
 				tabs={tabsData || [{ label: 'view' }, { label: 'add' }]}
 			>
-				<h1 className="text-center text-red-600">dynamic table will be added ...</h1>
+				<DynamicDataTable />
 			</TabsLayout>
 		</>
 	);

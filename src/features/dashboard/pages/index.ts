@@ -1,3 +1,3 @@
 export { default as DashboardPage } from './dashboard-page';
-export { default as QueriesFormPage } from './queries-form';
-export { default as RequestToBishop } from './request-to-bishop';
+export { default as RequestToBishop } from '../components/request-to-bishop';
+export { default as DashboardGenericPage } from './dashboard-generic-page';

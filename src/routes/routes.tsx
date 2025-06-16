@@ -3,7 +3,6 @@ import type { AppRoute } from '../types';
 
 const DashBoardPage = lazy(() => import('../features/dashboard/pages/dashboard-page'));
 const QueriesFormPage = lazy(() => import('../features/dashboard/pages/queries-form'));
-const RequestToBishop = lazy(() => import('../features/dashboard/pages/request-to-bishop'));
 const RegisterPage = lazy(() => import('../features/register/pages/register-page'));
 const ReligiousPeopleGenericPage = lazy(
 	() => import('../features/religious-people/pages/religious-people-generic-page')
@@ -18,12 +17,24 @@ const PropertiesGenericPage = lazy(() => import('../features/properties/pages/pr
 const DioceseGenericPage = lazy(() => import('../features/diocese/pages/diocese-generic-page'));
 const DioceseStatutesGenericPage = lazy(() => import('../features/diocese/pages/diocese-statutes-generic-page'));
 const RulesOfParishGenericPage = lazy(() => import('../features/parish/pages/rule-of-parish-page'));
+const DashboardGenericPage = lazy(() => import('../features/dashboard/pages/dashboard-generic-page'));
 
 export const appRoutes: AppRoute[] = [
 	{ path: '/dashboard', name: 'Dashboard', element: <DashBoardPage />, layout: true },
 	{ path: '/query_from_bishop', name: 'QueriesFormBishop', element: <QueriesFormPage />, layout: true },
 	{ path: '/query_from_people', name: 'QueriesFormPeople', element: <QueriesFormPage />, layout: true },
-	{ path: '/request_to_bishop', name: 'RequestToBishop', element: <RequestToBishop />, layout: true },
+	{
+		path: '/request_to_bishop',
+		name: 'RequestToBishop',
+		element: <DashboardGenericPage />,
+		layout: true,
+	},
+	{
+		path: '/sermon',
+		name: 'sermon',
+		element: <DashboardGenericPage />,
+		layout: true,
+	},
 	{ path: '/sacraments', name: 'Register', element: <RegisterPage />, layout: true },
 	{
 		path: '/religious_people/:type',
@@ -90,6 +101,12 @@ export const appRoutes: AppRoute[] = [
 		path: 'parish/rules/:rule',
 		name: 'RulesOfParishGeneric',
 		element: <RulesOfParishGenericPage />,
+		layout: true,
+	},
+	{
+		path: '/:type',
+		name: 'DashboardGeneric',
+		element: <DashboardGenericPage />,
 		layout: true,
 	},
 ];

@@ -42,7 +42,7 @@ const side_nav_links = [
 				icon: 'Folder',
 			},
 			{
-				path_url: '/',
+				path_url: '/sermon',
 				label: 'Sermon',
 				icon: 'Folder',
 			},

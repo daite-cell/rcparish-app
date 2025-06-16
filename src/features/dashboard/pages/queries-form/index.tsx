@@ -11,8 +11,17 @@ const QueriesFormPage = () => {
 	];
 	return (
 		<div>
-			<TabsLayout onTabChange={handleToggleTab} tabs={tabs} activeTabId={activeTab}>
-				{activeTab === 1 && <DynamicDataTable />}
+			<TabsLayout onTabChange={handleToggleTab} hasPageHeading={false} tabs={tabs} activeTabId={activeTab}>
+				{activeTab === 1 && (
+					<div>
+						<DynamicDataTable isDynamic={false} tableId="closed-queries" title="OPEN QUERIES" />
+					</div>
+				)}
+				{activeTab === 0 && (
+					<div>
+						<DynamicDataTable isDynamic={false} tableId="closed-queries" title="CLOSED QUERIES" />
+					</div>
+				)}
 			</TabsLayout>
 		</div>
 	);

@@ -9,7 +9,7 @@ interface TabsLayoutProps<T extends TabBase> {
 	activeTabId?: number;
 	// eslint-disable-next-line no-unused-vars
 	onTabChange?: (index: number) => void;
-	pageHeading?: string;
+	hasPageHeading?: boolean;
 	children: React.ReactNode;
 }
 
@@ -17,7 +17,7 @@ const TabsLayout = <T extends TabBase>({
 	tabs,
 	activeTabId = 0,
 	onTabChange,
-
+	hasPageHeading = true,
 	children,
 }: TabsLayoutProps<T>) => (
 	<div className="w-full mx-auto pt-4 px-6">
@@ -39,7 +39,7 @@ const TabsLayout = <T extends TabBase>({
 			})}
 		</div>
 		<div className="p-4  border border-gray-300 rounded min-h-[300px]">
-			<SectionHeading />
+			{hasPageHeading && <SectionHeading />}
 
 			{children}
 		</div>
