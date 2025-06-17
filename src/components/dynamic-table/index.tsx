@@ -5,21 +5,16 @@ import {
 	getPaginationRowModel,
 	getFilteredRowModel,
 	flexRender,
-	type ColumnDef,
 	type SortingState,
 	type Table as ReactTableType,
 } from '@tanstack/react-table';
-import { useMemo, useState } from 'react';
+import React, { Suspense, useMemo, useState } from 'react';
 import { ChevronDown, ChevronUp, ChevronsUpDown } from 'lucide-react';
 import mockData from '@/data/mock-data/mock-data.json';
 import { Input } from '../ui/input';
-import {
-	ExportButton,
-	ColumnVisibilityDropdown,
-	SingleSelectDropdown,
-	DateInputFelid,
-	PaginationControls,
-} from '../index';
+import { ColumnVisibilityDropdown, SingleSelectDropdown, DateInputFelid, PaginationControls } from '../index';
+import { Button } from '../ui/button';
+const ExportButton = React.lazy(() => import('../../components/export-button/'));
 
 interface DynamicDataTableProps<T extends object> {
 	data?: T[];
@@ -48,9 +43,11 @@ const DynamicDataTable = <T extends object>({
 	const [alphaFilter, setAlphaFilter] = useState<string>('All');
 	const [fromDate, setFromDate] = useState<Date | undefined>(undefined);
 	const [toDate, setToDate] = useState<Date | undefined>(undefined);
+	const generatedTableId = tableId ?? 'dynamic-data-table';
 
 	const filteredData = useMemo(() => {
-		let result = data;
+		let result = [...data];
+
 		if (alphaFilter !== 'All') {
 			const key = filterKey ?? Object.keys(data[0] || {}).find((k) => typeof (data[0] as Record<string, unknown>)[k]);
 			if (key) {
@@ -74,20 +71,18 @@ const DynamicDataTable = <T extends object>({
 					itemDate = itemDateValue;
 				}
 
-				if (itemDate === null) {
-					return false;
-				}
-
+				if (!itemDate || isNaN(itemDate.getTime())) return false;
 				if (fromDate && itemDate < fromDate) return false;
 				if (toDate && itemDate > toDate) return false;
+
 				return true;
 			});
 		}
 
 		return result;
-	}, [alphaFilter, data, filterKey, fromDate, toDate]);
+	}, [data, alphaFilter, filterKey, fromDate?.getTime() ?? null, toDate?.getTime() ?? null]);
 
-	const columns: ColumnDef<T>[] = useMemo(() => {
+	const columns: { header: string; accessorKey: string }[] = useMemo(() => {
 		if (!data || data.length === 0) return [];
 
 		const formatHeader = (key: string) =>
@@ -96,7 +91,7 @@ const DynamicDataTable = <T extends object>({
 		return Object.keys(data[0]).map((key) => ({
 			accessorKey: key,
 			header: formatHeader(key),
-			cell: (info) => info.getValue(),
+			cell: (info: { getValue: () => string }) => info.getValue(),
 		}));
 	}, [data]);
 
@@ -133,6 +128,15 @@ const DynamicDataTable = <T extends object>({
 
 								<DateInputFelid label="From" date={fromDate} setDate={setFromDate} />
 								<DateInputFelid label="To" date={toDate} setDate={setToDate} />
+								<Button
+									className="text-[#d7c49e] bg-[#343148] text-[12px] border-none min-w-[90px] mt-6 h-7 px-4 py-1 text-center transition duration-500 rounded-none float-left hover:text-[#343148] hover:bg-[#d7c49e] hover:cursor-pointer"
+									onClick={() => {
+										setFromDate(undefined);
+										setToDate(undefined);
+									}}
+								>
+									Clear
+								</Button>
 							</div>
 							<div className="flex items-center my-4 overflow-x-auto border border-black hide-scrollbar ">
 								{['All', ...alphabet].map((char) => (
@@ -164,7 +168,20 @@ const DynamicDataTable = <T extends object>({
 
 							{isDynamic && (
 								<div className="flex ml-4 ">
-									<ExportButton />
+									<Suspense fallback={<div>Loading...</div>}>
+										<ExportButton
+											data={table.getSortedRowModel().rows.map((row) => row.original)}
+											columns={table
+												.getAllLeafColumns()
+												.filter((col) => col.getIsVisible())
+												.map((col) => ({
+													header: String(col.columnDef.header),
+													accessorKey: col.id,
+												}))}
+											tableId={generatedTableId}
+										/>
+									</Suspense>
+
 									<ColumnVisibilityDropdown table={table} />
 								</div>
 							)}
@@ -200,7 +217,7 @@ const DynamicDataTable = <T extends object>({
 					</div>
 					<div className="overflow-x-auto">
 						<table
-							id={tableId}
+							id={generatedTableId}
 							className={` min-w-full mt-4 text-sm text-left border border-gray-400 ${
 								wrapText ? 'whitespace-normal' : 'whitespace-nowrap'
 							}`}

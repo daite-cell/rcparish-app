@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { Input } from '@/components/ui/input';
-import { ExportButton, ColumnVisibilityDropdown } from '@/components';
+import { ColumnVisibilityDropdown } from '@/components';
 import type { Table as ReactTableType } from '@tanstack/react-table';
 
 interface SearchAndControlsProps {
@@ -37,7 +37,6 @@ const SearchAndControls: React.FC<SearchAndControlsProps> = ({
 
 				{isDynamic && (
 					<div className="flex ml-4">
-						<ExportButton />
 						<ColumnVisibilityDropdown table={table} />
 					</div>
 				)}

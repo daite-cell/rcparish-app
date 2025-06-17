@@ -26,7 +26,7 @@ const ColumnVisibilityDropdown = <TData,>({ table }: ColumnVisibilityDropdownPro
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button className="text-[#d7c49e] bg-[#343148] text-[12px] border-none min-w-[90px]  px-4 py-1 text-center transition duration-500 rounded-none float-left hover:text-[#343148] hover:bg-[#d7c49e] hover:cursor-pointer">
+				<Button className="text-[#d7c49e] h-8 bg-[#343148] text-[12px] border-none min-w-[90px]  px-4 py-1 text-center transition duration-500 rounded-none float-left hover:text-[#343148] hover:bg-[#d7c49e] hover:cursor-pointer">
 					Select Columns <ChevronDown className="w-4 h-4" />
 				</Button>
 			</DropdownMenuTrigger>
