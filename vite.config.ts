@@ -1,5 +1,7 @@
+/* eslint-disable prettier/prettier */
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
+import path from "path";
 import tailwindcss from "@tailwindcss/vite";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -15,4 +17,9 @@ export default defineConfig({
       failOnError: true, // hides the stack trace
     }),
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
 });

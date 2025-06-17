@@ -1,0 +1,25 @@
+const parish_rules_generic_content = {
+	baptism_parish_rule: 'BAPTISM RULE IN PARISH',
+	fhc_parish_rule: 'FIRST HOLY COMMUNION RULE IN PARISH',
+	confirmation_parish_rule: 'CONFIRMATION RULE IN PARISH',
+	marriage_parish_rule: 'MARRIAGE RULE IN PARISH',
+	anointing_parish_rule: 'ANOINTING THE SICK RULE IN PARISH',
+	confession_parish_rule: 'CONFESSION RULE IN PARISH',
+	funeral_parish_rule: 'FUNERAL PROCEDURE RULE IN PARISH',
+	mass_offerings_parish_rule: 'MASS OFFERING RULE IN PARISH',
+	penal_parish_rule: 'PENAL SANCTION RULE IN PARISH',
+	query_from_bishop: 'OPEN QUERIES',
+	baptism_canal_rule: 'BAPTISM RULE OF CANON LAW',
+	fhc_canal_rule: 'FIRST HOLY COMMUNION RULE OF CANON LAW',
+	confirmation_canal_rule: 'CONFIRMATION RULE OF CANON LAW',
+	marriage_canal_rule: 'MARRIAGE RULE OF CANON LAW',
+	anointing_canal_rule: 'ANOINTING THE SICK RULE OF CANON LAW',
+	confession_canal_rule: 'CONFESSION RULE OF CANON LAW',
+	funeral_canal_rule: 'FUNERAL PROCEDURE RULE OF CANON LAW',
+	mass_offerings_canal_rule: 'MASS OFFERING RULE OF CANON LAW',
+	penal_canal_rule: 'PENAL SANCTION RULE OF CANON LAW',
+	priest_duty_rule: 'PRIEST DUTY RULE',
+	general_duty_rule: 'DUTY OF PRIEST',
+};
+
+export { parish_rules_generic_content };
