@@ -1,7 +1,6 @@
-import { TabsLayout } from '@/components';
+import { LawsAndRulesContainer, TabsLayout } from '@/components';
 import { useRouteName } from '@/utils/useRouteName';
 import { useState } from 'react';
-import { diocese_rules_heading } from '../../data';
 
 const DioceseStatutesGenericPage = () => {
 	const rule = useRouteName('rule');
@@ -11,11 +10,10 @@ const DioceseStatutesGenericPage = () => {
 		setActiveIndex(index);
 	};
 
-	const sectionHeading = diocese_rules_heading[rule as keyof typeof diocese_rules_heading];
 	return (
 		<TabsLayout onTabChange={handleToggleTab} activeTabId={activeIndex} tabs={[{ label: 'view' }]}>
 			<div>
-				<h1 className="font-bold">{sectionHeading}</h1>
+				<LawsAndRulesContainer />
 			</div>
 		</TabsLayout>
 	);

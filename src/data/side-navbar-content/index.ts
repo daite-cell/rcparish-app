@@ -728,15 +728,12 @@ const rules = [
 				label: 'Mass Offering',
 				nav_links: [{ nav_link_name: 'Rule of Canon Law', nav_url: '/diocese/statutes/mass_offerings_canal_rule' }],
 			},
+
 			{
 				label: 'Penal Sanction',
-				nav_links: [{ nav_link_name: 'Rule of Canon Law', nav_url: '/diocese/statutes/penal_canal_rule' }],
-			},
-			{
-				label: 'Duties',
 				nav_links: [
-					{ nav_link_name: 'Rule of Canon Law', nav_url: '/diocese/statutes/priest_duty_rule' },
-					{ nav_link_name: 'Duty of Priest', nav_url: '/diocese/statutes/general_duty_rule' },
+					{ nav_link_name: 'Rule of Canon Law', nav_url: '/diocese/statutes/penal_canal_rule' },
+					{ nav_link_name: 'Duty of Priest', nav_url: '/diocese/statutes/priest_duty_rule ' },
 				],
 			},
 		],

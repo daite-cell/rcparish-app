@@ -25,3 +25,6 @@ export { default as PaginationControls } from './pagination-controls';
 export { default as TableContent } from './table-content';
 export { default as DisplayImage } from './display-image';
 export { default as HistoryForm } from './history-form';
+export { default as InfoHeadingTitle } from './Info-heading-title';
+export { default as InfoParagraph } from './Info-paragraph';
+export { default as LawsAndRulesContainer } from './laws-and-rules-container';

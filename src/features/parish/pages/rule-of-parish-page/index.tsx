@@ -1,4 +1,4 @@
-import { TabsLayout } from '@/components';
+import { LawsAndRulesContainer, TabsLayout } from '@/components';
 import { useRouteName } from '@/utils/useRouteName';
 import { useState } from 'react';
 import { parish_rules_generic_content } from '../../data';
@@ -34,10 +34,22 @@ const RulesOfParishGenericPage = () => {
 			activeTabId={activeIndex}
 			tabs={hasCanonLawRule ? [{ label: 'view' }] : [{ label: 'view' }, { label: 'edit' }]}
 		>
-			<div>
-				<h1 className="font-bold ">{sectionHeading}</h1>
-				{activeIndex === 1 && <RulesEditForm />}
-			</div>
+			{hasCanonLawRule ? (
+				<>
+					<div>{activeIndex === 0 && <LawsAndRulesContainer />}</div>
+				</>
+			) : (
+				<div>
+					{activeIndex === 1 ? (
+						<>
+							<h1 className="font-bold ">{sectionHeading}</h1>
+							<RulesEditForm />
+						</>
+					) : (
+						<h1 className="font-bold ">{sectionHeading}</h1>
+					)}
+				</div>
+			)}
 		</TabsLayout>
 	);
 };

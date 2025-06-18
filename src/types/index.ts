@@ -37,3 +37,10 @@ export interface FormButtonProps {
 	label?: string;
 	onClick?: () => void;
 }
+
+export type InfoHeadingTitleProps = { title: string; style?: string };
+
+export interface InfoParagraphProps {
+	children: React.ReactNode;
+	style?: string;
+}
