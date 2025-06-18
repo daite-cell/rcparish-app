@@ -17,10 +17,10 @@ const HistoryForm = () => {
 				/>
 			</div>
 			<div className="space-y-2">
-				<label htmlFor="document-upload" className="text-[12px] font-bold   ">
+				<label htmlFor="parish-history" className="text-[12px] font-bold">
 					Write a brief history of the Parish
 				</label>
-				<CustomTextarea rows={10} />
+				<CustomTextarea id="parish-history" name="parishHistory" rows={10} />
 			</div>
 			<FormButton label="upload" />
 		</div>

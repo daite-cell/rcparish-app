@@ -1,3 +1,5 @@
+'use client';
+
 import {
 	useReactTable,
 	getCoreRowModel,
@@ -14,7 +16,7 @@ import mockData from '@/data/mock-data/mock-data.json';
 import { Input } from '../ui/input';
 import { ColumnVisibilityDropdown, SingleSelectDropdown, DateInputFelid, PaginationControls } from '../index';
 import { Button } from '../ui/button';
-const ExportButton = React.lazy(() => import('../../components/export-button/'));
+const ExportButton = React.lazy(() => import('../../components/export-button'));
 
 interface DynamicDataTableProps<T extends object> {
 	data?: T[];
@@ -45,6 +47,9 @@ const DynamicDataTable = <T extends object>({
 	const [toDate, setToDate] = useState<Date | undefined>(undefined);
 	const generatedTableId = tableId ?? 'dynamic-data-table';
 
+	const fromDateTime = fromDate?.getTime() ?? null;
+	const toDateTime = toDate?.getTime() ?? null;
+
 	const filteredData = useMemo(() => {
 		let result = [...data];
 
@@ -60,7 +65,7 @@ const DynamicDataTable = <T extends object>({
 		}
 
 		const dateKey = Object.keys(data[0] || {}).find((key) => /date/i.test(key));
-		if (dateKey && (fromDate || toDate)) {
+		if (dateKey && (fromDateTime || toDateTime)) {
 			result = result.filter((item) => {
 				const itemDateValue = (item as Record<string, unknown>)[dateKey];
 				let itemDate: Date | null = null;
@@ -72,15 +77,15 @@ const DynamicDataTable = <T extends object>({
 				}
 
 				if (!itemDate || isNaN(itemDate.getTime())) return false;
-				if (fromDate && itemDate < fromDate) return false;
-				if (toDate && itemDate > toDate) return false;
+				if (fromDateTime && itemDate.getTime() < fromDateTime) return false;
+				if (toDateTime && itemDate.getTime() > toDateTime) return false;
 
 				return true;
 			});
 		}
 
 		return result;
-	}, [data, alphaFilter, filterKey, fromDate?.getTime() ?? null, toDate?.getTime() ?? null]);
+	}, [data, alphaFilter, filterKey, fromDateTime, toDateTime]);
 
 	const columns: { header: string; accessorKey: string }[] = useMemo(() => {
 		if (!data || data.length === 0) return [];
@@ -117,15 +122,14 @@ const DynamicDataTable = <T extends object>({
 
 	return (
 		<div className="flex flex-col items-center justify-center">
-			<div className="w-full ">
+			<div className="w-full">
 				<div className="min-w-full py-2 sm:px-6 lg:px-8">
 					<h1 className="mb-8 font-bold underline uppercase text-start">{title}</h1>
 
 					{enableDateAndLetterSorting && (
 						<>
-							<div className="flex flex-col items-center gap-4 md:flex-row ">
+							<div className="flex flex-col items-center gap-4 md:flex-row">
 								<SingleSelectDropdown label="select the date" />
-
 								<DateInputFelid label="From" date={fromDate} setDate={setFromDate} />
 								<DateInputFelid label="To" date={toDate} setDate={setToDate} />
 								<Button
@@ -138,13 +142,13 @@ const DynamicDataTable = <T extends object>({
 									Clear
 								</Button>
 							</div>
-							<div className="flex items-center my-4 overflow-x-auto border border-black hide-scrollbar ">
+							<div className="flex items-center my-4 overflow-x-auto border border-black hide-scrollbar">
 								{['All', ...alphabet].map((char) => (
 									<button
 										type="button"
 										key={char}
 										onClick={() => setAlphaFilter(char)}
-										className={`px-3 py-[6px] flex-1 text-xs  ${
+										className={`px-3 py-[6px] flex-1 text-xs ${
 											alphaFilter === char ? 'bg-[#343148ff] text-white' : 'bg-[#d7c49e] text-black'
 										}`}
 									>
@@ -155,7 +159,7 @@ const DynamicDataTable = <T extends object>({
 						</>
 					)}
 
-					<div className="flex flex-col  md:flex-row justify-between items-center text-[13px] my-3  ">
+					<div className="flex flex-col md:flex-row justify-between items-center text-[13px] my-3">
 						<div className="flex flex-col items-center gap-2 md:flex-row">
 							<div className="flex items-center gap-3">
 								<span>Search</span>
@@ -167,7 +171,7 @@ const DynamicDataTable = <T extends object>({
 							</div>
 
 							{isDynamic && (
-								<div className="flex ml-4 ">
+								<div className="flex ml-4">
 									<Suspense fallback={<div>Loading...</div>}>
 										<ExportButton
 											data={table.getSortedRowModel().rows.map((row) => row.original)}
@@ -187,7 +191,7 @@ const DynamicDataTable = <T extends object>({
 							)}
 						</div>
 
-						<div className="flex items-center space-x-2 ">
+						<div className="flex items-center space-x-2">
 							<span>Show</span>
 							<div className="relative">
 								<select
@@ -215,10 +219,11 @@ const DynamicDataTable = <T extends object>({
 							<span>entries</span>
 						</div>
 					</div>
+
 					<div className="overflow-x-auto">
 						<table
 							id={generatedTableId}
-							className={` min-w-full mt-4 text-sm text-left border border-gray-400 ${
+							className={`min-w-full mt-4 text-sm text-left border border-gray-400 ${
 								wrapText ? 'whitespace-normal' : 'whitespace-nowrap'
 							}`}
 						>
