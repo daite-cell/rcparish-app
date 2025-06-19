@@ -23,3 +23,5 @@ export { default as AlphaFilter } from './alpha-filter';
 export { default as SearchAndControls } from './search-and-controls';
 export { default as PaginationControls } from './pagination-controls';
 export { default as TableContent } from './table-content';
+export { default as DisplayImage } from './display-image';
+export { default as HistoryForm } from './history-form';

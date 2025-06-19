@@ -1,4 +1,4 @@
-import { TabsLayout } from '@/components';
+import { DynamicDataTable, TabsLayout } from '@/components';
 import { useState } from 'react';
 
 const RegisterGenericPage = () => {
@@ -9,7 +9,7 @@ const RegisterGenericPage = () => {
 	return (
 		<>
 			<TabsLayout onTabChange={handleToggleTab} activeTabId={activeIndex} tabs={[{ label: 'view' }, { label: 'add' }]}>
-				<h1 className="text-center text-red-600">dynamic table will be added ...</h1>
+				{activeIndex === 0 && <DynamicDataTable tableId="register" />}
 			</TabsLayout>
 		</>
 	);

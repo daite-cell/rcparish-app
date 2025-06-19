@@ -37,10 +37,9 @@ const TabsLayout = <T extends TabBase>({
 				);
 			})}
 		</div>
-		<div className="p-4  border border-gray-300 rounded min-h-[300px]">
+		<div className="p-4 flex flex-col  border border-gray-300 rounded min-h-[300px]">
 			{hasPageHeading && <SectionHeading />}
-
-			{children}
+			<div className=" flex-1 ">{children}</div>
 		</div>
 	</div>
 );
