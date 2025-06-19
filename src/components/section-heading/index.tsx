@@ -1,5 +1,5 @@
 import { side_nav_links } from '@/data/side-navbar-content';
-import { getSectionByPathname } from '@/utils/getSectionByPathname';
+import { getSectionByPathname } from '@/utils/getSectionByPathName';
 import { useLocation } from 'react-router-dom';
 
 const SectionHeading = () => {

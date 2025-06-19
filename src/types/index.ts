@@ -44,3 +44,15 @@ export interface InfoParagraphProps {
 	children: React.ReactNode;
 	style?: string;
 }
+
+export interface BulletPointListProps {
+	items?: string[];
+	styles?: string;
+	ordered?: boolean;
+}
+
+export interface ParagraphGroupWithTitleProps {
+	title: string;
+	paragraphs?: string[];
+	style?: string;
+}
