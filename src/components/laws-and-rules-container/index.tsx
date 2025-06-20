@@ -6,7 +6,12 @@ const LawsAndRulesContainer = () => {
 	const rule = useRouteName('rule');
 	console.warn(rule);
 	const lawContent = laws_and_rules.find((law) => law.page === rule);
-	const sectionHeading = lawContent?.page_heading;
+
+	if (!lawContent) {
+		return <p className="text-center text-red-600">Requested rule not found.</p>;
+	}
+
+	const sectionHeading = lawContent.page_heading;
 
 	return (
 		<div>

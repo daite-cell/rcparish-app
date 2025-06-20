@@ -4,20 +4,27 @@ type Callback = () => void;
 
 const useOutsideClick = <T extends HTMLElement = HTMLElement>(callback: Callback): RefObject<T | null> => {
 	const ref = useRef<T>(null);
+	const latestCb = useRef(callback);
 
 	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
+		latestCb.current = callback;
+	}, [callback]);
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent | TouchEvent) => {
 			if (ref.current && !ref.current.contains(event.target as Node)) {
-				callback();
+				latestCb.current();
 			}
 		};
 
 		document.addEventListener('mousedown', handleClickOutside);
+		document.addEventListener('touchstart', handleClickOutside);
 
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
+			document.removeEventListener('touchstart', handleClickOutside);
 		};
-	}, [callback]);
+	}, []);
 
 	return ref;
 };

@@ -21,6 +21,5 @@ export const getSectionByPathname = (navLinks: NavLinkSectionProps[], pathname: 
 		}
 	}
 
-	// No match
 	return null;
 };

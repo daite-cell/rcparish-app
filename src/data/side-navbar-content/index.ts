@@ -170,12 +170,6 @@ const side_nav_links = [
 				label: 'Vocational List',
 				icon: 'Folder',
 			},
-			// {
-			// 	path_url: '/diocese/statutes',
-			// 	label: 'Statutes (Rules)',
-			// 	icon: 'Folder',
-			// 	tabs: [{ label: 'view' }],
-			// },
 		],
 	},
 	{
@@ -733,7 +727,7 @@ const rules = [
 				label: 'Penal Sanction',
 				nav_links: [
 					{ nav_link_name: 'Rule of Canon Law', nav_url: '/diocese/statutes/penal_canal_rule' },
-					{ nav_link_name: 'Duty of Priest', nav_url: '/diocese/statutes/priest_duty_rule ' },
+					{ nav_link_name: 'Duty of Priest', nav_url: '/diocese/statutes/priest_duty_rule' },
 				],
 			},
 		],

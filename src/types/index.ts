@@ -1,4 +1,4 @@
-import type { JSX } from 'react';
+import type { JSX, ReactNode } from 'react';
 
 export interface AppRoute {
 	path: string;
@@ -41,7 +41,7 @@ export interface FormButtonProps {
 export type InfoHeadingTitleProps = { title: string; style?: string };
 
 export interface InfoParagraphProps {
-	children: React.ReactNode;
+	children: ReactNode;
 	style?: string;
 }
 
