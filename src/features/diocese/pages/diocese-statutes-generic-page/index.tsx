@@ -1,8 +1,11 @@
 import { LawsAndRulesContainer, TabsLayout } from '@/components';
-import { useRouteName } from '@/utils/useRouteName';
+import { useAutoDocumentTitle } from '@/hooks/useAutoDocumentTitle';
+
+import { useRouteName } from '@/utils/getRouteName';
 import { useState } from 'react';
 
 const DioceseStatutesGenericPage = () => {
+	useAutoDocumentTitle();
 	const rule = useRouteName('rule');
 	console.warn(rule);
 	const [activeIndex, setActiveIndex] = useState(0);

@@ -1,7 +1,7 @@
 import { DisplayImage, DynamicDataTable, HistoryForm, TabsLayout } from '@/components';
 import { side_nav_links } from '@/data/side-navbar-content';
 import { getSectionByPathname } from '@/utils/getSectionByPathName';
-import { useRouteName } from '@/utils/useRouteName';
+import { useRouteName } from '@/utils/getRouteName';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 

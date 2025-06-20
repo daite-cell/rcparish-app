@@ -3,8 +3,10 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from '../../layouts/main-layout';
 import { appRoutes } from '../routes';
 import Loading from '@/components/loading';
+import { useAutoDocumentTitle } from '@/hooks/useAutoDocumentTitle';
 
 const AppRoutes = (): JSX.Element => {
+	useAutoDocumentTitle();
 	return (
 		<Suspense fallback={<Loading />}>
 			<Routes>

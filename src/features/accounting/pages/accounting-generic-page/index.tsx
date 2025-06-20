@@ -1,5 +1,6 @@
-import { TabsLayout } from '@/components';
+import { DynamicDataTable, TabsLayout } from '@/components';
 import { side_nav_links } from '@/data/side-navbar-content';
+import { priests, type PriestProps } from '@/features/religious-people/data';
 import { getSectionByPathname } from '@/utils/getSectionByPathName';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -13,6 +14,9 @@ const AccountingGenericPage = () => {
 
 	const linksData = getSectionByPathname(side_nav_links, location.pathname);
 	const tabsData = linksData?.page_nav_links.find((link) => link.path_url === location.pathname)?.tabs;
+	const handleView = (row: PriestProps): void => {
+		console.warn('View clicked:', row);
+	};
 
 	return (
 		<>
@@ -21,7 +25,13 @@ const AccountingGenericPage = () => {
 				activeTabId={activeIndex}
 				tabs={tabsData || [{ label: 'view' }, { label: 'add' }]}
 			>
-				<h1 className="text-center text-red-600">dynamic table will be added ...</h1>
+				<DynamicDataTable
+					wrapText={false}
+					data={priests}
+					enableDateAndLetterSorting={true}
+					includeCheckbox
+					onView={handleView}
+				/>
 			</TabsLayout>
 		</>
 	);
