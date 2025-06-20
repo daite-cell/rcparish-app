@@ -1,4 +1,5 @@
 import type { StateCreator } from 'zustand';
+import type { AppState } from '@/store/types';
 
 export interface AuthUser {
 	id: string;
@@ -18,7 +19,7 @@ export interface AuthSlice {
 }
 
 export const createAuthSlice: StateCreator<
-	AuthSlice, // current slice state
+	AppState, // current slice state
 	[], // middleware used (none here)
 	[], // slice extensions (none)
 	AuthSlice // return value (same as input)
