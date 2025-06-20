@@ -7,7 +7,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/store*": ["./src/store/*"]
     },
     "forceConsistentCasingInFileNames": true,
     "strict": true

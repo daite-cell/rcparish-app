@@ -2,7 +2,6 @@ import React from 'react';
 
 interface AlphaFilterProps {
 	selected: string;
-	// eslint-disable-next-line no-unused-vars
 	onChange: (char: string) => void;
 }
 

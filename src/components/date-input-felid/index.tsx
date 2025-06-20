@@ -9,7 +9,6 @@ interface DateInputFieldProps {
 	label: string;
 	placeHolder?: string;
 	date?: Date;
-	// eslint-disable-next-line no-unused-vars
 	setDate?: (date: Date | undefined) => void;
 	hasDate?: boolean;
 }
