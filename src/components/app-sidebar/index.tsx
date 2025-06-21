@@ -6,7 +6,7 @@ import { Input } from '../ui/input';
 import { side_nav_links } from '@/data/side-navbar-content';
 import NavLinksSection from '../nav-links-section';
 import { UserInfo } from '@/components';
-import { getSectionByPathname } from '@/utils/getSectionByPathName';
+import { getSectionByPathName } from '@/utils/getSectionByPathName';
 import { usePathName } from '@/utils/usePathName';
 import { ProfileContainer } from '@/features/profile/components';
 
@@ -14,7 +14,7 @@ export default function AppSideBar() {
 	const pathName = usePathName();
 
 	const filter_nav_links = useMemo(
-		() => [getSectionByPathname(side_nav_links, pathName)].filter(Boolean).filter((item) => item !== null),
+		() => [getSectionByPathName(side_nav_links, pathName)].filter(Boolean).filter((item) => item !== null),
 		[pathName]
 	);
 

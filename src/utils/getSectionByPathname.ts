@@ -1,6 +1,6 @@
 import type { NavLinkSectionProps } from '@/types';
 
-export const getSectionByPathname = (navLinks: NavLinkSectionProps[], pathname: string) => {
+export const getSectionByPathName = (navLinks: NavLinkSectionProps[], pathname: string) => {
 	for (const section of navLinks) {
 		if (`/${section.page_path_name}` === pathname) {
 			return section;

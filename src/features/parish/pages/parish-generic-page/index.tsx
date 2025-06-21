@@ -1,6 +1,7 @@
 import { DisplayImage, DynamicDataTable, HistoryForm, TabsLayout } from '@/components';
 import { side_nav_links } from '@/data/side-navbar-content';
-import { getSectionByPathname } from '@/utils/getSectionByPathName';
+import type { NavLinkProps } from '@/types';
+import { getSectionByPathName } from '@/utils/getSectionByPathName';
 import { useRouteName } from '@/utils/useRouteName';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -13,8 +14,8 @@ const ParishGenericPage = () => {
 		setActiveIndex(index);
 	};
 
-	const linksData = getSectionByPathname(side_nav_links, location.pathname);
-	const tabsData = linksData?.page_nav_links.find((link) => link.path_url === location.pathname)?.tabs;
+	const linksData = getSectionByPathName(side_nav_links, location.pathname);
+	const tabsData = linksData?.page_nav_links.find((link: NavLinkProps) => link.path_url === location.pathname)?.tabs;
 
 	return (
 		<>

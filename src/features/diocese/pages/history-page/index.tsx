@@ -15,6 +15,7 @@ import {
 	priests,
 } from '../../data/history-content';
 import { useLocation } from 'react-router-dom';
+import { PDF_URLS } from '@/config/constants';
 
 const HistoryPage = () => {
 	const { pathname } = useLocation();
@@ -87,7 +88,7 @@ const HistoryPage = () => {
 					))}
 				</>
 			) : (
-				<PDFViewer pdfUrl="http://rcparish.com/pdf/Patron_Saints.pdf" />
+				<PDFViewer pdfUrl={PDF_URLS.PATRON_SAINTS} />
 			)}
 		</TabsLayout>
 	);
