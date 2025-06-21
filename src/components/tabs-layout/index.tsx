@@ -7,7 +7,7 @@ interface TabBase {
 interface TabsLayoutProps<T extends TabBase> {
 	tabs: T[];
 	activeTabId?: number;
-	onTabChange: (index: number) => void;
+	onTabChange?: (index: number) => void;
 	hasPageHeading?: boolean;
 	children: React.ReactNode;
 }
@@ -27,7 +27,7 @@ const TabsLayout = <T extends TabBase>({
 					<button
 						key={index}
 						type="button"
-						onClick={() => onTabChange(index)}
+						onClick={() => onTabChange?.(index)}
 						className={`px-4 py-2 font-normal uppercase text-[12px] transition-all duration-200 ${
 							isActive ? 'border-b-2 border-black text-black' : 'text-gray-500 hover:text-black'
 						}`}
@@ -37,7 +37,7 @@ const TabsLayout = <T extends TabBase>({
 				);
 			})}
 		</div>
-		<div className="p-4 flex flex-col  border border-gray-300 rounded min-h-[300px]">
+		<div className="p-4 flex flex-col  border border-gray-300 rounded min-h-[100px]">
 			{hasPageHeading && <SectionHeading />}
 			<div className=" flex-1 ">{children}</div>
 		</div>

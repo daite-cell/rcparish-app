@@ -1,4 +1,4 @@
-import type { JSX } from 'react';
+import type { JSX, ReactNode } from 'react';
 
 export interface AppRoute {
 	path: string;
@@ -36,4 +36,23 @@ export interface CircularProgressProps {
 export interface FormButtonProps {
 	label?: string;
 	onClick?: () => void;
+}
+
+export type InfoHeadingTitleProps = { title: string; style?: string };
+
+export interface InfoParagraphProps {
+	children: ReactNode;
+	style?: string;
+}
+
+export interface BulletPointListProps {
+	items?: string[];
+	styles?: string;
+	ordered?: boolean;
+}
+
+export interface ParagraphGroupWithTitleProps {
+	title: string;
+	paragraphs?: string[];
+	style?: string;
 }

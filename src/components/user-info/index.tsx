@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Button } from '../ui/button';
-import { TodayDate, CircularProgress } from '../index';
+import { TodayDate, CircularProgress, LogoutButton } from '../index';
 
 interface UserInfoProps {
 	userName: string;
@@ -22,17 +21,12 @@ const UserInfo = ({ userName, userEmail }: UserInfoProps) => {
 			<div className="flex items-center justify-between mt-4">
 				<div className="flex items-center ">
 					<CircularProgress size={60} />
-					<Link className="ml-3 text-sm animate-out hover:underline" to="/dashboard">
+					<Link className="ml-3 text-sm animate-out hover:underline" to="/profile">
 						View Profile
 					</Link>
 				</div>
 
-				<Button
-					variant="outline"
-					className="text-sm bg-transparent rounded-none hover:bg-primary hover:text-white text-primary border-primary"
-				>
-					Logout
-				</Button>
+				<LogoutButton />
 			</div>
 		</div>
 	);

@@ -120,6 +120,18 @@
 	}
 }
 
+@font-face {
+  font-family: TamilFont;
+  src: url("./assets/fonts/Bamini.ttf") format("truetype");
+}
+
+.langu {
+  padding: 6px 0 0 0;
+  font-family: TamilFont, Helvetica, sans-serif;
+  font-size: 15px;
+}
+
+
 .hide-scrollbar {
 	overflow: auto;
 	scrollbar-width: none;

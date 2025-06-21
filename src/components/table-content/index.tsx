@@ -25,8 +25,9 @@ const TableContent = <T extends object>({
 							{headerGroup.headers.map((header) => (
 								<th
 									key={header.id}
-									className="px-4 py-2 border border-black text-start"
-									style={{ whiteSpace: wrapText ? 'normal' : 'nowrap' }}
+									className={`px-4 py-2 border border-black text-start ${
+										wrapText ? 'whitespace-normal' : 'whitespace-nowrap'
+									}`}
 								>
 									{header.isPlaceholder ? null : (
 										<div

@@ -1,7 +1,6 @@
 import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton } from '@/components/ui/sidebar';
 import { dynamic_navLinks_data } from '@/data/side-navbar-content';
 import { House, Newspaper, Folder, Link as LinkIcon, BookText, CalendarDays } from 'lucide-react';
-
 import { NavLink, useLocation } from 'react-router-dom';
 import React from 'react';
 import { RulesNavSection } from '@/components';
