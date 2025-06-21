@@ -220,6 +220,7 @@ const DynamicDataTable = <T extends object, U>({
 						setPageSize={setPageSize}
 						pageSizeOptions={pageSizeOptions}
 						tableId={generatedTableId}
+						data={data}
 					/>
 					<TableDisplay
 						table={table}
