@@ -122,7 +122,7 @@ const DynamicDataTable = <T extends object>({
 		<div className="flex flex-col items-center justify-center">
 			<div className="w-full">
 				<div className="min-w-full py-2 sm:px-6 lg:px-8">
-					<h1 className="mb-8 font-bold underline uppercase text-start">{title}</h1>
+					{title && <h1 className="mb-8 font-bold underline uppercase text-start">{title}</h1>}
 
 					{enableDateAndLetterSorting && (
 						<>
@@ -156,67 +156,68 @@ const DynamicDataTable = <T extends object>({
 							</div>
 						</>
 					)}
+					{isDynamic && (
+						<div className="flex flex-col md:flex-row justify-between items-center text-[13px] my-3">
+							<div className="flex flex-col items-center gap-2 md:flex-row">
+								<div className="flex items-center gap-3">
+									<span>Search</span>
+									<Input
+										className="max-w-sm h-7 rounded-[3px] focus:border-[#80bdff]"
+										value={globalFilter}
+										onChange={(e) => setGlobalFilter(e.target.value)}
+									/>
+								</div>
 
-					<div className="flex flex-col md:flex-row justify-between items-center text-[13px] my-3">
-						<div className="flex flex-col items-center gap-2 md:flex-row">
-							<div className="flex items-center gap-3">
-								<span>Search</span>
-								<Input
-									className="max-w-sm h-7 rounded-[3px] focus:border-[#80bdff]"
-									value={globalFilter}
-									onChange={(e) => setGlobalFilter(e.target.value)}
-								/>
+								{isDynamic && (
+									<div className="flex ml-4">
+										<Suspense fallback={<div>Loading...</div>}>
+											<ExportButton
+												data={table.getSortedRowModel().rows.map((row) => row.original)}
+												columns={table
+													.getAllLeafColumns()
+													.filter((col) => col.getIsVisible())
+													.map((col) => ({
+														header: String(col.columnDef.header),
+														accessorKey: col.id,
+													}))}
+												tableId={generatedTableId}
+											/>
+										</Suspense>
+
+										<ColumnVisibilityDropdown table={table} />
+									</div>
+								)}
 							</div>
 
-							{isDynamic && (
-								<div className="flex ml-4">
-									<Suspense fallback={<div>Loading...</div>}>
-										<ExportButton
-											data={table.getSortedRowModel().rows.map((row) => row.original)}
-											columns={table
-												.getAllLeafColumns()
-												.filter((col) => col.getIsVisible())
-												.map((col) => ({
-													header: String(col.columnDef.header),
-													accessorKey: col.id,
-												}))}
-											tableId={generatedTableId}
-										/>
-									</Suspense>
-
-									<ColumnVisibilityDropdown table={table} />
+							<div className="flex items-center space-x-2">
+								<span>Show</span>
+								<div className="relative">
+									<select
+										title="page"
+										className="block w-full px-3 py-1 pr-8 text-sm border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none"
+										value={pageSize}
+										onChange={(e) => {
+											const newPageSize = Number(e.target.value);
+											if (!Number.isNaN(newPageSize)) {
+												setPageSize(newPageSize);
+												table.setPageSize(newPageSize);
+											}
+										}}
+									>
+										{pageSizeOptions.map((size) => (
+											<option key={size} value={size}>
+												{size === data.length ? 'All' : size}
+											</option>
+										))}
+									</select>
+									<div className="absolute inset-y-0 flex items-center text-gray-500 pointer-events-none right-2">
+										<ChevronsUpDown className="w-3 h-3" />
+									</div>
 								</div>
-							)}
-						</div>
-
-						<div className="flex items-center space-x-2">
-							<span>Show</span>
-							<div className="relative">
-								<select
-									title="page"
-									className="block w-full px-3 py-1 pr-8 text-sm border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none"
-									value={pageSize}
-									onChange={(e) => {
-										const newPageSize = Number(e.target.value);
-										if (!Number.isNaN(newPageSize)) {
-											setPageSize(newPageSize);
-											table.setPageSize(newPageSize);
-										}
-									}}
-								>
-									{pageSizeOptions.map((size) => (
-										<option key={size} value={size}>
-											{size === data.length ? 'All' : size}
-										</option>
-									))}
-								</select>
-								<div className="absolute inset-y-0 flex items-center text-gray-500 pointer-events-none right-2">
-									<ChevronsUpDown className="w-3 h-3" />
-								</div>
+								<span>entries</span>
 							</div>
-							<span>entries</span>
 						</div>
-					</div>
+					)}
 
 					<div className="overflow-x-auto">
 						<table

@@ -34,3 +34,8 @@ export { default as BulletPointList } from './bullet-point-list';
 export { default as UserDetailItem } from './user-detail-item';
 export { default as LogoutButton } from './logout-button';
 export { default as ProfileCard } from './profile-card';
+export { default as PriestFullInfo } from './priest-full-info';
+export { default as AdminDefaultImage } from './admin-default-image';
+export { default as InfoRow } from './info-row';
+export { default as ServiceRecord } from './service-record';
+export { default as AppNavHeader } from './app-nav-header';
