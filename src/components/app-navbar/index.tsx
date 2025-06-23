@@ -3,17 +3,14 @@ import { NavLink } from 'react-router-dom';
 import navImage1 from '/nav-images/nav-image1.jpg';
 import navImage2 from '/nav-images/nav-image2.jpg';
 import navItems from '@/data/navbar-content';
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import { usePathName } from '@/utils/usePathName';
 
 const AppNavbar = memo(() => {
-	const [activeTab, setActiveTab] = useState<number | null>(0);
 	const { state } = useSidebar();
 	const pathName = usePathName();
 
-	const handleActiveTabChange = (index: number) => {
-		setActiveTab(activeTab === index ? null : index);
-	};
+	const getParentPathName = (pathName: string) => pathName.split('/')[1];
 
 	const renderSidebarTrigger = (additionalClasses: string) => (
 		<SidebarTrigger
@@ -24,7 +21,7 @@ const AppNavbar = memo(() => {
 	return (
 		<>
 			{pathName !== '/profile' && (
-				<div className="w-full h-[90px] bg-secondary border-l border-[#413e52] flex items-center justify-between relative ">
+				<div className="w-full h-[90px] bg-secondary border-l border-[#413e52] flex items-center justify-between relative">
 					{state !== 'expanded' && renderSidebarTrigger('hidden md:block')}
 					{renderSidebarTrigger('md:hidden')}
 
@@ -46,7 +43,7 @@ const AppNavbar = memo(() => {
 						<p className="text-[#a8926c] text-[12px]">Do whatever he tells you</p>
 					</div>
 
-					<div className="md:w-[15%] pr-2 md:pr-5  pt-[5px]">
+					<div className="md:w-[15%] pr-2 md:pr-5 pt-[5px]">
 						<img
 							src={navImage2}
 							alt="nav-image-2"
@@ -58,15 +55,18 @@ const AppNavbar = memo(() => {
 				</div>
 			)}
 
-			<div className="w-full text-[13px] bg-[#343148] border border-[#413e52] overflow-auto whitespace-nowrap text-center flex justify-between">
+			<div className="w-full text-[13px] bg-[#343148] border border-[#413e52] overflow-auto whitespace-nowrap text-center flex justify-between hide-scrollbar">
 				{pathName !== '/profile' ? (
 					navItems.map((item, index) => (
 						<NavLink
-							onClick={() => handleActiveTabChange(index)}
 							key={index}
 							to={item.to}
-							className={() =>
-								`inline-block text-[#d7c49e] text-center px-[15px] py-[13px] border-b-4 border-[#343148] ${activeTab === index ? 'border-[#d7c49e] hover:border-[#d7c49e] transition-all bg-[#483f44]' : ''} hover:border-[#d7c49e] transition-all hover:bg-[#48453f]`
+							className={({ isActive }) =>
+								`inline-block text-[#d7c49e] text-center px-[15px] py-[13px] border-b-4 border-[#343148] ${
+									isActive || getParentPathName(pathName) === getParentPathName(item.to)
+										? 'border-[#d7c49e] bg-[#483f44]'
+										: ''
+								} hover:border-[#d7c49e] transition-all hover:bg-[#48453f]`
 							}
 						>
 							{item.label}
