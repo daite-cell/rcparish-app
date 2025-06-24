@@ -2,23 +2,32 @@ import { TabsLayout } from '@/components';
 import { side_nav_links } from '@/data/side-navbar-content';
 import type { NavLinkProps } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
+import { usePathName } from '@/utils/usePathName';
+import { useRouteName } from '@/utils/useRouteName';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { AdmittedList, RenderForms } from '../../components';
 
 const CommonPoolGenericPage = () => {
-	const location = useLocation();
+	const pathName = usePathName();
+	const type = useRouteName('type');
 	const [activeIndex, setActiveIndex] = useState(0);
+
 	const handleToggleTab = (index: number) => {
 		setActiveIndex(index);
 	};
 
-	const linksData = getSectionByPathName(side_nav_links, location.pathname);
-	const tabsData = linksData?.page_nav_links.find((link: NavLinkProps) => link.path_url === location.pathname)?.tabs;
+	const linksData = getSectionByPathName(side_nav_links, pathName);
+	const tabsData = linksData?.page_nav_links.find((link: NavLinkProps) => link.path_url === pathName)?.tabs;
 
 	return (
 		<>
-			<TabsLayout onTabChange={handleToggleTab} activeTabId={activeIndex} tabs={tabsData || []}>
-				<h1 className="text-center text-red-600">dynamic table will be added ...</h1>
+			<TabsLayout hasPageHeading={false} onTabChange={handleToggleTab} activeTabId={activeIndex} tabs={tabsData || []}>
+				{type === 'admitted_list' ? (
+					<AdmittedList />
+				) : (
+					activeIndex === 0 && type !== 'admitted_list' && <RenderForms pageName={type as string} />
+				)}
+				{}
 			</TabsLayout>
 		</>
 	);

@@ -7,40 +7,52 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 
 interface DateInputFieldProps {
 	label: string;
-	placeHolder?: string;
-	date?: Date;
-	setDate?: (date: Date | undefined) => void;
-	hasDate?: boolean;
+	placeholder?: string;
+	value?: Date;
+	onChange?: (date: Date | undefined) => void;
+	error?: string;
 }
-const DateInputField = React.memo(({ label, placeHolder = 'dd-mm-yy', date, setDate }: DateInputFieldProps) => {
-	const [open, setOpen] = React.useState(false);
 
-	return (
-		<div className="w-full">
-			<Label htmlFor="date" className="px-1 text-[12px] font-normal">
-				{label}
-			</Label>
-			<Popover open={open} onOpenChange={setOpen}>
-				<PopoverTrigger asChild>
-					<Button variant="outline" id="date" className="w-full mt-2 !h-8 justify-between rounded-[2px] font-normal ">
-						{date ? date.toLocaleDateString() : placeHolder}
-						<CalendarIcon />
-					</Button>
-				</PopoverTrigger>
-				<PopoverContent className="w-auto overflow-hidden " align="start">
-					<Calendar
-						mode="single"
-						selected={date}
-						captionLayout="dropdown"
-						onSelect={(selected) => {
-							setDate?.(selected);
-							setOpen(false);
-						}}
-					/>
-				</PopoverContent>
-			</Popover>
-		</div>
-	);
-});
+const DateInputField = React.memo(
+	({ label, placeholder = 'dd-mm-yyyy', value, onChange, error }: DateInputFieldProps) => {
+		const [open, setOpen] = React.useState(false);
+
+		return (
+			<div className="w-full">
+				<Label htmlFor="date" className="px-1 text-[12px] font-normal">
+					{label}
+				</Label>
+
+				<Popover open={open} onOpenChange={setOpen}>
+					<PopoverTrigger asChild>
+						<Button
+							variant="outline"
+							id="date"
+							type="button"
+							className="w-full mt-2 !h-8 justify-between rounded-[2px] font-normal"
+						>
+							{value ? value.toLocaleDateString() : placeholder}
+							<CalendarIcon className="w-4 h-4 opacity-50" />
+						</Button>
+					</PopoverTrigger>
+
+					<PopoverContent className="w-auto overflow-hidden" align="start">
+						<Calendar
+							mode="single"
+							selected={value}
+							captionLayout="dropdown"
+							onSelect={(selectedDate) => {
+								onChange?.(selectedDate);
+								setOpen(false);
+							}}
+						/>
+					</PopoverContent>
+				</Popover>
+
+				{error && <p className="text-xs text-red-500 mt-1">{error}</p>}
+			</div>
+		);
+	}
+);
 
 export default DateInputField;

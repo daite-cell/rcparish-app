@@ -12,8 +12,9 @@ import React, { Suspense, useMemo, useState } from 'react';
 import { ChevronDown, ChevronUp, ChevronsUpDown } from 'lucide-react';
 import mockData from '@/data/mock-data/mock-data.json';
 import { Input } from '../ui/input';
-import { ColumnVisibilityDropdown, SingleSelectDropdown, DateInputFelid, PaginationControls } from '../index';
+import { ColumnVisibilityDropdown, SingleSelectDropdown, PaginationControls } from '../index';
 import { Button } from '../ui/button';
+import DateInputField from '../date-input-felid';
 const ExportButton = React.lazy(() => import('../../components/export-button'));
 
 interface DynamicDataTableProps<T extends object> {
@@ -128,8 +129,8 @@ const DynamicDataTable = <T extends object>({
 						<>
 							<div className="flex flex-col items-center gap-4 md:flex-row">
 								<SingleSelectDropdown label="select the date" />
-								<DateInputFelid label="From" date={fromDate} setDate={setFromDate} />
-								<DateInputFelid label="To" date={toDate} setDate={setToDate} />
+								<DateInputField label="From" value={fromDate} onChange={setFromDate} />
+								<DateInputField label="To" value={toDate} onChange={setToDate} />
 								<Button
 									className="text-[#d7c49e] bg-[#343148] text-[12px] border-none min-w-[90px] mt-6 h-7 px-4 py-1 text-center transition duration-500 rounded-none float-left hover:text-[#343148] hover:bg-[#d7c49e] hover:cursor-pointer"
 									onClick={() => {
