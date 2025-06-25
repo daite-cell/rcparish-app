@@ -13,23 +13,23 @@ const PriestFullInfo = ({
 	birthDate,
 	livingStatus,
 	nativePlace,
-	adhaarNumber,
+	aadhaarNumber,
 	phoneNumber,
 	email,
 	address,
 }: PriestFullInfoProps) => {
-	const leftObject = {
-		priestFrom,
-		ordinationDate,
-		birthDate,
-		livingStatus,
-		nativePlace,
+	const personalInfo = {
+		'Priest From': priestFrom,
+		'Ordination Date': ordinationDate,
+		'Birth Date': birthDate,
+		'Living Status': livingStatus,
+		'Native Place': nativePlace,
 	};
-	const rightObject = {
-		adhaarNumber,
-		phoneNumber,
-		email,
-		address,
+	const contactInfo = {
+		'Aadhaar Number': aadhaarNumber,
+		'Phone Number': phoneNumber,
+		Email: email,
+		Address: address,
 	};
 
 	const printRef = useRef<HTMLDivElement>(null);
@@ -57,13 +57,13 @@ const PriestFullInfo = ({
 						<h1 className="font-bold text-3xl text-[#998c70] mb-4">{name}</h1>
 						<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 							<div>
-								{Object.entries(leftObject).map(([key, value]) => (
-									<InfoRow key={key} label={key} value={value} />
+								{Object.entries(personalInfo).map(([label, value]) => (
+									<InfoRow key={label} label={label} value={value} />
 								))}
 							</div>
 							<div>
-								{Object.entries(rightObject).map(([key, value]) => (
-									<InfoRow key={key} label={key} value={value} />
+								{Object.entries(contactInfo).map(([label, value]) => (
+									<InfoRow key={label} label={label} value={value} />
 								))}
 							</div>
 						</div>

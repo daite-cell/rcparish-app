@@ -60,11 +60,11 @@ export interface ParagraphGroupWithTitleProps {
 export interface PriestFullInfoProps {
 	name: string;
 	priestFrom?: string;
-	ordinationDate?: number;
+	ordinationDate?: string;
 	birthDate?: string;
 	livingStatus?: string;
 	nativePlace?: string;
-	adhaarNumber?: string;
+	aadhaarNumber?: string;
 	phoneNumber?: string;
 	email?: string;
 	address?: string;

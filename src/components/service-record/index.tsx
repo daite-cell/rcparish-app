@@ -1,4 +1,17 @@
 import DynamicDataTable from '../dynamic-table';
+interface ServiceRecordProps {
+	serviceData?: Array<{
+		serviceAs: string;
+		details: string;
+		status: string;
+		category: string;
+		placeOrParishName: string;
+		churchOrInstitutionName: string;
+		from: string;
+		till: string;
+		remark: string;
+	}>;
+}
 
 const priestServiceData = [
 	{
@@ -26,11 +39,11 @@ const priestServiceData = [
 	},
 ];
 
-const ServiceRecord = () => {
+const ServiceRecord = ({ serviceData = priestServiceData }: ServiceRecordProps) => {
 	return (
 		<div className="px-4">
 			<h1 className=" font-bold text-xs uppercase text-black  py-4">Service record</h1>
-			<DynamicDataTable data={priestServiceData} isDynamic={false} tableId="service-record" />
+			<DynamicDataTable data={serviceData} isDynamic={false} tableId="service-record" />
 		</div>
 	);
 };
