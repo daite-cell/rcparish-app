@@ -16,7 +16,7 @@ const MainLayout = () => {
 					<Outlet />
 				</div>
 			</SidebarProvider>
-			<SpeedInsights />
+			{process.env.NODE_ENV === 'production' && <SpeedInsights />}
 		</div>
 	);
 };
