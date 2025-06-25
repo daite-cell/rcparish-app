@@ -4,6 +4,7 @@ import { SidebarProvider } from '@/components/ui/sidebar';
 import AppSideBar from '@/components/app-sidebar';
 import AppNavbar from '@/components/app-navbar';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
 
 const MainLayout = () => {
 	return (
@@ -17,6 +18,7 @@ const MainLayout = () => {
 				</div>
 			</SidebarProvider>
 			{process.env.NODE_ENV === 'production' && <SpeedInsights />}
+			{process.env.NODE_ENV === 'production' && <Analytics />}
 		</div>
 	);
 };
