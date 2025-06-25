@@ -15,6 +15,7 @@ import {
 	priests,
 } from '../../data/history-content';
 import { usePathName } from '@/utils/getPathName';
+import { PDF_URLS } from '@/config/constants';
 
 const HistoryPage = () => {
 	const pathname = usePathName();
@@ -88,7 +89,7 @@ const HistoryPage = () => {
 					))}
 				</>
 			) : (
-				<PDFViewer pdfUrl="http://rcparish.com/pdf/Patron_Saints.pdf" />
+				<PDFViewer pdfUrl={PDF_URLS.PATRON_SAINTS} />
 			)}
 		</TabsLayout>
 	);
