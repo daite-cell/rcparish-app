@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import AppSideBar from '@/components/app-sidebar';
 import AppNavbar from '@/components/app-navbar';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const MainLayout = () => {
 	return (
@@ -15,6 +16,7 @@ const MainLayout = () => {
 					<Outlet />
 				</div>
 			</SidebarProvider>
+			{process.env.NODE_ENV === 'production' && <SpeedInsights />}
 		</div>
 	);
 };
