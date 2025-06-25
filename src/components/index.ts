@@ -34,3 +34,4 @@ export { default as BulletPointList } from './bullet-point-list';
 export { default as UserDetailItem } from './user-detail-item';
 export { default as LogoutButton } from './logout-button';
 export { default as ProfileCard } from './profile-card';
+export { default as ButtonActions } from './button-actions';
