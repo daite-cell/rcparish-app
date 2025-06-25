@@ -1,5 +1,5 @@
 import { LawsAndRulesContainer, TabsLayout } from '@/components';
-import { useRouteName } from '@/utils/useRouteName';
+import { useRouteName } from '@/utils/getRouteName';
 import { useState } from 'react';
 import { parish_rules_generic_content } from '../../data';
 import RulesEditForm from '@/components/rules-edit-form';
