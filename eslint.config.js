@@ -7,8 +7,9 @@ import prettier from "eslint-plugin-prettier";
 
 export default tseslint.config(
   { ignores: ["dist"] },
+  js.configs.recommended, // for all files
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    extends: tseslint.configs.recommended,
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
       ecmaVersion: 2020,
@@ -25,12 +26,13 @@ export default tseslint.config(
         "warn",
         { allowConstantExport: true },
       ],
-      "no-unused-vars": [
-        "error",
-        { vars: "all", args: "after-used", ignoreRestSiblings: false },
-      ],
+      "no-unused-vars": "off",
       "no-console": ["error", { allow: ["warn", "error"] }],
       "prettier/prettier": "error",
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_" },
+      ],
     },
   }
 );
