@@ -4,7 +4,7 @@ import navImage1 from '/nav-images/nav-image1.jpg';
 import navImage2 from '/nav-images/nav-image2.jpg';
 import navItems from '@/data/navbar-content';
 import { memo } from 'react';
-import { usePathName } from '@/utils/usePathName';
+import { usePathName } from '@/utils/getPathName';
 
 const AppNavbar = memo(() => {
 	const { state } = useSidebar();

@@ -14,11 +14,12 @@ import {
 	parisMissionsHistory,
 	priests,
 } from '../../data/history-content';
-import { useLocation } from 'react-router-dom';
+import { usePathName } from '@/utils/getPathName';
 import { PDF_URLS } from '@/config/constants';
 
 const HistoryPage = () => {
-	const { pathname } = useLocation();
+	const pathname = usePathName();
+
 	const isDioceseHistory = pathname === '/diocese/history';
 	return (
 		<TabsLayout hasPageHeading={false} tabs={[{ label: 'view' }]}>
@@ -26,7 +27,7 @@ const HistoryPage = () => {
 			{isDioceseHistory ? (
 				<>
 					<InfoHeadingTitle title="Contents" />
-					<BulletPointList styles="!text-[15px] !font-semibold " items={bulletItems} />
+					<BulletPointList style="!text-[15px] !font-semibold " items={bulletItems} />
 					<InfoParagraph style=" !text-[14px] indent-9 ">
 						The salient aspects of political, religious and socio-economic spheres of the North Arcot district have been
 						dealt with in the previous chapter. Here in this chapter we will study certain environments and backgrounds
@@ -50,13 +51,13 @@ const HistoryPage = () => {
 						<p className="!text-[14px]">
 							Vellore was surrounded by the Mughuls and was taken by them in the following year.{' '}
 						</p>
-						<BulletPointList styles=" mt-5 !font-normal !text-base/6 !text-[14px]" items={parisMissionsHistory} />
+						<BulletPointList style=" mt-5 !font-normal !text-base/6 !text-[14px]" items={parisMissionsHistory} />
 					</div>
 
 					<InfoHeadingTitle style="!text-[14px] " title="Missionaries of Paris Foreign Missions Society " />
 					<div className="mt-6 ">
 						<BulletPointList
-							styles="ml-5 mt-5 !font-normal !text-base/6 !text-[14px]"
+							style="ml-5 mt-5 !font-normal !text-base/6 !text-[14px]"
 							items={christianHistoryTimeline}
 						/>
 					</div>

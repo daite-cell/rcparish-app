@@ -4,8 +4,10 @@ import MainLayout from '../../layouts/main-layout';
 import { appRoutes } from '../routes';
 import Loading from '@/components/loading';
 import PageTransitionWrapper from '@/components/page-transition-wrapper';
+import { useAutoDocumentTitle } from '@/hooks/useAutoDocumentTitle';
 
 const AppRoutes = (): JSX.Element => {
+	useAutoDocumentTitle();
 	return (
 		<Suspense fallback={<Loading />}>
 			<PageTransitionWrapper>

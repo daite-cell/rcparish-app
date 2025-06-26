@@ -1,7 +1,7 @@
 import { ChevronDown } from 'lucide-react';
 import { useState, useRef, Suspense, lazy } from 'react';
 import { createPortal } from 'react-dom';
-import useOutsideClick from '@/hooks/use-outside-click';
+import useOutsideClick from '@/hooks/useOutSideClick';
 import { Button } from '../ui/button';
 
 const PDFExporter = lazy(() => import('../pdf-exporter'));
