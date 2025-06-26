@@ -7,7 +7,7 @@ import { side_nav_links } from '@/data/side-navbar-content';
 import NavLinksSection from '../nav-links-section';
 import { UserInfo } from '@/components';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
-import { usePathName } from '@/utils/usePathName';
+import { usePathName } from '@/utils/getPathName';
 import { ProfileContainer } from '@/features/profile/components';
 
 export default function AppSideBar() {

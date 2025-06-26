@@ -1,8 +1,10 @@
 import { DynamicDataTable, TabsLayout, PriestFullInfo } from '@/components';
 import { useState } from 'react';
 import { convertKeysToCamelCase } from '@/utils/convertKeysToCamelCase';
+import { useAutoDocumentTitle } from '@/hooks/useAutoDocumentTitle';
 
 const ReligiousPeopleGenericPage = () => {
+	useAutoDocumentTitle();
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [id, setId] = useState<number | null>(1);
 

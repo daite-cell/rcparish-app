@@ -2,8 +2,8 @@ import { SidebarTrigger, useSidebar } from '../ui/sidebar';
 import { NavLink } from 'react-router-dom';
 import navItems from '@/data/navbar-content';
 import { memo, useState } from 'react';
-import { usePathName } from '@/utils/usePathName';
 import AppNavHeader from '../app-nav-header';
+import { usePathName } from '@/utils/getPathName';
 
 const AppNavbar = memo(() => {
 	const [activeTab, setActiveTab] = useState<number | null>(0);
