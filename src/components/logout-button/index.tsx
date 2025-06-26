@@ -1,13 +1,28 @@
 import { Button } from '../ui/button';
+import React from 'react';
 
-const LogoutButton = () => {
+interface LogoutButtonProps {
+	onLogout?: () => void | Promise<void>;
+	isLoading?: boolean;
+	className?: string;
+}
+
+const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout, isLoading = false, className = '' }) => {
+	const handleLogout = async () => {
+		if (onLogout) {
+			await onLogout();
+		}
+	};
+
 	return (
 		<Button
 			variant="outline"
-			className="h-8 text-sm bg-transparent rounded-none hover:bg-primary hover:text-white text-primary border-primary"
+			onClick={handleLogout}
+			disabled={isLoading}
+			className={`h-8 text-sm bg-transparent rounded-none text-primary border-primary hover:bg-primary hover:text-white ${className}`}
 			aria-label="Logout"
 		>
-			Logout
+			{isLoading ? 'Logging out...' : 'Logout'}
 		</Button>
 	);
 };

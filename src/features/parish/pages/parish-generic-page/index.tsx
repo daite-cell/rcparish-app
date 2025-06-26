@@ -1,10 +1,10 @@
 import { DisplayImage, DynamicDataTable, HistoryForm, TabsLayout } from '@/components';
 import { side_nav_links } from '@/data/side-navbar-content';
-import type { NavLinkProps } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
-import { useRouteName } from '@/utils/useRouteName';
+import { useRouteName } from '@/utils/getRouteName';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import type { NavLinkProps } from '@/types';
 
 const ParishGenericPage = () => {
 	const location = useLocation();

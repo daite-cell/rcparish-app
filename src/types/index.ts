@@ -47,7 +47,7 @@ export interface InfoParagraphProps {
 
 export interface BulletPointListProps {
 	items?: string[];
-	styles?: string;
+	style?: string;
 	ordered?: boolean;
 }
 
