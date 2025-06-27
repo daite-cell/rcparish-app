@@ -69,3 +69,11 @@ export interface PriestFullInfoProps {
 	email?: string;
 	address?: string;
 }
+
+export type TableRowData = {
+	sub_station: string;
+	date: string;
+	timing: string;
+	title: string;
+	country: string;
+};
