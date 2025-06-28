@@ -4,20 +4,19 @@ import {
 	getSortedRowModel,
 	getPaginationRowModel,
 	getFilteredRowModel,
-	flexRender,
 	type SortingState,
 	type Table as ReactTableType,
+	type ColumnDef,
+	type CellContext,
+	type Row,
 } from '@tanstack/react-table';
-import React, { Suspense, useMemo, useState } from 'react';
-import { ChevronDown, ChevronUp, ChevronsUpDown } from 'lucide-react';
+import { useMemo, useState, type ChangeEvent } from 'react';
+import { Eye, Folder, Pencil, Settings, SquarePen, Trash } from 'lucide-react';
 import mockData from '@/data/mock-data/mock-data.json';
+import { PaginationControls, TableFilters, TableHeaderControls, TableDisplay } from '../index';
 import { Input } from '../ui/input';
-import { ColumnVisibilityDropdown, SingleSelectDropdown, PaginationControls } from '../index';
-import { Button } from '../ui/button';
-import DateInputField from '../date-input-felid';
-const ExportButton = React.lazy(() => import('../../components/export-button'));
 
-interface DynamicDataTableProps<T extends object> {
+interface DynamicDataTableProps<T extends object, U> {
 	data?: T[];
 	defaultPageSize?: number;
 	title?: string;
@@ -26,9 +25,16 @@ interface DynamicDataTableProps<T extends object> {
 	tableId?: string;
 	filterKey?: string;
 	enableDateAndLetterSorting?: boolean;
+	customColumns?: ColumnDef<T, U>[];
+	includeCheckbox?: boolean;
+	includePriorDignitaries?: boolean;
+	onEdit?: (row: T) => void;
+	onDelete?: (row: T) => void;
+	onView?: (row: T) => void;
+	columns?: ColumnDef<T, U>[];
 }
 
-const DynamicDataTable = <T extends object>({
+const DynamicDataTable = <T extends object, U>({
 	data = mockData as T[],
 	defaultPageSize = 10,
 	title,
@@ -37,7 +43,13 @@ const DynamicDataTable = <T extends object>({
 	enableDateAndLetterSorting = false,
 	tableId,
 	filterKey = 'sub_station',
-}: DynamicDataTableProps<T>) => {
+	customColumns = [],
+	includeCheckbox = false,
+	includePriorDignitaries = false,
+	onEdit,
+	onDelete,
+	onView,
+}: DynamicDataTableProps<T, U>) => {
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [pageSize, setPageSize] = useState(defaultPageSize);
 	const [globalFilter, setGlobalFilter] = useState('');
@@ -45,7 +57,6 @@ const DynamicDataTable = <T extends object>({
 	const [fromDate, setFromDate] = useState<Date | undefined>(undefined);
 	const [toDate, setToDate] = useState<Date | undefined>(undefined);
 	const generatedTableId = tableId ?? 'dynamic-data-table';
-
 	const fromDateTime = fromDate?.getTime() ?? null;
 	const toDateTime = toDate?.getTime() ?? null;
 
@@ -86,19 +97,86 @@ const DynamicDataTable = <T extends object>({
 		return result;
 	}, [data, alphaFilter, filterKey, fromDateTime, toDateTime]);
 
-	const columns: { header: string; accessorKey: string }[] = useMemo(() => {
+	const columns = useMemo<ColumnDef<T, U>[]>(() => {
 		if (!data || data.length === 0) return [];
 
 		const formatHeader = (key: string) =>
 			key.replace(/_/g, ' ').replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.slice(1));
 
-		return Object.keys(data[0]).map((key) => ({
+		const uniqueKeys = Array.from(new Set(data.flatMap((item) => Object.keys(item as Record<string, unknown>))));
+
+		const baseColumns: ColumnDef<T, U>[] = uniqueKeys.map((key) => ({
 			accessorKey: key,
 			header: formatHeader(key),
-			cell: (info: { getValue: () => string }) => info.getValue(),
+			cell: (info: CellContext<T, U>) => {
+				const value = info.getValue();
+				return value !== undefined && value !== null ? value.toString() : '';
+			},
 		}));
-	}, [data]);
 
+		const columnStart: ColumnDef<T, U>[] = [];
+
+		if (includeCheckbox) {
+			columnStart.push({
+				id: 'select',
+				header: () => <SquarePen className="w-4 h-4 text-center" />,
+				cell: () => <input title="select" type="checkbox" />,
+				enableSorting: false,
+			});
+		}
+		if (onEdit) {
+			columnStart.push({
+				id: 'edit',
+				header: () => <Settings className="w-4 h-4 text-center" />,
+				cell: ({ row }: CellContext<T, U>) => (
+					<button title="Edit" onClick={() => onEdit(row.original)} className="hover:underline text-xs">
+						<Pencil className="w-4 h-4 text-center" />
+					</button>
+				),
+				enableSorting: false,
+			});
+		}
+
+		if (onView) {
+			columnStart.push({
+				id: 'view',
+				header: 'Details',
+				cell: ({ row }: CellContext<T, U>) => (
+					<button type="button" onClick={() => onView(row.original)} title="View">
+						<Eye className="w-4 h-4 text-center" />
+					</button>
+				),
+				enableSorting: false,
+			});
+		}
+
+		if (onDelete) {
+			columnStart.push({
+				id: 'delete',
+				header: 'Delete',
+				cell: ({ row }: { row: Row<T> }) => (
+					<button
+						type="button"
+						title="Delete"
+						onClick={() => onDelete(row.original)}
+						className=" hover:underline text-xs"
+					>
+						<Trash className="w-4 h-4 text-center" />
+					</button>
+				),
+				enableSorting: false,
+			});
+		}
+		if (includePriorDignitaries) {
+			columnStart.push({
+				id: 'Prior Dignitaries',
+				header: 'Prior Dignitaries',
+				cell: () => <Folder className="w-4 h-4 text-center" />,
+			});
+		}
+
+		return [...columnStart, ...baseColumns, ...customColumns];
+	}, [data, includeCheckbox, includePriorDignitaries, onEdit, onDelete, onView, customColumns]);
 	const table = useReactTable({
 		data: filteredData,
 		columns,
@@ -117,163 +195,59 @@ const DynamicDataTable = <T extends object>({
 		return uniqueSizes;
 	}, [data.length]);
 
-	const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-
 	return (
 		<div className="flex flex-col items-center justify-center">
 			<div className="w-full">
 				<div className="min-w-full py-2 sm:px-6 lg:px-8">
-					<h1 className="mb-8 font-bold underline uppercase text-start">{title}</h1>
+					{title && <h1 className="mb-8 font-bold underline uppercase text-start">{title}</h1>}
 
 					{enableDateAndLetterSorting && (
-						<>
-							<div className="flex flex-col items-center gap-4 md:flex-row">
-								<SingleSelectDropdown label="select the date" />
-								<DateInputField label="From" value={fromDate} onChange={setFromDate} />
-								<DateInputField label="To" value={toDate} onChange={setToDate} />
-								<Button
-									className="text-[#d7c49e] bg-[#343148] text-[12px] border-none min-w-[90px] mt-6 h-7 px-4 py-1 text-center transition duration-500 rounded-none float-left hover:text-[#343148] hover:bg-[#d7c49e] hover:cursor-pointer"
-									onClick={() => {
-										setFromDate(undefined);
-										setToDate(undefined);
-									}}
-								>
-									Clear
-								</Button>
-							</div>
-							<div className="flex items-center my-4 overflow-x-auto border border-black hide-scrollbar">
-								{['All', ...alphabet].map((char) => (
-									<button
-										type="button"
-										key={char}
-										onClick={() => setAlphaFilter(char)}
-										className={`px-3 py-[6px] flex-1 text-xs ${
-											alphaFilter === char ? 'bg-[#343148ff] text-white' : 'bg-[#d7c49e] text-black'
-										}`}
-									>
-										{char}
-									</button>
-								))}
-							</div>
-						</>
+						<TableFilters
+							fromDate={fromDate}
+							toDate={toDate}
+							setFromDate={setFromDate}
+							setToDate={setToDate}
+							alphaFilter={alphaFilter}
+							setAlphaFilter={setAlphaFilter}
+						/>
 					)}
 
-					<div className="flex flex-col md:flex-row justify-between items-center text-[13px] my-3">
-						<div className="flex flex-col items-center gap-2 md:flex-row">
-							<div className="flex items-center gap-3">
-								<span>Search</span>
-								<Input
-									className="max-w-sm h-7 rounded-[3px] focus:border-[#80bdff]"
-									value={globalFilter}
-									onChange={(e) => setGlobalFilter(e.target.value)}
-								/>
-							</div>
-
-							{isDynamic && (
-								<div className="flex ml-4">
-									<Suspense fallback={<div>Loading...</div>}>
-										<ExportButton
-											data={table.getSortedRowModel().rows.map((row) => row.original)}
-											columns={table
-												.getAllLeafColumns()
-												.filter((col) => col.getIsVisible())
-												.map((col) => ({
-													header: String(col.columnDef.header),
-													accessorKey: col.id,
-												}))}
-											tableId={generatedTableId}
-										/>
-									</Suspense>
-
-									<ColumnVisibilityDropdown table={table} />
-								</div>
-							)}
-						</div>
-
-						<div className="flex items-center space-x-2">
-							<span>Show</span>
-							<div className="relative">
-								<select
-									title="page"
-									className="block w-full px-3 py-1 pr-8 text-sm border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none"
-									value={pageSize}
-									onChange={(e) => {
-										const newPageSize = Number(e.target.value);
-										if (!Number.isNaN(newPageSize)) {
-											setPageSize(newPageSize);
-											table.setPageSize(newPageSize);
-										}
-									}}
-								>
-									{pageSizeOptions.map((size) => (
-										<option key={size} value={size}>
-											{size === data.length ? 'All' : size}
-										</option>
-									))}
-								</select>
-								<div className="absolute inset-y-0 flex items-center text-gray-500 pointer-events-none right-2">
-									<ChevronsUpDown className="w-3 h-3" />
+					{isDynamic && (
+						<div className="flex flex-col md:flex-row justify-between items-center text-[13px] my-3">
+							<div className="flex flex-col items-center gap-2 md:flex-row">
+								<div className="flex items-center gap-3">
+									<span>Search</span>
+									<Input
+										type="text"
+										className="max-w-sm h-7 rounded-[3px] focus:border-[#80bdff]"
+										value={globalFilter}
+										onChange={(e: ChangeEvent<HTMLInputElement>) => setGlobalFilter(e.target.value)}
+									/>
 								</div>
 							</div>
-							<span>entries</span>
 						</div>
-					</div>
+					)}
 
-					<div className="overflow-x-auto">
-						<table
-							id={generatedTableId}
-							className={`min-w-full mt-4 text-sm text-left border border-gray-400 ${
-								wrapText ? 'whitespace-normal' : 'whitespace-nowrap'
-							}`}
-						>
-							<thead className="bg-[#d7c49e] text-[#343148ff]">
-								{table.getHeaderGroups().map((headerGroup) => (
-									<tr key={headerGroup.id}>
-										{headerGroup.headers.map((header) => (
-											<th
-												key={header.id}
-												onClick={isDynamic ? header.column.getToggleSortingHandler() : undefined}
-												className={`px-3 py-2 border text-[13px] font-bold select-none ${
-													isDynamic ? 'cursor-pointer' : ''
-												}`}
-											>
-												<div className="flex items-center space-x-1">
-													<span>{flexRender(header.column.columnDef.header, header.getContext())}</span>
-													{isDynamic &&
-														(header.column.getIsSorted() === 'asc' ? (
-															<ChevronUp className="w-3 h-3 text-gray-700" />
-														) : header.column.getIsSorted() === 'desc' ? (
-															<ChevronDown className="w-3 h-3 text-gray-700" />
-														) : (
-															<ChevronsUpDown className="w-3 h-3 text-gray-400" />
-														))}
-												</div>
-											</th>
-										))}
-									</tr>
-								))}
-							</thead>
-							<tbody>
-								{table.getRowModel().rows.length > 0 ? (
-									table.getRowModel().rows.map((row) => (
-										<tr key={row.id} className="bg-white border-b border-gray-300">
-											{row.getVisibleCells().map((cell) => (
-												<td key={cell.id} className="px-3 py-2 border border-[#d7c49e]">
-													{flexRender(cell.column.columnDef.cell, cell.getContext())}
-												</td>
-											))}
-										</tr>
-									))
-								) : (
-									<tr>
-										<td colSpan={columns.length} className="py-4 text-center text-gray-500 border">
-											No data available in table
-										</td>
-									</tr>
-								)}
-							</tbody>
-						</table>
-					</div>
+					<TableHeaderControls<T>
+						isDynamic={isDynamic}
+						globalFilter={globalFilter}
+						setGlobalFilter={setGlobalFilter}
+						table={table}
+						pageSize={pageSize}
+						setPageSize={setPageSize}
+						pageSizeOptions={pageSizeOptions}
+						tableId={generatedTableId}
+						data={data}
+					/>
+
+					<TableDisplay
+						table={table}
+						wrapText={wrapText}
+						columns={columns as ColumnDef<T, unknown>[]}
+						tableId={generatedTableId}
+						isDynamic={isDynamic}
+						data={data}
+					/>
 
 					{isDynamic && data.length > 0 && <PaginationControls table={table as unknown as ReactTableType<unknown>} />}
 				</div>

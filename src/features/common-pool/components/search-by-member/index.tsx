@@ -23,12 +23,12 @@ const SearchByMember = () => {
 	} = useForm<MemberSearchForm>({
 		resolver: zodResolver(memberSearchSchema),
 		defaultValues: {
-			search_by_family: 'member_id',
+			search_by_member: 'member_id',
 			search_value: '',
 		},
 	});
 
-	const selectedField = watch('search_by_family');
+	const selectedField = watch('search_by_member');
 	const selectedInputName = useMemo(() => {
 		return inputs_data.find((i) => i.value === selectedField)?.name || 'Input';
 	}, [selectedField]);
@@ -44,7 +44,7 @@ const SearchByMember = () => {
 					className="flex gap-4"
 					defaultValue="member_id"
 					onValueChange={(val) => {
-						setValue('search_by_family', val as MemberSearchForm['search_by_family']);
+						setValue('search_by_member', val as MemberSearchForm['search_by_member']);
 						setValue('search_value', '');
 					}}
 				>
@@ -66,7 +66,7 @@ const SearchByMember = () => {
 						</div>
 					))}
 				</RadioGroup>
-				{errors.search_by_family && <p className="text-red-500 text-xs">{errors.search_by_family.message}</p>}
+				{errors.search_by_member && <p className="text-red-500 text-xs">{errors.search_by_member.message}</p>}
 			</div>
 
 			<div className="w-full">

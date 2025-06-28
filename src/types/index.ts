@@ -47,7 +47,7 @@ export interface InfoParagraphProps {
 
 export interface BulletPointListProps {
 	items?: string[];
-	styles?: string;
+	style?: string;
 	ordered?: boolean;
 }
 
@@ -55,4 +55,17 @@ export interface ParagraphGroupWithTitleProps {
 	title: string;
 	paragraphs?: string[];
 	style?: string;
+}
+
+export interface PriestFullInfoProps {
+	name: string;
+	priestFrom?: string;
+	ordinationDate?: string;
+	birthDate?: string;
+	livingStatus?: string;
+	nativePlace?: string;
+	aadhaarNumber?: string;
+	phoneNumber?: string;
+	email?: string;
+	address?: string;
 }

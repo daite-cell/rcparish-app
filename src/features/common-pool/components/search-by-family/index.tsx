@@ -78,8 +78,11 @@ const SearchByFamily = () => {
 							<DateInputFelid
 								label="Marriage Date"
 								placeholder="dd-mm-yyyy"
-								value={field.value as Date}
-								onChange={field.onChange}
+								value={field.value ? new Date(field.value) : undefined}
+								onChange={(date) => {
+									const formatted = date?.toISOString().split('T')[0] || '';
+									field.onChange(formatted);
+								}}
 								error={errors.search_value?.message}
 							/>
 						)}

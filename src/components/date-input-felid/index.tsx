@@ -8,7 +8,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 interface DateInputFieldProps {
 	label: string;
 	placeholder?: string;
-	value?: Date;
+	value?: Date | undefined;
 	onChange?: (date: Date | undefined) => void;
 	error?: string;
 }
@@ -31,7 +31,7 @@ const DateInputField = React.memo(
 							type="button"
 							className="w-full mt-2 !h-8 justify-between rounded-[2px] font-normal"
 						>
-							{value ? value.toLocaleDateString() : placeholder}
+							{value ? value?.toLocaleDateString() : placeholder}
 							<CalendarIcon className="w-4 h-4 opacity-50" />
 						</Button>
 					</PopoverTrigger>

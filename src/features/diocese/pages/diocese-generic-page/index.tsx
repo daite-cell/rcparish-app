@@ -14,7 +14,6 @@ const DioceseGenericPage = () => {
 
 	const linksData = getSectionByPathName(side_nav_links, location.pathname);
 	const tabsData = linksData?.page_nav_links.find((link: NavLinkProps) => link.path_url === location.pathname)?.tabs;
-	console.warn(tabsData);
 
 	return (
 		<>

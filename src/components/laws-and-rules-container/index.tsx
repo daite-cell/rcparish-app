@@ -1,6 +1,6 @@
 import { InfoHeadingTitle, InfoParagraph } from '@/components';
 import { laws_and_rules } from '@/data/tamil-rules-content';
-import { useRouteName } from '@/utils/useRouteName';
+import { useRouteName } from '@/utils/getRouteName';
 
 const LawsAndRulesContainer = () => {
 	const rule = useRouteName('rule');

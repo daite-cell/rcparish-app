@@ -2,10 +2,11 @@ import { TabsLayout } from '@/components';
 import { side_nav_links } from '@/data/side-navbar-content';
 import type { NavLinkProps } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
-import { usePathName } from '@/utils/usePathName';
-import { useRouteName } from '@/utils/useRouteName';
+
 import { useState } from 'react';
 import { AdmittedList, RenderForms } from '../../components';
+import { usePathName } from '@/utils/getPathName';
+import { useRouteName } from '@/utils/getRouteName';
 
 const CommonPoolGenericPage = () => {
 	const pathName = usePathName();
