@@ -56,3 +56,16 @@ export interface ParagraphGroupWithTitleProps {
 	paragraphs?: string[];
 	style?: string;
 }
+
+export interface PriestFullInfoProps {
+	name: string;
+	priestFrom?: string;
+	ordinationDate?: string;
+	birthDate?: string;
+	livingStatus?: string;
+	nativePlace?: string;
+	aadhaarNumber?: string;
+	phoneNumber?: string;
+	email?: string;
+	address?: string;
+}
