@@ -19,7 +19,7 @@ const TabsLayout = <T extends TabBase>({
 	hasPageHeading = true,
 	children,
 }: TabsLayoutProps<T>) => (
-	<div className="w-full mx-auto pt-4 px-6">
+	<div className="w-full mx-auto py-4 px-6 ">
 		<div className="flex justify-end">
 			{tabs.map((tab, index) => {
 				const isActive = activeTabId === index;
