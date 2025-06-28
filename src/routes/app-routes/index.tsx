@@ -21,7 +21,7 @@ const AppRoutes = (): JSX.Element => {
 								<Route
 									key={index}
 									path={path}
-									element={<PageTransitionWrapper withText="Loading,Please wait !!">{element}</PageTransitionWrapper>}
+									element={<PageTransitionWrapper withText="Loading, please wait...">{element}</PageTransitionWrapper>}
 								/>
 							))}
 						<Route

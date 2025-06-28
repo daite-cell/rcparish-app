@@ -1,6 +1,6 @@
 import AdminImage from '/admin.png';
-const AdminDefaultImage = () => {
-	return <img height={70} width={70} src={AdminImage} alt="Admin" />;
+const AdminDefaultImage = ({ height = 70, width = 70 }: { height?: number; width?: number }) => {
+	return <img height={height} width={width} src={AdminImage} alt="Admin" />;
 };
 
 export default AdminDefaultImage;

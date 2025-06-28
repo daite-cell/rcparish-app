@@ -90,9 +90,7 @@ const NavLinksSection = ({ navData, pathName }: { navData: NavLinkSectionProps[]
 																	</span>
 																	<SidebarMenuButton className="hover:text-primary" asChild>
 																		<NavLink
-																			onClick={() => {
-																				setOpen(false);
-																			}}
+																			onClick={() => setOpen(false)}
 																			className={() =>
 																				`text-[#a8926c]  hover:text-primary hover:bg-transparent active:bg-transparent `
 																			}

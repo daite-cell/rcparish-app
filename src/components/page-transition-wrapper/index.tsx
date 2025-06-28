@@ -10,7 +10,7 @@ const PageTransitionWrapper = ({ children, withText }: { children: React.ReactNo
 		setShowContent(false);
 		const timeout = setTimeout(() => {
 			setShowContent(true);
-		}, 1000);
+		}, 300);
 
 		return () => clearTimeout(timeout);
 	}, [location.pathname]);
