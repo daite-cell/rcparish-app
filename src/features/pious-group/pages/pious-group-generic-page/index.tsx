@@ -2,9 +2,9 @@ import { DynamicDataTable, RenderOverViewComponent, TabsLayout } from '@/compone
 import { side_nav_links } from '@/data/side-navbar-content';
 import type { NavLinkProps, TableRowData } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
-import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useRouteName } from '@/utils/getRouteName';
+import { useState } from 'react';
 
 const PiousGroupGenericPage = () => {
 	const location = useLocation();
@@ -28,7 +28,7 @@ const PiousGroupGenericPage = () => {
 	const handleView = (row: TableRowData): void => {
 		console.warn('View clicked:', row);
 	};
-	const id = 1;
+	const id = 0;
 
 	return (
 		<TabsLayout
