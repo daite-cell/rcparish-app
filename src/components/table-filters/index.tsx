@@ -16,8 +16,8 @@ const TableFilters = ({ fromDate, toDate, setFromDate, setToDate, alphaFilter, s
 		<>
 			<div className="flex flex-col items-center gap-4 md:flex-row">
 				<SingleSelectDropdown label="select the date" />
-				<DateInputFelid label="From" date={fromDate} setDate={setFromDate} />
-				<DateInputFelid label="To" date={toDate} setDate={setToDate} />
+				<DateInputFelid label="From" value={fromDate} onChange={setFromDate} />
+				<DateInputFelid label="To" value={toDate} onChange={setToDate} />
 				<Button
 					className="text-[#d7c49e] bg-[#343148] text-[12px] border-none min-w-[90px] mt-6 h-7 px-4 py-1"
 					onClick={() => {
