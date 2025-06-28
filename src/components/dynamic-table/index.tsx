@@ -10,11 +10,10 @@ import {
 	type CellContext,
 	type Row,
 } from '@tanstack/react-table';
-import { useMemo, useState, type ChangeEvent } from 'react';
+import { useMemo, useState } from 'react';
 import { Eye, Folder, Pencil, Settings, SquarePen, Trash } from 'lucide-react';
 import mockData from '@/data/mock-data/mock-data.json';
 import { PaginationControls, TableFilters, TableHeaderControls, TableDisplay } from '../index';
-import { Input } from '../ui/input';
 
 interface DynamicDataTableProps<T extends object, U> {
 	data?: T[];
@@ -210,22 +209,6 @@ const DynamicDataTable = <T extends object, U>({
 							alphaFilter={alphaFilter}
 							setAlphaFilter={setAlphaFilter}
 						/>
-					)}
-
-					{isDynamic && (
-						<div className="flex flex-col md:flex-row justify-between items-center text-[13px] my-3">
-							<div className="flex flex-col items-center gap-2 md:flex-row">
-								<div className="flex items-center gap-3">
-									<span>Search</span>
-									<Input
-										type="text"
-										className="max-w-sm h-7 rounded-[3px] focus:border-[#80bdff]"
-										value={globalFilter}
-										onChange={(e: ChangeEvent<HTMLInputElement>) => setGlobalFilter(e.target.value)}
-									/>
-								</div>
-							</div>
-						</div>
 					)}
 
 					<TableHeaderControls<T>
