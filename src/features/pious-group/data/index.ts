@@ -130,4 +130,109 @@ const family_members_dummy_data = {
 	},
 };
 
-export { member_dummy_data, parish_council_pages, dummy_religious_info, family_members_dummy_data };
+const priest_family_dummy_data = {
+	parish: {
+		church_name: 'Christ the King Church',
+		parish_name: 'Perumanam Parish',
+		diocese_name: 'Thiruvannamalai',
+	},
+
+	profile: {
+		member_from: 'Members from Family',
+		mobile_number: '8056281135',
+		email: '',
+		gender: 'Male',
+		member_name: 'Maria Anthony alias AR Anthonysamy',
+	},
+
+	family_info: {
+		family_name: 'Rayappan-Josephine Lourdurani',
+		unique_family_number: 'TH041',
+		sub_station: 'Perumanam Parish',
+		anbiam: 'St Thomaiyar Anbiam',
+		relation: 'Brother',
+		family_head: 'Rayappan',
+		father_name: 'Rayappan',
+		mother_name: '',
+	},
+
+	religious_details: {
+		category: 'Diocese',
+		diocese_name: 'Vellore',
+		current_status: 'Priesthood',
+		position: 'Parish Priest',
+		place: 'Gandhi Nagar',
+		permanent_address: '708, Madha Koil Street, Perumanam',
+		temporary_address: '708, Madha Koil Street, Perumanam',
+	},
+};
+
+const family_full_overview_data = {
+	family_name: 'Israel-Carolin Mary',
+	activeness: {
+		active_ness: 'active',
+	},
+	family_details: {
+		family_head_name: 'Israel',
+		unique_anbiam_family_number: 'TH022',
+		old_family_number: '',
+		sub_station: 'Perumanam Parish',
+		anbiam: 'St Thomaiyar Anbiam',
+		father_or_husband_name: 'Israel',
+		mother_or_wife_name: 'Carolin Mary',
+		marriage_date: 'unknown',
+	},
+	social_status_details: {
+		house_type: 'Concrete Roof',
+		house_ownership: 'Own',
+	},
+	income_and_subscription_details: {
+		family_monthly_income: '0',
+		subscription_from: 'Jan-2024',
+		family_card_valid_upto: 'Dec-2027',
+		monthly_subscription: '50',
+		cemetery_number: '',
+	},
+	community_details: {
+		community: 'SC',
+		sub_caste: 'Adi Dravidar',
+	},
+	contact_details: {
+		living_status: 'In Parish',
+		parish_name: '--',
+		diocese_name: '--',
+		country_name: '--',
+		settled_as: 'Permanent',
+		mobile_number: '0000000135',
+		email_id: '--',
+		temporary_address: '702, Madha Koil Street, perumanam',
+		permanent_address: '702, Madha Koil Street, perumanam',
+	},
+};
+
+const family_member_table_data = [
+	{
+		member_id: 'TH022M01',
+		activeness: 'Active',
+		member_name: 'Israel',
+		relation: 'Father/Husband',
+		gender: 'Male',
+	},
+	{
+		member_id: 'TH022M02',
+		activeness: 'Active',
+		member_name: 'Carolin Mary',
+		relation: 'Mother/Wife',
+		gender: 'Female',
+	},
+];
+
+export {
+	member_dummy_data,
+	parish_council_pages,
+	dummy_religious_info,
+	family_members_dummy_data,
+	priest_family_dummy_data,
+	family_full_overview_data,
+	family_member_table_data,
+};
