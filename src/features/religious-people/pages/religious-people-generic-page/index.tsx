@@ -1,7 +1,11 @@
-import { DynamicDataTable, TabsLayout, PriestFullInfo } from '@/components';
+import { DynamicDataTable, TabsLayout, PriestFullInfo, AdminDefaultImage } from '@/components';
 import { useState } from 'react';
 import { convertKeysToCamelCase } from '@/utils/convertKeysToCamelCase';
 import { useAutoDocumentTitle } from '@/hooks/useAutoDocumentTitle';
+import type { CellContext } from '@tanstack/react-table';
+import { Eye, SquarePen } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { userData, type User } from '../../data';
 
 const ReligiousPeopleGenericPage = () => {
 	useAutoDocumentTitle();
@@ -14,6 +18,8 @@ const ReligiousPeopleGenericPage = () => {
 			setId(null);
 		}
 	};
+
+	const onView = (id: number) => setId(id);
 
 	const dummy_priest_info = convertKeysToCamelCase({
 		id: 1,
@@ -29,6 +35,61 @@ const ReligiousPeopleGenericPage = () => {
 		address: '',
 	});
 
+	const columns = [
+		{
+			id: 'select',
+			header: () => <SquarePen className="w-4 h-4 text-center" />,
+			cell: () => <input title="select" type="checkbox" />,
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+		{
+			id: 'view',
+			header: 'Details',
+			cell: ({ row }: CellContext<User, unknown>) => (
+				<button type="button" onClick={() => onView((row.original as User).id)} title="View">
+					<Eye className="w-4 h-4 text-center" />
+				</button>
+			),
+			meta: { isExportable: false },
+			enableSorting: false,
+			enableHiding: true,
+		},
+
+		{
+			header: 'Name',
+			accessorKey: 'name',
+			cell: ({ row }: CellContext<User, unknown>) => (
+				<Link className="underline text-[#0d73c4]" to="">
+					{(row.original as User).name}
+				</Link>
+			),
+		},
+		{
+			header: 'Image',
+			accessorKey: 'image',
+			cell: () => <AdminDefaultImage />,
+			meta: { isExportable: false },
+		},
+		{
+			header: 'Email',
+			accessorKey: 'email',
+		},
+		{
+			header: 'Age',
+			accessorKey: 'age',
+		},
+		{
+			header: 'Role',
+			accessorKey: 'role',
+		},
+		{
+			header: 'Created At',
+			accessorKey: 'created_at',
+		},
+	];
+
 	return (
 		<>
 			<TabsLayout
@@ -36,7 +97,11 @@ const ReligiousPeopleGenericPage = () => {
 				activeTabId={activeIndex}
 				tabs={id ? [{ label: 'Profile' }, { label: 'Back' }] : [{ label: 'View' }]}
 			>
-				{!id ? <DynamicDataTable enableDateAndLetterSorting={true} /> : <PriestFullInfo {...dummy_priest_info} />}
+				{!id ? (
+					<DynamicDataTable data={userData} customColumns={columns} enableDateAndLetterSorting={true} />
+				) : (
+					<PriestFullInfo {...dummy_priest_info} />
+				)}
 			</TabsLayout>
 		</>
 	);

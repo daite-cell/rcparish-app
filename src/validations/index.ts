@@ -17,3 +17,10 @@ export const memberSearchSchema = z.object({
 });
 
 export type MemberSearchForm = z.infer<typeof memberSearchSchema>;
+
+export const historyFormSchema = z.object({
+	parishHistory: z.string().min(10, 'Parish history must be at least 10 characters long'),
+	document: z.any().optional(),
+});
+
+export type HistoryFormType = z.infer<typeof historyFormSchema>;

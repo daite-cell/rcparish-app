@@ -4,6 +4,9 @@ import autoTable from 'jspdf-autotable';
 interface Column {
 	header: string;
 	accessorKey: string;
+	meta?: {
+		isExportable?: boolean;
+	};
 }
 
 interface PDFExporterProps<T> {
@@ -20,14 +23,17 @@ export default function PDFExporter<T>({ data, columns, tableId, onComplete }: P
 			return;
 		}
 
-		const doc = new jsPDF();
-		const tableColumn = columns.map((col) => col.header);
+		const exportableColumns = columns.filter((col) => col.meta?.isExportable !== false);
+
+		const tableColumn = exportableColumns.map((col) => col.header);
 		const tableRows = data.map((row) =>
-			columns.map((col) => {
+			exportableColumns.map((col) => {
 				const val = (row as Record<string, unknown>)[col.accessorKey];
 				return typeof val === 'string' || typeof val === 'number' ? val : JSON.stringify(val);
 			})
 		);
+
+		const doc = new jsPDF();
 
 		autoTable(doc, {
 			head: [tableColumn],

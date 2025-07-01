@@ -9,11 +9,16 @@ import {
 	type ColumnDef,
 	type CellContext,
 	type Row,
+	type ColumnMeta,
 } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 import { Eye, Folder, Pencil, Settings, SquarePen, Trash } from 'lucide-react';
 import mockData from '@/data/mock-data/mock-data.json';
 import { PaginationControls, TableFilters, TableHeaderControls, TableDisplay } from '../index';
+
+interface CustomColumnMeta<T> extends ColumnMeta<T, unknown> {
+	isExportable?: boolean;
+}
 
 interface DynamicDataTableProps<T extends object, U> {
 	data?: T[];
@@ -30,7 +35,7 @@ interface DynamicDataTableProps<T extends object, U> {
 	onEdit?: (row: T) => void;
 	onDelete?: (row: T) => void;
 	onView?: (row: T) => void;
-	columns?: ColumnDef<T, U>[];
+	columns?: CustomColumnMeta<T>[];
 }
 
 const DynamicDataTable = <T extends object, U>({
@@ -96,7 +101,9 @@ const DynamicDataTable = <T extends object, U>({
 		return result;
 	}, [data, alphaFilter, filterKey, fromDateTime, toDateTime]);
 
-	const columns = useMemo<ColumnDef<T, U>[]>(() => {
+	const columns: ColumnDef<T, U>[] = useMemo(() => {
+		if (customColumns?.length) return customColumns;
+
 		if (!data || data.length === 0) return [];
 
 		const formatHeader = (key: string) =>
@@ -121,6 +128,8 @@ const DynamicDataTable = <T extends object, U>({
 				header: () => <SquarePen className="w-4 h-4 text-center" />,
 				cell: () => <input title="select" type="checkbox" />,
 				enableSorting: false,
+				meta: { isExportable: false },
+				enableHiding: true,
 			});
 		}
 		if (onEdit) {
@@ -132,7 +141,9 @@ const DynamicDataTable = <T extends object, U>({
 						<Pencil className="w-4 h-4 text-center" />
 					</button>
 				),
+				meta: { isExportable: false },
 				enableSorting: false,
+				enableHiding: true,
 			});
 		}
 
@@ -145,7 +156,9 @@ const DynamicDataTable = <T extends object, U>({
 						<Eye className="w-4 h-4 text-center" />
 					</button>
 				),
+				meta: { isExportable: false },
 				enableSorting: false,
+				enableHiding: true,
 			});
 		}
 
@@ -163,22 +176,28 @@ const DynamicDataTable = <T extends object, U>({
 						<Trash className="w-4 h-4 text-center" />
 					</button>
 				),
+				meta: { isExportable: false },
 				enableSorting: false,
+				enableHiding: true,
 			});
 		}
+
 		if (includePriorDignitaries) {
 			columnStart.push({
 				id: 'Prior Dignitaries',
 				header: 'Prior Dignitaries',
 				cell: () => <Folder className="w-4 h-4 text-center" />,
+				meta: { isExportable: false },
+				enableHiding: true,
 			});
 		}
 
-		return [...columnStart, ...baseColumns, ...customColumns];
+		return [...columnStart, ...baseColumns];
 	}, [data, includeCheckbox, includePriorDignitaries, onEdit, onDelete, onView, customColumns]);
+
 	const table = useReactTable({
 		data: filteredData,
-		columns,
+		columns: columns,
 		state: { sorting, globalFilter },
 		onSortingChange: isDynamic ? setSorting : undefined,
 		onGlobalFilterChange: setGlobalFilter,
@@ -226,10 +245,10 @@ const DynamicDataTable = <T extends object, U>({
 					<TableDisplay
 						table={table}
 						wrapText={wrapText}
-						columns={columns as ColumnDef<T, unknown>[]}
-						tableId={generatedTableId}
+						columns={columns as unknown as ColumnDef<T, unknown>[]}
 						isDynamic={isDynamic}
 						data={data}
+						tableId={generatedTableId}
 					/>
 
 					{isDynamic && data.length > 0 && <PaginationControls table={table as unknown as ReactTableType<unknown>} />}
