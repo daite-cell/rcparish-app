@@ -2,16 +2,17 @@ import { DynamicDataTable, TabsLayout, PriestFullInfo } from '@/components';
 import { useState } from 'react';
 import { convertKeysToCamelCase } from '@/utils/convertKeysToCamelCase';
 import { useAutoDocumentTitle } from '@/hooks/useAutoDocumentTitle';
+import { useStore } from '@/store/store';
 
 const ReligiousPeopleGenericPage = () => {
 	useAutoDocumentTitle();
 	const [activeIndex, setActiveIndex] = useState(0);
-	const [id, setId] = useState<number | null>(1);
+	const { selectRow, handleCloseRow } = useStore();
 
 	const handleToggleTab = (index: number) => {
 		setActiveIndex(index);
 		if (index === 1) {
-			setId(null);
+			handleCloseRow();
 		}
 	};
 
@@ -34,9 +35,9 @@ const ReligiousPeopleGenericPage = () => {
 			<TabsLayout
 				onTabChange={handleToggleTab}
 				activeTabId={activeIndex}
-				tabs={id ? [{ label: 'Profile' }, { label: 'Back' }] : [{ label: 'View' }]}
+				tabs={!selectRow ? [{ label: 'Profile' }, { label: 'Back' }] : [{ label: 'View' }]}
 			>
-				{!id ? <DynamicDataTable enableDateAndLetterSorting={true} /> : <PriestFullInfo {...dummy_priest_info} />}
+				{selectRow ? <DynamicDataTable enableDateAndLetterSorting={true} /> : <PriestFullInfo {...dummy_priest_info} />}
 			</TabsLayout>
 		</>
 	);

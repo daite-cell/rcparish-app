@@ -17,3 +17,11 @@ export const memberSearchSchema = z.object({
 });
 
 export type MemberSearchForm = z.infer<typeof memberSearchSchema>;
+
+export const yearSelectionSchema = z.object({
+	year_type: z.enum(['current_year', 'next_year'], {
+		required_error: 'Please select a year type',
+	}),
+});
+
+export type YearSelectionFormValues = z.infer<typeof yearSelectionSchema>;
