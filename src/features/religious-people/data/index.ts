@@ -65,4 +65,20 @@ const priests: PriestProps[] = [
 	},
 ];
 
-export { priests, type PriestProps };
+const religious_people_pages = [
+	'priest',
+	'asst_priest',
+	'congregation',
+	'special_ministry',
+	'spiritual_priest',
+	'on_leave',
+	'foreign_ministry',
+	'vf',
+	'commissions',
+	'committees',
+	'curia',
+	'obituary',
+	'working_else',
+];
+
+export { priests, type PriestProps, religious_people_pages };
