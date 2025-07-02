@@ -37,7 +37,7 @@ const componentMap = {
 			p,
 			{
 				view: <ParishCouncilMemberOverview />,
-				form: <h1>Parish Council Form</h1>,
+				form: <h1 className="text-red-600">Parish Council Forms will be added soon .........</h1>,
 			},
 		])
 	),
