@@ -56,7 +56,7 @@ export const bishopColumns: ColumnDef<Bishop, unknown>[] = [
 		header: 'Ordination Date',
 		cell: (info: CellContext<Bishop, unknown>) => {
 			const date = new Date(info.getValue() as string);
-			return date.toLocaleDateString('en-IN');
+			return isNaN(date.getTime()) ? 'Invalid Date' : date.toLocaleDateString('en-IN');
 		},
 	},
 	{
@@ -64,7 +64,7 @@ export const bishopColumns: ColumnDef<Bishop, unknown>[] = [
 		header: 'Birth Date',
 		cell: (info: CellContext<Bishop, unknown>) => {
 			const date = new Date(info.getValue() as string);
-			return date.toLocaleDateString('en-IN');
+			return isNaN(date.getTime()) ? 'Invalid Date' : date.toLocaleDateString('en-IN');
 		},
 	},
 	{

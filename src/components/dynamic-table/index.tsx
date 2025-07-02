@@ -15,6 +15,7 @@ import { useMemo, useState } from 'react';
 import { Eye, Folder, Pencil, Settings, SquarePen, Trash } from 'lucide-react';
 import mockData from '@/data/mock-data/mock-data.json';
 import { PaginationControls, TableFilters, TableHeaderControls, TableDisplay } from '../index';
+import { useStore } from '@/store/store';
 
 interface CustomColumnMeta<T> extends ColumnMeta<T, unknown> {
 	isExportable?: boolean;
@@ -63,6 +64,7 @@ const DynamicDataTable = <T extends object, U>({
 	const generatedTableId = tableId ?? 'dynamic-data-table';
 	const fromDateTime = fromDate?.getTime() ?? null;
 	const toDateTime = toDate?.getTime() ?? null;
+	const { handleSelectRow } = useStore();
 
 	const filteredData = useMemo(() => {
 		let result = [...data];
@@ -152,7 +154,14 @@ const DynamicDataTable = <T extends object, U>({
 				id: 'view',
 				header: 'Details',
 				cell: ({ row }: CellContext<T, U>) => (
-					<button type="button" onClick={() => onView(row.original)} title="View">
+					<button
+						type="button"
+						onClick={() => {
+							handleSelectRow(row.original);
+							onView(row.original);
+						}}
+						title="View"
+					>
 						<Eye className="w-4 h-4 text-center" />
 					</button>
 				),
@@ -192,9 +201,8 @@ const DynamicDataTable = <T extends object, U>({
 			});
 		}
 
-		return [...columnStart, ...baseColumns];
-	}, [data, includeCheckbox, includePriorDignitaries, onEdit, onDelete, onView, customColumns]);
-
+		return [...columnStart, ...baseColumns, ...customColumns];
+	}, [data, includeCheckbox, includePriorDignitaries, onEdit, onDelete, onView, handleSelectRow, customColumns]);
 	const table = useReactTable({
 		data: filteredData,
 		columns: columns,
@@ -230,17 +238,19 @@ const DynamicDataTable = <T extends object, U>({
 						/>
 					)}
 
-					<TableHeaderControls<T>
-						isDynamic={isDynamic}
-						globalFilter={globalFilter}
-						setGlobalFilter={setGlobalFilter}
-						table={table}
-						pageSize={pageSize}
-						setPageSize={setPageSize}
-						pageSizeOptions={pageSizeOptions}
-						tableId={generatedTableId}
-						data={data}
-					/>
+					{isDynamic && (
+						<TableHeaderControls<T>
+							isDynamic={isDynamic}
+							globalFilter={globalFilter}
+							setGlobalFilter={setGlobalFilter}
+							table={table}
+							pageSize={pageSize}
+							setPageSize={setPageSize}
+							pageSizeOptions={pageSizeOptions}
+							tableId={generatedTableId}
+							data={data}
+						/>
+					)}
 
 					<TableDisplay
 						table={table}

@@ -2,22 +2,26 @@ import type { StateCreator } from 'zustand';
 import type { AppState } from '@/store/types';
 
 export interface TableSlice {
-	rowId: number | null;
-	handleSelectRow: (rowId: number) => void;
+	selectRow: object | null;
+	handleSelectRow: (row: object) => void;
 	handleCloseRow: () => void;
 }
 
 /**
  * Zustand slice for managing dynamic table state.
  *
- * @returns {TableSlice} The dynamic table state and its corresponding state updater actions.
+ * This includes:
+ * - currently selected row in the table
+ * - state updater actions for selecting a row and closing the currently selected row
  *
- * @property {number | null} rowId - The currently selected row ID.
- * @property {(rowId: number) => void} handleSelectRow - Updates the rowId when a row is clicked.
- * @property {() => void} handleCloseRow - Resets the rowId to null when the row is closed.
+ * @returns {TableSlice} The table-related state and its corresponding state updater actions.
+ *
+ * @property {object | null} selectRow - The currently selected row in the table.
+ * @property {(row: object) => void} handleSelectRow - Sets the currently selected row to the row passed as argument.
+ * @property {() => void} handleCloseRow - Sets the currently selected row to null.
  */
-export const createDynamicTableSlice: StateCreator<Partial<AppState>, [], [], TableSlice> = (set) => ({
-	rowId: 1,
-	handleSelectRow: (rowId) => set({ rowId }),
-	handleCloseRow: () => set({ rowId: null }),
+export const createDynamicTableSlice: StateCreator<Partial<AppState> & TableSlice, [], [], TableSlice> = (set) => ({
+	selectRow: null,
+	handleSelectRow: (row) => set({ selectRow: row }),
+	handleCloseRow: () => set({ selectRow: null }),
 });

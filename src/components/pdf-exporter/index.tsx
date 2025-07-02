@@ -14,9 +14,18 @@ interface PDFExporterProps<T> {
 	columns: Column[];
 	tableId: string;
 	onComplete?: () => void;
+	className?: string;
+	label?: string;
 }
 
-export default function PDFExporter<T>({ data, columns, tableId, onComplete }: PDFExporterProps<T>) {
+export default function PDFExporter<T>({
+	data,
+	columns,
+	tableId,
+	onComplete,
+	className,
+	label = 'PDF',
+}: PDFExporterProps<T>) {
 	const generatePDF = () => {
 		if (!data.length) {
 			alert('No data to export!');
@@ -50,8 +59,8 @@ export default function PDFExporter<T>({ data, columns, tableId, onComplete }: P
 	};
 
 	return (
-		<button onClick={generatePDF} className="w-full text-left">
-			PDF
+		<button type="button" onClick={generatePDF} className={`w-full text-left ${className}`}>
+			{label}
 		</button>
 	);
 }

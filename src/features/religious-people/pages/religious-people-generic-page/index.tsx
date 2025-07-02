@@ -39,7 +39,15 @@ const ReligiousPeopleGenericPage = () => {
 		{
 			id: 'select',
 			header: () => <SquarePen className="w-4 h-4 text-center" />,
-			cell: () => <input title="select" type="checkbox" />,
+			cell: ({ row }: CellContext<User, unknown>) => (
+				<input
+					title="select"
+					type="checkbox"
+					onChange={(e) => {
+						console.warn('Selected:', row.original, e.target.checked);
+					}}
+				/>
+			),
 			enableSorting: false,
 			meta: { isExportable: false },
 			enableHiding: true,
@@ -69,7 +77,7 @@ const ReligiousPeopleGenericPage = () => {
 		{
 			header: 'Image',
 			accessorKey: 'image',
-			cell: () => <AdminDefaultImage />,
+			cell: ({ row }: CellContext<User, unknown>) => <AdminDefaultImage src={(row.original as User)?.image} />,
 			meta: { isExportable: false },
 		},
 		{

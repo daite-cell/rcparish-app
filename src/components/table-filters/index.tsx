@@ -1,5 +1,4 @@
-import { SingleSelectDropdown, DateInputFelid } from '@/components';
-import { Button } from '@/components/ui/button';
+import { SingleSelectDropdown, DateInputFelid, FormButton } from '@/components';
 
 interface TableFiltersProps {
 	fromDate: Date | undefined;
@@ -18,15 +17,14 @@ const TableFilters = ({ fromDate, toDate, setFromDate, setToDate, alphaFilter, s
 				<SingleSelectDropdown label="select the date" />
 				<DateInputFelid label="From" value={fromDate} onChange={setFromDate} />
 				<DateInputFelid label="To" value={toDate} onChange={setToDate} />
-				<Button
-					className="text-[#d7c49e] bg-[#343148] text-[12px] border-none min-w-[90px] mt-6 h-7 px-4 py-1"
+
+				<FormButton
+					label="Clear"
 					onClick={() => {
 						setFromDate(undefined);
 						setToDate(undefined);
 					}}
-				>
-					Clear
-				</Button>
+				/>
 			</div>
 			<div className="flex items-center my-4 overflow-x-auto border border-black hide-scrollbar">
 				{['All', ...alphabet].map((char) => (

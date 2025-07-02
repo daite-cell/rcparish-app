@@ -72,6 +72,7 @@ type User = {
 	age: number;
 	role: string;
 	created_at: string;
+	image?: string;
 };
 
 const userData: User[] = [

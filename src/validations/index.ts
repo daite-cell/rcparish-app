@@ -24,3 +24,10 @@ export const historyFormSchema = z.object({
 });
 
 export type HistoryFormType = z.infer<typeof historyFormSchema>;
+export const yearSelectionSchema = z.object({
+	year_type: z.enum(['current_year', 'next_year'], {
+		required_error: 'Please select a year type',
+	}),
+});
+
+export type YearSelectionFormValues = z.infer<typeof yearSelectionSchema>;
