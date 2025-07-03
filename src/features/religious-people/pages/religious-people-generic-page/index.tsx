@@ -1,39 +1,26 @@
-import { DynamicDataTable, TabsLayout, PriestFullInfo, AdminDefaultImage } from '@/components';
+import { DynamicDataTable, TabsLayout, AdminDefaultImage } from '@/components';
 import { useState } from 'react';
-import { convertKeysToCamelCase } from '@/utils/convertKeysToCamelCase';
+
 import { useAutoDocumentTitle } from '@/hooks/useAutoDocumentTitle';
 import type { CellContext } from '@tanstack/react-table';
 import { Eye, SquarePen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { userData, type User } from '../../data';
+import { RenderReligiousPeopleOverviewContainer } from '../../components';
+import { useRouteName } from '@/utils/getRouteName';
+import { useStore } from '@/store/store';
 
 const ReligiousPeopleGenericPage = () => {
 	useAutoDocumentTitle();
 	const [activeIndex, setActiveIndex] = useState(0);
-	const [id, setId] = useState<number | null>(1);
+
+	const { selectRow, handleSelectRow } = useStore();
+
+	const type = useRouteName('type');
 
 	const handleToggleTab = (index: number) => {
 		setActiveIndex(index);
-		if (index === 1) {
-			setId(null);
-		}
 	};
-
-	const onView = (id: number) => setId(id);
-
-	const dummy_priest_info = convertKeysToCamelCase({
-		id: 1,
-		name: 'John Doe',
-		priest_from: 'Diocese',
-		ordination_date: 30,
-		birth_date: '1982-05-05',
-		living_status: 'New York',
-		native_place: '',
-		adhaar_number: '3747337t426347',
-		phone_number: '1234567890',
-		email: '',
-		address: '',
-	});
 
 	const columns = [
 		{
@@ -56,7 +43,7 @@ const ReligiousPeopleGenericPage = () => {
 			id: 'view',
 			header: 'Details',
 			cell: ({ row }: CellContext<User, unknown>) => (
-				<button type="button" onClick={() => onView((row.original as User).id)} title="View">
+				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
 					<Eye className="w-4 h-4 text-center" />
 				</button>
 			),
@@ -98,20 +85,14 @@ const ReligiousPeopleGenericPage = () => {
 		},
 	];
 
-	return (
-		<>
-			<TabsLayout
-				onTabChange={handleToggleTab}
-				activeTabId={activeIndex}
-				tabs={id ? [{ label: 'Profile' }, { label: 'Back' }] : [{ label: 'View' }]}
-			>
-				{!id ? (
-					<DynamicDataTable data={userData} customColumns={columns} enableDateAndLetterSorting={true} />
-				) : (
-					<PriestFullInfo {...dummy_priest_info} />
-				)}
-			</TabsLayout>
-		</>
+	return selectRow ? (
+		<RenderReligiousPeopleOverviewContainer pathName={type} />
+	) : (
+		<TabsLayout onTabChange={handleToggleTab} activeTabId={activeIndex} tabs={[{ label: 'View' }]}>
+			{activeIndex === 0 && (
+				<DynamicDataTable data={userData} customColumns={columns} enableDateAndLetterSorting={true} />
+			)}
+		</TabsLayout>
 	);
 };
 
