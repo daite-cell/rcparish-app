@@ -81,4 +81,49 @@ const religious_people_pages = [
 	'working_else',
 ];
 
-export { priests, type PriestProps, religious_people_pages };
+type User = {
+	id: number;
+	name: string;
+	email: string;
+	age: number;
+	role: string;
+	created_at: string;
+	image?: string;
+};
+
+const userData: User[] = [
+	{
+		id: 1,
+		name: 'Avinash Potnuru',
+		email: 'avinash@example.com',
+		age: 29,
+		role: 'Admin',
+		created_at: '2024-06-01',
+	},
+	{
+		id: 2,
+		name: 'Sai Kumar',
+		email: 'sai.kumar@example.com',
+		age: 25,
+		role: 'Editor',
+		created_at: '2024-05-15',
+	},
+	{
+		id: 3,
+		name: 'Deepika Rao',
+		email: 'deepika@example.com',
+		age: 32,
+		role: 'Viewer',
+		created_at: '2024-04-21',
+	},
+	{
+		id: 4,
+		name: 'Rahul Verma',
+		email: 'rahulv@example.com',
+		age: 27,
+		role: 'Admin',
+		created_at: '2024-03-11',
+	},
+];
+
+export { religious_people_pages, priests, type PriestProps, userData, type User };

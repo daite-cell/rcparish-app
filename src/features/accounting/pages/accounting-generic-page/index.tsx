@@ -5,6 +5,7 @@ import type { NavLinkProps } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { bishopColumns } from '../../columns';
 
 const AccountingGenericPage = () => {
 	const location = useLocation();
@@ -27,11 +28,13 @@ const AccountingGenericPage = () => {
 				tabs={tabsData || [{ label: 'view' }, { label: 'add' }]}
 			>
 				<DynamicDataTable
+					customColumns={bishopColumns}
 					wrapText={false}
 					data={priests}
 					enableDateAndLetterSorting={true}
 					includeCheckbox
 					onView={handleView}
+					filterKey="name"
 				/>
 			</TabsLayout>
 		</>

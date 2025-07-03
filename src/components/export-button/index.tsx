@@ -9,7 +9,7 @@ const CSVExporter = lazy(() => import('../csv-exporter'));
 
 export interface ExportDropdownModalProps<T> {
 	data: T[];
-	columns: { header: string; accessorKey: string }[];
+	columns: { header: string; accessorKey: string; meta?: { isExportable?: boolean } }[];
 	tableId: string;
 }
 

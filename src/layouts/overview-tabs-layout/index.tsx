@@ -19,14 +19,13 @@ const defaultTabs: Tab[] = [{ label: 'profile' }, { label: 'edit' }, { label: 'b
 
 const OverviewTabsLayout = ({ pathName, componentMap, tabs = defaultTabs }: OverviewTabsProps) => {
 	const [activeTabIndex, setActiveTabIndex] = useState(0);
-	const { selectRow, handleCloseRow } = useStore();
+	const { handleCloseRow } = useStore();
 	const page = String(pathName);
 
 	const handleTabChange = (index: number) => {
 		if (tabs[index].label.toLowerCase() === 'back') {
 			handleCloseRow();
 			setActiveTabIndex(0);
-			console.warn(selectRow);
 		} else {
 			setActiveTabIndex(index);
 		}
