@@ -31,3 +31,16 @@ export const yearSelectionSchema = z.object({
 });
 
 export type YearSelectionFormValues = z.infer<typeof yearSelectionSchema>;
+
+export const uploadSchema = z.object({
+	document: z
+		.any()
+		.refine((file) => file?.length > 0, {
+			message: 'File is required',
+		})
+		.refine((file) => file?.[0]?.size <= 5 * 1024 * 1024, {
+			message: 'Max file size is 5MB',
+		}),
+});
+
+export type UploadSchema = z.infer<typeof uploadSchema>;

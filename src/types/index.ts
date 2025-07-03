@@ -157,3 +157,13 @@ export interface PriestFamilyDataProps {
 		temporary_address: string;
 	};
 }
+
+export type BishopPositionTableProps = {
+	position: string;
+	name: string;
+	from: string;
+	to: string;
+	mobile: string;
+	briefHistory: string;
+	upload: string;
+};
