@@ -18,6 +18,12 @@ export const memberSearchSchema = z.object({
 
 export type MemberSearchForm = z.infer<typeof memberSearchSchema>;
 
+export const historyFormSchema = z.object({
+	parishHistory: z.string().min(10, 'Parish history must be at least 10 characters long'),
+	document: z.any().optional(),
+});
+
+export type HistoryFormType = z.infer<typeof historyFormSchema>;
 export const yearSelectionSchema = z.object({
 	year_type: z.enum(['current_year', 'next_year'], {
 		required_error: 'Please select a year type',

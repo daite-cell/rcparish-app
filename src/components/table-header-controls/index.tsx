@@ -49,9 +49,9 @@ const TableHeaderControls = <T extends object>({
 									data={table.getSortedRowModel().rows.map((row) => row.original)}
 									columns={table
 										.getAllLeafColumns()
-										.filter((col) => col.getIsVisible())
+										.filter((col) => col.getIsVisible() && col.columnDef?.meta?.isExportable !== false)
 										.map((col) => ({
-											header: String(col.columnDef.header),
+											header: typeof col.columnDef.header === 'string' ? col.columnDef.header : '',
 											accessorKey: col.id,
 										}))}
 									tableId={tableId}
