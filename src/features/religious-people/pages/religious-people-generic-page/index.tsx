@@ -1,6 +1,5 @@
 import { DynamicDataTable, TabsLayout, AdminDefaultImage } from '@/components';
 import { useState } from 'react';
-
 import { useAutoDocumentTitle } from '@/hooks/useAutoDocumentTitle';
 import type { CellContext } from '@tanstack/react-table';
 import { Eye, SquarePen } from 'lucide-react';
@@ -13,9 +12,7 @@ import { useStore } from '@/store/store';
 const ReligiousPeopleGenericPage = () => {
 	useAutoDocumentTitle();
 	const [activeIndex, setActiveIndex] = useState(0);
-
 	const { selectRow, handleSelectRow } = useStore();
-
 	const type = useRouteName('type');
 
 	const handleToggleTab = (index: number) => {
