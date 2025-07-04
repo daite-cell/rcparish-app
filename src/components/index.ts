@@ -43,7 +43,6 @@ export { default as AppNavHeader } from './app-nav-header';
 export { default as TableFilters } from './table-filters';
 export { default as TableHeaderControls } from './table-header-controls';
 export { default as TableDisplay } from './table-display';
-export { default as RenderOverViewComponent } from './render-overview-component';
 export { default as DisplayUserName } from './display-user-name';
 export { default as DisplayInfoRowContainer } from './display-info-rows-container';
 export { default as YearSelectionForm } from './year-selection-form';

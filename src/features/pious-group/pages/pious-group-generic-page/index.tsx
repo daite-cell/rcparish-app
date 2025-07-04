@@ -1,4 +1,4 @@
-import { DynamicDataTable, RenderOverViewComponent, TabsLayout } from '@/components';
+import { DynamicDataTable, TabsLayout } from '@/components';
 import { side_nav_links } from '@/data/side-navbar-content';
 import type { NavLinkProps, TableRowData } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { useRouteName } from '@/utils/getRouteName';
 import { useState } from 'react';
 import { useStore } from '@/store/store';
+import { RenderPiousGroupOverviewContainer } from '../../components';
 
 const PiousGroupGenericPage = () => {
 	const location = useLocation();
@@ -32,7 +33,7 @@ const PiousGroupGenericPage = () => {
 	};
 
 	return selectRow ? (
-		<RenderOverViewComponent pathName={type} />
+		<RenderPiousGroupOverviewContainer pathName={type} />
 	) : (
 		<TabsLayout
 			tabs={tabsData || [{ label: 'view' }, { label: 'add' }]}

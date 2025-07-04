@@ -65,6 +65,22 @@ const priests: PriestProps[] = [
 	},
 ];
 
+const religious_people_pages = [
+	'priest',
+	'asst_priest',
+	'congregation',
+	'special_ministry',
+	'spiritual_priest',
+	'on_leave',
+	'foreign_ministry',
+	'vf',
+	'commissions',
+	'committees',
+	'curia',
+	'obituary',
+	'working_else',
+];
+
 type User = {
 	id: number;
 	name: string;
@@ -110,4 +126,4 @@ const userData: User[] = [
 	},
 ];
 
-export { priests, type PriestProps, userData, type User };
+export { religious_people_pages, priests, type PriestProps, userData, type User };
