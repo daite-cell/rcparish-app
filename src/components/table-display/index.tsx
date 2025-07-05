@@ -18,7 +18,7 @@ const TableDisplay = <T extends object>({
 	isDynamic,
 }: TableDisplayProps<T>) => {
 	return (
-		<div className="overflow-x-auto">
+		<div className="overflow-x-auto hide-scrollbar">
 			<table
 				id={tableId}
 				className={`min-w-full mt-4 text-sm text-left border border-gray-400 ${
@@ -58,7 +58,7 @@ const TableDisplay = <T extends object>({
 						table.getRowModel().rows.map((row) => (
 							<tr key={row.id} className="bg-white border-b border-gray-300">
 								{row.getVisibleCells().map((cell) => (
-									<td key={cell.id} className="px-3 py-2 border border-[#d7c49e]">
+									<td key={cell.id} className="px-3 py-2 text-xs border border-[#d7c49e]">
 										{flexRender(cell.column.columnDef.cell, cell.getContext())}
 									</td>
 								))}

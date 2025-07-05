@@ -1,3 +1,4 @@
+import type { ColumnDef } from '@tanstack/react-table';
 import type { JSX, ReactNode } from 'react';
 
 export interface AppRoute {
@@ -158,6 +159,114 @@ export interface PriestFamilyDataProps {
 	};
 }
 
+export type MemberType = {
+	memberName: string;
+	memberId: string;
+	familyName: string;
+	familyId: string;
+	mainStation: string;
+	subStationId: string;
+	anbiam: string;
+	anbiamId: string;
+	gender: string;
+	familyHead: string;
+	fatherName: string;
+	motherName: string;
+	godFatherName: string;
+	godMotherName: string;
+	baptismDate: string;
+	fhcDate: string;
+	fhcReceived: string;
+	fhcAt: string;
+	fhcIn: string;
+	minister: string;
+	registrationNumber: string;
+	remarks: string;
+};
+
+export type TableConfig<T> = {
+	columns: ColumnDef<T, unknown>[];
+};
+export type Property = {
+	details: string;
+	type: string;
+	propertyType: string;
+	propertyName: string;
+	propertyIdOrNo: string;
+	propertyOwnFor: string;
+	propertyMaintainedBy: string;
+	ownershipName: string;
+	renderName: string;
+	mobile: string;
+	adhaar: string;
+	address: string;
+	leaseAmount: string;
+	agreementDocumentWritten: string;
+	agreementFromOn: string;
+	agreementPeriod: string;
+	agreementEndOn: string;
+	agreementMadeBy: string;
+};
+
+export type LandDocument = {
+	document: string;
+	parishName: string;
+	villageName: string;
+	automaticDocumentId: string;
+	dateOfRegistration: string;
+	purchasingAmount: string;
+	purchaserName: string;
+	vendorName: string;
+	oldSurvey: string;
+	newSurvey: string;
+	extentInAcre: string;
+	pattaNo: string;
+	availabilityOfDocument: 'yes' | 'no';
+	landUsage: string;
+	landType: string;
+	remark: string;
+};
+
+export type Cemetery = {
+	details: string;
+	cemeteryNumber: string;
+	forFamily: string;
+	maintainedBy: string;
+	mobile: string;
+	parish: string;
+	cemeteryAt: string;
+	address: string;
+	dugOnLastTime: string;
+};
+
+export interface ChurchInventory {
+	details: string;
+	stationType: string;
+	thingName: string;
+	thingIdOrNo: string;
+	category: string;
+	ratePerItem: number;
+	quantity: number;
+	price: number;
+	purchasedOrSponsored: string;
+	sponsorName: string;
+	dateOn: string;
+	propertyOwnFor: string;
+}
+
+export interface PresbyteryInventory {
+	details: string;
+	thingName: string;
+	thingIdOrNo: string;
+	category: string;
+	ratePerItem: number;
+	quantity: number;
+	price: number;
+	purchasedOrSponsored: string;
+	sponsorName: string;
+	dateOn: string;
+	propertyOwnFor: string;
+}
 export type BishopPositionTableProps = {
 	position: string;
 	name: string;

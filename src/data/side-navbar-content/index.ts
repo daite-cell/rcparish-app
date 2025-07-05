@@ -364,6 +364,11 @@ const side_nav_links = [
 				icon: 'BookText',
 			},
 			{
+				path_url: '/sacraments/holy_communion',
+				label: 'First Holy Communion Register',
+				icon: 'BookText',
+			},
+			{
 				path_url: '/sacraments/confirmations',
 				label: 'Confirmation Register',
 				icon: 'BookText',

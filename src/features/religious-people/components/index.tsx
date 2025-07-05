@@ -1,1 +1,1 @@
-export { default as RenderReligiousPeopleOverviewContainer } from './render-religious-people-overview';
+export { default as RenderReligiousPeopleOverviewContainer } from './render-religious-people-overview-container';
