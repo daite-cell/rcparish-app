@@ -1,12 +1,12 @@
-import { DynamicDataTable, TabsLayout } from '@/components';
+import { TabsLayout } from '@/components';
 import { side_nav_links } from '@/data/side-navbar-content';
-import type { NavLinkProps, TableRowData } from '@/types';
+import type { NavLinkProps } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
 import { useLocation } from 'react-router-dom';
 import { useRouteName } from '@/utils/getRouteName';
 import { useState } from 'react';
 import { useStore } from '@/store/store';
-import { RenderPiousGroupOverviewContainer } from '../../components';
+import { RenderPiousGroupOverviewContainer, RenderPiousGroupTables } from '../../components';
 
 const PiousGroupGenericPage = () => {
 	const location = useLocation();
@@ -20,18 +20,6 @@ const PiousGroupGenericPage = () => {
 	const linksData = getSectionByPathName(side_nav_links, location.pathname);
 	const tabsData = linksData?.page_nav_links.find((link: NavLinkProps) => link.path_url === location.pathname)?.tabs;
 
-	const handleEdit = (row: TableRowData): void => {
-		console.warn('Edit clicked:', row);
-	};
-
-	const handleDelete = (row: TableRowData): void => {
-		console.warn('Delete clicked:', row);
-	};
-
-	const handleView = (row: TableRowData): void => {
-		console.warn('View clicked:', row);
-	};
-
 	return selectRow ? (
 		<RenderPiousGroupOverviewContainer pathName={type} />
 	) : (
@@ -40,18 +28,7 @@ const PiousGroupGenericPage = () => {
 			onTabChange={handleToggleTab}
 			activeTabId={activeIndex}
 		>
-			{activeIndex === 1 && (
-				<DynamicDataTable
-					includeCheckbox
-					includePriorDignitaries
-					isDynamic
-					enableDateAndLetterSorting
-					onEdit={handleEdit}
-					onDelete={handleDelete}
-					onView={handleView}
-					tableId="pious_group"
-				/>
-			)}
+			{activeIndex === 1 && <RenderPiousGroupTables />}
 		</TabsLayout>
 	);
 };
