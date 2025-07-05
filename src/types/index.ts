@@ -267,3 +267,12 @@ export interface PresbyteryInventory {
 	dateOn: string;
 	propertyOwnFor: string;
 }
+export type BishopPositionTableProps = {
+	position: string;
+	name: string;
+	from: string;
+	to: string;
+	mobile: string;
+	briefHistory: string;
+	upload: string;
+};

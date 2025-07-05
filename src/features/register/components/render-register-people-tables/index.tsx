@@ -40,8 +40,8 @@ const RenderRegisterPeopleTables = () => {
 		},
 
 		{
-			header: 'memberName',
-			accessorKey: 'Member Name',
+			header: 'Member Name',
+			accessorKey: 'memberName',
 			cell: ({ row }: CellContext<MemberType, unknown>) => (
 				<Link className="underline text-[#0d73c4]" to="">
 					{(row.original as MemberType).memberName}
