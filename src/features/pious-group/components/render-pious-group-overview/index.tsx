@@ -1,7 +1,7 @@
+import { GenericCouncilMemberDetails } from '@/components';
 import {
 	FamiliesOverview,
 	FamilyMembersOverviewLayout,
-	ParishCouncilMemberOverview,
 	ParishFamilyFullDetailsOverView,
 	ReligiousPeopleOverview,
 } from '@/features/pious-group/components';
@@ -36,7 +36,7 @@ const componentMap = {
 		parish_council_pages.map((p) => [
 			p,
 			{
-				view: <ParishCouncilMemberOverview />,
+				view: <GenericCouncilMemberDetails />,
 				form: <h1 className="text-red-600">Parish Council Forms will be added soon .........</h1>,
 			},
 		])

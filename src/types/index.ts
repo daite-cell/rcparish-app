@@ -276,3 +276,63 @@ export type BishopPositionTableProps = {
 	briefHistory: string;
 	upload: string;
 };
+
+export interface PriestPersonalDetailsProps {
+	nameOfThePriests: string;
+	image: string;
+	presentPosition: string;
+	ordinationDate: string;
+	birthDate: string;
+	livingStatus: string;
+	mobileNumber: string;
+	optionalMobileNumber: string;
+	mailId: string;
+	nativePlace: string;
+	adhaarNumber: string;
+	presentResidential: string;
+}
+
+export interface ParishCouncilMemberDetailsProps {
+	mainStation: string;
+	position: string;
+	name: string;
+	mobile: string;
+	memberId: string;
+	electedStatus: string;
+	electedDate: string;
+	electedFrom: string;
+	nameOfRespectives: string;
+	positionInDiscipline: string;
+}
+
+export type FamilyDataProps = {
+	mainStation: string;
+	anbiam: string;
+	familyNumber: string;
+	familyName: string;
+	marriageDate1: string;
+	marriageDate2: string;
+	oldFamilyNumber?: string;
+	familyHead: string;
+	membersInFamily: string;
+	familyType: string;
+	monthlySubscription: string;
+	subscriptionFrom: string;
+	houseType: string;
+	community: string;
+	ownership: string;
+	livingStatus: string;
+	settledAs: string;
+	mobile: string;
+	permanentAddress: string;
+	temporaryAddress: string;
+	remarks?: string;
+	position?: string;
+	name?: string;
+	memberId?: string;
+	electedStatus?: string;
+	electedDate?: string;
+	electedFrom?: string;
+	nameOfRespectives?: string;
+	positionInDiscipline?: string;
+};

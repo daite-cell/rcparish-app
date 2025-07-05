@@ -1,12 +1,11 @@
 import type { StateCreator } from 'zustand';
 import type { AppState } from '@/store/types';
 
-export interface TableSlice {
-	selectRow: object | null;
-	handleSelectRow: (row: object) => void;
+export interface TableSlice<RowType = unknown> {
+	selectRow: RowType | null;
+	handleSelectRow: (row: RowType) => void;
 	handleCloseRow: () => void;
 }
-
 /**
  * Zustand slice for managing dynamic table state.
  *
