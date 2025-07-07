@@ -1,30 +1,24 @@
-import { GenericCouncilMemberDetails } from '@/components';
 import {
-	FamiliesOverview,
-	FamilyMembersOverviewLayout,
-	ParishFamilyFullDetailsOverView,
-	ReligiousPeopleOverview,
-} from '@/features/pious-group/components';
+	GenericCouncilMemberDetails,
+	GenericFamilesDetailsOverview,
+	GenericMembersInFamilesOverview,
+} from '@/components';
+import { ReligiousPeopleOverview } from '@/features/pious-group/components';
 
-import {
-	dummy_religious_info,
-	parish_council_pages,
-	priest_family_dummy_data,
-	family_full_overview_data,
-} from '@/features/pious-group/data';
+import { dummy_religious_info, parish_council_pages } from '@/features/pious-group/data';
 import OverviewTabsLayout from '@/layouts/overview-tabs-layout';
 
 const componentMap = {
 	families: {
-		view: <FamiliesOverview data={family_full_overview_data} />,
+		view: <GenericFamilesDetailsOverview />,
 		form: <h1>Families Form</h1>,
 	},
 	family_members: {
-		view: <FamilyMembersOverviewLayout />,
+		view: <GenericMembersInFamilesOverview />,
 		form: <h1>Family Members Form</h1>,
 	},
 	priest_nun_parish: {
-		view: <ParishFamilyFullDetailsOverView data={priest_family_dummy_data} />,
+		view: <GenericMembersInFamilesOverview />,
 		form: <h1>Priest Nun Form</h1>,
 	},
 	religious_people_parish: {
