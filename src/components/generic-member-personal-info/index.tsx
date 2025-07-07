@@ -8,7 +8,7 @@ import FormButton from '../form-button';
 import { useStore } from '@/store/store';
 import { toTitleCaseFromSnake } from '@/utils/toTitleCaseFromSnake';
 
-const personalInfo = (selectRow: PriestPersonalDetailsProps) => ({
+const createPersonalInfo = (selectRow: PriestPersonalDetailsProps) => ({
 	priest_from: 'Diocese',
 	ordination_date: selectRow?.ordinationDate || '',
 	birth_date: selectRow?.birthDate || '',
@@ -16,7 +16,7 @@ const personalInfo = (selectRow: PriestPersonalDetailsProps) => ({
 	native_place: selectRow?.nativePlace || '',
 });
 
-const contactInfo = (selectRow: PriestPersonalDetailsProps) => ({
+const createContactInfo = (selectRow: PriestPersonalDetailsProps) => ({
 	adhaar_number: selectRow?.adhaarNumber || '',
 	phone_number: selectRow?.mobileNumber || '',
 	email: selectRow?.mailId || '',
@@ -53,7 +53,7 @@ const GenericMemberPersonalInfo = () => {
 					<div className="flex-[2] ">
 						<h1 className="font-bold text-3xl text-[#998c70] mb-4">{selectRow?.nameOfThePriests || ''}</h1>
 						<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-							{[personalInfo(selectRow), contactInfo(selectRow)].map((info, i) => (
+							{[createPersonalInfo(selectRow), createContactInfo(selectRow)].map((info, i) => (
 								<div key={i}>
 									{Object.entries(info).map(([label, value]) => (
 										<InfoRow key={label} label={toTitleCaseFromSnake(label)} value={value} />

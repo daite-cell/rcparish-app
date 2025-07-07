@@ -3,8 +3,8 @@ import type { CellContext, ColumnDef } from '@tanstack/react-table';
 import { Edit, Eye, Folder, Settings, SquarePen, Trash, IdCard } from 'lucide-react';
 import { useStore } from '@/store/store';
 
-const parishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[] => {
-	const { handleSelectRow } = useStore.getState();
+const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[] => {
+	const { handleSelectRow } = useStore();
 
 	return [
 		{
@@ -49,7 +49,7 @@ const parishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[] =>
 			id: 'prior dignitaries',
 			header: 'Prior Dignitaries',
 			cell: ({ row }: CellContext<ParishCouncilMemberDetailsProps, unknown>) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
+				<button type="button" onClick={() => handleSelectRow(row.original)} title="View Prior Dignitaries">
 					<Folder className="w-4 h-4 text-center cursor-pointer" />
 				</button>
 			),
@@ -66,7 +66,16 @@ const parishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[] =>
 		{
 			accessorKey: 'electedDate',
 			header: 'Elected Date',
-			cell: ({ getValue }) => new Date(getValue() as string).toLocaleDateString('en-GB'),
+			cell: ({ getValue }) => {
+				try {
+					const dateValue = getValue() as string;
+					if (!dateValue) return '';
+					const date = new Date(dateValue);
+					return isNaN(date.getTime()) ? dateValue : date.toLocaleDateString('en-GB');
+				} catch {
+					return getValue() as string;
+				}
+			},
 		},
 		{ accessorKey: 'electedFrom', header: 'Elected From' },
 		{ accessorKey: 'nameOfRespectives', header: 'Name of Respectives' },
@@ -74,8 +83,8 @@ const parishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[] =>
 	];
 };
 
-const familyOverviewColumns = (): ColumnDef<FamilyDataProps>[] => {
-	const { handleSelectRow } = useStore.getState();
+const useFamilyOverviewColumns = (): ColumnDef<FamilyDataProps>[] => {
+	const { handleSelectRow } = useStore();
 
 	return [
 		{
@@ -134,7 +143,7 @@ const familyOverviewColumns = (): ColumnDef<FamilyDataProps>[] => {
 			id: 'fc',
 			header: 'FC',
 			cell: ({ row }: CellContext<FamilyDataProps, unknown>) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
+				<button type="button" onClick={() => handleSelectRow(row.original)} title="FC Action">
 					<IdCard className="w-4 h-4 text-center cursor-pointer" />
 				</button>
 			),
@@ -175,4 +184,4 @@ const familyOverviewColumns = (): ColumnDef<FamilyDataProps>[] => {
 	];
 };
 
-export { parishCouncilColumns, familyOverviewColumns };
+export { useParishCouncilColumns, useFamilyOverviewColumns };
