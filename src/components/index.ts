@@ -47,3 +47,5 @@ export { default as DisplayUserName } from './display-user-name';
 export { default as DisplayInfoRowContainer } from './display-info-rows-container';
 export { default as YearSelectionForm } from './year-selection-form';
 export { default as UploadPriestNameHeading } from './upload-priest-name-heading';
+export { default as GenericMemberPersonalInfo } from './generic-member-personal-info';
+export { default as GenericCouncilMemberDetails } from './generic-council-member-details';
