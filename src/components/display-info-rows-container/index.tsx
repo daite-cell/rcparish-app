@@ -3,7 +3,7 @@ import InfoRow from '../info-row';
 import InfoSectionRowHeading from '../info-section-row-heading';
 
 interface DisplayInfoRowContainerProps {
-	data: Record<string, string | number | undefined>;
+	data: Record<string, string | number | undefined | null>;
 	heading?: string;
 }
 

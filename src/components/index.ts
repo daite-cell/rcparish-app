@@ -52,3 +52,4 @@ export { default as GenericCouncilMemberDetails } from './generic-council-member
 export { default as GenericFamilesDetailsOverview } from './generic-familes-details-overview';
 export { default as GenericMembersInFamilesOverview } from './generic-members-in-familes-overview';
 export { default as GenericMemberOverview } from './generic-member-overview';
+export { default as GenericReligiousPeopleDetailsOverview } from './generic-religious-people-details-overview';

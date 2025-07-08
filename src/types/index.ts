@@ -435,3 +435,53 @@ export interface ParishSonsAndDaughtersProps {
 	permanentAddress: string;
 	temporaryAddress: string;
 }
+
+export interface ReligiousPersonProps {
+	religiousPersonName: string;
+	image?: string;
+	personId: string;
+	gender: string;
+	position: string;
+	institution: string;
+	inChargeFor: string;
+	contactMobileNumber: string;
+}
+
+export interface AnbiamCouncilDataProps {
+	parishName: string;
+	mainStationOrSubStation: string;
+	anbiamName: string;
+	anbiamId: string;
+	shortForm: string;
+	electedOn: string;
+	periodOfYears: number;
+	ifExtended: string;
+	periodEndsOn: string;
+}
+
+export interface AnbiamInchargeDataProps {
+	mainStation: string;
+	anbiam: string;
+	position: string;
+	electedStatus: string;
+	reason: string;
+	name: string;
+	mobile1: string;
+	mobile2?: string;
+	memberId: string;
+	electedDate: string;
+}
+
+export interface AssociationCouncilMemberProps {
+	mainStation: string;
+	association: string;
+	priorDignitaries: string;
+	position: string;
+	memberFrom: string;
+	electedStatus: string;
+	reason: string;
+	name: string;
+	mobile: string;
+	memberId: string;
+	electedDate: string;
+}

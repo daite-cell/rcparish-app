@@ -1,12 +1,8 @@
-import {
-	GenericCouncilMemberDetails,
-	GenericFamilesDetailsOverview,
-	GenericMembersInFamilesOverview,
-} from '@/components';
-import { ReligiousPeopleOverview } from '@/features/pious-group/components';
-
-import { dummy_religious_info, parish_council_pages } from '@/features/pious-group/data';
+import { GenericFamilesDetailsOverview, GenericReligiousPeopleDetailsOverview } from '@/components';
+import { parish_council_pages } from '@/features/pious-group/data';
 import OverviewTabsLayout from '@/layouts/overview-tabs-layout';
+import CouncilMemberDetailsContainer from '../generic-religious-people-details-container';
+import GenericMembersInFamilesOverviewContainer from '../generic-members-in-familes-overview-container';
 
 const componentMap = {
 	families: {
@@ -14,15 +10,15 @@ const componentMap = {
 		form: <h1>Families Form</h1>,
 	},
 	family_members: {
-		view: <GenericMembersInFamilesOverview />,
+		view: <GenericMembersInFamilesOverviewContainer />,
 		form: <h1>Family Members Form</h1>,
 	},
 	priest_nun_parish: {
-		view: <GenericMembersInFamilesOverview />,
+		view: <GenericMembersInFamilesOverviewContainer />,
 		form: <h1>Priest Nun Form</h1>,
 	},
 	religious_people_parish: {
-		view: <ReligiousPeopleOverview data={dummy_religious_info} />,
+		view: <GenericReligiousPeopleDetailsOverview />,
 		form: <h1>Religious Form</h1>,
 	},
 
@@ -30,7 +26,7 @@ const componentMap = {
 		parish_council_pages.map((p) => [
 			p,
 			{
-				view: <GenericCouncilMemberDetails />,
+				view: <CouncilMemberDetailsContainer />,
 				form: <h1 className="text-red-600">Parish Council Forms will be added soon .........</h1>,
 			},
 		])

@@ -1,15 +1,23 @@
 import { DynamicDataTable } from '@/components';
 import {
+	anbiam_council_dummy_data,
+	anbiam_incharge_dummy_data,
+	association_council_member_dummy_data,
 	family_overview_dummy_data,
 	parish_council_family_members_dummy_data,
 	parish_council_members_dummy_data,
 	Parish_sons_and_daughters_dummy_data,
+	religious_person_dummy_data,
 } from '../../data';
 import {
 	useFamilyOverviewColumns,
 	useParishCouncilColumns,
 	useMembersInParishFamilyColumns,
 	useParishSonsAndDaughtersColumns,
+	useReligiousPeopleColumns,
+	useAnbiamsColumns,
+	useAnbiamsInchargeColumns,
+	useAssociationCouncilMemberPropsColumns,
 } from '../../columns';
 import { useRouteName } from '@/utils/getRouteName';
 
@@ -19,6 +27,10 @@ const RenderPiousGroupTables = () => {
 	const parishCouncilColumns = useParishCouncilColumns();
 	const familyMemberColumns = useMembersInParishFamilyColumns();
 	const parishSonsAndDaughtersColumns = useParishSonsAndDaughtersColumns();
+	const religiousPeopleColumns = useReligiousPeopleColumns();
+	const anbiamsColumns = useAnbiamsColumns();
+	const anbiamsInchargeColumns = useAnbiamsInchargeColumns();
+	const associationCouncilMemberPropsColumns = useAssociationCouncilMemberPropsColumns();
 
 	return (
 		<>
@@ -44,6 +56,23 @@ const RenderPiousGroupTables = () => {
 					wrapText={false}
 					data={Parish_sons_and_daughters_dummy_data}
 					customColumns={parishSonsAndDaughtersColumns}
+				/>
+			)}
+			{type === 'religious_people_parish' && (
+				<DynamicDataTable wrapText={false} data={religious_person_dummy_data} customColumns={religiousPeopleColumns} />
+			)}
+			{(type === 'anbiams' || type === 'associations_club') && (
+				<DynamicDataTable wrapText={false} data={anbiam_council_dummy_data} customColumns={anbiamsColumns} />
+			)}
+
+			{type === 'anbiam_incharge' && (
+				<DynamicDataTable wrapText={false} data={anbiam_incharge_dummy_data} customColumns={anbiamsInchargeColumns} />
+			)}
+			{type === 'associations_incharge' && (
+				<DynamicDataTable
+					wrapText={false}
+					data={association_council_member_dummy_data}
+					customColumns={associationCouncilMemberPropsColumns}
 				/>
 			)}
 		</>

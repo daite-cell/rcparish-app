@@ -3,10 +3,15 @@ import type {
 	FamilyDataProps,
 	MembersInParishFamilyProps,
 	ParishSonsAndDaughtersProps,
+	ReligiousPersonProps,
+	AnbiamCouncilDataProps,
+	AnbiamInchargeDataProps,
+	AssociationCouncilMemberProps,
 } from '@/types';
 import type { CellContext, ColumnDef } from '@tanstack/react-table';
 import { Edit, Eye, Folder, Settings, SquarePen, Trash, IdCard } from 'lucide-react';
 import { useStore } from '@/store/store';
+import { AdminDefaultImage } from '@/components';
 
 const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[] => {
 	const { handleSelectRow } = useStore();
@@ -415,10 +420,365 @@ const useParishSonsAndDaughtersColumns = (): ColumnDef<ParishSonsAndDaughtersPro
 		},
 	];
 };
+const useReligiousPeopleColumns = (): ColumnDef<ReligiousPersonProps>[] => {
+	const { handleSelectRow } = useStore();
+
+	return [
+		{
+			id: 'select',
+			header: () => <SquarePen className="w-4 h-4 text-center" />,
+			cell: ({ row }) => (
+				<input
+					title="select"
+					type="checkbox"
+					onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
+				/>
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+		{
+			id: 'edit',
+			header: () => <Settings className="w-4 h-4 text-center" />,
+			cell: () => (
+				<button type="button" title="edit">
+					<Edit className="w-4 h-4 text-center cursor-pointer" />
+				</button>
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+		{
+			id: 'view',
+			header: 'Details',
+			cell: ({ row }) => (
+				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
+					<Eye className="w-4 h-4 text-center cursor-pointer" />
+				</button>
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+		{
+			accessorKey: 'religiousPersonName',
+			header: 'Religious Person Name',
+		},
+		{
+			accessorKey: 'image',
+			header: 'Image',
+			cell: () => <AdminDefaultImage height={50} width={50} className="rounded-full" />,
+		},
+		{
+			accessorKey: 'personId',
+			header: 'Person Id',
+		},
+		{
+			accessorKey: 'gender',
+			header: 'Gender',
+		},
+		{
+			accessorKey: 'position',
+			header: 'Position',
+		},
+		{
+			accessorKey: 'institution',
+			header: 'Institution/Convent',
+		},
+		{
+			accessorKey: 'inChargeFor',
+			header: 'In-Charge for',
+		},
+		{
+			accessorKey: 'contactMobileNumber',
+			header: 'Contact Mobile Number',
+		},
+	];
+};
+const useAnbiamsColumns = (): ColumnDef<AnbiamCouncilDataProps>[] => {
+	const { handleSelectRow } = useStore();
+
+	return [
+		{
+			id: 'select',
+			header: () => <SquarePen className="w-4 h-4 text-center" />,
+			cell: ({ row }) => (
+				<input
+					title="select"
+					type="checkbox"
+					onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
+				/>
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+		{
+			id: 'edit',
+			header: () => <Settings className="w-4 h-4 text-center" />,
+			cell: () => (
+				<button type="button" title="edit">
+					<Edit className="w-4 h-4 text-center cursor-pointer" />
+				</button>
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+		{
+			id: 'view',
+			header: 'Details',
+			cell: ({ row }) => (
+				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
+					<Eye className="w-4 h-4 text-center cursor-pointer" />
+				</button>
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+		{
+			accessorKey: 'parishName',
+			header: 'Parish Name',
+		},
+		{
+			accessorKey: 'mainStationOrSubStation',
+			header: 'Main-Station / Sub-Station',
+		},
+		{
+			accessorKey: 'anbiamName',
+			header: 'Name of the Anbiam',
+		},
+		{
+			accessorKey: 'anbiamId',
+			header: 'Anbiam Id',
+		},
+		{
+			accessorKey: 'shortForm',
+			header: 'Short Form',
+		},
+		{
+			accessorKey: 'electedOn',
+			header: 'Elected On',
+		},
+		{
+			accessorKey: 'periodOfYears',
+			header: 'Period Of (Years)',
+		},
+		{
+			accessorKey: 'ifExtended',
+			header: 'If Extended',
+		},
+		{
+			accessorKey: 'periodEndsOn',
+			header: 'Period Ends On',
+		},
+	];
+};
+
+const useAnbiamsInchargeColumns = (): ColumnDef<AnbiamInchargeDataProps>[] => {
+	const { handleSelectRow } = useStore();
+
+	return [
+		{
+			id: 'select',
+			header: () => <SquarePen className="w-4 h-4 text-center" />,
+			cell: ({ row }) => (
+				<input
+					title="select"
+					type="checkbox"
+					onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
+				/>
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+		{
+			id: 'edit',
+			header: () => <Settings className="w-4 h-4 text-center" />,
+			cell: () => (
+				<button type="button" title="edit">
+					<Edit className="w-4 h-4 text-center cursor-pointer" />
+				</button>
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+		{
+			id: 'view',
+			header: 'Details',
+			cell: ({ row }) => (
+				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
+					<Eye className="w-4 h-4 text-center cursor-pointer" />
+				</button>
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+		{
+			accessorKey: 'mainStation',
+			header: 'Main-Station / Sub-Station',
+		},
+		{
+			accessorKey: 'anbiam',
+			header: 'Anbiam',
+		},
+		{
+			id: 'prior dignitaries',
+			header: 'Prior Dignitaries',
+			cell: ({ row }: CellContext<AnbiamInchargeDataProps, unknown>) => (
+				<button type="button" onClick={() => handleSelectRow(row.original)} title="View Prior Dignitaries">
+					<Folder className="w-4 h-4 text-center cursor-pointer" />
+				</button>
+			),
+			meta: { isExportable: false },
+			enableSorting: false,
+			enableHiding: true,
+		},
+		{
+			accessorKey: 'position',
+			header: 'Position',
+		},
+		{
+			accessorKey: 'electedStatus',
+			header: 'Elected Status',
+		},
+		{
+			accessorKey: 'reason',
+			header: 'Reason',
+		},
+		{
+			accessorKey: 'name',
+			header: 'Name',
+		},
+		{
+			accessorKey: 'mobile1',
+			header: 'Mobile 1',
+		},
+		{
+			accessorKey: 'mobile2',
+			header: 'Mobile 2',
+		},
+		{
+			accessorKey: 'memberId',
+			header: 'Member id',
+		},
+		{
+			accessorKey: 'electedDate',
+			header: 'Elected Date',
+		},
+	];
+};
+
+const useAssociationCouncilMemberPropsColumns = (): ColumnDef<AssociationCouncilMemberProps>[] => {
+	const { handleSelectRow } = useStore();
+
+	return [
+		{
+			id: 'select',
+			header: () => <SquarePen className="w-4 h-4 text-center" />,
+			cell: ({ row }) => (
+				<input
+					title="select"
+					type="checkbox"
+					onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
+				/>
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+		{
+			id: 'edit',
+			header: () => <Settings className="w-4 h-4 text-center" />,
+			cell: () => (
+				<button type="button" title="edit">
+					<Edit className="w-4 h-4 text-center cursor-pointer" />
+				</button>
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+		{
+			id: 'view',
+			header: 'Details',
+			cell: ({ row }) => (
+				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
+					<Eye className="w-4 h-4 text-center cursor-pointer" />
+				</button>
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+		{
+			accessorKey: 'mainStation',
+			header: 'Main-Station / Sub-Station',
+		},
+		{
+			accessorKey: 'association',
+			header: 'Association',
+		},
+		{
+			id: 'prior dignitaries',
+			header: 'Prior Dignitaries',
+			cell: ({ row }: CellContext<AssociationCouncilMemberProps, unknown>) => (
+				<button type="button" onClick={() => handleSelectRow(row.original)} title="View Prior Dignitaries">
+					<Folder className="w-4 h-4 text-center cursor-pointer" />
+				</button>
+			),
+			meta: { isExportable: false },
+			enableSorting: false,
+			enableHiding: true,
+		},
+		{
+			accessorKey: 'position',
+			header: 'Position',
+		},
+		{
+			accessorKey: 'memberFrom',
+			header: 'Member From',
+		},
+		{
+			accessorKey: 'electedStatus',
+			header: 'Elected Status',
+		},
+		{
+			accessorKey: 'reason',
+			header: 'Reason',
+		},
+		{
+			accessorKey: 'name',
+			header: 'Name',
+		},
+		{
+			accessorKey: 'mobile',
+			header: 'Mobile',
+		},
+		{
+			accessorKey: 'memberId',
+			header: 'Member ID',
+		},
+		{
+			accessorKey: 'electedDate',
+			header: 'Elected Date',
+		},
+	];
+};
 
 export {
 	useParishCouncilColumns,
 	useFamilyOverviewColumns,
 	useMembersInParishFamilyColumns,
 	useParishSonsAndDaughtersColumns,
+	useReligiousPeopleColumns,
+	useAnbiamsColumns,
+	useAnbiamsInchargeColumns,
+	useAssociationCouncilMemberPropsColumns,
 };
