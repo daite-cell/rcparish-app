@@ -49,3 +49,7 @@ export { default as YearSelectionForm } from './year-selection-form';
 export { default as UploadPriestNameHeading } from './upload-priest-name-heading';
 export { default as GenericMemberPersonalInfo } from './generic-member-personal-info';
 export { default as GenericCouncilMemberDetails } from './generic-council-member-details';
+export { default as GenericFamilesDetailsOverview } from './generic-familes-details-overview';
+export { default as GenericMembersInFamilesOverview } from './generic-members-in-familes-overview';
+export { default as GenericMemberOverview } from './generic-member-overview';
+export { default as GenericReligiousPeopleDetailsOverview } from './generic-religious-people-details-overview';

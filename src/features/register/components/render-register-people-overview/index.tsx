@@ -1,6 +1,5 @@
 import { OverviewTabsLayout } from '@/layouts';
 import { member_overview_pages_with_tables } from '../../data';
-import { GenericCouncilMemberDetails } from '@/components';
 
 const RenderRegisterPeopleOverview = ({ pathName }: { pathName: string | number | undefined }) => {
 	const tabs = [{ label: 'profile' }, { label: 'edit' }, { label: 'back' }];
@@ -10,7 +9,7 @@ const RenderRegisterPeopleOverview = ({ pathName }: { pathName: string | number 
 			member_overview_pages_with_tables.map((p) => [
 				p,
 				{
-					view: <GenericCouncilMemberDetails />,
+					view: <h1>view will be added</h1>,
 					edit: <h1 className="text-red-600">Edit {p} Form will be added soon .........</h1>,
 				},
 			])

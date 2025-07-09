@@ -305,14 +305,14 @@ export interface ParishCouncilMemberDetailsProps {
 	positionInDiscipline: string;
 }
 
-export type FamilyDataProps = {
+export interface FamilyDataProps {
 	mainStation: string;
 	anbiam: string;
 	familyNumber: string;
 	familyName: string;
 	marriageDate1: string;
 	marriageDate2: string;
-	oldFamilyNumber?: string;
+	oldFamilyNumber: string;
 	familyHead: string;
 	membersInFamily: string;
 	familyType: string;
@@ -326,13 +326,162 @@ export type FamilyDataProps = {
 	mobile: string;
 	permanentAddress: string;
 	temporaryAddress: string;
+	remarks: string;
+	position: string;
+	name: string;
+	memberId: string;
+	electedStatus: string;
+	electedDate: string;
+	electedFrom: string;
+	nameOfRespectives: string;
+	positionInDiscipline: string;
+	familyMonthlyIncome?: string;
+	subCaste?: string;
+}
+
+export interface MembersInParishFamilyProps {
+	memberName: string;
+	uniqueMembershipNumber: string;
+	familyName: string;
+	uniqueAnbiamFamilyNumber: string;
+	oldFamilyNumber: string;
+	mainStationSubStation: string;
+	anbiam: string;
+	relationshipToFamily: string;
+	gender: string;
+	fatherName: string;
+	motherName: string;
+	livingWith: string;
+	physicallyChallenged: string;
+	bloodGroup: string;
+	communityCaste: string;
+	subCaste: string;
+	religion: string;
+	vocationStatus: string;
+	marriageStatus: string;
+	marriageDate: string;
+	marriageRemarks: string;
+	birthDate: string;
+	baptismDate: string;
+	holyCommunionDate: string;
+	confirmationDate: string;
+	mobileNumber: string;
+	adhaarNumber: string;
+	qualification: string;
+	occupation: string;
+	monthlyIncome: string;
+	livingStatus: string;
+	permanentAddress: string;
+	residentialAddress: string;
+	subStationId: string;
+	anbiamId: string;
+
+	activeness?: string;
+	occupationSector?: string;
+	typePercentage?: string;
+	relation?: string;
+	religionDetails?: string;
+	migratedReason?: string;
+	migratedPreviousParishDiocese?: string;
+	migratedPreviousStateCountryRite?: string;
+	migratedDate?: string;
+	convertedFrom?: string;
+	conversionDate?: string;
+	conversionMinister?: string;
 	remarks?: string;
-	position?: string;
-	name?: string;
-	memberId?: string;
-	electedStatus?: string;
-	electedDate?: string;
-	electedFrom?: string;
-	nameOfRespectives?: string;
-	positionInDiscipline?: string;
-};
+	marriageRemark?: string;
+	congregationName?: string;
+	congregationPosition?: string;
+	congregationJoiningDate?: string;
+	congregationPlace?: string;
+	congregationRemarks?: string;
+	godFatherName?: string;
+	godMotherName?: string;
+	qualificationStatus?: string;
+	qualificationCategory?: string;
+	qualificationStudyingIn?: string;
+	qualificationStudyingInstituteName?: string;
+	qualificationStudyingInstitutePlace?: string;
+	qualificationStudyingInstituteManagement?: string;
+	profQualificationStatus?: string;
+	profQualification?: string;
+	profStudyingCourse?: string;
+	profStudyingInstituteName?: string;
+	profStudyingInstitutePlace?: string;
+	profStudyingInstituteManagement?: string;
+}
+
+export interface ParishSonsAndDaughtersProps {
+	memberName: string;
+	uniqueMemberId: string;
+	familyName: string;
+	uniqueFamilyId: string;
+	station: string;
+	subStationId: string;
+	anbiam: string;
+	anbiamId: string;
+	gender: string;
+	familyHead: string;
+	relationshipToFamily: string;
+	fatherName: string;
+	motherName: string;
+	category: string;
+	nameOfRespective: string;
+	presentStatus: string;
+	studyingOrPosition: string;
+	place: string;
+	mobileNumber: string;
+	email: string;
+	permanentAddress: string;
+	temporaryAddress: string;
+}
+
+export interface ReligiousPersonProps {
+	religiousPersonName: string;
+	image?: string;
+	personId: string;
+	gender: string;
+	position: string;
+	institution: string;
+	inChargeFor: string;
+	contactMobileNumber: string;
+}
+
+export interface AnbiamCouncilDataProps {
+	parishName: string;
+	mainStationOrSubStation: string;
+	anbiamName: string;
+	anbiamId: string;
+	shortForm: string;
+	electedOn: string;
+	periodOfYears: number;
+	ifExtended: string;
+	periodEndsOn: string;
+}
+
+export interface AnbiamInchargeDataProps {
+	mainStation: string;
+	anbiam: string;
+	position: string;
+	electedStatus: string;
+	reason: string;
+	name: string;
+	mobile1: string;
+	mobile2?: string;
+	memberId: string;
+	electedDate: string;
+}
+
+export interface AssociationCouncilMemberProps {
+	mainStation: string;
+	association: string;
+	priorDignitaries: string;
+	position: string;
+	memberFrom: string;
+	electedStatus: string;
+	reason: string;
+	name: string;
+	mobile: string;
+	memberId: string;
+	electedDate: string;
+}

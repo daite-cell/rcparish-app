@@ -1,34 +1,25 @@
-import { GenericCouncilMemberDetails } from '@/components';
-import {
-	FamiliesOverview,
-	FamilyMembersOverviewLayout,
-	ParishFamilyFullDetailsOverView,
-	ReligiousPeopleOverview,
-} from '@/features/pious-group/components';
-
-import {
-	dummy_religious_info,
-	parish_council_pages,
-	priest_family_dummy_data,
-	family_full_overview_data,
-} from '@/features/pious-group/data';
+import { GenericFamilesDetailsOverview, GenericReligiousPeopleDetailsOverview } from '@/components';
+import { parish_council_pages } from '@/features/pious-group/data';
 import OverviewTabsLayout from '@/layouts/overview-tabs-layout';
+import CouncilMemberDetailsContainer from '../generic-religious-people-details-container';
+import GenericMembersInFamilesOverviewContainer from '../generic-members-in-familes-overview-container';
+import { memo } from 'react';
 
 const componentMap = {
 	families: {
-		view: <FamiliesOverview data={family_full_overview_data} />,
+		view: <GenericFamilesDetailsOverview />,
 		form: <h1>Families Form</h1>,
 	},
 	family_members: {
-		view: <FamilyMembersOverviewLayout />,
+		view: <GenericMembersInFamilesOverviewContainer />,
 		form: <h1>Family Members Form</h1>,
 	},
 	priest_nun_parish: {
-		view: <ParishFamilyFullDetailsOverView data={priest_family_dummy_data} />,
+		view: <GenericMembersInFamilesOverviewContainer />,
 		form: <h1>Priest Nun Form</h1>,
 	},
 	religious_people_parish: {
-		view: <ReligiousPeopleOverview data={dummy_religious_info} />,
+		view: <GenericReligiousPeopleDetailsOverview />,
 		form: <h1>Religious Form</h1>,
 	},
 
@@ -36,15 +27,15 @@ const componentMap = {
 		parish_council_pages.map((p) => [
 			p,
 			{
-				view: <GenericCouncilMemberDetails />,
+				view: <CouncilMemberDetailsContainer />,
 				form: <h1 className="text-red-600">Parish Council Forms will be added soon .........</h1>,
 			},
 		])
 	),
 };
 
-const RenderPiousGroupOverviewContainer = ({ pathName }: { pathName: string | number | undefined }) => {
-	return <OverviewTabsLayout pathName={pathName} componentMap={componentMap} />;
-};
+const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string | number | undefined }) => (
+	<OverviewTabsLayout pathName={pathName} componentMap={componentMap} />
+));
 
 export default RenderPiousGroupOverviewContainer;
