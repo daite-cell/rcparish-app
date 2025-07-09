@@ -270,7 +270,7 @@ const parish_council_family_members_dummy_data = [
 	},
 ];
 
-const Parish_sons_and_daughters_dummy_data = [
+const parish_sons_and_daughters_dummy_data = [
 	{
 		memberName: 'Maria Anthony alias AR Anthonysamy',
 		uniqueMemberId: 'TH041M06',
@@ -644,7 +644,7 @@ export {
 	parish_council_members_dummy_data,
 	family_overview_dummy_data,
 	parish_council_family_members_dummy_data,
-	Parish_sons_and_daughters_dummy_data,
+	parish_sons_and_daughters_dummy_data,
 	religious_person_dummy_data,
 	anbiam_council_dummy_data,
 	anbiam_incharge_dummy_data,

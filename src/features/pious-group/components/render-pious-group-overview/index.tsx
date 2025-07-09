@@ -3,6 +3,7 @@ import { parish_council_pages } from '@/features/pious-group/data';
 import OverviewTabsLayout from '@/layouts/overview-tabs-layout';
 import CouncilMemberDetailsContainer from '../generic-religious-people-details-container';
 import GenericMembersInFamilesOverviewContainer from '../generic-members-in-familes-overview-container';
+import { memo } from 'react';
 
 const componentMap = {
 	families: {
@@ -33,8 +34,8 @@ const componentMap = {
 	),
 };
 
-const RenderPiousGroupOverviewContainer = ({ pathName }: { pathName: string | number | undefined }) => {
-	return <OverviewTabsLayout pathName={pathName} componentMap={componentMap} />;
-};
+const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string | number | undefined }) => (
+	<OverviewTabsLayout pathName={pathName} componentMap={componentMap} />
+));
 
 export default RenderPiousGroupOverviewContainer;

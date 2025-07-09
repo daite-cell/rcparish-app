@@ -13,45 +13,33 @@ import type {
 	AnbiamInchargeDataProps,
 	AssociationCouncilMemberProps,
 } from '@/types';
+import React from 'react';
 
 const CouncilMemberDetailsContainer = () => {
 	const type = useRouteName('type');
+	const { selectRow } = useStore();
 
-	const parishCouncilSelectRow = useStore((state) => state.selectRow) as ParishCouncilMemberDetailsProps;
-	const anbiamSelectRow = useStore((state) => state.selectRow) as AnbiamCouncilDataProps;
-	const anbiamInchargeSelectRow = useStore((state) => state.selectRow) as AnbiamInchargeDataProps;
-	const associationInchargeSelectRow = useStore((state) => state.selectRow) as AssociationCouncilMemberProps;
+	const getSectionData = React.useCallback(() => {
+		switch (type) {
+			case 'parish_council_members':
+				return getParishCouncilSectionData(selectRow as ParishCouncilMemberDetailsProps);
+			case 'anbiams':
+			case 'associations_club':
+				return getAnbiamSectionData(selectRow as AnbiamCouncilDataProps);
+			case 'anbiam_incharge':
+				return getAnbiamInchargeSectionData(selectRow as AnbiamInchargeDataProps);
+			case 'associations_incharge':
+				return getAssociationInchargeSectionData(selectRow as AssociationCouncilMemberProps);
+			default:
+				return [];
+		}
+	}, [selectRow, type]);
 
 	return (
-		<>
-			{type === 'parish_council_members' && (
-				<GenericCouncilMemberDetails
-					userName={parishCouncilSelectRow.name || ''}
-					sectionData={getParishCouncilSectionData(parishCouncilSelectRow)}
-				/>
-			)}
-
-			{(type === 'anbiams' || type === 'associations_club') && (
-				<GenericCouncilMemberDetails
-					userName={anbiamSelectRow.anbiamName || ''}
-					sectionData={getAnbiamSectionData(anbiamSelectRow)}
-				/>
-			)}
-
-			{type === 'anbiam_incharge' && (
-				<GenericCouncilMemberDetails
-					userName={anbiamInchargeSelectRow.name || ''}
-					sectionData={getAnbiamInchargeSectionData(anbiamInchargeSelectRow)}
-				/>
-			)}
-
-			{type === 'associations_incharge' && (
-				<GenericCouncilMemberDetails
-					userName={associationInchargeSelectRow.name || ''}
-					sectionData={getAssociationInchargeSectionData(associationInchargeSelectRow)}
-				/>
-			)}
-		</>
+		<GenericCouncilMemberDetails
+			userName={(selectRow as { name?: string }).name || ''}
+			sectionData={getSectionData()}
+		/>
 	);
 };
 
