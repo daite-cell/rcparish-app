@@ -8,16 +8,12 @@ interface LogoutButtonProps {
 }
 
 const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout, isLoading = false, className = '' }) => {
-	const handleLogout = async () => {
-		if (onLogout) {
-			await onLogout();
-		}
-	};
+	const handleClick = React.useCallback(() => onLogout?.(), [onLogout]);
 
 	return (
 		<Button
 			variant="outline"
-			onClick={handleLogout}
+			onClick={handleClick}
 			disabled={isLoading}
 			className={`h-8 text-sm bg-transparent rounded-none text-primary border-primary hover:bg-primary hover:text-white ${className}`}
 			aria-label="Logout"

@@ -159,7 +159,7 @@ export interface PriestFamilyDataProps {
 	};
 }
 
-export type MemberType = {
+export type HolyCommunionMemberType = {
 	memberName: string;
 	memberId: string;
 	familyName: string;
@@ -484,4 +484,206 @@ export interface AssociationCouncilMemberProps {
 	mobile: string;
 	memberId: string;
 	electedDate: string;
+}
+
+export interface ChronicleMemberProps {
+	details: string;
+	date: string;
+	event: string;
+	descriptions: string;
+	documentAttachment: string;
+	image1: string;
+	image2: string;
+	image3: string;
+	eventNo: string;
+}
+
+export interface BaptismMemberType {
+	memberName: string;
+	memberId: string;
+	familyName: string;
+	familyId: string;
+	mainStation: string;
+	subStationId: string;
+	anbiam: string;
+	anbiamId: string;
+	gender: string;
+	familyHead: string;
+	fatherName: string;
+	motherName: string;
+	godFatherName: string;
+	godMotherName: string;
+	dateOfBirth: string;
+	baptistDate: string;
+	baptistAt: string;
+	baptistIn: string;
+	minister: string;
+	registrationNumber: string;
+	remarks: string;
+}
+
+export interface ConfirmationFromFamilyMemberType {
+	memberName: string;
+	memberId: string;
+	familyName: string;
+	familyId: string;
+	mainStation: string;
+	subStationId: string;
+	anbiam: string;
+	anbiamId: string;
+	gender: string;
+	familyHead: string;
+	fatherName: string;
+	motherName: string;
+	godFatherName: string;
+	godMotherName: string;
+	baptismDate: string;
+	confirmationDate: string;
+	confirmationReceived: string;
+	confirmationAt: string;
+	confirmationIn: string;
+	minister: string;
+	registrationNumber: string;
+	remarks: string;
+}
+
+export interface ConfirmationRegisteredMemberType {
+	memberName: string;
+	memberId: string;
+	isMemberInParish: string;
+	gender: string;
+	fatherName: string;
+	motherName: string;
+	domicileName: string;
+	godFatherName: string;
+	godMotherName: string;
+	baptismDate: string;
+	confirmationDate: string;
+	confirmationAt: string;
+	confirmationIn: string;
+	minister: string;
+	registrationNumber: string;
+	remarks: string;
+}
+
+export interface MarriageRegisterMemberType {
+	bannsOrRectification: string;
+	bridegroomName: string;
+	brideName: string;
+	familyName: string;
+	familyId: string;
+	mainStation: string;
+	subStationId: string;
+	anbiamName: string;
+	anbiamId: string;
+	marriageDate: string;
+	marriageAt: string;
+	marriageIn: string;
+	minister: string;
+	bridegroomWitness: string;
+	bridegroomAddress: string;
+	brideWitness: string;
+	brideAddress: string;
+	registrationNumber: string;
+	remarks: string;
+}
+
+export interface MarriageProposalMemberType {
+	memberName: string;
+	gender: string;
+	isMemberInParish: string | boolean;
+	fatherName: string;
+	motherName: string;
+	registrationNumber: string;
+}
+
+export interface MarriageRegisterMemberAsParishType {
+	bannsOrRectification: string;
+	bridegroomName: string;
+	brideName: string;
+	isMemberInParish: string | boolean;
+	marriageDate: string;
+	marriageAt: string;
+	marriageIn: string;
+	minister: string;
+	priestName: string;
+	bridegroomWitness: string;
+	bridegroomAddress: string;
+	brideWitness: string;
+	brideAddress: string;
+	registrationNumber: string;
+	remarks: string;
+}
+
+export interface MarriageProposalMemberFormType {
+	memberName: string;
+	gender: string;
+	familyName: string;
+	familyId: string;
+	mainStation: string;
+	subStationId: string;
+	anbiam: string;
+	anbiamId: string;
+	fatherName: string;
+	motherName: string;
+	registrationNumber: string;
+}
+
+export interface DeathRegisterMemberType {
+	memberName: string;
+	memberId: string;
+	familyName: string;
+	familyId: string;
+	mainStation: string;
+	subStationId: string;
+	anbiamName: string;
+	anbiamId: string;
+	fatherName: string;
+	motherName: string;
+	deathDate: string;
+	deathPlace: string;
+	causeOfDeath: string;
+	deathCertificateIssued: string;
+	burialDate: string;
+	cemetery: string;
+	registrationNumber: string;
+	remarks: string;
+}
+
+export interface DeathRegisterMemberAsParishType {
+	memberName: string;
+	memberId: string;
+	isMemberInParish: string;
+	fatherName: string;
+	motherName: string;
+	birthDate: string;
+	birthPlace: string;
+	deathDate: string;
+	deathPlace: string;
+	burialDate: string;
+	cemetery: string;
+	minister: string;
+	registrationNumber: string;
+	remarks: string;
+}
+
+export interface RegisterSectionOverviewProps {
+	memberName: string;
+	familyName: string;
+	uniqueAnbiamFamilyNumber: string;
+	mainStation: string;
+	subStationId: string;
+	anbiam: string;
+	nameOfHead: string;
+	gender: string;
+	baptistDate: string;
+	fatherName: string;
+	motherName: string;
+	godFatherName: string;
+	godMotherName: string;
+	baptistAt: string;
+	baptistIn: string;
+	minister: string;
+	registrationNumber: string;
+	remarks: string;
 }

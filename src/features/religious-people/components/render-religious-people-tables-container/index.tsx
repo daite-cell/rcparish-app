@@ -38,17 +38,15 @@ const RenderReligiousPeopleTablesContainer = () => {
 			enableSorting: false,
 			enableHiding: true,
 		},
-
 		{
 			accessorKey: 'nameOfThePriests',
 			header: 'Name of the Priests',
 			cell: ({ row }: CellContext<PriestPersonalDetailsProps, unknown>) => (
-				<Link className="underline text-[#0d73c4]" to="">
-					{(row.original as PriestPersonalDetailsProps).nameOfThePriests}
+				<Link className="underline text-[#0d73c4]" to="#">
+					{row.original.nameOfThePriests || 'N/A'}
 				</Link>
 			),
 		},
-
 		{
 			accessorKey: 'image',
 			header: 'Image',
@@ -57,7 +55,7 @@ const RenderReligiousPeopleTablesContainer = () => {
 		},
 		{ accessorKey: 'presentPosition', header: 'Present Position' },
 		{ accessorKey: 'ordinationDate', header: 'Ordination Date' },
-		{ accessorKey: 'birthDate', header: 'Birth date' },
+		{ accessorKey: 'birthDate', header: 'Birth Date' },
 		{ accessorKey: 'livingStatus', header: 'Living Status' },
 		{ accessorKey: 'mobileNumber', header: 'Mobile Number' },
 		{ accessorKey: 'optionalMobileNumber', header: 'Optional Mobile Number' },
@@ -71,9 +69,10 @@ const RenderReligiousPeopleTablesContainer = () => {
 		<div>
 			<DynamicDataTable
 				wrapText={false}
-				data={priestPersonalDummyData}
+				data={priestPersonalDummyData ?? []}
 				customColumns={priestColumns}
-				enableDateAndLetterSorting={true}
+				enableDateSorting={true}
+				enableLetterSorting={true}
 			/>
 		</div>
 	);

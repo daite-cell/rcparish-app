@@ -31,7 +31,8 @@ const AccountingGenericPage = () => {
 					customColumns={bishopColumns}
 					wrapText={false}
 					data={priests}
-					enableDateAndLetterSorting={true}
+					enableDateSorting={true}
+					enableLetterSorting={true}
 					includeCheckbox
 					onView={handleView}
 					filterKey="name"
