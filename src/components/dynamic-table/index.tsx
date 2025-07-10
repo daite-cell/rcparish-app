@@ -29,7 +29,6 @@ interface DynamicDataTableProps<T extends object, U> {
 	wrapText?: boolean;
 	tableId?: string;
 	filterKey?: string;
-	enableDateAndLetterSorting?: boolean;
 	customColumns?: ColumnDef<T, U>[];
 	includeCheckbox?: boolean;
 	includePriorDignitaries?: boolean;
@@ -37,6 +36,8 @@ interface DynamicDataTableProps<T extends object, U> {
 	onDelete?: (row: T) => void;
 	onView?: (row: T) => void;
 	columns?: CustomColumnMeta<T>[];
+	enableDateSorting?: boolean;
+	enableLetterSorting?: boolean;
 }
 
 const DynamicDataTable = <T extends object, U>({
@@ -45,7 +46,8 @@ const DynamicDataTable = <T extends object, U>({
 	title,
 	isDynamic = true,
 	wrapText = true,
-	enableDateAndLetterSorting = false,
+	enableDateSorting = false,
+	enableLetterSorting = false,
 	tableId,
 	filterKey = 'sub_station',
 	customColumns = [],
@@ -227,16 +229,16 @@ const DynamicDataTable = <T extends object, U>({
 				<div className="min-w-full py-2 sm:px-6 lg:px-8">
 					{title && <h1 className="mb-8 font-bold underline uppercase text-start">{title}</h1>}
 
-					{enableDateAndLetterSorting && (
-						<TableFilters
-							fromDate={fromDate}
-							toDate={toDate}
-							setFromDate={setFromDate}
-							setToDate={setToDate}
-							alphaFilter={alphaFilter}
-							setAlphaFilter={setAlphaFilter}
-						/>
-					)}
+					<TableFilters
+						fromDate={fromDate}
+						toDate={toDate}
+						setFromDate={setFromDate}
+						setToDate={setToDate}
+						alphaFilter={alphaFilter}
+						setAlphaFilter={setAlphaFilter}
+						enableDateSorting={enableDateSorting}
+						enableLetterSorting={enableLetterSorting}
+					/>
 
 					{isDynamic && (
 						<TableHeaderControls<T>

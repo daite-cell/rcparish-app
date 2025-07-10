@@ -7,13 +7,15 @@ const AdmittedList = () => {
 			<DynamicDataTable
 				data={admittedFamilyListData}
 				isDynamic={false}
-				enableDateAndLetterSorting={false}
+				enableDateSorting={false}
+				enableLetterSorting={false}
 				title={'Re-Admitted Family List'}
 			/>
 			<DynamicDataTable
 				data={admittedMemberListData}
 				isDynamic={false}
-				enableDateAndLetterSorting={false}
+				enableDateSorting={false}
+				enableLetterSorting={false}
 				title={'Re-Admitted Member List'}
 			/>
 		</>
