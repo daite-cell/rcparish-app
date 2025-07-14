@@ -2,12 +2,12 @@ import { GenericCouncilMemberDetails } from '@/components';
 import { useStore } from '@/store/store';
 import type { CongregationInstitutionType, ConventDetailsTypeProps } from '@/types';
 import { useRouteName } from '@/utils/getRouteName';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import { getCommunitiesSectionData, getInstitutionSectionData } from '../../columns-section';
 
 const RenderHouseOverview = () => {
 	const type = useRouteName('type');
-	const { selectRow, handleCloseRow } = useStore();
+	const { selectRow } = useStore();
 	console.warn(selectRow);
 
 	const getSectionData = useCallback(() => {

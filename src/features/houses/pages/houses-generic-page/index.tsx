@@ -3,7 +3,7 @@ import { side_nav_links } from '@/data/side-navbar-content';
 import type { NavLinkProps } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
 import { useState } from 'react';
-import { RenderHouseMemberOverviewContainer, RenderHouseOverview, RenderHousesTableContainer } from '../../components';
+import { RenderHouseMemberOverviewContainer, RenderHousesTableContainer } from '../../components';
 import { useStore } from '@/store/store';
 import { useRouteName } from '@/utils/getRouteName';
 
