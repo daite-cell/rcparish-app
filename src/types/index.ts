@@ -687,3 +687,50 @@ export interface RegisterSectionOverviewProps {
 	registrationNumber: string;
 	remarks: string;
 }
+
+export interface CongregationInstitutionType {
+	id?: string;
+	category: string;
+	institutionCategory: string;
+	institutionType: string;
+	name: string;
+	place: string;
+	landOwnership: string;
+	establishedYear: string;
+	recognitionDate: string;
+	recognitionNumber: string;
+	classesFrom: string;
+	classesUpto: string;
+	gender: string;
+	runBy: string;
+	medium: string;
+	management: string;
+	contactNumber: string;
+	mailId: string;
+	address: string;
+}
+
+export interface VocationalInstitutionType {
+	noviciateName: string;
+	place: string;
+	landOwnership: string;
+	belongsTo: string;
+	seminary: string;
+	contactNumberLL: string;
+	mailId: string;
+	address: string;
+}
+
+export interface ConventDetailsTypeProps {
+	stationType: string;
+	conventType: string;
+	conventName: string;
+	conventPlace: string;
+	belongsTo: string;
+	establishedYear: string;
+	establishedBy: string;
+	landOwnership: string;
+	contactAddress: string;
+	mobileNumber: string;
+	email: string;
+}
