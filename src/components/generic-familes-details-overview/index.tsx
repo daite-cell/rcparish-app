@@ -1,4 +1,4 @@
-import { Suspense, useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { useStore } from '@/store/store';
 import YearSelectionForm from '../year-selection-form';
 import { MemberOverviewLayout } from '@/layouts';
@@ -10,11 +10,15 @@ import PDFExporter from '../pdf-exporter';
 import type { FamilyDataProps } from '@/types';
 import { generateColumnsFromData } from '@/utils/generateColumnsFromData';
 
+const FamilyCard = lazy(() => import('../family-card'));
+
 const GenericFamilesDetailsOverview = () => {
 	const [yearType, setYearType] = useState<string>('current_year');
 	const selectRow = useStore((state) => state.selectRow) as FamilyDataProps;
 
-	const sectionData = [
+	const selectFamilyCardRow = useStore((state) => state.selectFamilyCardRow) as FamilyDataProps;
+
+	const sectionData = selectRow && [
 		{
 			col: 1,
 			sections: [
@@ -39,7 +43,10 @@ const GenericFamilesDetailsOverview = () => {
 			sections: [
 				{
 					heading: 'SOCIAL STATUS DETAILS',
-					data: { house_type: selectRow.houseType, house_ownership: selectRow.ownership },
+					data: {
+						house_type: selectRow.houseType,
+						house_ownership: selectRow.ownership,
+					},
 				},
 				{
 					heading: 'INCOME & SUBSCRIPTION DETAILS',
@@ -93,34 +100,41 @@ const GenericFamilesDetailsOverview = () => {
 	return (
 		<>
 			<YearSelectionForm value={yearType} onChange={setYearType} />
+
 			<MemberOverviewLayout>
-				<div className="p-6">
-					<DisplayUserName userName={selectRow?.familyName} />
-					<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-						{sectionData.map((column, colIndex) => (
-							<div key={colIndex}>
-								{column.sections.map((section, i) => (
-									<DisplayInfoRowContainer key={i} data={section.data} heading={section.heading} />
-								))}
-							</div>
-						))}
+				{selectFamilyCardRow ? (
+					<Suspense fallback={<div>Loading...</div>}>
+						<FamilyCard />
+					</Suspense>
+				) : (
+					<div className="p-6">
+						<DisplayUserName userName={selectRow?.familyName} />
+						<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+							{sectionData.map((column, colIndex) => (
+								<div key={colIndex}>
+									{column.sections.map((section, i) => (
+										<DisplayInfoRowContainer key={i} data={section.data} heading={section.heading} />
+									))}
+								</div>
+							))}
+						</div>
+						<InfoHeadingTitle title="FAMILY MEMBERS" />
+						<DynamicDataTable data={family_member_table_data} isDynamic={false} tableId="family-members" />
+						<div className="flex justify-end float-end w-[120px] ">
+							<Suspense fallback={<div>Loading...</div>}>
+								<PDFExporter
+									className={
+										'text-[#d7c49e] self-end bg-[#343148] text-[12px] !text-center border-none h-7 w-[90px] my-5 mr-2 px-4  transition duration-500 rounded-none font-normal hover:text-[#343148] hover:bg-[#d7c49e] hover:cursor-pointer'
+									}
+									columns={columns}
+									data={family_member_table_data}
+									tableId={tableId}
+									label="Download PDF"
+								/>
+							</Suspense>
+						</div>
 					</div>
-					<InfoHeadingTitle title="FAMILY MEMBERS" />
-					<DynamicDataTable data={family_member_table_data} isDynamic={false} tableId="family-members" />
-					<div className="flex justify-end float-end w-[120px] ">
-						<Suspense fallback={<div>Loading...</div>}>
-							<PDFExporter
-								className={
-									'text-[#d7c49e] self-end bg-[#343148] text-[12px] !text-center border-none h-7 w-[90px] my-5 mr-2 px-4  transition duration-500 rounded-none font-normal hover:text-[#343148] hover:bg-[#d7c49e] hover:cursor-pointer'
-								}
-								columns={columns}
-								data={family_member_table_data}
-								tableId={tableId}
-								label="Download PDF"
-							/>
-						</Suspense>
-					</div>
-				</div>
+				)}
 			</MemberOverviewLayout>
 		</>
 	);

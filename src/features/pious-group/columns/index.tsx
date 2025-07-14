@@ -15,7 +15,7 @@ import { AdminDefaultImage } from '@/components';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
 
 const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleSelectPriorRow } = useStore();
 
 	return [
 		...getCommonActionColumns<ParishCouncilMemberDetailsProps>(handleSelectRow),
@@ -23,7 +23,7 @@ const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[]
 			id: 'prior dignitaries',
 			header: 'Prior Dignitaries',
 			cell: ({ row }: CellContext<ParishCouncilMemberDetailsProps, unknown>) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="View Prior Dignitaries">
+				<button type="button" onClick={() => handleSelectPriorRow(row.original)} title="View Prior Dignitaries">
 					<Folder className="w-4 h-4 text-center cursor-pointer" />
 				</button>
 			),
@@ -58,7 +58,7 @@ const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[]
 };
 
 const useFamilyOverviewColumns = (): ColumnDef<FamilyDataProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleSelectFamilyCardRow } = useStore();
 
 	return [
 		...getCommonActionColumns<FamilyDataProps>(handleSelectRow),
@@ -78,7 +78,7 @@ const useFamilyOverviewColumns = (): ColumnDef<FamilyDataProps>[] => {
 			id: 'fc',
 			header: 'FC',
 			cell: ({ row }: CellContext<FamilyDataProps, unknown>) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="FC Action">
+				<button type="button" onClick={() => handleSelectFamilyCardRow(row.original)} title="FC Action">
 					<IdCard className="w-4 h-4 text-center cursor-pointer" />
 				</button>
 			),

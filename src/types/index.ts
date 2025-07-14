@@ -734,3 +734,35 @@ export interface ConventDetailsTypeProps {
 	mobileNumber: string;
 	email: string;
 }
+
+export type CommonPoolSearchDataType = {
+	activeness: string;
+	action: string;
+	parishName: string;
+	familyName: string;
+	transferReason: string;
+	transferDate: string;
+	subStation: string;
+	anbiam: string;
+};
+
+export type CommonPoolFamilyAdmittedListType = {
+	familyName: string;
+	admittedDate: string;
+	admittedBy: string;
+	parishFromTo: string;
+	subStationFromTo: string;
+	anbiamFromTo: string;
+	transferReason: string;
+};
+
+export type CommonPoolMemberAdmittedMemberType = {
+	memberName: string;
+	admittedDate: string;
+	admittedBy: string;
+	familyFromTo: string;
+	parishFromTo: string;
+	subStationFromTo: string;
+	anbiamFromTo: string;
+	transferReason: string;
+};

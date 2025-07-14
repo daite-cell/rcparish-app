@@ -38,6 +38,7 @@ interface DynamicDataTableProps<T extends object, U> {
 	columns?: CustomColumnMeta<T>[];
 	enableDateSorting?: boolean;
 	enableLetterSorting?: boolean;
+	enableExport?: boolean;
 }
 
 const DynamicDataTable = <T extends object, U>({
@@ -53,6 +54,7 @@ const DynamicDataTable = <T extends object, U>({
 	customColumns = [],
 	includeCheckbox = false,
 	includePriorDignitaries = false,
+	enableExport = true,
 	onEdit,
 	onDelete,
 	onView,
@@ -251,6 +253,7 @@ const DynamicDataTable = <T extends object, U>({
 							pageSizeOptions={pageSizeOptions}
 							tableId={generatedTableId}
 							data={data}
+							enableExport={enableExport}
 						/>
 					)}
 
