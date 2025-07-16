@@ -6,7 +6,6 @@ import {
 	SidebarGroupContent,
 	SidebarMenu,
 	SidebarMenuButton,
-	useSidebar,
 } from '@/components/ui/sidebar';
 import { ChevronRight, Circle } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
@@ -24,7 +23,6 @@ const Icons = {
 };
 
 const NavLinksSection = ({ navData, pathName }: { navData: NavLinkSectionProps[]; pathName: string }) => {
-	const { setOpen } = useSidebar();
 	function isIconKey(icon: string): icon is keyof typeof Icons {
 		return icon in Icons;
 	}
@@ -90,7 +88,6 @@ const NavLinksSection = ({ navData, pathName }: { navData: NavLinkSectionProps[]
 																	</span>
 																	<SidebarMenuButton className="hover:text-primary" asChild>
 																		<NavLink
-																			onClick={() => setOpen(false)}
 																			className={() =>
 																				`text-[#a8926c]  hover:text-primary hover:bg-transparent active:bg-transparent `
 																			}

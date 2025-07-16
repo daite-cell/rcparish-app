@@ -12,7 +12,7 @@ const DioceseGenericPage = () => {
 	const location = useLocation();
 	const [activeIndex, setActiveIndex] = useState(0);
 	const type = useRouteName('type');
-	console.warn(type);
+
 	const handleToggleTab = (index: number) => {
 		setActiveIndex(index);
 	};

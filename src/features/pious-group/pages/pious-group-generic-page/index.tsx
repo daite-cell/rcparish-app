@@ -2,28 +2,29 @@ import { PriorDignitariesContainer, TabsLayout } from '@/components';
 import { side_nav_links } from '@/data/side-navbar-content';
 import type { NavLinkProps } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
-import { useRouteName } from '@/utils/getRouteName';
 import { useState } from 'react';
 import { useStore } from '@/store/store';
 import { RenderPiousGroupOverviewContainer, RenderPiousGroupTables } from '../../components';
+import { usePathName } from '@/utils/getPathName';
 
 const PiousGroupGenericPage = () => {
 	const [activeIndex, setActiveIndex] = useState(1);
-	const type = useRouteName('type');
+
+	const pathName = usePathName();
 	const { selectRow, selectFamilyCardRow, selectPriorRow } = useStore();
 	const handleToggleTab = (index: number) => {
 		setActiveIndex(index);
 	};
 
-	const linksData = getSectionByPathName(side_nav_links, type as string);
-	const tabsData = linksData?.page_nav_links.find((link: NavLinkProps) => link.path_url === type)?.tabs;
+	const linksData = getSectionByPathName(side_nav_links, pathName);
+	const tabsData = linksData?.page_nav_links.find((link: NavLinkProps) => link.path_url === pathName)?.tabs;
 
 	if (selectPriorRow) {
 		return <PriorDignitariesContainer />;
 	}
 
 	if (selectRow || selectFamilyCardRow) {
-		return <RenderPiousGroupOverviewContainer pathName={type} />;
+		return <RenderPiousGroupOverviewContainer pathName={pathName} />;
 	}
 
 	return (

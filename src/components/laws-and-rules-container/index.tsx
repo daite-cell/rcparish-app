@@ -4,7 +4,6 @@ import { useRouteName } from '@/utils/getRouteName';
 
 const LawsAndRulesContainer = () => {
 	const rule = useRouteName('rule');
-	console.warn(rule);
 	const lawContent = laws_and_rules.find((law) => law.page === rule);
 
 	if (!lawContent) {

@@ -58,3 +58,4 @@ export { default as TableDetailsEditButton } from './table-details-edit-button';
 export { default as FamilyCard } from './family-card';
 export { default as HeadingWithUnderline } from './heading-with-underline';
 export { default as PriorDignitariesContainer } from './prior-dignitaries-container';
+export { default as TableHeading } from './table-heading';

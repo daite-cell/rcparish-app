@@ -766,3 +766,173 @@ export type CommonPoolMemberAdmittedMemberType = {
 	anbiamFromTo: string;
 	transferReason: string;
 };
+
+export interface ActiveDonationTableProps {
+	familyStatus: string;
+	familyNumber: string;
+	uniqueFamilyId: string;
+	mainStation: string;
+	subStationId: string;
+	anbiam: string;
+	anbiamId: string;
+	totalAmount: number;
+}
+
+export interface InActiveDonationTableProps {
+	name: string;
+	city: string;
+	donationFor: string;
+	amount: number;
+	voucherNumber: string;
+	date: string;
+	mobile: string;
+	address: string;
+}
+
+export interface RentPropertyProps {
+	type: string;
+	propertyName: string;
+	propertyId: string;
+	renderName: string;
+	mobileNumber: string;
+	nowRentFor: string;
+	fixedAmountMonthly: number;
+	fixedAmountOn: string;
+	grandPaidAmount: number;
+	paidUpto: string;
+	remainingUnpaidAmount: number;
+	lastPaidAmount: number;
+	lastPaidDate: string;
+}
+
+export interface AdvanceRentPropertyProps {
+	type: string;
+	propertyName: string;
+	propertyId: string;
+	renderName: string;
+	mobileNumber: string;
+	nowRentFor: string;
+	fixedAdvanceAmount: number;
+	paidAdvanceAmount: number;
+	balanceAmount: number;
+	lastPaidDate: string;
+}
+
+export interface ChurchCollectionsProps {
+	name: string;
+	priestId: string;
+	monthYear: string;
+	monthly: number;
+	special: number;
+	other: number;
+	amount: number;
+}
+
+export interface WorkerProps {
+	workingAs: string;
+	name: string;
+	workerId: string;
+	dateOfJoining: string;
+	salaryPerMonth: number;
+	salaryFixedFromOn: string;
+	religion: string;
+	mobileNumber: string;
+	aadhaarNumber: string;
+	permanentAddress: string;
+	temporaryAddress: string;
+}
+
+export interface EmployersSalaryProps {
+	workingStatus: string;
+	workerName: string;
+	workerId: string;
+	mobileNumber: string;
+	fixedSalaryAmount: number;
+	fixedSalaryFrom: string;
+	grandPaidAmount: number;
+
+	paidUpto: string;
+	advanceFromSalary: number;
+	advanceFromSalaryOn: string;
+	paidAmount: number;
+	balanceSalaryAmount: number;
+	lastPaidDate: string;
+	voucherNumber: string;
+}
+
+export interface DioceseClosedRTB {
+	requestNo: string;
+	priestName: string;
+	requestFor: string;
+	reason: string;
+	raisedOn: string;
+	lastReceived: string;
+	lastSent: string;
+	status: string;
+	lastUpdatedOn: string;
+}
+
+export interface DioceseOpenedRTB {
+	requestNo: string;
+	priestName: string;
+	requestFor: string;
+	reason: string;
+	raisedOn: string;
+	status: string;
+	lastReceived: string;
+	lastSent: string;
+	respond: string;
+	writeComment: string;
+	action: string;
+}
+
+export interface QueryFromBishopClosedProps {
+	queryNo: string;
+	priestName: string;
+	requestFor: string;
+	reason: string;
+	raisedOn: string;
+	lastReceived: string;
+	lastSent: string;
+	status: string;
+	lastUpdatedOn: string;
+}
+
+export interface QueryFromBishopOpenedProps {
+	queryNo: string;
+	priestName: string;
+	requestFor: string;
+	reason: string;
+	raisedOn: string;
+	status: string;
+	lastReceived: string;
+	lastSent: string;
+	writeComment: string;
+	action: string;
+}
+
+export interface QueryFromPeopleClosedProps {
+	queryNo: string;
+	requestFor: string;
+	reason: string;
+	raisedOn: string;
+	lastReceived: string;
+	lastSent: string;
+	status: string;
+	lastUpdatedOn: string;
+}
+
+export interface QueryFromPeopleOpenedProps {
+	queryNo: string;
+	familyName: string;
+	subStationName: string;
+	anbiamName: string;
+	requestFor: string;
+	reason: string;
+	raisedOn: string;
+	status: string;
+	lastReceived: string;
+	lastSent: string;
+	writeComment: string;
+	action: string;
+}

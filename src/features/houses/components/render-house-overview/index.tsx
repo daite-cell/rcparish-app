@@ -8,8 +8,6 @@ import { getCommunitiesSectionData, getInstitutionSectionData } from '../../colu
 const RenderHouseOverview = () => {
 	const type = useRouteName('type');
 	const { selectRow } = useStore();
-	console.warn(selectRow);
-
 	const getSectionData = useCallback(() => {
 		switch (type) {
 			case 'institutions':
