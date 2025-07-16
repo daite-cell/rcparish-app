@@ -1,19 +1,21 @@
 import { DynamicDataTable } from '@/components';
-import { admittedFamilyListData, admittedMemberListData } from '../../data';
+import { useCommonPoolFamilyAdmittedListColumns, useCommonPoolMemberAdmittedMemberColumns } from '../../columns';
 
 const AdmittedList = () => {
 	return (
 		<>
 			<DynamicDataTable
-				data={admittedFamilyListData}
-				isDynamic={false}
-				enableDateAndLetterSorting={false}
+				data={[]}
+				customColumns={useCommonPoolFamilyAdmittedListColumns()}
 				title={'Re-Admitted Family List'}
+				enableExport={false}
+				isDynamic={true}
 			/>
 			<DynamicDataTable
-				data={admittedMemberListData}
+				data={[]}
+				enableExport={false}
+				customColumns={useCommonPoolMemberAdmittedMemberColumns()}
 				isDynamic={false}
-				enableDateAndLetterSorting={false}
 				title={'Re-Admitted Member List'}
 			/>
 		</>

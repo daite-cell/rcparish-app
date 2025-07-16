@@ -7,11 +7,11 @@ import {
 	getAnbiamInchargeSectionData,
 	getAssociationInchargeSectionData,
 } from '@/features/pious-group/columns-sections';
-import type {
-	ParishCouncilMemberDetailsProps,
-	AnbiamCouncilDataProps,
-	AnbiamInchargeDataProps,
-	AssociationCouncilMemberProps,
+import {
+	type ParishCouncilMemberDetailsProps,
+	type AnbiamCouncilDataProps,
+	type AnbiamInchargeDataProps,
+	type AssociationCouncilMemberProps,
 } from '@/types';
 import React from 'react';
 
@@ -37,7 +37,7 @@ const CouncilMemberDetailsContainer = () => {
 
 	return (
 		<GenericCouncilMemberDetails
-			userName={(selectRow as { name?: string }).name || ''}
+			userName={(selectRow as { name?: string })?.name || ''}
 			sectionData={getSectionData()}
 		/>
 	);

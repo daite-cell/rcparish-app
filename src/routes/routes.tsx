@@ -3,7 +3,6 @@ import type { AppRoute } from '../types';
 
 const DashBoardPage = lazy(() => import('../features/dashboard/pages/dashboard-page'));
 const QueriesFormPage = lazy(() => import('../features/dashboard/pages/queries-form'));
-const RegisterPage = lazy(() => import('../features/register/pages/register-page'));
 const ReligiousPeopleGenericPage = lazy(
 	() => import('../features/religious-people/pages/religious-people-generic-page')
 );
@@ -38,7 +37,6 @@ export const appRoutes: AppRoute[] = [
 		element: <DashboardGenericPage />,
 		layout: true,
 	},
-	{ path: '/sacraments', name: 'Register', element: <RegisterPage />, layout: true },
 	{
 		path: '/religious_people/:type',
 		name: 'ReligiousPeopleGeneric',

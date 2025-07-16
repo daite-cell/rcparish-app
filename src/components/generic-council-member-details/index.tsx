@@ -13,11 +13,7 @@ type GenericMemberOverviewProps = {
 	}[];
 };
 
-const GenericCouncilMemberDetails = ({
-	userName,
-	heading = 'Member Details',
-	sectionData,
-}: GenericMemberOverviewProps) => {
+const GenericCouncilMemberDetails = ({ userName, heading, sectionData }: GenericMemberOverviewProps) => {
 	return (
 		<MemberOverviewLayout heading={heading}>
 			<div className="p-6">
@@ -28,7 +24,11 @@ const GenericCouncilMemberDetails = ({
 							{column.sections.map((section, i) => (
 								<DisplayInfoRowContainer
 									key={i}
-									data={section.data as Record<string, string | number>}
+									data={
+										Object.fromEntries(
+											Object.entries(section.data).map(([key, value]) => [key, value ?? ''])
+										) as Record<string, string | number>
+									}
 									heading={section.heading}
 								/>
 							))}

@@ -9,57 +9,21 @@ import type {
 	AssociationCouncilMemberProps,
 } from '@/types';
 import type { CellContext, ColumnDef } from '@tanstack/react-table';
-import { Edit, Eye, Folder, Settings, SquarePen, Trash, IdCard } from 'lucide-react';
+import { Folder, Trash, IdCard } from 'lucide-react';
 import { useStore } from '@/store/store';
 import { AdminDefaultImage } from '@/components';
+import { getCommonActionColumns } from '@/utils/commonActionColumns';
 
 const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleSelectPriorRow } = useStore();
 
 	return [
-		{
-			id: 'select',
-			header: () => <SquarePen className="w-4 h-4 text-center" />,
-			cell: ({ row }: CellContext<ParishCouncilMemberDetailsProps, unknown>) => (
-				<input
-					title="select"
-					type="checkbox"
-					onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
-				/>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
-		{
-			id: 'edit',
-			header: () => <Settings className="w-4 h-4 text-center" />,
-			cell: () => (
-				<button type="button" title="edit">
-					<Edit className="w-4 h-4 text-center cursor-pointer" />
-				</button>
-			),
-			meta: { isExportable: false },
-			enableSorting: false,
-			enableHiding: true,
-		},
-		{
-			id: 'view',
-			header: 'Details',
-			cell: ({ row }: CellContext<ParishCouncilMemberDetailsProps, unknown>) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
-					<Eye className="w-4 h-4 text-center cursor-pointer" />
-				</button>
-			),
-			meta: { isExportable: false },
-			enableSorting: false,
-			enableHiding: true,
-		},
+		...getCommonActionColumns<ParishCouncilMemberDetailsProps>(handleSelectRow),
 		{
 			id: 'prior dignitaries',
 			header: 'Prior Dignitaries',
 			cell: ({ row }: CellContext<ParishCouncilMemberDetailsProps, unknown>) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="View Prior Dignitaries">
+				<button type="button" onClick={() => handleSelectPriorRow(row.original)} title="View Prior Dignitaries">
 					<Folder className="w-4 h-4 text-center cursor-pointer" />
 				</button>
 			),
@@ -94,49 +58,10 @@ const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[]
 };
 
 const useFamilyOverviewColumns = (): ColumnDef<FamilyDataProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleSelectFamilyCardRow } = useStore();
 
 	return [
-		{
-			id: 'select',
-			header: () => <SquarePen className="w-4 h-4 text-center" />,
-			cell: ({ row }: CellContext<FamilyDataProps, unknown>) => (
-				<input
-					title="select"
-					type="checkbox"
-					onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
-				/>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
-
-		{
-			id: 'edit',
-			header: () => <Settings className="w-4 h-4 text-center" />,
-			cell: () => (
-				<button type="button" title="edit">
-					<Edit className="w-4 h-4 text-center cursor-pointer" />
-				</button>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
-
-		{
-			id: 'view',
-			header: 'Details',
-			cell: ({ row }: CellContext<FamilyDataProps, unknown>) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
-					<Eye className="w-4 h-4 text-center cursor-pointer" />
-				</button>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
+		...getCommonActionColumns<FamilyDataProps>(handleSelectRow),
 		{
 			id: 'delete',
 			header: 'Delete',
@@ -153,7 +78,7 @@ const useFamilyOverviewColumns = (): ColumnDef<FamilyDataProps>[] => {
 			id: 'fc',
 			header: 'FC',
 			cell: ({ row }: CellContext<FamilyDataProps, unknown>) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="FC Action">
+				<button type="button" onClick={() => handleSelectFamilyCardRow(row.original)} title="FC Action">
 					<IdCard className="w-4 h-4 text-center cursor-pointer" />
 				</button>
 			),
@@ -198,44 +123,7 @@ const useMembersInParishFamilyColumns = (): ColumnDef<MembersInParishFamilyProps
 	const { handleSelectRow } = useStore();
 
 	return [
-		{
-			id: 'select',
-			header: () => <SquarePen className="w-4 h-4 text-center" />,
-			cell: ({ row }) => (
-				<input
-					title="select"
-					type="checkbox"
-					onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
-				/>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
-		{
-			id: 'edit',
-			header: () => <Settings className="w-4 h-4 text-center" />,
-			cell: () => (
-				<button type="button" title="edit">
-					<Edit className="w-4 h-4 text-center cursor-pointer" />
-				</button>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
-		{
-			id: 'view',
-			header: 'Details',
-			cell: ({ row }) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
-					<Eye className="w-4 h-4 text-center cursor-pointer" />
-				</button>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
+		...getCommonActionColumns<MembersInParishFamilyProps>(handleSelectRow),
 		{
 			id: 'delete',
 			header: 'Delete',
@@ -291,44 +179,7 @@ const useParishSonsAndDaughtersColumns = (): ColumnDef<ParishSonsAndDaughtersPro
 	const { handleSelectRow } = useStore();
 
 	return [
-		{
-			id: 'select',
-			header: () => <SquarePen className="w-4 h-4 text-center" />,
-			cell: ({ row }) => (
-				<input
-					title="select"
-					type="checkbox"
-					onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
-				/>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
-		{
-			id: 'edit',
-			header: () => <Settings className="w-4 h-4 text-center" />,
-			cell: () => (
-				<button type="button" title="edit">
-					<Edit className="w-4 h-4 text-center cursor-pointer" />
-				</button>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
-		{
-			id: 'view',
-			header: 'Details',
-			cell: ({ row }) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
-					<Eye className="w-4 h-4 text-center cursor-pointer" />
-				</button>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
+		...getCommonActionColumns<ParishSonsAndDaughtersProps>(handleSelectRow),
 
 		{
 			accessorKey: 'memberName',
@@ -424,44 +275,7 @@ const useReligiousPeopleColumns = (): ColumnDef<ReligiousPersonProps>[] => {
 	const { handleSelectRow } = useStore();
 
 	return [
-		{
-			id: 'select',
-			header: () => <SquarePen className="w-4 h-4 text-center" />,
-			cell: ({ row }) => (
-				<input
-					title="select"
-					type="checkbox"
-					onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
-				/>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
-		{
-			id: 'edit',
-			header: () => <Settings className="w-4 h-4 text-center" />,
-			cell: () => (
-				<button type="button" title="edit">
-					<Edit className="w-4 h-4 text-center cursor-pointer" />
-				</button>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
-		{
-			id: 'view',
-			header: 'Details',
-			cell: ({ row }) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
-					<Eye className="w-4 h-4 text-center cursor-pointer" />
-				</button>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
+		...getCommonActionColumns<ReligiousPersonProps>(handleSelectRow),
 		{
 			accessorKey: 'religiousPersonName',
 			header: 'Religious Person Name',
@@ -501,44 +315,7 @@ const useAnbiamsColumns = (): ColumnDef<AnbiamCouncilDataProps>[] => {
 	const { handleSelectRow } = useStore();
 
 	return [
-		{
-			id: 'select',
-			header: () => <SquarePen className="w-4 h-4 text-center" />,
-			cell: ({ row }) => (
-				<input
-					title="select"
-					type="checkbox"
-					onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
-				/>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
-		{
-			id: 'edit',
-			header: () => <Settings className="w-4 h-4 text-center" />,
-			cell: () => (
-				<button type="button" title="edit">
-					<Edit className="w-4 h-4 text-center cursor-pointer" />
-				</button>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
-		{
-			id: 'view',
-			header: 'Details',
-			cell: ({ row }) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
-					<Eye className="w-4 h-4 text-center cursor-pointer" />
-				</button>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
+		...getCommonActionColumns<AnbiamCouncilDataProps>(handleSelectRow),
 		{
 			accessorKey: 'parishName',
 			header: 'Parish Name',
@@ -582,44 +359,7 @@ const useAnbiamsInchargeColumns = (): ColumnDef<AnbiamInchargeDataProps>[] => {
 	const { handleSelectRow } = useStore();
 
 	return [
-		{
-			id: 'select',
-			header: () => <SquarePen className="w-4 h-4 text-center" />,
-			cell: ({ row }) => (
-				<input
-					title="select"
-					type="checkbox"
-					onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
-				/>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
-		{
-			id: 'edit',
-			header: () => <Settings className="w-4 h-4 text-center" />,
-			cell: () => (
-				<button type="button" title="edit">
-					<Edit className="w-4 h-4 text-center cursor-pointer" />
-				</button>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
-		{
-			id: 'view',
-			header: 'Details',
-			cell: ({ row }) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
-					<Eye className="w-4 h-4 text-center cursor-pointer" />
-				</button>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
+		...getCommonActionColumns<AnbiamInchargeDataProps>(handleSelectRow),
 		{
 			accessorKey: 'mainStation',
 			header: 'Main-Station / Sub-Station',
@@ -679,44 +419,7 @@ const useAssociationCouncilMemberPropsColumns = (): ColumnDef<AssociationCouncil
 	const { handleSelectRow } = useStore();
 
 	return [
-		{
-			id: 'select',
-			header: () => <SquarePen className="w-4 h-4 text-center" />,
-			cell: ({ row }) => (
-				<input
-					title="select"
-					type="checkbox"
-					onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
-				/>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
-		{
-			id: 'edit',
-			header: () => <Settings className="w-4 h-4 text-center" />,
-			cell: () => (
-				<button type="button" title="edit">
-					<Edit className="w-4 h-4 text-center cursor-pointer" />
-				</button>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
-		{
-			id: 'view',
-			header: 'Details',
-			cell: ({ row }) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
-					<Eye className="w-4 h-4 text-center cursor-pointer" />
-				</button>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
+		...getCommonActionColumns<AssociationCouncilMemberProps>(handleSelectRow),
 		{
 			accessorKey: 'mainStation',
 			header: 'Main-Station / Sub-Station',

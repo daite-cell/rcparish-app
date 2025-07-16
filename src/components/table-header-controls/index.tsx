@@ -16,6 +16,7 @@ interface TableHeaderControlsProps<T> {
 	pageSize: number;
 	setPageSize: (size: number) => void;
 	pageSizeOptions: number[];
+	enableExport?: boolean;
 }
 
 const TableHeaderControls = <T extends object>({
@@ -28,6 +29,7 @@ const TableHeaderControls = <T extends object>({
 	pageSize,
 	setPageSize,
 	pageSizeOptions,
+	enableExport,
 }: TableHeaderControlsProps<T>) => {
 	return (
 		<>
@@ -43,23 +45,27 @@ const TableHeaderControls = <T extends object>({
 					</div>
 
 					{isDynamic && (
-						<div className="flex ml-4">
-							<Suspense fallback={<div>Loading...</div>}>
-								<ExportButton
-									data={table.getSortedRowModel().rows.map((row) => row.original)}
-									columns={table
-										.getAllLeafColumns()
-										.filter((col) => col.getIsVisible() && col.columnDef?.meta?.isExportable !== false)
-										.map((col) => ({
-											header: typeof col.columnDef.header === 'string' ? col.columnDef.header : '',
-											accessorKey: col.id,
-										}))}
-									tableId={tableId}
-								/>
-							</Suspense>
+						<>
+							{enableExport && (
+								<div className="flex ml-4">
+									<Suspense fallback={<div>Loading...</div>}>
+										<ExportButton
+											data={table.getSortedRowModel().rows.map((row) => row.original)}
+											columns={table
+												.getAllLeafColumns()
+												.filter((col) => col.getIsVisible() && col.columnDef?.meta?.isExportable !== false)
+												.map((col) => ({
+													header: typeof col.columnDef.header === 'string' ? col.columnDef.header : '',
+													accessorKey: col.id,
+												}))}
+											tableId={tableId}
+										/>
+									</Suspense>
 
-							<ColumnVisibilityDropdown table={table} />
-						</div>
+									<ColumnVisibilityDropdown table={table} />
+								</div>
+							)}
+						</>
 					)}
 				</>
 				<div className="flex justify-end items-center flex-1 space-x-2">
