@@ -32,7 +32,7 @@ const RequestToBishop = () => {
 						<DynamicDataTable
 							customColumns={openRequestColumns}
 							data={[]}
-							tableId="closed-queries"
+							tableId="open-queries"
 							title="OPEN QUERIES"
 							enableExport={false}
 						/>

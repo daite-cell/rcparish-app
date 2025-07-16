@@ -18,7 +18,7 @@ const useClosedRequestColumns = (): ColumnDef<DioceseClosedRTB>[] => {
 			id: 'delete',
 			header: 'Delete',
 			cell: ({ row }: CellContext<DioceseClosedRTB, unknown>) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
+				<button type="button" onClick={() => handleSelectRow(row.original)} title="Delete">
 					<Trash className="w-4 h-4 text-center cursor-pointer" />
 				</button>
 			),
@@ -68,7 +68,7 @@ const useOpenedRequestColumns = (): ColumnDef<DioceseOpenedRTB>[] => {
 			id: 'delete',
 			header: 'Delete',
 			cell: ({ row }: CellContext<DioceseOpenedRTB, unknown>) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
+				<button type="button" onClick={() => handleSelectRow(row.original)} title="delete">
 					<Trash className="w-4 h-4 text-center cursor-pointer" />
 				</button>
 			),

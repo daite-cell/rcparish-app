@@ -803,6 +803,7 @@ export interface RentPropertyProps {
 	remainingUnpaidAmount: number;
 	lastPaidAmount: number;
 	lastPaidDate: string;
+	paymentHistory: string;
 }
 
 export interface AdvanceRentPropertyProps {

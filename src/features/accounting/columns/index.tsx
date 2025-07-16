@@ -255,8 +255,8 @@ const useChurchCollectionsColumns = (): ColumnDef<ChurchCollectionsProps>[] => {
 		{
 			id: 'delete1',
 			header: 'Delete',
-			cell: () => (
-				<button title="Delete">
+			cell: ({ row }: CellContext<ChurchCollectionsProps, unknown>) => (
+				<button title="Delete" onClick={() => handleSelectRow(row.original)}>
 					<Trash2 className="w-4 h-4 text-red-500 cursor-pointer" />
 				</button>
 			),
@@ -271,9 +271,9 @@ const useChurchCollectionsColumns = (): ColumnDef<ChurchCollectionsProps>[] => {
 		{
 			id: 'delete2',
 			header: 'Delete',
-			cell: () => (
-				<button title="Delete">
-					<Trash2 className="w-4 h-4  cursor-pointer" />
+			cell: ({ row }: CellContext<ChurchCollectionsProps, unknown>) => (
+				<button title="Delete" onClick={() => handleSelectRow(row.original)}>
+					<Trash2 className="w-4 h-4 text-red-500 cursor-pointer" />
 				</button>
 			),
 			enableSorting: false,
@@ -287,9 +287,9 @@ const useChurchCollectionsColumns = (): ColumnDef<ChurchCollectionsProps>[] => {
 		{
 			id: 'delete3',
 			header: 'Delete',
-			cell: () => (
-				<button title="Delete">
-					<Trash2 className="w-4 h-4  cursor-pointer" />
+			cell: ({ row }: CellContext<ChurchCollectionsProps, unknown>) => (
+				<button title="Delete" onClick={() => handleSelectRow(row.original)}>
+					<Trash2 className="w-4 h-4 text-red-500 cursor-pointer" />
 				</button>
 			),
 			enableSorting: false,

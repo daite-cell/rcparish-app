@@ -9,15 +9,23 @@ import { accounting_pages } from '../../data';
 const GenericAccountingDetailsContainer = () => {
 	const type = useRouteName('type');
 	const { selectRow } = useStore();
+	const isValidType = (type: unknown): type is string => {
+		return typeof type === 'string' && accounting_pages.includes(type);
+	};
+
+	const isWorkerProps = (obj: unknown): obj is WorkerProps => {
+		return obj !== null && typeof obj === 'object';
+	};
+
 	const getSectionData = useCallback(() => {
-		if (accounting_pages.includes(type as string)) {
-			return getWorkersSectionData(selectRow as WorkerProps);
+		if (isValidType(type) && isWorkerProps(selectRow)) {
+			return getWorkersSectionData(selectRow);
 		}
 		return [];
 	}, [selectRow, type]);
 	return (
 		<GenericCouncilMemberDetails
-			userName={(selectRow as { name?: string })?.name || ''}
+			userName={isWorkerProps(selectRow) && 'name' in selectRow ? selectRow.name || '' : ''}
 			sectionData={getSectionData()}
 		/>
 	);
