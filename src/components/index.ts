@@ -59,3 +59,5 @@ export { default as FamilyCard } from './family-card';
 export { default as HeadingWithUnderline } from './heading-with-underline';
 export { default as PriorDignitariesContainer } from './prior-dignitaries-container';
 export { default as TableHeading } from './table-heading';
+export { default as TablePriorDignitariesButton } from './table-prior-dignitaries-button';
+export { default as TextLink } from './text-link';

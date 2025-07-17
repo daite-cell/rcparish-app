@@ -23,7 +23,7 @@ const GenericMembersInFamilesOverviewContainer = () => {
 
 	return (
 		<GenericMembersInFamilesOverview
-			userName={(selectRow as MembersInParishFamilyProps | ParishSonsAndDaughtersProps).memberName}
+			userName={(selectRow as { name?: string })?.name || ''}
 			sectionData={sectionData}
 		/>
 	);

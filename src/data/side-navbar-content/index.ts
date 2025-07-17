@@ -90,6 +90,7 @@ const side_nav_links = [
 				path_url: '/diocese/priests',
 				label: 'Priests',
 				icon: 'Folder',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/diocese/calender_dates',
@@ -107,17 +108,20 @@ const side_nav_links = [
 				path_url: '/diocese/commissions',
 				label: 'Commissions',
 				icon: 'Folder',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 
 			{
 				path_url: '/diocese/committees',
 				label: 'Committees',
 				icon: 'Folder',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/diocese/vsss',
 				label: 'Social Service Society',
 				icon: 'Folder',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/diocese/college_consulters',
@@ -129,7 +133,7 @@ const side_nav_links = [
 				path_url: '/diocese/senate_members',
 				label: 'Senate Members',
 				icon: 'Folder',
-				tabs: [{ label: 'PRIOR DIGNITARIES' }, { label: 'edit' }],
+				tabs: [{ label: 'PRIOR DIGNITARIES' }, { label: 'view' }],
 			},
 
 			{
@@ -148,27 +152,32 @@ const side_nav_links = [
 				path_url: '/diocese/parishes',
 				label: 'Parishes',
 				icon: 'Folder',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 
 			{
 				path_url: '/diocese/properties',
 				label: 'Land Properties',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/diocese/houses_list',
 				label: 'Houses',
 				icon: 'Folder',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/diocese/institutions_list',
 				label: 'Institutions List',
 				icon: 'Folder',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/diocese/vocational_list',
 				label: 'Vocational List',
 				icon: 'Folder',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 		],
 	},

@@ -937,3 +937,118 @@ export interface QueryFromPeopleOpenedProps {
 	writeComment: string;
 	action: string;
 }
+
+export interface PriestDetailsProps {
+	type: string;
+	image: string;
+	name: string;
+	position: string;
+	ordinationDate: string;
+	dob: string;
+	mobile1: string;
+	optionalMobile: string;
+	email: string;
+	aadhaar: string;
+	nativePlace: string;
+	residence: string;
+	livingStatus: string;
+	uniqueId: string;
+	details?: string;
+}
+
+export interface PriestCalendarDetailsProps {
+	name: string;
+	firstProfessionDate: string;
+	ordinationDate: string;
+	birthDate: string;
+	mobileNumber: string;
+}
+
+export interface CommissionMemberProps {
+	nameOfCommission: string;
+	position: string;
+	priestName: string;
+	presentPosition: string;
+	from: string;
+	to: string;
+	mobile: string;
+	image?: string;
+	id?: string;
+}
+
+export interface DioceseVSSSMemberProps {
+	id?: string;
+	designation: string;
+	priorDignitaries: string;
+	priestName: string;
+	presentPosition: string;
+	fromYear: string;
+	toYear: string;
+	residentAt: string;
+	mobileNumber: string;
+	image?: string;
+}
+
+export interface DioceseSenateMemberProps {
+	id: string;
+	designation: string;
+	priorDignitaries: string;
+	priestName: string;
+	presentPosition: string;
+	fromYear: string;
+	toYear: string;
+	residentAt: string;
+	mobileNumber: string;
+	image: string;
+	memberName: string;
+}
+
+export interface VicariateForaneMemberProps {
+	id: string;
+	priorDignitaries?: string;
+	vicariateName: string;
+	churchName: string;
+	memberName: string;
+	presentPosition: string;
+	fromDate: string;
+	toDate: string;
+	residentAt: string;
+	mobileNumber: string;
+	imageUrl?: string;
+}
+
+export interface ParishTableDataProps {
+	vicariateName: string;
+	priestName: string;
+	priorDignitaries?: string;
+	presentParishPriest: string;
+	churchName: string;
+	hasSubStation: string;
+	runBy: string;
+	isMissionStation: string;
+	parishContactNumber: string;
+	parishMailId: string;
+	address: string;
+	priestMobileNo: string;
+	priestEmailId: string;
+	image: string;
+}
+
+export interface PropertiesProps {
+	document: string;
+	parishName: string;
+	villageName: string;
+	documentNumber: string;
+	dateOfRegistration: string;
+	purchasingAmount: string;
+	purchaserName: string;
+	vendorName: string;
+	oldSurvey: string;
+	newSurvey: string;
+	extent: string;
+	pattaNo: string;
+	availabilityOfDocument: string;
+	landUsage: string;
+	landType: string;
+	remark: string;
+}
