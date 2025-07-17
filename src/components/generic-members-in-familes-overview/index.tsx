@@ -27,7 +27,7 @@ const GenericMembersInFamilesOverview = ({
 	return (
 		<MemberOverviewLayout>
 			<div className="p-6">
-				<DisplayUserName className={`${!isFamilyType ? 'text-center' : ''}`} userName={userName} />
+				<DisplayUserName className={isFamilyType ? 'text-center' : ''} userName={userName} />
 
 				<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 					{sectionData?.map((column, colIndex) => (

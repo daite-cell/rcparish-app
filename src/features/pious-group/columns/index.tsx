@@ -9,9 +9,9 @@ import type {
 	AssociationCouncilMemberProps,
 } from '@/types';
 import type { CellContext, ColumnDef } from '@tanstack/react-table';
-import { Folder, Trash, IdCard } from 'lucide-react';
+import { Trash, IdCard } from 'lucide-react';
 import { useStore } from '@/store/store';
-import { AdminDefaultImage } from '@/components';
+import { AdminDefaultImage, TablePriorDignitariesButton } from '@/components';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
 
 const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[] => {
@@ -23,9 +23,7 @@ const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[]
 			id: 'prior dignitaries',
 			header: 'Prior Dignitaries',
 			cell: ({ row }: CellContext<ParishCouncilMemberDetailsProps, unknown>) => (
-				<button type="button" onClick={() => handleSelectPriorRow(row.original)} title="View Prior Dignitaries">
-					<Folder className="w-4 h-4 text-center cursor-pointer" />
-				</button>
+				<TablePriorDignitariesButton onClick={() => handleSelectPriorRow(row.original)} />
 			),
 			meta: { isExportable: false },
 			enableSorting: false,
@@ -372,9 +370,7 @@ const useAnbiamsInchargeColumns = (): ColumnDef<AnbiamInchargeDataProps>[] => {
 			id: 'prior dignitaries',
 			header: 'Prior Dignitaries',
 			cell: ({ row }: CellContext<AnbiamInchargeDataProps, unknown>) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="View Prior Dignitaries">
-					<Folder className="w-4 h-4 text-center cursor-pointer" />
-				</button>
+				<TablePriorDignitariesButton onClick={() => handleSelectRow(row.original)} />
 			),
 			meta: { isExportable: false },
 			enableSorting: false,
@@ -432,9 +428,7 @@ const useAssociationCouncilMemberPropsColumns = (): ColumnDef<AssociationCouncil
 			id: 'prior dignitaries',
 			header: 'Prior Dignitaries',
 			cell: ({ row }: CellContext<AssociationCouncilMemberProps, unknown>) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="View Prior Dignitaries">
-					<Folder className="w-4 h-4 text-center cursor-pointer" />
-				</button>
+				<TablePriorDignitariesButton onClick={() => handleSelectRow(row.original)} />
 			),
 			meta: { isExportable: false },
 			enableSorting: false,
