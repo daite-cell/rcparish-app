@@ -10,6 +10,14 @@ import { getReligiousPeopleSectionData } from '../../columns-sections';
 
 const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string | number | undefined }) => {
 	const { selectRow } = useStore();
+
+	const isReligiousPerson = (data: unknown): data is ReligiousPersonProps => {
+		return data !== null && typeof data === 'object' && 'religiousPersonName' in data;
+	};
+
+	const hasName = (data: unknown): data is { name?: string } => {
+		return data !== null && typeof data === 'object' && 'name' in data;
+	};
 	const componentMap = {
 		families: {
 			view: <GenericFamilesDetailsOverview />,
@@ -26,8 +34,10 @@ const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string
 		religious_people_parish: {
 			view: (
 				<GenericPeopleDetailsOverview
-					userName={(selectRow as { name?: string })?.name || ''}
-					sectionData={getReligiousPeopleSectionData(selectRow as ReligiousPersonProps)}
+					userName={hasName(selectRow) ? selectRow.name || '' : ''}
+					sectionData={
+						isReligiousPerson(selectRow) ? getReligiousPeopleSectionData(selectRow as ReligiousPersonProps) : []
+					}
 				/>
 			),
 			form: <h1>Religious Form</h1>,
