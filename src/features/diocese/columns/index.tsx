@@ -9,10 +9,15 @@ import type {
 	VicariateForaneMemberProps,
 	ParishTableDataProps,
 	PropertiesProps,
+	VicariateDetailsProps,
+	InstitutionDetailsProps,
+	HouseListProps,
+	NoviciateInstitutionProps,
 } from '@/types';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
 import type { CellContext, ColumnDef } from '@tanstack/react-table';
-import { Folder, Pencil } from 'lucide-react';
+import { Folder, Pencil, SquarePen } from 'lucide-react';
+import { useMemo } from 'react';
 
 const usePriestColumns = (): ColumnDef<PriestDetailsProps>[] => {
 	const { handleSelectRow } = useStore();
@@ -237,11 +242,11 @@ const useDioceseSenateColumns = (): ColumnDef<DioceseSenateMemberProps>[] => {
 			header: 'Present Position',
 		},
 		{
-			accessorKey: 'fromDate',
+			accessorKey: 'fromYear',
 			header: 'From the Year',
 		},
 		{
-			accessorKey: 'toDate',
+			accessorKey: 'toYear',
 			header: 'To the Year',
 		},
 		{
@@ -249,7 +254,7 @@ const useDioceseSenateColumns = (): ColumnDef<DioceseSenateMemberProps>[] => {
 			header: 'Resident at',
 		},
 		{
-			accessorKey: 'phoneNumber',
+			accessorKey: 'mobileNumber',
 			header: 'Mobile Number',
 		},
 		{
@@ -457,6 +462,233 @@ const useLandDocumentColumns = (): ColumnDef<PropertiesProps>[] => {
 	];
 };
 
+const useVicariateColumns = (): ColumnDef<VicariateDetailsProps>[] => {
+	return useMemo<ColumnDef<VicariateDetailsProps>[]>(
+		() => [
+			{
+				id: 'select',
+				header: () => <SquarePen className="w-4 h-4 text-center" />,
+				cell: ({ row }) => (
+					<input
+						title="select"
+						type="checkbox"
+						onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
+					/>
+				),
+				enableSorting: false,
+				meta: { isExportable: false },
+				enableHiding: true,
+			},
+			{
+				accessorKey: 'patronChurch',
+				header: 'Patron Church',
+			},
+			{
+				accessorKey: 'place',
+				header: 'Place',
+			},
+			{
+				accessorKey: 'detailed',
+				header: 'Detailed',
+			},
+		],
+		[]
+	);
+};
+
+const useHouseListColumns = (): ColumnDef<HouseListProps>[] => {
+	const { handleSelectRow } = useStore();
+
+	return [
+		...getCommonActionColumns<HouseListProps>(handleSelectRow),
+
+		{
+			accessorKey: 'parish',
+			header: 'Parish',
+		},
+		{
+			accessorKey: 'vicariate',
+			header: 'Vicariate',
+		},
+		{
+			accessorKey: 'churchName',
+			header: 'Church Name',
+		},
+		{
+			accessorKey: 'houses',
+			header: 'Houses',
+		},
+		{
+			accessorKey: 'nameOfTheHouse',
+			header: 'Name of the House',
+		},
+		{
+			accessorKey: 'placeOfTheHouse',
+			header: 'Place of the House',
+		},
+		{
+			accessorKey: 'incardinatedTo',
+			header: 'Incardinated To',
+		},
+		{
+			accessorKey: 'establishedYear',
+			header: 'Established Year',
+		},
+		{
+			accessorKey: 'establishedBy',
+			header: 'Established by',
+		},
+		{
+			accessorKey: 'landOwnership',
+			header: 'Land Ownership',
+		},
+		{
+			accessorKey: 'contactAddress',
+			header: 'Contact Address',
+		},
+		{
+			accessorKey: 'mobileNo',
+			header: 'Mobile No',
+		},
+		{
+			accessorKey: 'email',
+			header: 'Email',
+		},
+	];
+};
+
+const useInstitutionDetailsColumns = (): ColumnDef<InstitutionDetailsProps>[] => {
+	const { handleSelectRow } = useStore();
+
+	return [
+		...getCommonActionColumns<InstitutionDetailsProps>(handleSelectRow),
+
+		{
+			accessorKey: 'category',
+			header: 'Category',
+		},
+		{
+			accessorKey: 'institutionCategory',
+			header: 'Institution Category',
+		},
+		{
+			accessorKey: 'institutionType',
+			header: 'Institution Type',
+		},
+		{
+			accessorKey: 'name',
+			header: 'Name',
+		},
+		{
+			accessorKey: 'place',
+			header: 'Place',
+		},
+		{
+			accessorKey: 'parish',
+			header: 'Parish',
+		},
+		{
+			accessorKey: 'vicariate',
+			header: 'Vicariate',
+		},
+		{
+			accessorKey: 'landOwnership',
+			header: 'Land Ownership',
+		},
+		{
+			accessorKey: 'establishedYear',
+			header: 'Established Year',
+		},
+		{
+			accessorKey: 'classesFrom',
+			header: 'Classes From',
+		},
+		{
+			accessorKey: 'classesUpto',
+			header: 'Classes Upto',
+		},
+		{
+			accessorKey: 'gender',
+			header: 'Gender',
+		},
+		{
+			accessorKey: 'runBy',
+			header: 'Run By',
+		},
+		{
+			accessorKey: 'medium',
+			header: 'Medium',
+		},
+		{
+			accessorKey: 'management',
+			header: 'Management',
+		},
+		{
+			accessorKey: 'contactNumber',
+			header: 'Contact Number (LL)',
+		},
+		{
+			accessorKey: 'mailId',
+			header: 'Mail ID',
+		},
+		{
+			accessorKey: 'address',
+			header: 'Address',
+		},
+	];
+};
+
+const useNoviciateInstitutionColumns = (): ColumnDef<NoviciateInstitutionProps>[] => {
+	const { handleSelectRow } = useStore();
+
+	return [
+		...getCommonActionColumns<NoviciateInstitutionProps>(handleSelectRow),
+		{
+			accessorKey: 'noviciateName',
+			header: 'Noviciate Name',
+		},
+		{
+			accessorKey: 'place',
+			header: 'Place',
+		},
+		{
+			accessorKey: 'parish',
+			header: 'Parish',
+		},
+		{
+			accessorKey: 'vicariate',
+			header: 'Vicariate',
+		},
+		{
+			accessorKey: 'landOwnership',
+			header: 'Land Ownership',
+		},
+		{
+			accessorKey: 'institutionCategory',
+			header: 'Belongs to',
+		},
+		{
+			accessorKey: 'institutionType',
+			header: 'Congregation',
+		},
+		{
+			accessorKey: 'category',
+			header: 'Seminary',
+		},
+		{
+			accessorKey: 'contactNumber',
+			header: 'Contact Number (LL)',
+		},
+		{
+			accessorKey: 'mailId',
+			header: 'Mail ID',
+		},
+		{
+			accessorKey: 'address',
+			header: 'Address',
+		},
+	];
+};
 export {
 	usePriestColumns,
 	usePriestCalendarColumns,
@@ -466,4 +698,8 @@ export {
 	useVicariateForaneColumns,
 	useParishColumns,
 	useLandDocumentColumns,
+	useVicariateColumns,
+	useHouseListColumns,
+	useInstitutionDetailsColumns,
+	useNoviciateInstitutionColumns,
 };

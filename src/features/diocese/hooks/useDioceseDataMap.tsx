@@ -6,6 +6,10 @@ import {
 	vicariate_forane_dummy_data,
 	parish_members_dummy_data,
 	land_properties_dummy_data,
+	vicariate_dummy_data,
+	house_list_dummy_data,
+	institution_details_dummy_data,
+	noviciate_institution_dummy_data,
 } from '../data';
 
 const useDioceseDataMap = (): Record<
@@ -65,6 +69,30 @@ const useDioceseDataMap = (): Record<
 	properties: {
 		main: {
 			data: land_properties_dummy_data,
+			enable_date_sorting: false,
+		},
+	},
+	vicariates: {
+		main: {
+			data: vicariate_dummy_data,
+			enable_date_sorting: false,
+		},
+	},
+	houses_list: {
+		main: {
+			data: house_list_dummy_data,
+			enable_date_sorting: false,
+		},
+	},
+	institutions_list: {
+		main: {
+			data: institution_details_dummy_data,
+			enable_date_sorting: false,
+		},
+	},
+	vocational_list: {
+		main: {
+			data: noviciate_institution_dummy_data,
 			enable_date_sorting: false,
 		},
 	},

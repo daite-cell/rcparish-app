@@ -31,7 +31,9 @@ const DioceseGenericPage = () => {
 			onTabChange={handleToggleTab}
 			activeTabId={activeIndex}
 		>
-			{tabsData?.[activeIndex]?.label === 'view' && <RenderDioceseTablesContainer />}
+			{(tabsData?.[activeIndex]?.label === 'view' || tabsData?.[activeIndex]?.label === 'print') && (
+				<RenderDioceseTablesContainer />
+			)}
 		</TabsLayout>
 	);
 };

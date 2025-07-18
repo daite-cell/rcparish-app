@@ -8,6 +8,10 @@ import {
 	useVicariateForaneColumns,
 	useParishColumns,
 	useLandDocumentColumns,
+	useVicariateColumns,
+	useHouseListColumns,
+	useInstitutionDetailsColumns,
+	useNoviciateInstitutionColumns,
 } from '../columns';
 
 const useDioceseColumnsMap = (): Record<string, Record<string, ColumnDef<object>[]>> => ({
@@ -35,6 +39,18 @@ const useDioceseColumnsMap = (): Record<string, Record<string, ColumnDef<object>
 	},
 	properties: {
 		main: useLandDocumentColumns() as ColumnDef<object>[],
+	},
+	vicariates: {
+		main: useVicariateColumns() as ColumnDef<object>[],
+	},
+	houses_list: {
+		main: useHouseListColumns() as ColumnDef<object>[],
+	},
+	institutions_list: {
+		main: useInstitutionDetailsColumns() as ColumnDef<object>[],
+	},
+	vocational_list: {
+		main: useNoviciateInstitutionColumns() as ColumnDef<object>[],
 	},
 });
 

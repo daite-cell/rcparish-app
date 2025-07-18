@@ -5,6 +5,7 @@ import type {
 	MembersInParishFamilyProps,
 	ParishCouncilMemberDetailsProps,
 	ParishSonsAndDaughtersProps,
+	ReligiousPersonProps,
 } from '@/types';
 
 export const getParishCouncilSectionData = (row: ParishCouncilMemberDetailsProps) => [
@@ -306,6 +307,25 @@ export const getSonsAndDaughtersSectionData = (row: ParishSonsAndDaughtersProps)
 					place: row.place,
 					permanent_address: row.permanentAddress,
 					temporary_address: row.temporaryAddress || '',
+				},
+			},
+		],
+	},
+];
+
+export const getReligiousPeopleSectionData = (row: ReligiousPersonProps) => [
+	{
+		col: 1,
+		sections: [{ data: { person_id: row.personId, gender: row.gender, position: row.position } }],
+	},
+	{
+		col: 2,
+		sections: [
+			{
+				data: {
+					'Institution_/_convent': row.institution,
+					in_charge_for: row.inChargeFor,
+					mobile_number: row.contactMobileNumber || '',
 				},
 			},
 		],

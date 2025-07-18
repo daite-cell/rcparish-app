@@ -1010,28 +1010,28 @@ export interface VicariateForaneMemberProps {
 	churchName: string;
 	memberName: string;
 	presentPosition: string;
-	fromDate: string;
-	toDate: string;
+	fromYear: string;
+	toYear: string;
 	residentAt: string;
 	mobileNumber: string;
 	imageUrl?: string;
 }
 
 export interface ParishTableDataProps {
+	id: string;
 	vicariateName: string;
+	parishName: string;
 	priestName: string;
-	priorDignitaries?: string;
-	presentParishPriest: string;
 	churchName: string;
-	hasSubStation: string;
-	runBy: string;
-	isMissionStation: string;
-	parishContactNumber: string;
-	parishMailId: string;
+	hasAssistant: 'Yes' | 'No';
+	type: string;
+	parishCouncil: 'Yes' | 'No';
+	mobile1: string;
+	email1: string;
 	address: string;
-	priestMobileNo: string;
-	priestEmailId: string;
-	image: string;
+	mobile2: string;
+	email2: string;
+	imageUrl: string;
 }
 
 export interface PropertiesProps {
@@ -1051,4 +1051,79 @@ export interface PropertiesProps {
 	landUsage: string;
 	landType: string;
 	remark: string;
+}
+
+export interface VicariateDetailsProps {
+	patronChurch: string;
+	place: string;
+	detailed: string;
+}
+
+export interface ParishDetailsProps {
+	nameOfTheVicariate: string;
+	parishName: string;
+	priorDignitaries: string;
+	presentParishPriest: string;
+	churchName: string;
+	hasSubStation: string;
+	runBy: string;
+	isMissionStation: string;
+	parishContactNumber: string;
+	parishMailId: string;
+	address: string;
+	priestMobileNo: string;
+	priestEmailId: string;
+	image: string;
+}
+
+export interface HouseListProps {
+	parish: string;
+	vicariate: string;
+	churchName: string;
+	houses: string;
+	nameOfTheHouse: string;
+	placeOfTheHouse: string;
+	incardinatedTo: string;
+	establishedYear: string;
+	establishedBy: string;
+	landOwnership: string;
+	contactAddress: string;
+	mobileNo: string;
+	email: string;
+}
+
+export interface InstitutionDetailsProps {
+	details: string;
+	category: string;
+	institutionCategory: string;
+	institutionType: string;
+	name: string;
+	place: string;
+	parish: string;
+	vicariate: string;
+	landOwnership: string;
+	establishedYear: string;
+	classesFrom: string;
+	classesUpto: string;
+	gender: string;
+	runBy: string;
+	medium: string;
+	management: string;
+	contactNumber: string;
+	mailId: string;
+	address: string;
+}
+
+export interface NoviciateInstitutionProps {
+	noviciateName: string;
+	place: string;
+	parish: string;
+	vicariate: string;
+	landOwnership: string;
+	institutionCategory: string;
+	institutionType: string;
+	category: string;
+	contactNumber: string;
+	mailId: string;
+	address: string;
 }

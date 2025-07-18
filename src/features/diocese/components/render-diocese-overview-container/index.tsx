@@ -5,8 +5,9 @@ import { memo } from 'react';
 import { getPriestsSectionData } from '../../columns-section';
 import { useStore } from '@/store/store';
 import type { PriestDetailsProps } from '@/types';
-
-// GenericMembersInFamilesOverview;
+import { member_over_view_pages, people_over_view_pages } from '../../data';
+import GenericDiocesePeopleDetailsContainer from '../generic-diocese-people-details-container';
+import RenderDiocesePeopleDetailsContainer from '../render-people-overview-container';
 
 const RenderDioceseOverviewContainer = memo(() => {
 	const type = useRouteName('type');
@@ -26,22 +27,25 @@ const RenderDioceseOverviewContainer = memo(() => {
 			),
 			form: <h1>Priests Form</h1>,
 		},
-		vsss: {
-			view: <h1>VSSS View will be added</h1>,
-			form: <h1>VSSS Form will be added</h1>,
-		},
-		vf: {
-			view: <h1>VF View will be added</h1>,
-			form: <h1>VF Form will be added</h1>,
-		},
-		parishes: {
-			view: <h1>Parishes View will be added</h1>,
-			form: <h1>Parishes Form will be added</h1>,
-		},
-		properties: {
-			view: <h1>Properties View will be added</h1>,
-			form: <h1>Properties Form will be added</h1>,
-		},
+
+		...Object.fromEntries(
+			member_over_view_pages.map((p) => [
+				p,
+				{
+					view: <GenericDiocesePeopleDetailsContainer />,
+					form: <h1 className="text-red-600">Parish Council Forms will be added soon .........</h1>,
+				},
+			])
+		),
+		...Object.fromEntries(
+			people_over_view_pages.map((p) => [
+				p,
+				{
+					view: <RenderDiocesePeopleDetailsContainer />,
+					form: <h1 className="text-red-600">Parish Council Forms will be added soon .........</h1>,
+				},
+			])
+		),
 	};
 
 	return <OverviewTabsLayout pathName={type} componentMap={componentMap} />;
