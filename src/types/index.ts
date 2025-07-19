@@ -952,8 +952,13 @@ export interface PriestDetailsProps {
 	nativePlace: string;
 	residence: string;
 	livingStatus: string;
-	uniqueId: string;
+	uniqueId?: string;
 	details?: string;
+	id?: string;
+	village?: string;
+	status?: string;
+	address?: string;
+	mobile2?: string;
 }
 
 export interface PriestCalendarDetailsProps {
@@ -1126,4 +1131,25 @@ export interface NoviciateInstitutionProps {
 	contactNumber: string;
 	mailId: string;
 	address: string;
+}
+
+export interface CuriaMembersProps {
+	position: string;
+	name: string;
+	presentPosition: string;
+	from: string;
+	to: string;
+	mobile: string;
+	image?: string;
+}
+
+export interface CommitteesProps {
+	id: string;
+	position: string;
+	name: string;
+	presentPosition: string;
+	from: string;
+	to: string;
+	mobile: string;
+	image?: string;
 }

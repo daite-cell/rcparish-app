@@ -7,7 +7,7 @@ import { uploadSchema, type UploadSchema } from '@/validations';
 import { useStore } from '@/store/store';
 
 const UploadFileComponent = () => {
-	const { handleCloseRow } = useStore();
+	const { handleCloseUploadedFileRow } = useStore();
 	const {
 		register,
 		handleSubmit,
@@ -60,7 +60,7 @@ const UploadFileComponent = () => {
 
 			<div className="flex gap-3">
 				<FormButton type="submit" label={uploading ? 'Uploading...' : 'Upload'} disabled={uploading} />
-				<FormButton type="button" label="Close" onClick={handleCloseRow} />
+				<FormButton type="button" label="Close" onClick={handleCloseUploadedFileRow} />
 			</div>
 		</form>
 	);

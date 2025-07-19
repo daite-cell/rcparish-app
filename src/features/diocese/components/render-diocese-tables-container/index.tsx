@@ -2,13 +2,20 @@ import { DynamicDataTable } from '@/components';
 import { useRouteName } from '@/utils/getRouteName';
 import { useDioceseColumnsMap, useDioceseDataMap } from '../../hooks';
 
+import { table_with_export_pages } from '../../data';
+import RenderTableWithExport from '../render-table-with-export';
+import TableWithFileUpload from '../table-with-file';
+
 const RenderDioceseTablesContainer = () => {
 	const type = useRouteName('type');
-
 	const columnsMap = useDioceseColumnsMap();
 	const dataMap = useDioceseDataMap();
 
-	if (!type || !columnsMap[type]) {
+	if (type === 'retired_bishops') {
+		return <TableWithFileUpload />;
+	}
+
+	if (!type) {
 		return <h1 className="text-center mt-10 text-gray-500">Invalid route: No type specified</h1>;
 	}
 
@@ -18,6 +25,10 @@ const RenderDioceseTablesContainer = () => {
 
 	if (!dataMap[type]) {
 		return <h1 className="text-center mt-10 text-gray-500">No data available for {type}</h1>;
+	}
+
+	if (table_with_export_pages.includes(type as string)) {
+		return <RenderTableWithExport />;
 	}
 
 	return (

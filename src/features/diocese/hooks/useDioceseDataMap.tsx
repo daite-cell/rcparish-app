@@ -10,6 +10,10 @@ import {
 	house_list_dummy_data,
 	institution_details_dummy_data,
 	noviciate_institution_dummy_data,
+	dummy_commission_data,
+	curia_members_dummy_data,
+	committees_dummy_data,
+	college_consulters_dummy_data,
 } from '../data';
 
 const useDioceseDataMap = (): Record<
@@ -31,7 +35,7 @@ const useDioceseDataMap = (): Record<
 	},
 	commissions: {
 		main: {
-			data: [],
+			data: dummy_commission_data,
 			enable_date_sorting: false,
 		},
 	},
@@ -93,6 +97,40 @@ const useDioceseDataMap = (): Record<
 	vocational_list: {
 		main: {
 			data: noviciate_institution_dummy_data,
+			enable_date_sorting: false,
+		},
+	},
+	curia_members: {
+		main: {
+			data: curia_members_dummy_data,
+			enable_date_sorting: false,
+		},
+	},
+	committees: {
+		table_1: {
+			heading: 'FINANCE COMMITTEE',
+			data: committees_dummy_data,
+			enable_date_sorting: false,
+		},
+		table_2: {
+			heading: 'EDUCATION COMMITTEE',
+			data: committees_dummy_data,
+			enable_date_sorting: false,
+		},
+		table_3: {
+			heading: 'PASTORAL PROJECT COMMITTEE',
+			data: committees_dummy_data,
+			enable_date_sorting: false,
+		},
+		table_4: {
+			heading: 'SOCIAL PROJECT COMMITTEE',
+			data: committees_dummy_data,
+			enable_date_sorting: false,
+		},
+	},
+	college_consulters: {
+		main: {
+			data: college_consulters_dummy_data,
 			enable_date_sorting: false,
 		},
 	},

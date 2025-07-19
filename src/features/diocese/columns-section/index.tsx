@@ -14,11 +14,11 @@ const getPriestsSectionData = (row: PriestDetailsProps) => [
 		col: 1,
 		sections: [
 			{
-				heading: '',
+				heading: 'Priestly Info',
 				data: {
-					priest_permanent_Id: row.uniqueId || '',
-					priest_from: row.type || '',
-					date_of_priestly_ordination: row.ordinationDate,
+					priest_permanent_Id: row?.uniqueId ?? '',
+					priest_from: row?.type ?? '',
+					date_of_priestly_ordination: row?.ordinationDate ?? '',
 					place_of_priestly_ordination: '',
 				},
 			},
@@ -28,11 +28,11 @@ const getPriestsSectionData = (row: PriestDetailsProps) => [
 		col: 2,
 		sections: [
 			{
-				heading: '',
+				heading: 'Birth & Native Info',
 				data: {
-					birth_of_date: row.dob || '',
+					birth_of_date: row?.dob ?? '',
 					place_of_birth: '',
-					native_place: row.nativePlace || '',
+					native_place: row?.nativePlace ?? row?.village ?? '',
 					native_parish: '',
 					date_of_baptism: '',
 					place_of_baptism: '',
@@ -46,15 +46,15 @@ const getPriestsSectionData = (row: PriestDetailsProps) => [
 		col: 3,
 		sections: [
 			{
-				heading: '',
+				heading: 'Other Details',
 				data: {
 					date_of_diaconate: '',
 					place_of_diaconate: '',
-					adhaar_no: row.aadhaar || '',
-					contact: row.mobile1 || '',
-					email: row.email || '',
-					address: row.residence || '',
-					living_status: row.livingStatus || '',
+					adhaar_no: row?.aadhaar ?? '',
+					contact: row?.mobile1 ?? '',
+					email: row?.email ?? '',
+					address: row?.residence ?? row?.address ?? '',
+					living_status: row?.livingStatus ?? row?.status ?? '',
 				},
 			},
 		],
