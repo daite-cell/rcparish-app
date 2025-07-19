@@ -8,8 +8,16 @@ const RenderDioceseTablesContainer = () => {
 	const columnsMap = useDioceseColumnsMap();
 	const dataMap = useDioceseDataMap();
 
-	if (!type || !columnsMap[type] || !dataMap[type]) {
-		return <h1 className="text-center mt-10 text-gray-500">No data available</h1>;
+	if (!type || !columnsMap[type]) {
+		return <h1 className="text-center mt-10 text-gray-500">Invalid route: No type specified</h1>;
+	}
+
+	if (!columnsMap[type]) {
+		return <h1 className="text-center mt-10 text-gray-500">Configuration error: No columns defined for {type}</h1>;
+	}
+
+	if (!dataMap[type]) {
+		return <h1 className="text-center mt-10 text-gray-500">No data available for {type}</h1>;
 	}
 
 	return (

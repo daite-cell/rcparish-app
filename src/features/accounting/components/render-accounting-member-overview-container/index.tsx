@@ -7,13 +7,17 @@ const RenderAccountingMemberOverviewContainer = () => {
 	const pathName = useRouteName('type');
 	const tabs = [{ label: 'profile' }, { label: 'edit' }, { label: 'back' }];
 
+	if (!pathName || !accounting_pages.includes(pathName as string)) {
+		return <div className="text-center mt-10 text-gray-500">Invalid page type</div>;
+	}
+
 	const componentMap = {
 		...Object.fromEntries(
 			accounting_pages.map((p) => [
 				p,
 				{
 					view: <GenericAccountingDetailsContainer />,
-					edit: <h1 className="text-red-600">Edit {p} Form will be added soon .........</h1>,
+					edit: <h1 className="text-red-600">Edit {p} Form will be coming soon</h1>,
 				},
 			])
 		),
