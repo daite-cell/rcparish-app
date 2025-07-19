@@ -12,6 +12,8 @@ import {
 	useHouseListColumns,
 	useInstitutionDetailsColumns,
 	useNoviciateInstitutionColumns,
+	useCuriaMembersColumns,
+	useCommitteesColumns,
 } from '../columns';
 
 const useDioceseColumnsMap = (): Record<string, Record<string, ColumnDef<object>[]>> => ({
@@ -51,6 +53,18 @@ const useDioceseColumnsMap = (): Record<string, Record<string, ColumnDef<object>
 	},
 	vocational_list: {
 		main: useNoviciateInstitutionColumns() as ColumnDef<object>[],
+	},
+	curia_members: {
+		main: useCuriaMembersColumns() as ColumnDef<object>[],
+	},
+	committees: {
+		table_1: useCommitteesColumns() as ColumnDef<object>[],
+		table_2: useCommitteesColumns() as ColumnDef<object>[],
+		table_3: useCommitteesColumns() as ColumnDef<object>[],
+		table_4: useCommitteesColumns() as ColumnDef<object>[],
+	},
+	college_consulters: {
+		main: useCuriaMembersColumns() as ColumnDef<object>[],
 	},
 });
 

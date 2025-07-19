@@ -54,8 +54,7 @@ const TableContent = <T extends object>({
 							{row.getVisibleCells().map((cell) => (
 								<td
 									key={cell.id}
-									className="px-4 py-2 border border-black"
-									style={{ whiteSpace: wrapText ? 'normal' : 'nowrap' }}
+									className={`px-4 py-2 border border-black ${wrapText ? 'whitespace-normal' : 'whitespace-nowrap'}`}
 								>
 									{flexRender(cell.column.columnDef.cell, cell.getContext())}
 								</td>

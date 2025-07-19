@@ -1,4 +1,4 @@
-import { AdminDefaultImage, TablePriorDignitariesButton, TextLink } from '@/components';
+import { AdminDefaultImage, TableActionButtons, TablePriorDignitariesButton, TextLink } from '@/components';
 import { useStore } from '@/store/store';
 import type {
 	PriestDetailsProps,
@@ -13,10 +13,13 @@ import type {
 	InstitutionDetailsProps,
 	HouseListProps,
 	NoviciateInstitutionProps,
+	BishopPositionTableProps,
+	CuriaMembersProps,
+	CommitteesProps,
 } from '@/types';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
 import type { CellContext, ColumnDef } from '@tanstack/react-table';
-import { Folder, Pencil, SquarePen } from 'lucide-react';
+import { SquarePen, Upload } from 'lucide-react';
 import { useMemo } from 'react';
 
 const usePriestColumns = (): ColumnDef<PriestDetailsProps>[] => {
@@ -115,14 +118,7 @@ const useCommissionColumns = (): ColumnDef<CommissionMemberProps>[] => {
 			id: 'actions',
 			header: 'Edit & Prior Dignitaries',
 			cell: ({ row }) => (
-				<div className="flex gap-2">
-					<button type="button" title="Edit" onClick={() => handleSelectRow?.(row.original)}>
-						<Pencil className="w-4 h-4" />
-					</button>
-					<button type="button" title="View Prior Dignitaries" onClick={() => handleSelectPriorRow?.(row.original)}>
-						<Folder className="w-4 h-4" />
-					</button>
-				</div>
+				<TableActionButtons row={row.original} onEdit={handleSelectRow} onViewPrior={handleSelectPriorRow} />
 			),
 			meta: { isExportable: false },
 		},
@@ -158,6 +154,103 @@ const useCommissionColumns = (): ColumnDef<CommissionMemberProps>[] => {
 			accessorKey: 'image',
 			header: 'Image',
 			cell: () => <AdminDefaultImage height={40} width={40} className="rounded-full" />,
+			meta: { isExportable: false },
+		},
+	];
+};
+
+const useCuriaMembersColumns = (): ColumnDef<CuriaMembersProps>[] => {
+	const { handleSelectPriorRow } = useStore();
+
+	return [
+		{
+			accessorKey: 'position',
+			header: 'Position',
+		},
+		{
+			accessorKey: 'name',
+			header: 'Name',
+			cell: ({ row }) => <TextLink to="">{row.original.name ?? ''}</TextLink>,
+		},
+		{
+			accessorKey: 'presentPosition',
+			header: 'Present Position',
+		},
+		{
+			accessorKey: 'from',
+			header: 'From',
+		},
+		{
+			accessorKey: 'to',
+			header: 'To',
+		},
+		{
+			accessorKey: 'mobile',
+			header: 'Mobile',
+		},
+		{
+			accessorKey: 'image',
+			header: 'Image',
+			cell: () => <AdminDefaultImage height={40} width={40} className="rounded-full" />,
+			meta: { isExportable: false },
+		},
+		{
+			id: 'prior dignitaries',
+			header: 'Prior Dignitaries',
+			cell: ({ row }: CellContext<CuriaMembersProps, unknown>) => (
+				<TablePriorDignitariesButton onClick={() => handleSelectPriorRow(row.original)} />
+			),
+			meta: { isExportable: false },
+			enableSorting: false,
+			enableHiding: true,
+		},
+	];
+};
+
+const useCommitteesColumns = (): ColumnDef<CommitteesProps>[] => {
+	const { handleSelectRow, handleSelectPriorRow } = useStore();
+
+	return [
+		{
+			id: 'actions',
+			header: 'Edit & Prior Dignitaries',
+			cell: ({ row }) => (
+				<TableActionButtons row={row.original} onEdit={handleSelectRow} onViewPrior={handleSelectPriorRow} />
+			),
+			meta: { isExportable: false },
+		},
+
+		{
+			accessorKey: 'position',
+			header: 'Position',
+		},
+		{
+			accessorKey: 'name',
+			header: 'Name',
+			cell: ({ row }) => <TextLink to="">{row.original.name ?? ''}</TextLink>,
+		},
+
+		{
+			accessorKey: 'presentPosition',
+			header: 'Present Position',
+		},
+		{
+			accessorKey: 'from',
+			header: 'From',
+		},
+		{
+			accessorKey: 'to',
+			header: 'To',
+		},
+		{
+			accessorKey: 'mobile',
+			header: 'Mobile',
+		},
+		{
+			accessorKey: 'image',
+			header: 'Image',
+			cell: () => <AdminDefaultImage height={40} width={40} className="rounded-full" />,
+			meta: { isExportable: false },
 		},
 	];
 };
@@ -689,10 +782,64 @@ const useNoviciateInstitutionColumns = (): ColumnDef<NoviciateInstitutionProps>[
 		},
 	];
 };
+
+const useBishopPositionColumns = (): ColumnDef<BishopPositionTableProps>[] => {
+	const { handleSelectUploadedFileRow } = useStore();
+	return [
+		{
+			accessorKey: 'position',
+			header: 'Position',
+			cell: (info) => info.getValue(),
+			meta: { isExportable: true },
+		},
+		{
+			accessorKey: 'name',
+			header: 'Name',
+			cell: (info) => info.getValue(),
+			meta: { isExportable: true },
+		},
+		{
+			accessorKey: 'from',
+			header: 'From',
+			cell: (info) => info.getValue(),
+			meta: { isExportable: true },
+		},
+		{
+			accessorKey: 'to',
+			header: 'To',
+			cell: (info) => info.getValue(),
+			meta: { isExportable: true },
+		},
+		{
+			accessorKey: 'mobile',
+			header: 'Mobile',
+			cell: (info) => info.getValue() || '',
+			meta: { isExportable: true },
+		},
+		{
+			accessorKey: 'briefHistory',
+			header: 'Brief History',
+			cell: (info) => info.getValue() || '',
+			meta: { isExportable: false },
+		},
+		{
+			accessorKey: 'upload',
+			header: 'Upload',
+			cell: ({ row }) => (
+				<button onClick={() => handleSelectUploadedFileRow(row.original)} type="button" title="Upload">
+					<Upload className="w-4 h-4 text-center" />
+				</button>
+			),
+			meta: { isExportable: false },
+		},
+	];
+};
+
 export {
 	usePriestColumns,
 	usePriestCalendarColumns,
 	useCommissionColumns,
+	useCuriaMembersColumns,
 	useDioceseVSSSColumns,
 	useDioceseSenateColumns,
 	useVicariateForaneColumns,
@@ -702,4 +849,6 @@ export {
 	useHouseListColumns,
 	useInstitutionDetailsColumns,
 	useNoviciateInstitutionColumns,
+	useBishopPositionColumns,
+	useCommitteesColumns,
 };

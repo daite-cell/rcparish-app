@@ -61,3 +61,4 @@ export { default as PriorDignitariesContainer } from './prior-dignitaries-contai
 export { default as TableHeading } from './table-heading';
 export { default as TablePriorDignitariesButton } from './table-prior-dignitaries-button';
 export { default as TextLink } from './text-link';
+export { default as TableActionButtons } from './table-action-buttons';

@@ -9,7 +9,7 @@ interface TextLinkProps {
 
 const TextLink: React.FC<TextLinkProps> = ({ to, children, className }) => {
 	return (
-		<Link to={to} className={`underline text-[#0d73c4] hover:text-blue-800 ${className ?? ''}`}>
+		<Link to={to} className={`hover:underline text-[#0d73c4] hover:text-blue-800 ${className ?? ''}`}>
 			{children}
 		</Link>
 	);
