@@ -15,8 +15,16 @@ const RenderTableWithExport = () => {
 	const columnsMap = useDioceseColumnsMap();
 	const dataMap = useDioceseDataMap();
 
-	if (!type || !columnsMap[type] || !dataMap[type]) {
-		return <h1 className="text-center mt-10 text-gray-500">No data available</h1>;
+	if (!type) {
+		return <h1 className="text-center mt-10 text-gray-500">Missing type in route.</h1>;
+	}
+
+	if (!columnsMap[type]) {
+		return <h1 className="text-center mt-10 text-gray-500">No column configuration found for "{type}".</h1>;
+	}
+
+	if (!dataMap[type]) {
+		return <h1 className="text-center mt-10 text-gray-500">No data available for "{type}".</h1>;
 	}
 	const tableTitle = `Diocese ${toTitleCaseFromSnake(type as string)}`;
 
@@ -27,10 +35,10 @@ const RenderTableWithExport = () => {
 				if (!tableData) return null;
 
 				const exportableColumns = (columns as CustomColumnDef<object>[])
-					.filter((col) => !col.meta || col.meta.isExportable !== false)
+					.filter((col) => col.accessorKey)
 					.map((col) => ({
 						header: typeof col.header === 'string' ? col.header : '',
-						accessorKey: col.accessorKey as string,
+						accessorKey: col.accessorKey!,
 						meta: col.meta,
 					}));
 
