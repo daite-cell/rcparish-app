@@ -766,3 +766,364 @@ export type CommonPoolMemberAdmittedMemberType = {
 	anbiamFromTo: string;
 	transferReason: string;
 };
+
+export interface ActiveDonationTableProps {
+	familyStatus: string;
+	familyNumber: string;
+	uniqueFamilyId: string;
+	mainStation: string;
+	subStationId: string;
+	anbiam: string;
+	anbiamId: string;
+	totalAmount: number;
+}
+
+export interface InActiveDonationTableProps {
+	name: string;
+	city: string;
+	donationFor: string;
+	amount: number;
+	voucherNumber: string;
+	date: string;
+	mobile: string;
+	address: string;
+}
+
+export interface RentPropertyProps {
+	type: string;
+	propertyName: string;
+	propertyId: string;
+	renderName: string;
+	mobileNumber: string;
+	nowRentFor: string;
+	fixedAmountMonthly: number;
+	fixedAmountOn: string;
+	grandPaidAmount: number;
+	paidUpto: string;
+	remainingUnpaidAmount: number;
+	lastPaidAmount: number;
+	lastPaidDate: string;
+	paymentHistory: string;
+}
+
+export interface AdvanceRentPropertyProps {
+	type: string;
+	propertyName: string;
+	propertyId: string;
+	renderName: string;
+	mobileNumber: string;
+	nowRentFor: string;
+	fixedAdvanceAmount: number;
+	paidAdvanceAmount: number;
+	balanceAmount: number;
+	lastPaidDate: string;
+}
+
+export interface ChurchCollectionsProps {
+	name: string;
+	priestId: string;
+	monthYear: string;
+	monthly: number;
+	special: number;
+	other: number;
+	amount: number;
+}
+
+export interface WorkerProps {
+	workingAs: string;
+	name: string;
+	workerId: string;
+	dateOfJoining: string;
+	salaryPerMonth: number;
+	salaryFixedFromOn: string;
+	religion: string;
+	mobileNumber: string;
+	aadhaarNumber: string;
+	permanentAddress: string;
+	temporaryAddress: string;
+}
+
+export interface EmployersSalaryProps {
+	workingStatus: string;
+	workerName: string;
+	workerId: string;
+	mobileNumber: string;
+	fixedSalaryAmount: number;
+	fixedSalaryFrom: string;
+	grandPaidAmount: number;
+
+	paidUpto: string;
+	advanceFromSalary: number;
+	advanceFromSalaryOn: string;
+	paidAmount: number;
+	balanceSalaryAmount: number;
+	lastPaidDate: string;
+	voucherNumber: string;
+}
+
+export interface DioceseClosedRTB {
+	requestNo: string;
+	priestName: string;
+	requestFor: string;
+	reason: string;
+	raisedOn: string;
+	lastReceived: string;
+	lastSent: string;
+	status: string;
+	lastUpdatedOn: string;
+}
+
+export interface DioceseOpenedRTB {
+	requestNo: string;
+	priestName: string;
+	requestFor: string;
+	reason: string;
+	raisedOn: string;
+	status: string;
+	lastReceived: string;
+	lastSent: string;
+	respond: string;
+	writeComment: string;
+	action: string;
+}
+
+export interface QueryFromBishopClosedProps {
+	queryNo: string;
+	priestName: string;
+	requestFor: string;
+	reason: string;
+	raisedOn: string;
+	lastReceived: string;
+	lastSent: string;
+	status: string;
+	lastUpdatedOn: string;
+}
+
+export interface QueryFromBishopOpenedProps {
+	queryNo: string;
+	priestName: string;
+	requestFor: string;
+	reason: string;
+	raisedOn: string;
+	status: string;
+	lastReceived: string;
+	lastSent: string;
+	writeComment: string;
+	action: string;
+}
+
+export interface QueryFromPeopleClosedProps {
+	queryNo: string;
+	requestFor: string;
+	reason: string;
+	raisedOn: string;
+	lastReceived: string;
+	lastSent: string;
+	status: string;
+	lastUpdatedOn: string;
+}
+
+export interface QueryFromPeopleOpenedProps {
+	queryNo: string;
+	familyName: string;
+	subStationName: string;
+	anbiamName: string;
+	requestFor: string;
+	reason: string;
+	raisedOn: string;
+	status: string;
+	lastReceived: string;
+	lastSent: string;
+	writeComment: string;
+	action: string;
+}
+
+export interface PriestDetailsProps {
+	type: string;
+	image: string;
+	name: string;
+	position: string;
+	ordinationDate: string;
+	dob: string;
+	mobile1: string;
+	optionalMobile: string;
+	email: string;
+	aadhaar: string;
+	nativePlace: string;
+	residence: string;
+	livingStatus: string;
+	uniqueId: string;
+	details?: string;
+}
+
+export interface PriestCalendarDetailsProps {
+	name: string;
+	firstProfessionDate: string;
+	ordinationDate: string;
+	birthDate: string;
+	mobileNumber: string;
+}
+
+export interface CommissionMemberProps {
+	nameOfCommission: string;
+	position: string;
+	priestName: string;
+	presentPosition: string;
+	from: string;
+	to: string;
+	mobile: string;
+	image?: string;
+	id?: string;
+}
+
+export interface DioceseVSSSMemberProps {
+	id?: string;
+	designation: string;
+	priorDignitaries: string;
+	priestName: string;
+	presentPosition: string;
+	fromYear: string;
+	toYear: string;
+	residentAt: string;
+	mobileNumber: string;
+	image?: string;
+}
+
+export interface DioceseSenateMemberProps {
+	id: string;
+	designation: string;
+	priorDignitaries: string;
+	priestName: string;
+	presentPosition: string;
+	fromYear: string;
+	toYear: string;
+	residentAt: string;
+	mobileNumber: string;
+	image: string;
+	memberName: string;
+}
+
+export interface VicariateForaneMemberProps {
+	id: string;
+	priorDignitaries?: string;
+	vicariateName: string;
+	churchName: string;
+	memberName: string;
+	presentPosition: string;
+	fromYear: string;
+	toYear: string;
+	residentAt: string;
+	mobileNumber: string;
+	imageUrl?: string;
+}
+
+export interface ParishTableDataProps {
+	id: string;
+	vicariateName: string;
+	parishName: string;
+	priestName: string;
+	churchName: string;
+	hasAssistant: 'Yes' | 'No';
+	type: string;
+	parishCouncil: 'Yes' | 'No';
+	mobile1: string;
+	email1: string;
+	address: string;
+	mobile2: string;
+	email2: string;
+	imageUrl: string;
+}
+
+export interface PropertiesProps {
+	document: string;
+	parishName: string;
+	villageName: string;
+	documentNumber: string;
+	dateOfRegistration: string;
+	purchasingAmount: string;
+	purchaserName: string;
+	vendorName: string;
+	oldSurvey: string;
+	newSurvey: string;
+	extent: string;
+	pattaNo: string;
+	availabilityOfDocument: string;
+	landUsage: string;
+	landType: string;
+	remark: string;
+}
+
+export interface VicariateDetailsProps {
+	patronChurch: string;
+	place: string;
+	detailed: string;
+}
+
+export interface ParishDetailsProps {
+	nameOfTheVicariate: string;
+	parishName: string;
+	priorDignitaries: string;
+	presentParishPriest: string;
+	churchName: string;
+	hasSubStation: string;
+	runBy: string;
+	isMissionStation: string;
+	parishContactNumber: string;
+	parishMailId: string;
+	address: string;
+	priestMobileNo: string;
+	priestEmailId: string;
+	image: string;
+}
+
+export interface HouseListProps {
+	parish: string;
+	vicariate: string;
+	churchName: string;
+	houses: string;
+	nameOfTheHouse: string;
+	placeOfTheHouse: string;
+	incardinatedTo: string;
+	establishedYear: string;
+	establishedBy: string;
+	landOwnership: string;
+	contactAddress: string;
+	mobileNo: string;
+	email: string;
+}
+
+export interface InstitutionDetailsProps {
+	details: string;
+	category: string;
+	institutionCategory: string;
+	institutionType: string;
+	name: string;
+	place: string;
+	parish: string;
+	vicariate: string;
+	landOwnership: string;
+	establishedYear: string;
+	classesFrom: string;
+	classesUpto: string;
+	gender: string;
+	runBy: string;
+	medium: string;
+	management: string;
+	contactNumber: string;
+	mailId: string;
+	address: string;
+}
+
+export interface NoviciateInstitutionProps {
+	noviciateName: string;
+	place: string;
+	parish: string;
+	vicariate: string;
+	landOwnership: string;
+	institutionCategory: string;
+	institutionType: string;
+	category: string;
+	contactNumber: string;
+	mailId: string;
+	address: string;
+}
