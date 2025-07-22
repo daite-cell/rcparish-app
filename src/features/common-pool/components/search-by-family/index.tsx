@@ -1,9 +1,6 @@
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CustomFormInput, DateInputFelid, FormButton } from '@/components';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
-import { cn } from '@/lib/utils';
+import { ControlledRadioGroup, CustomFormInput, DateInputField, FormButton } from '@/components';
 import { familySearchSchema, type FamilySearchForm } from '@/validations';
 import { useCallback, useMemo } from 'react';
 
@@ -19,7 +16,6 @@ const SearchByFamily = () => {
 		handleSubmit,
 		watch,
 		control,
-		setValue,
 		formState: { errors },
 	} = useForm<FamilySearchForm>({
 		resolver: zodResolver(familySearchSchema),
@@ -32,42 +28,24 @@ const SearchByFamily = () => {
 	const selectedField = watch('search_by_family');
 
 	const onSubmit = useCallback((data: FamilySearchForm) => {
-		alert(JSON.stringify(data, null, 2) || data);
+		alert(JSON.stringify(data, null, 2));
 	}, []);
 
 	const selectedInput = useMemo(() => inputs_data.find((i) => i.value === selectedField), [selectedField]);
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center items-center gap-6 p-6">
-			<div className="space-y-2">
-				<RadioGroup
-					className="flex gap-4"
-					defaultValue="family_no"
-					onValueChange={(val) => {
-						setValue('search_by_family', val as 'family_no' | 'marriage_date' | 'family_mobile_no');
-						setValue('search_value', val === 'marriage_date' ? '' : '');
-					}}
-				>
-					{inputs_data.map((input) => (
-						<div key={input.value} className="flex items-center space-x-2">
-							<RadioGroupItem
-								value={input.value}
-								id={input.value}
-								className={cn(
-									'border-2 border-gray-300',
-									'data-[state=checked]:border-blue-600',
-									'data-[state=checked]:bg-blue-600',
-									'focus-visible:ring-2 focus-visible:ring-blue-400'
-								)}
-							/>
-							<Label className="font-light" htmlFor={input.value}>
-								{input.name}
-							</Label>
-						</div>
-					))}
-				</RadioGroup>
-				{errors.search_by_family && <p className="text-red-500 text-xs">{errors.search_by_family.message}</p>}
-			</div>
+			<ControlledRadioGroup
+				name="search_by_family"
+				control={control}
+				label="Search By"
+				options={[
+					{ value: 'family_no', label: 'Family No' },
+					{ value: 'marriage_date', label: 'Marriage Date' },
+					{ value: 'family_mobile_no', label: 'Family Mobile No' },
+				]}
+				error={errors.search_by_family?.message}
+			/>
 
 			<div className="w-full">
 				{selectedField === 'marriage_date' ? (
@@ -75,7 +53,7 @@ const SearchByFamily = () => {
 						control={control}
 						name="search_value"
 						render={({ field }) => (
-							<DateInputFelid
+							<DateInputField
 								label="Marriage Date"
 								placeholder="dd-mm-yyyy"
 								value={field.value ? new Date(field.value) : undefined}
@@ -89,6 +67,7 @@ const SearchByFamily = () => {
 					/>
 				) : (
 					<CustomFormInput
+						control={control}
 						label={selectedInput?.name || 'Input'}
 						placeholder={`Enter ${selectedInput?.name || ''}`}
 						{...register('search_value')}

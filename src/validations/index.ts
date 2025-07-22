@@ -24,6 +24,7 @@ export const historyFormSchema = z.object({
 });
 
 export type HistoryFormType = z.infer<typeof historyFormSchema>;
+
 export const yearSelectionSchema = z.object({
 	year_type: z.enum(['current_year', 'next_year'], {
 		required_error: 'Please select a year type',
@@ -57,3 +58,12 @@ export const uploadSchema = z.object({
 });
 
 export type UploadSchema = z.infer<typeof uploadSchema>;
+
+export const requestSchema = z.object({
+	parish: z.string().min(1, 'Parish is required'),
+	priests: z.string().min(1, 'Priest is required'),
+	requestFor: z.string().min(1, 'Request For is required'),
+	description: z.string().min(1, 'Description is required'),
+});
+
+export type RequestFormValues = z.infer<typeof requestSchema>;
