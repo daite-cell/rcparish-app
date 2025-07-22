@@ -1,11 +1,16 @@
 import { useRouteName } from '@/utils/getRouteName';
 import { OverviewTabsLayout } from '@/layouts';
 import RenderHouseOverview from '../render-house-overview';
+import { InstitutionsForm } from '../../forms';
 
 const RenderHouseMemberOverviewContainer = () => {
 	const pathName = useRouteName('type');
-	const houses_pages = ['institutions', 'vocational_institutions', 'communities'];
+	const houses_pages = ['vocational_institutions', 'communities'];
 	const componentMap = {
+		institutions: {
+			view: <RenderHouseOverview />,
+			form: <InstitutionsForm />,
+		},
 		...Object.fromEntries(
 			houses_pages.map((p) => [
 				p,

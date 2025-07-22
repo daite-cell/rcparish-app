@@ -3,7 +3,7 @@ import { side_nav_links } from '@/data/side-navbar-content';
 import type { NavLinkProps } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
 import { useState } from 'react';
-import { RenderHouseMemberOverviewContainer, RenderHousesTableContainer } from '../../components';
+import { RenderFormsContainer, RenderHouseMemberOverviewContainer, RenderHousesTableContainer } from '../../components';
 import { useStore } from '@/store/store';
 import { useRouteName } from '@/utils/getRouteName';
 
@@ -27,7 +27,7 @@ const HousesGenericPage = () => {
 			activeTabId={activeIndex}
 			tabs={tabsData || [{ label: 'view' }, { label: 'add' }]}
 		>
-			{activeIndex === 0 ? <RenderHousesTableContainer /> : <h1>form will be added</h1>}
+			{activeIndex === 0 ? <RenderHousesTableContainer /> : <RenderFormsContainer />}
 		</TabsLayout>
 	);
 };

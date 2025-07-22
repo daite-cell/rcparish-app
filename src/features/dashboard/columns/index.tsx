@@ -2,13 +2,14 @@ import { useStore } from '@/store/store';
 import type {
 	DioceseClosedRTB,
 	DioceseOpenedRTB,
+	DioceseSermonProps,
 	QueryFromBishopClosedProps,
 	QueryFromBishopOpenedProps,
 	QueryFromPeopleClosedProps,
 	QueryFromPeopleOpenedProps,
 } from '@/types';
 import type { CellContext, ColumnDef } from '@tanstack/react-table';
-import { Trash } from 'lucide-react';
+import { Trash, Trash2 } from 'lucide-react';
 
 const useClosedRequestColumns = (): ColumnDef<DioceseClosedRTB>[] => {
 	const { handleSelectRow } = useStore();
@@ -294,6 +295,45 @@ const useQueryFromPeopleOpenedColumns = (): ColumnDef<QueryFromPeopleOpenedProps
 		header: 'Action',
 	},
 ];
+
+const useDioceseSermonColumns = (): ColumnDef<DioceseSermonProps>[] => {
+	return [
+		{
+			id: 'actions',
+			header: () => <Trash2 className="w-4 h-4" />,
+			cell: () => (
+				<button title="Delete">
+					<Trash2 className="w-4 h-4" />
+				</button>
+			),
+			meta: { isExportable: false },
+		},
+		{
+			accessorKey: 'date',
+			header: 'Date',
+		},
+		{
+			accessorKey: 'week',
+			header: 'Week',
+		},
+		{
+			accessorKey: 'day',
+			header: 'Day',
+		},
+		{
+			accessorKey: 'file',
+			header: 'File',
+		},
+		{
+			accessorKey: 'scrollTo',
+			header: 'Scroll To',
+		},
+		{
+			accessorKey: 'by',
+			header: 'By',
+		},
+	];
+};
 export {
 	useClosedRequestColumns,
 	useOpenedRequestColumns,
@@ -301,4 +341,5 @@ export {
 	useQueryFromBishopOpenedColumns,
 	useQueryFromPeopleClosedColumns,
 	useQueryFromPeopleOpenedColumns,
+	useDioceseSermonColumns,
 };

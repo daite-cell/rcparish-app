@@ -1,4 +1,4 @@
-import { SingleSelectDropdown, DateInputFelid, FormButton } from '@/components';
+import { DateInputField, FormButton } from '@/components';
 
 interface TableFiltersProps {
 	fromDate: Date | undefined;
@@ -22,14 +22,13 @@ const TableFilters = ({
 	enableLetterSorting = false,
 }: TableFiltersProps) => {
 	const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
 	return (
 		<div className="mb-5">
 			{enableDateSorting && (
 				<div className="flex flex-col items-center gap-4 md:flex-row">
-					<SingleSelectDropdown label="select the date" />
-					<DateInputFelid label="From" value={fromDate} onChange={setFromDate} />
-					<DateInputFelid label="To" value={toDate} onChange={setToDate} />
-
+					<DateInputField label="From" value={fromDate} onChange={setFromDate} placeholder="Select from date" />
+					<DateInputField label="To" value={toDate} onChange={setToDate} placeholder="Select to date" />
 					<FormButton
 						label="Clear"
 						onClick={() => {
@@ -41,13 +40,13 @@ const TableFilters = ({
 			)}
 
 			{enableLetterSorting && (
-				<div className="flex items-center my-4 overflow-x-auto border border-black hide-scrollbar">
+				<div className="flex items-center my-4 overflow-x-auto border border-black rounded-md hide-scrollbar">
 					{['All', ...alphabet].map((char) => (
 						<button
 							type="button"
 							key={char}
 							onClick={() => setAlphaFilter(char)}
-							className={`px-3 py-[6px] flex-1 text-xs ${
+							className={`px-3 py-[6px] flex-1 text-xs transition-colors ${
 								alphaFilter === char ? 'bg-[#343148ff] text-white' : 'bg-[#d7c49e] text-black'
 							}`}
 						>

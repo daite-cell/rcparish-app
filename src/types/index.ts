@@ -1153,3 +1153,13 @@ export interface CommitteesProps {
 	mobile: string;
 	image?: string;
 }
+
+export interface DioceseSermonProps {
+	id: string;
+	date: string;
+	week: string;
+	day: string;
+	file: string;
+	scrollTo: string;
+	by: string;
+}

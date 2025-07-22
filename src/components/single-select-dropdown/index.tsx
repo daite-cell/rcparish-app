@@ -2,85 +2,92 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Command, CommandEmpty, CommandGroup, CommandItem } from '@/components/ui/command';
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
-import { memo, useState } from 'react';
 
-interface SingleSelectDropdownProps {
+import { Controller, type Control, type FieldValues, type Path } from 'react-hook-form';
+
+interface Option {
 	label: string;
-	options?: { label: string; value: string }[];
-	value?: string;
-	placeholder?: string;
+	value: string;
 }
 
-const SingleSelectDropdown = memo(
-	({
-		label,
-		options = [
-			{ label: 'option1', value: 'option1' },
-			{ label: 'option2', value: 'option2' },
-		],
-		value,
+interface SingleSelectDropdownProps<TFieldValues extends FieldValues> {
+	label: string;
+	name: Path<TFieldValues>;
+	control: Control<TFieldValues>;
+	options: Option[];
+	placeholder?: string;
+	className?: string;
+	disabled?: boolean;
+	error?: string;
+}
 
-		placeholder = 'Select an option',
-	}: SingleSelectDropdownProps) => {
-		const [open, setOpen] = useState(false);
-		const [selected, setSelected] = useState<string>(options[0].value);
-		const onChange = (value: string) => {
-			setSelected(value);
-			setOpen(false);
-		};
-		const selectedLabel = options.find((o) => o.value === value)?.label;
+function SingleSelectDropdown<TFieldValues extends FieldValues>({
+	label,
+	name,
+	control,
+	options = [],
+	placeholder = 'Select an option',
+	className = '',
+	disabled = false,
+	error,
+}: SingleSelectDropdownProps<TFieldValues>) {
+	return (
+		<div className="grid w-full gap-2">
+			<label className="text-[12px] font-sm">{label}</label>
+			<Controller
+				name={name}
+				control={control}
+				render={({ field }) => {
+					const selectedOption = options.find((o) => o.value === field.value);
 
-		return (
-			<div className="grid w-full gap-2">
-				<label className="text-[12px] font-sm">{label}</label>
-				<Popover open={open} onOpenChange={setOpen}>
-					<PopoverTrigger asChild>
-						<Button
-							variant="outline"
-							role="combobox"
-							aria-expanded={open}
-							className="w-full h-8 justify-between rounded-[2px] text-[12px] font-sm "
-						>
-							{selectedLabel || <span className="text-muted-foreground">{placeholder}</span>}
-							<ChevronDown className="w-4 h-4 ml-2 opacity-50 shrink-0" />
-						</Button>
-					</PopoverTrigger>
-					<PopoverContent className="w-[380px] px-2">
-						<Command>
-							<input
-								title="search"
-								onChange={(e) => setSelected(e.target.value)}
-								className="px-3 mx-2 placeholder:font-normal "
-							/>
-							<CommandEmpty>No results found.</CommandEmpty>
-							<CommandGroup>
-								{options.map((option) => (
-									<CommandItem
-										key={option.value}
-										value={selected}
-										onSelect={() => {
-											onChange?.(option.value);
-											setOpen(false);
-										}}
-										className="flex items-center hover:!bg-primary  "
+					return (
+						<>
+							<Popover>
+								<PopoverTrigger asChild>
+									<Button
+										variant="outline"
+										role="combobox"
+										className={`w-full h-8 justify-between rounded-[2px] text-[12px] font-sm ${className} ${
+											error ? 'border-red-500' : ''
+										}`}
+										disabled={disabled}
 									>
-										<input
-											title="select option"
-											checked={selected === option.value}
-											value={option.value}
-											type="checkbox"
-											className="w-4 h-4 text-primary text-normal"
-										/>
-										<span className="text-[12px] font-sm">{option.label}</span>
-									</CommandItem>
-								))}
-							</CommandGroup>
-						</Command>
-					</PopoverContent>
-				</Popover>
-			</div>
-		);
-	}
-);
+										{selectedOption?.label || <span className="text-muted-foreground">{placeholder}</span>}
+										<ChevronDown className="w-4 h-4 ml-2 opacity-50 shrink-0" />
+									</Button>
+								</PopoverTrigger>
+								<PopoverContent className="w-[380px] p-2">
+									<Command>
+										<CommandEmpty>No results found.</CommandEmpty>
+										<CommandGroup>
+											{options.map((option) => (
+												<CommandItem
+													key={option.value}
+													value={option.value}
+													onSelect={() => field.onChange(option.value)}
+													className="flex items-center gap-2 cursor-pointer"
+												>
+													<input
+														type="checkbox"
+														title="option"
+														checked={field.value === option.value}
+														readOnly
+														className="w-4 h-4"
+													/>
+													<span className="text-[12px]">{option.label}</span>
+												</CommandItem>
+											))}
+										</CommandGroup>
+									</Command>
+								</PopoverContent>
+							</Popover>
+							{error && <p className="text-[11px] text-red-500 font-medium -mt-1">{error}</p>}
+						</>
+					);
+				}}
+			/>
+		</div>
+	);
+}
 
 export default SingleSelectDropdown;

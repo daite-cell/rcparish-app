@@ -1,10 +1,7 @@
 import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CustomFormInput, FormButton } from '@/components';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
-import { cn } from '@/lib/utils';
+import { ControlledRadioGroup, CustomFormInput, FormButton } from '@/components';
 import { memberSearchSchema, type MemberSearchForm } from '@/validations';
 
 const inputs_data = [
@@ -15,6 +12,7 @@ const inputs_data = [
 
 const SearchByMember = () => {
 	const {
+		control,
 		register,
 		handleSubmit,
 		watch,
@@ -29,6 +27,7 @@ const SearchByMember = () => {
 	});
 
 	const selectedField = watch('search_by_member');
+
 	const selectedInputName = useMemo(() => {
 		return inputs_data.find((i) => i.value === selectedField)?.name || 'Input';
 	}, [selectedField]);
@@ -39,38 +38,20 @@ const SearchByMember = () => {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center items-center gap-6 p-6">
-			<div className="space-y-2">
-				<RadioGroup
-					className="flex gap-4"
-					defaultValue="member_id"
-					onValueChange={(val) => {
-						setValue('search_by_member', val as MemberSearchForm['search_by_member']);
-						setValue('search_value', '');
-					}}
-				>
-					{inputs_data.map((input) => (
-						<div key={input.value} className="flex items-center space-x-2">
-							<RadioGroupItem
-								value={input.value}
-								id={input.value}
-								className={cn(
-									'border-2 border-gray-300',
-									'data-[state=checked]:border-blue-600',
-									'data-[state=checked]:bg-blue-600',
-									'focus-visible:ring-2 focus-visible:ring-blue-400'
-								)}
-							/>
-							<Label className="font-light" htmlFor={input.value}>
-								{input.name}
-							</Label>
-						</div>
-					))}
-				</RadioGroup>
-				{errors.search_by_member && <p className="text-red-500 text-xs">{errors.search_by_member.message}</p>}
-			</div>
+			<ControlledRadioGroup
+				name="search_by_member"
+				control={control}
+				options={inputs_data.map((i) => ({
+					value: i.value,
+					label: i.name,
+				}))}
+				error={errors.search_by_member?.message}
+				onChange={() => setValue('search_value', '')}
+			/>
 
 			<div className="w-full">
 				<CustomFormInput
+					control={control}
 					label={selectedInputName}
 					placeholder={`Enter ${selectedInputName}`}
 					{...register('search_value')}
