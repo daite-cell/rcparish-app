@@ -16,8 +16,8 @@ interface CustomFormInputProps<T extends FieldValues> {
 	disabled?: boolean;
 	error?: string;
 	placeholder?: string;
+	onBlur?: () => void;
 }
-
 function CustomFormInputInner<T extends FieldValues>({
 	control,
 	name,
@@ -28,6 +28,7 @@ function CustomFormInputInner<T extends FieldValues>({
 	disabled = false,
 	error,
 	placeholder,
+	onBlur,
 }: CustomFormInputProps<T>) {
 	const isTextarea = type === 'textarea';
 
@@ -40,27 +41,25 @@ function CustomFormInputInner<T extends FieldValues>({
 			<Controller
 				control={control}
 				name={name}
-				render={({ field }) =>
-					isTextarea ? (
-						<CustomTextarea
-							id={name}
-							placeholder={placeholder}
-							disabled={disabled}
-							className={cn(className, error && 'border-red-500')}
-							{...field}
-						/>
+				render={({ field }) => {
+					const commonProps = {
+						id: name,
+						placeholder,
+						disabled,
+						className: cn(className, error && 'border-red-500'),
+						...field,
+						onBlur: () => {
+							field.onBlur();
+							onBlur?.();
+						},
+					};
+
+					return isTextarea ? (
+						<CustomTextarea {...commonProps} />
 					) : (
-						<CustomInput
-							id={name}
-							type={type}
-							placeholder={placeholder}
-							disabled={disabled}
-							aria-label={label}
-							className={cn(className, error && 'border-red-500')}
-							{...field}
-						/>
-					)
-				}
+						<CustomInput type={type} aria-label={label} {...commonProps} />
+					);
+				}}
 			/>
 
 			{error && <p className="text-xs text-red-500">{error}</p>}

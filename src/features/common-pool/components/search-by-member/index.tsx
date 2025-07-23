@@ -13,7 +13,6 @@ const inputs_data = [
 const SearchByMember = () => {
 	const {
 		control,
-		register,
 		handleSubmit,
 		watch,
 		setValue,
@@ -52,9 +51,9 @@ const SearchByMember = () => {
 			<div className="w-full">
 				<CustomFormInput
 					control={control}
+					name="search_value"
 					label={selectedInputName}
 					placeholder={`Enter ${selectedInputName}`}
-					{...register('search_value')}
 					error={errors.search_value?.message}
 				/>
 			</div>

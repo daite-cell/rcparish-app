@@ -36,7 +36,7 @@ function ControlledRadioGroup<T extends FieldValues>({
 	return (
 		<div className={cn('w-full', className)}>
 			{label && (
-				<Label htmlFor={name} className="text-sm mb-1 block">
+				<Label htmlFor={name} className="text-xs font-normal mb-2 block">
 					{label}
 				</Label>
 			)}
@@ -66,7 +66,13 @@ function ControlledRadioGroup<T extends FieldValues>({
 										itemClassName
 									)}
 								/>
-								<Label htmlFor={`${name}-${option.value}`} className={cn('text-[12px]', labelClassName)}>
+								<Label
+									htmlFor={`${name}-${option.value}`}
+									className={cn(
+										'flex items-center gap-2 select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 px-1 text-[12px] font-normal',
+										labelClassName
+									)}
+								>
 									{option.label}
 								</Label>
 							</div>

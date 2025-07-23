@@ -12,7 +12,6 @@ const inputs_data = [
 
 const SearchByFamily = () => {
 	const {
-		register,
 		handleSubmit,
 		watch,
 		control,
@@ -70,7 +69,7 @@ const SearchByFamily = () => {
 						control={control}
 						label={selectedInput?.name || 'Input'}
 						placeholder={`Enter ${selectedInput?.name || ''}`}
-						{...register('search_value')}
+						name="search_value"
 						error={errors.search_value?.message}
 					/>
 				)}

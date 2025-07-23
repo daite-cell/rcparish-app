@@ -206,6 +206,127 @@ const abbreviationOptions = [
 	{ label: 'Others', value: 'Others' },
 ];
 
+const rentTypeOptions = [
+	{ label: 'Rent', value: 'Rent' },
+	{ label: 'Lease', value: 'Lease' },
+];
+
+const shopTypeOptions = [
+	{ label: 'Shop', value: 'Shop' },
+	{ label: 'House', value: 'House' },
+	{ label: 'Community Hall', value: 'Community Hall' },
+	{ label: 'Other', value: 'Other' },
+];
+
+const propertyOwnerOptions = [
+	{ label: 'Parish', value: 'Parish' },
+	{ label: 'Association', value: 'Association' },
+	{ label: 'Diocese', value: 'Diocese' },
+	{ label: 'Other', value: 'Other' },
+];
+
+const maintainedByOptions = [
+	{ label: 'Bishop', value: '0' },
+	{ label: 'Parish Priest', value: '1' },
+	{ label: 'President of the Association', value: '2' },
+	{ label: 'Others', value: '3' },
+];
+
+const maintainedByParishOptions = [
+	{ label: 'Alapakkam Parish', value: 'Alapakkam Parish' },
+	{ label: 'Arakkonam Parish', value: 'Arakkonam Parish' },
+	{ label: 'Arcot Parish (Capuchins)', value: 'Arcot Parish (Capuchins)' },
+	{ label: 'Chengalpattu Parish', value: 'Chengalpattu Parish' },
+	{ label: 'Chitlapakkam Parish', value: 'Chitlapakkam Parish' },
+	{ label: 'Chetpet Parish (Capuchins)', value: 'Chetpet Parish (Capuchins)' },
+	{ label: 'Desur Parish (Jesuits)', value: 'Desur Parish (Jesuits)' },
+	{ label: 'Gandhinagar Parish', value: 'Gandhinagar Parish' },
+	{ label: 'Iruppukuricy Parish', value: 'Iruppukuricy Parish' },
+	{ label: 'Kadambathur Parish', value: 'Kadambathur Parish' },
+	{ label: 'Kancheepuram Parish', value: 'Kancheepuram Parish' },
+	{ label: 'Kilachery Parish', value: 'Kilachery Parish' },
+	{ label: 'Kolappanchery Parish', value: 'Kolappanchery Parish' },
+	{ label: 'Kolathur Parish', value: 'Kolathur Parish' },
+	{ label: 'Kosapet Parish', value: 'Kosapet Parish' },
+	{ label: 'Maduranthagam Parish', value: 'Maduranthagam Parish' },
+	{ label: 'Mandaveli Parish', value: 'Mandaveli Parish' },
+	{ label: 'Manapakkam Parish', value: 'Manapakkam Parish' },
+	{ label: 'Manavalanagar Parish', value: 'Manavalanagar Parish' },
+	{ label: 'Maraimalai Nagar Parish', value: 'Maraimalai Nagar Parish' },
+	{ label: 'Nanmangalam Parish', value: 'Nanmangalam Parish' },
+	{ label: 'Nazarethpet Parish', value: 'Nazarethpet Parish' },
+	{ label: 'Neervalur Parish', value: 'Neervalur Parish' },
+	{ label: 'Nesapakkam Parish', value: 'Nesapakkam Parish' },
+	{ label: 'Padi Parish', value: 'Padi Parish' },
+	{ label: 'Padappai Parish', value: 'Padappai Parish' },
+	{ label: 'Palanchur Parish', value: 'Palanchur Parish' },
+	{ label: 'Palavakkam Parish', value: 'Palavakkam Parish' },
+	{ label: 'Palayaseevaram Parish', value: 'Palayaseevaram Parish' },
+	{ label: 'Pallavaram Parish', value: 'Pallavaram Parish' },
+	{ label: 'Pammal Parish', value: 'Pammal Parish' },
+	{ label: 'Panruti Parish (OFM Cap)', value: 'Panruti Parish (OFM Cap)' },
+	{ label: 'Perungalathur Parish', value: 'Perungalathur Parish' },
+	{ label: 'Perungudi Parish', value: 'Perungudi Parish' },
+	{ label: 'Perur Parish', value: 'Perur Parish' },
+	{ label: 'Poonamallee Parish', value: 'Poonamallee Parish' },
+	{ label: 'Porur Parish', value: 'Porur Parish' },
+	{ label: 'Ramanjeri Parish', value: 'Ramanjeri Parish' },
+	{ label: 'Redhills Parish', value: 'Redhills Parish' },
+	{ label: 'Santhome Cathedral Parish', value: 'Santhome Cathedral Parish' },
+	{ label: 'Sembakkam Parish', value: 'Sembakkam Parish' },
+	{ label: 'Sithalapakkam Parish', value: 'Sithalapakkam Parish' },
+	{ label: 'Sriperumbudur Parish', value: 'Sriperumbudur Parish' },
+	{ label: 'St. Anthony’s Shrine, Broadway Parish', value: 'St. Anthony’s Shrine, Broadway Parish' },
+	{ label: 'St. Joseph’s Shrine, Poonamallee Parish', value: 'St. Joseph’s Shrine, Poonamallee Parish' },
+	{ label: 'St. Mary’s Co-Cathedral Parish, Chennai', value: 'St. Mary’s Co-Cathedral Parish, Chennai' },
+	{ label: 'St. Thomas Mount Parish', value: 'St. Thomas Mount Parish' },
+	{ label: 'Tambaram Parish', value: 'Tambaram Parish' },
+	{ label: 'Thandarai Parish', value: 'Thandarai Parish' },
+	{ label: 'Thiruninravur Parish', value: 'Thiruninravur Parish' },
+	{ label: 'Thiruvallur Parish', value: 'Thiruvallur Parish' },
+	{ label: 'Thiruvanmiyur Parish', value: 'Thiruvanmiyur Parish' },
+	{ label: 'Thiruvotriyur Parish', value: 'Thiruvotriyur Parish' },
+	{ label: 'Thozhupedu Parish', value: 'Thozhupedu Parish' },
+	{ label: 'Tindivanam Parish', value: 'Tindivanam Parish' },
+	{ label: 'Uthiramerur Parish', value: 'Uthiramerur Parish' },
+	{ label: 'Vandavasi Parish', value: 'Vandavasi Parish' },
+	{ label: 'Vellavedu Parish', value: 'Vellavedu Parish' },
+	{ label: 'Villivakkam Parish', value: 'Villivakkam Parish' },
+	{ label: 'Vyasarpadi Parish', value: 'Vyasarpadi Parish' },
+];
+
+const churchInventoryCategoryOptions = [
+	{ label: 'Garments and Vestments', value: 'Garments and Vestments' },
+	{ label: 'Electric Appliances', value: 'Electric Appliances' },
+	{ label: 'Audio Systems', value: 'Audio Systems' },
+	{ label: 'Furniture - Wood Material Based', value: 'Furniture - Wood Material Based' },
+	{ label: 'Furniture - Steel and Iron Based', value: 'Furniture - Steel and Iron Based' },
+	{ label: 'Statue', value: 'Statue' },
+	{ label: 'Instruments', value: 'Instruments' },
+	{ label: 'Glass Items', value: 'Glass Items' },
+	{ label: 'Decoration Things', value: 'Decoration Things' },
+	{ label: 'Others', value: 'Others' },
+];
+
+const buyerTypeOptions = [
+	{ label: 'Purchased', value: 'Purchased' },
+	{ label: 'Sponsored', value: 'Sponsored' },
+];
+
+const ownForOptions = [
+	{ label: 'Parish', value: 'Parish' },
+	{ label: 'Parish Priest', value: 'Parish Priest' },
+	{ label: 'Diocese', value: 'Diocese' },
+];
+const otherInventoryCategoryOptions = [
+	{ label: 'Vehicles', value: '0' },
+	{ label: 'Electric Appliances', value: '1' },
+	{ label: 'Furniture', value: '2' },
+	{ label: 'Home Appliances', value: '3' },
+	{ label: 'Furniture - Steel and Iron Based', value: '4' },
+	{ label: 'Kitchen Accessories', value: '5' },
+	{ label: 'Others', value: '6' },
+];
 export {
 	categoryOptions,
 	schoolTypeOptions,
@@ -223,4 +344,13 @@ export {
 	conventTypeOptions,
 	congregationOptions,
 	abbreviationOptions,
+	rentTypeOptions,
+	shopTypeOptions,
+	propertyOwnerOptions,
+	maintainedByOptions,
+	maintainedByParishOptions,
+	churchInventoryCategoryOptions,
+	buyerTypeOptions,
+	ownForOptions,
+	otherInventoryCategoryOptions,
 };
