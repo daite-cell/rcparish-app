@@ -37,12 +37,14 @@ const PiousGroupGenericPage = () => {
 
 	return (
 		<TabsLayout tabs={tabsData || []} onTabChange={handleToggleTab} activeTabId={activeIndex}>
-			{tabsData?.[activeIndex]?.label === 'view' ? (
+			{tabsData?.[activeIndex]?.label.toLowerCase() === 'view' ? (
 				<RenderPiousGroupTables />
 			) : tabsData?.[activeIndex]?.label.toLowerCase() === 'add' ? (
 				<FormsContainer />
 			) : (
-				<h1>charge</h1>
+				<div className="p-4 text-center text-gray-500">
+					<h2>Feature not available</h2>+ <p>This section is under development.</p>+{' '}
+				</div>
 			)}
 		</TabsLayout>
 	);

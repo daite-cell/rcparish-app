@@ -2,6 +2,9 @@ import { z } from 'zod';
 
 const parishCouncilMemberSchema = z.object({
 	subStationName: z.string().min(1, 'Sub Station is required'),
+	mainStationName: z.string().min(1, 'Main Station is required'),
+	memberSubStationName: z.string().min(1, 'Member Sub Station is required'),
+	councilSubStationName: z.string().min(1, 'Council Sub Station is required'),
 	electionConductedOn: z.string().min(1, 'Election Conducted On is required'),
 	periodEndOn: z.string().min(1, 'Period End On is required'),
 	position: z.enum(['President', 'Secretary', 'Treasurer', 'Caller', 'Member'], {
@@ -23,6 +26,9 @@ const religiousPeopleParishSchema = z.object({
 	position: z.string().min(1, 'Please select a position'),
 	incharge: z.string().min(1, 'Please select an in-charge role'),
 	personName: z.string().min(1, 'Person Name is required'),
+	gender: z.enum(['male', 'female'], {
+		required_error: 'Gender is required',
+	}),
 	mobileNumber: z
 		.string()
 		.regex(/^\d{10}$/, 'Mobile number must be exactly 10 digits')

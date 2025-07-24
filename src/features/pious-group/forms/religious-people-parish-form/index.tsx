@@ -39,14 +39,14 @@ const ReligiousParishCouncilMembersForm = () => {
 
 				<div className="flex-1 w-full p-5 space-y-5 border border-gray-300 rounded-md">
 					<SingleSelectDropdown
-						name="position"
+						name="gender"
 						control={control}
 						label="Select the Gender"
 						options={[
 							{ label: 'Male', value: 'male' },
 							{ label: 'Female', value: 'female' },
 						]}
-						error={errors.position?.message}
+						error={errors.gender?.message}
 					/>
 					<SingleSelectDropdown
 						name="position"

@@ -34,7 +34,7 @@ const ParishCouncilMembersForm = () => {
 						label="Main-Station"
 						options={subStationOptions}
 						placeholder="Select Sub-Station"
-						name="subStationName"
+						name="mainStationName"
 						disabled={true}
 						error={errors.subStationName?.message}
 					/>
@@ -87,7 +87,7 @@ const ParishCouncilMembersForm = () => {
 						label="Select the Main-Station / Sub-Station"
 						options={subStationOptions}
 						placeholder="Select Sub-Station"
-						name="subStationName"
+						name="memberSubStationName"
 						error={errors.subStationName?.message}
 					/>
 					<ControlledDateInputField
@@ -104,7 +104,7 @@ const ParishCouncilMembersForm = () => {
 						label="Select the Main-Station / Sub-Station"
 						options={subStationOptions}
 						placeholder="Select Sub-Station"
-						name="subStationName"
+						name="councilSubStationName"
 						error={errors.subStationName?.message}
 					/>
 					<SingleSelectDropdown
