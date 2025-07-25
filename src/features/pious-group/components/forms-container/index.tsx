@@ -2,6 +2,9 @@ import { useRouteName } from '@/utils/getRouteName';
 import {
 	AnbiamInchargeForm,
 	AnbiamsForm,
+	AssociationsClubForm,
+	AssociationsInchargeForm,
+	FamiliesForm,
 	ParishCouncilMembersForm,
 	PriestNunParishForm,
 	ReligiousParishCouncilMembersForm,
@@ -29,7 +32,7 @@ const RenderFormsContainer = () => {
 		},
 		{
 			pageName: 'families',
-			component: <h1>Families Form will be added</h1>,
+			component: <FamiliesForm />,
 		},
 		{
 			pageName: 'anbiams',
@@ -37,7 +40,7 @@ const RenderFormsContainer = () => {
 		},
 		{
 			pageName: 'associations_club',
-			component: <h1>associations_club form will bee added</h1>,
+			component: <AssociationsClubForm />,
 		},
 		{
 			pageName: 'anbiam_incharge',
@@ -45,7 +48,7 @@ const RenderFormsContainer = () => {
 		},
 		{
 			pageName: 'associations_incharge',
-			component: <h1>associations_incharge form will bee added</h1>,
+			component: <AssociationsInchargeForm />,
 		},
 	];
 	return renderForms.find((form) => form.pageName === type)?.component || <h1>forms will be added</h1>;

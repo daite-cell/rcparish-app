@@ -299,7 +299,7 @@ const side_nav_links = [
 				path_url: '/pious_group/parish_council_members',
 				label: 'Parish Council Members',
 				icon: 'BookText',
-				tabs: [{ label: 'COUNCIL DETAILS' }, { label: 'view' }, { label: 'add' }],
+				tabs: [{ label: 'council details' }, { label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/pious_group/religious_people_parish',
@@ -359,7 +359,7 @@ const side_nav_links = [
 				path_url: '/pious_group/associations_incharge',
 				label: 'Associations Incharge',
 				icon: 'BookText',
-				tabs: [{ label: 'ANBIAM FAMILY CARD' }, { label: 'view' }, { label: 'add' }],
+				tabs: [{ label: 'ASSOCIATION DETAILS' }, { label: 'view' }, { label: 'add' }],
 			},
 		],
 	},

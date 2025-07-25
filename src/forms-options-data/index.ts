@@ -369,6 +369,43 @@ const inchargeOptions = [
 	{ label: 'Other', value: 'Other' },
 ];
 
+const roofTypeOptions = [
+	{ label: 'Concrete Roof', value: 'Concrete Roof' },
+	{ label: 'Sheet Roof', value: 'Sheet Roof' },
+	{ label: 'Hut', value: 'Hut' },
+];
+
+const communityOptions = [
+	{ label: 'SC', value: 'SC' },
+	{ label: 'BC', value: 'BC' },
+	{ label: 'MBC', value: 'MBC' },
+	{ label: 'OC', value: 'OC' },
+];
+
+const houseOwnershipOptions = [
+	{ label: 'Own', value: 'Own' },
+	{ label: 'Rent in Private', value: 'Rent in Private' },
+	{ label: 'Rent in Diocese', value: 'Rent in Diocese' },
+	{ label: 'Living with Childern', value: 'Living with Childern' },
+	{ label: 'Living with Parent', value: 'Living with Parent' },
+];
+
+const livingStatusOptions = [
+	{ label: 'In Parish', value: 'In Parish' },
+	{ label: 'In Other Parish', value: 'In Other Parish' },
+	{ label: 'Foreign', value: 'Foreign' },
+];
+
+const settledAsOptions = [
+	{ label: 'Permanent', value: 'Permanent' },
+	{ label: 'Temporary', value: 'Temporary' },
+];
+
+const activenessOptions = [
+	{ label: 'Active', value: 'active' },
+	{ label: 'In-Active', value: 'inactive' },
+];
+
 export {
 	categoryOptions,
 	schoolTypeOptions,
@@ -399,4 +436,10 @@ export {
 	electedStatusOptions,
 	positionRoleOptions,
 	inchargeOptions,
+	roofTypeOptions,
+	communityOptions,
+	houseOwnershipOptions,
+	livingStatusOptions,
+	settledAsOptions,
+	activenessOptions,
 };
