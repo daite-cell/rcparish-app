@@ -299,22 +299,25 @@ const side_nav_links = [
 				path_url: '/pious_group/parish_council_members',
 				label: 'Parish Council Members',
 				icon: 'BookText',
-				tabs: [{ label: 'COUNCIL DETAILS' }, { label: 'View' }, { label: 'add/change' }],
+				tabs: [{ label: 'COUNCIL DETAILS' }, { label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/pious_group/religious_people_parish',
 				label: 'Religious People in Parish',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/pious_group/priest_nun_parish',
 				label: 'Sons and Daughters of the Soil',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/pious_group/family_members',
 				label: 'Members in Families',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/pious_group/families',
@@ -338,11 +341,13 @@ const side_nav_links = [
 				path_url: '/pious_group/anbiams',
 				label: 'Anbiam',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/pious_group/associations_club',
 				label: 'Associations & Club',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/pious_group/anbiam_incharge',

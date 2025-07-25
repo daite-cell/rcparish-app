@@ -327,6 +327,48 @@ const otherInventoryCategoryOptions = [
 	{ label: 'Kitchen Accessories', value: '5' },
 	{ label: 'Others', value: '6' },
 ];
+
+const positionsOptions = [
+	{ label: 'President', value: 'President' },
+	{ label: 'Secretary', value: 'Secretary' },
+	{ label: 'Treasurer', value: 'Treasurer' },
+	{ label: 'Caller', value: 'Caller' },
+	{ label: 'Member', value: 'Member' },
+];
+
+const electedStatusOptions = [
+	{ label: 'Regular', value: 'Regular' },
+	{ label: 'Intermediate', value: 'Intermediate' },
+];
+
+const positionRoleOptions = [
+	{ label: 'Asst.PP', value: 'Asst.PP' },
+	{ label: 'Fr', value: 'Fr' },
+	{ label: 'Sup', value: 'Sup' },
+	{ label: 'Sr', value: 'Sr' },
+	{ label: 'Br', value: 'Br' },
+	{ label: 'Dn', value: 'Dn' },
+	{ label: 'Rec', value: 'Rec' },
+	{ label: 'Nurse', value: 'Nurse' },
+	{ label: 'Teacher', value: 'Teacher' },
+	{ label: 'Choir Master', value: 'Choir Master' },
+	{ label: 'Studying', value: 'Studying' },
+	{ label: 'Other', value: 'Other' },
+];
+const inchargeOptions = [
+	{ label: 'Choir', value: 'Choir' },
+	{ label: 'Liturgy', value: 'Liturgy' },
+	{ label: 'Dispensary', value: 'Dispensary' },
+	{ label: 'Social Service', value: 'Social Service' },
+	{ label: 'Ministry', value: 'Ministry' },
+	{ label: 'Records', value: 'Records' },
+	{ label: 'Financial', value: 'Financial' },
+	{ label: 'Hospital', value: 'Hospital' },
+	{ label: 'School', value: 'School' },
+	{ label: 'Catism', value: 'Catism' },
+	{ label: 'Other', value: 'Other' },
+];
+
 export {
 	categoryOptions,
 	schoolTypeOptions,
@@ -353,4 +395,8 @@ export {
 	buyerTypeOptions,
 	ownForOptions,
 	otherInventoryCategoryOptions,
+	positionsOptions,
+	electedStatusOptions,
+	positionRoleOptions,
+	inchargeOptions,
 };

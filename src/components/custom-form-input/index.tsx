@@ -9,7 +9,7 @@ type InputType = 'text' | 'number' | 'email' | 'textarea';
 interface CustomFormInputProps<T extends FieldValues> {
 	control: Control<T>;
 	name: Path<T>;
-	label: string;
+	label?: string;
 	type?: InputType;
 	className?: string;
 	labelClassName?: string;
