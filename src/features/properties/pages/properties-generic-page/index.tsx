@@ -6,7 +6,7 @@ import { useRouteName } from '@/utils/getRouteName';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { RenderPrePropertiesTables, RenderPropertiesOverviewContainer } from '../../components';
+import { RenderFormsContainer, RenderPrePropertiesTables, RenderPropertiesOverviewContainer } from '../../components';
 
 const PropertiesGenericPage = () => {
 	const location = useLocation();
@@ -29,7 +29,7 @@ const PropertiesGenericPage = () => {
 			activeTabId={activeIndex}
 			tabs={tabsData || [{ label: 'view' }, { label: 'add' }]}
 		>
-			{activeIndex === 0 && <RenderPrePropertiesTables />}
+			{activeIndex === 0 ? <RenderPrePropertiesTables /> : <RenderFormsContainer />}
 		</TabsLayout>
 	);
 };
