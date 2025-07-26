@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { sermonSchema, type SermonFormValues } from '../../validations';
+import { sermonSchema, type SermonFormValues } from '../../../validations';
 
 const yearOptions = ['A', 'B', 'C'].map((val) => ({ value: val, label: val }));
 const seasonOptions = [

@@ -12,3 +12,12 @@ export const sermonSchema = z.object({
 });
 
 export type SermonFormValues = z.infer<typeof sermonSchema>;
+
+export const requestSchema = z.object({
+	parish: z.string().min(1, 'Parish is required'),
+	priests: z.string().min(1, 'Priest is required'),
+	requestFor: z.string().min(1, 'Request For is required'),
+	description: z.string().min(1, 'Description is required'),
+});
+
+export type RequestFormValues = z.infer<typeof requestSchema>;

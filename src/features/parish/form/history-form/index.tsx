@@ -1,9 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import CustomTextarea from '../custom-textarea';
-import FormButton from '../form-button';
-import { Input } from '../ui/input';
-import { historyFormSchema, type HistoryFormType } from '@/validations';
+import { Input } from '@/components/ui/input';
+import { CustomTextarea, FormButton } from '@/components';
+import { historyFormSchema, type HistoryFormType } from '../../validations';
 
 const HistoryForm = ({ onSubmit }: { onSubmit?: (data: HistoryFormType) => void }) => {
 	const {

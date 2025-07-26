@@ -1,8 +1,9 @@
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ControlledRadioGroup, CustomFormInput, DateInputField, FormButton } from '@/components';
-import { familySearchSchema, type FamilySearchForm } from '@/validations';
+
 import { useCallback, useMemo } from 'react';
+import { familySearchSchema, type FamilySearchForm } from '../../validations';
 
 const inputs_data = [
 	{ name: 'Family No', type: 'text', value: 'family_no' },

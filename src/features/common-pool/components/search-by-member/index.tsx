@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ControlledRadioGroup, CustomFormInput, FormButton } from '@/components';
-import { memberSearchSchema, type MemberSearchForm } from '@/validations';
+import { memberSearchSchema, type MemberSearchForm } from '../../validations';
 
 const inputs_data = [
 	{ name: 'Member ID', type: 'text', value: 'member_id' },

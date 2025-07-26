@@ -56,7 +56,7 @@ function SingleSelectDropdown<TFieldValues extends FieldValues>({
 										<ChevronDown className="w-4 h-4 ml-2 opacity-50 shrink-0" />
 									</Button>
 								</PopoverTrigger>
-								<PopoverContent className="w-[380px] p-2">
+								<PopoverContent className="w-[380px] max-h-[300px] overflow-y-auto p-2">
 									<Command>
 										<CommandEmpty>No results found.</CommandEmpty>
 										<CommandGroup>
