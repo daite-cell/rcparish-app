@@ -3,7 +3,7 @@ import {
 	requiredString,
 	mobileValidation,
 	optionalMobileValidation,
-	optionalEmailValidation,
+	optionalEmail,
 } from '@/validations/stringValidations';
 import { fileValidation } from '@/validations/fileValidations';
 
@@ -82,7 +82,7 @@ const institutionsFormSchema = z.object({
 	medium: requiredString('Medium is required'),
 	management: requiredString('Management is required'),
 	mobile: optionalMobileValidation('Enter a valid mobile number'),
-	email: optionalEmailValidation,
+	email: optionalEmail(),
 	address: z.string().optional(),
 	gradeName: z.string().optional(),
 });
@@ -97,7 +97,7 @@ const vocationalListSchema = z.object({
 	congregationName: requiredString('Name of the Congregation is required'),
 	seminary: requiredString('Seminary is required'),
 	mobileNo: optionalMobileValidation('Invalid mobile number'),
-	mailId: optionalEmailValidation,
+	mailId: optionalEmail(),
 	address: z.string().optional(),
 });
 

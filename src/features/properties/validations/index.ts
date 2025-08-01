@@ -2,7 +2,7 @@ import {
 	aadhaarValidation,
 	enumFromArray,
 	futureDate,
-	indianMobileValidation,
+	mobileValidation,
 	maxLengthString,
 	numberField,
 	pastDate,
@@ -20,7 +20,7 @@ export const rentFormSchema = z.object({
 	ownershipBy: enumFromArray(['0', '1', '2', '3'], 'Ownership selection is required'),
 
 	renderName: requiredString('Renter name is required'),
-	renderMobile: indianMobileValidation,
+	renderMobile: mobileValidation(),
 	adhaarNumber: aadhaarValidation(),
 
 	address: requiredString('Address is required'),
@@ -48,7 +48,7 @@ export const cemeteryFormSchema = z.object({
 	familyName: requiredString('Family name is required'),
 	cemeteryNumber: requiredString('Cemetery number is required'),
 	maintainedBy: requiredString('Maintained by is required'),
-	mobile_no: indianMobileValidation,
+	mobile_no: mobileValidation(),
 	nameOfParish: requiredString('Name of parish is required'),
 	cemeteryAt: requiredString('Cemetery at is required'),
 	address: requiredString('Address at is required'),

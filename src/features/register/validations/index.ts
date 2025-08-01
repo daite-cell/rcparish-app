@@ -13,8 +13,8 @@ export const chroniclesSchema = z.object({
 	description: requiredString('Description is required'),
 	extendPeriod: enumFromArray(['yes', 'no'], 'Please select an option'),
 	image1: requiredImageSchema('Image 1 is required'),
-	image2: optionalImageSchema('Image 2 cannot be empty'),
-	image3: optionalImageSchema('Image 3 cannot be empty'),
+	image2: optionalImageSchema('Image 2 must be a valid file if provided'),
+	image3: optionalImageSchema('Image 3 must be a valid file if provided'),
 });
 
 export type ChroniclesType = z.infer<typeof chroniclesSchema>;

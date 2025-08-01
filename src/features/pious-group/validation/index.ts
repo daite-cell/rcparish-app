@@ -5,7 +5,7 @@ import {
 	mobileValidation,
 	numericString,
 	optionalEmail,
-	optionalMobile,
+	optionalMobileValidation,
 	optionalString,
 	requiredString,
 } from '@/validations/stringValidations';
@@ -133,7 +133,7 @@ const familesTypeSchema = z.object({
 	settledAs: requiredString('Settled As is required'),
 	permanentAddressStatus: enumFromArray(['same_as_temporary', 'different'], 'Please choose permanent address status'),
 	temporaryAddress: optionalString(),
-	mobileNumber: optionalMobile(),
+	mobileNumber: optionalMobileValidation(),
 	email: optionalEmail(),
 	remark: optionalString(),
 	activeness: requiredString('Activeness is required'),

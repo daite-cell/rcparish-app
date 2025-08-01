@@ -2,7 +2,7 @@ import { z } from 'zod';
 import {
 	requiredString,
 	optionalEmail,
-	optionalMobile,
+	optionalMobileValidation,
 	optionalDateWithFormat,
 	optionalYear,
 	optionalString,
@@ -26,7 +26,7 @@ export const institutionsFormSchema = z.object({
 	dioceseName: requiredString('Diocese Name is required'),
 	medium: requiredString('Please select a medium'),
 	management: requiredString('Please select management'),
-	optionalContactNumber: optionalMobile(),
+	optionalContactNumber: optionalMobileValidation(),
 	optionalContactMail: optionalEmail(),
 });
 
@@ -39,7 +39,7 @@ export const noviciateFormSchema = z.object({
 	belongsTo: optionalString(),
 	congregationName: requiredString('Congregation Name is required'),
 	seminary: requiredString('Seminary is required'),
-	mobile_no: optionalMobile(),
+	mobile_no: optionalMobileValidation(),
 	mail_id: optionalEmail(),
 	address: optionalString(),
 });
@@ -62,7 +62,7 @@ export const communitiesFormSchema = z.object({
 	landOwnership: requiredString('Land Ownership is required'),
 	address: optionalString(),
 
-	mobile_no: optionalMobile(),
+	mobile_no: optionalMobileValidation(),
 	mail_id: optionalEmail(),
 });
 
