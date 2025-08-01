@@ -1,101 +1,66 @@
+import {
+	aadhaarValidation,
+	enumFromArray,
+	futureDate,
+	indianMobileValidation,
+	maxLengthString,
+	numberField,
+	pastDate,
+	requiredString,
+} from '@/validations';
 import { z } from 'zod';
 
 export const rentFormSchema = z.object({
-	rentType: z.string().min(1, 'Select Rent Type'),
-	shopType: z.string().min(1, 'Please select an option type'),
-	shopName: z.string().min(1, 'Property name is required').max(100, 'Property name too long'),
+	rentType: requiredString('Select Rent Type'),
+	shopType: requiredString('Please select an option type'),
+	shopName: maxLengthString(100, 'Property name too long').min(1, 'Property name is required'),
 
-	propertyOwner: z.enum(['Parish', 'Association', 'Diocese', 'Other'], {
-		required_error: 'Property owner is required',
-	}),
+	propertyOwner: enumFromArray(['Parish', 'Association', 'Diocese', 'Other'], 'Property owner is required'),
+	maintainedBy: enumFromArray(['0', '1', '2', '3'], 'Maintained by is required'),
+	ownershipBy: enumFromArray(['0', '1', '2', '3'], 'Ownership selection is required'),
 
-	maintainedBy: z.enum(['0', '1', '2', '3'], {
-		required_error: 'Maintained by is required',
-	}),
+	renderName: requiredString('Renter name is required'),
+	renderMobile: indianMobileValidation,
+	adhaarNumber: aadhaarValidation(),
 
-	ownershipBy: z.enum(['0', '1', '2', '3'], {
-		required_error: 'Ownership selection is required',
-	}),
+	address: requiredString('Address is required'),
 
-	renderName: z.string().min(1, 'Renter name is required'),
+	agreementType: enumFromArray(['rent', 'lease'], 'Agreement type is required'),
+	advanceAmount: numberField('Advance amount'),
+	fixedMonthlyAmount: numberField('Fixed monthly amount'),
+	leaseAmount: numberField('Lease amount').optional(),
+	fixedAmountFrom: numberField('Fixed amount from').optional(),
 
-	renderMobile: z.string().regex(/^\d{10}$/, 'Mobile number must be exactly 10 digits'),
+	agreementDocument: enumFromArray(['yes', 'no'], 'Agreement document written is required'),
 
-	adhaarNumber: z.string().regex(/^\d{12}$/, 'Aadhaar number must be exactly 12 digits'),
-
-	address: z.string().min(1, 'Address is required'),
-
-	agreementType: z.enum(['rent', 'lease']),
-
-	advanceAmount: z
-		.number({
-			invalid_type_error: 'Advance amount must be a number',
-		})
-		.min(0, 'Advance amount cannot be negative'),
-
-	fixedMonthlyAmount: z
-		.number({
-			invalid_type_error: 'Fixed monthly amount must be a number',
-		})
-		.min(0, 'Fixed monthly amount cannot be negative'),
-
-	leaseAmount: z
-		.number({
-			invalid_type_error: 'Lease amount must be a number',
-		})
-		.min(0, 'Lease amount cannot be negative')
-		.optional(),
-
-	fixedAmountFrom: z
-		.number({
-			invalid_type_error: 'Fixed amount from must be a number',
-		})
-		.min(0, 'Fixed amount from cannot be negative')
-		.optional(),
-
-	agreementDocument: z.enum(['yes', 'no'], {
-		required_error: 'Agreement document written is required',
-	}),
-
-	agreementFrom: z.coerce.date().refine((date) => date <= new Date(), {
-		message: 'Agreement from date cannot be in the future',
-	}),
-
-	agreementPeriod: z.string().min(1, 'Agreement period is required'),
-
-	agreementEnd: z.coerce.date().refine((date) => date >= new Date(), {
-		message: 'Agreement end date cannot be in the past',
-	}),
+	agreementFrom: pastDate('Agreement from date cannot be in the future'),
+	agreementPeriod: requiredString('Agreement period is required'),
+	agreementEnd: futureDate('Agreement end date cannot be in the past'),
 
 	priestName: z.string().optional(),
 });
+
 export type RentFormType = z.infer<typeof rentFormSchema>;
 
 export const cemeteryFormSchema = z.object({
-	from: z.enum(['same_parish', 'different_parish'], {
-		required_error: 'From is required',
-	}),
-	parishName: z.string().min(1, 'Parish name is required'),
-	familyName: z.string().min(1, 'Family name is required'),
-	cemeteryNumber: z.string().min(1, 'Cemetery number is required'),
-	maintainedBy: z.string().min(1, 'Maintained by is required'),
-
-	mobile_no: z.string().regex(/^\d{10}$/, 'Mobile number must be exactly 10 digits'),
-
-	nameOfParish: z.string().min(1, 'Name of parish is required'),
-	cemeteryAt: z.string().min(1, 'Cemetery at is required'),
-	address: z.string().min(1, 'Address at is required'),
-	dug_on: z.coerce.date().refine((date) => date <= new Date(), {
-		message: 'Dug on date cannot be in the future',
-	}),
+	from: enumFromArray(['same_parish', 'different_parish'], 'From is required'),
+	parishName: requiredString('Parish name is required'),
+	familyName: requiredString('Family name is required'),
+	cemeteryNumber: requiredString('Cemetery number is required'),
+	maintainedBy: requiredString('Maintained by is required'),
+	mobile_no: indianMobileValidation,
+	nameOfParish: requiredString('Name of parish is required'),
+	cemeteryAt: requiredString('Cemetery at is required'),
+	address: requiredString('Address at is required'),
+	dug_on: pastDate('Dug on date cannot be in the future'),
 });
 
 export type CemeteryFormType = z.infer<typeof cemeteryFormSchema>;
 
 export const churchInventoryFormSchema = z.object({
-	subStationName: z.string().min(1, 'Sub Station is required'),
-	thingsName: z.string().min(1, 'Things name is required'),
-	category: z.enum(
+	subStationName: requiredString('Sub Station is required'),
+	thingsName: requiredString('Things name is required'),
+	category: enumFromArray(
 		[
 			'Garments and Vestments',
 			'Electric Appliances',
@@ -108,33 +73,23 @@ export const churchInventoryFormSchema = z.object({
 			'Decoration Things',
 			'Others',
 		],
-		{
-			required_error: 'Please select a category',
-		}
+		'Please select a category'
 	),
-	ratePerItem: z.string().min(1, 'Rate per item is required'),
-	quantity: z.string().min(1, 'Quantity is required'),
+	ratePerItem: requiredString('Rate per item is required'),
+	quantity: requiredString('Quantity is required'),
 	price: z.string(),
-	buyerType: z.enum(['Purchased', 'Sponsored'], {
-		required_error: 'Please select a buyer type',
-	}),
-	purchasedName: z.string().min(1, 'Purchased name is required'),
-	dateOn: z.coerce.date().refine((date) => date <= new Date(), {
-		message: 'Date on cannot be in the future',
-	}),
-	propertyOwnFor: z.enum(['Parish', 'Parish Priest', 'Diocese'], {
-		required_error: 'Property own for is required',
-	}),
+	buyerType: enumFromArray(['Purchased', 'Sponsored'], 'Please select a buyer type'),
+	purchasedName: requiredString('Purchased name is required'),
+	dateOn: pastDate(),
+	propertyOwnFor: enumFromArray(['Parish', 'Parish Priest', 'Diocese'], 'Property own for is required'),
 });
 
 export type ChurchInventoryFormType = z.infer<typeof churchInventoryFormSchema>;
 
 export const otherInventoryFormSchema = z.object({
-	thingsName: z.string().min(1, 'Things name is required'),
-	otherInventoryCategory: z.enum(['0', '1', '2', '3', '4', '5', '6', '7', '8'], {
-		required_error: 'Please select a category',
-	}),
-	category: z.enum(
+	thingsName: requiredString('Things name is required'),
+	otherInventoryCategory: enumFromArray(['0', '1', '2', '3', '4', '5', '6', '7', '8'], 'Please select a category'),
+	category: enumFromArray(
 		[
 			'Garments and Vestments',
 			'Electric Appliances',
@@ -147,23 +102,15 @@ export const otherInventoryFormSchema = z.object({
 			'Decoration Things',
 			'Others',
 		],
-		{
-			required_error: 'Please select a category',
-		}
+		'Please select a category'
 	),
-	ratePerItem: z.string().min(1, 'Rate per item is required'),
-	quantity: z.string().min(1, 'Quantity is required'),
+	ratePerItem: requiredString('Rate per item is required'),
+	quantity: requiredString('Quantity is required'),
 	price: z.string(),
-	buyerType: z.enum(['Purchased', 'Sponsored'], {
-		required_error: 'Please select a buyer type',
-	}),
-	purchasedName: z.string().min(1, 'Purchased name is required'),
-	dateOn: z.coerce.date().refine((date) => date <= new Date(), {
-		message: 'Date on cannot be in the future',
-	}),
-	propertyOwnFor: z.enum(['Parish', 'Parish Priest', 'Diocese'], {
-		required_error: 'Property own for is required',
-	}),
+	buyerType: enumFromArray(['Purchased', 'Sponsored'], 'Please select a buyer type'),
+	purchasedName: requiredString('Purchased name is required'),
+	dateOn: pastDate(),
+	propertyOwnFor: enumFromArray(['Parish', 'Parish Priest', 'Diocese'], 'Property own for is required'),
 });
 
 export type OtherInventoryFormType = z.infer<typeof otherInventoryFormSchema>;
