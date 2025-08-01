@@ -5,9 +5,11 @@ import { appRoutes } from '../routes';
 import Loading from '@/components/loading';
 import PageTransitionWrapper from '@/components/page-transition-wrapper';
 import { useAutoDocumentTitle } from '@/hooks/useAutoDocumentTitle';
+import ClearRowSelectionOnRouteChange from '@/hooks/ClearRowSelectionOnRouteChange';
 
 const AppRoutes = (): JSX.Element => {
 	useAutoDocumentTitle();
+	ClearRowSelectionOnRouteChange();
 	return (
 		<Suspense fallback={<Loading />}>
 			<PageTransitionWrapper>

@@ -1,6 +1,6 @@
 import { DynamicDataTable, TabsLayout } from '@/components';
 import { useState } from 'react';
-import SermonFormSection from '../sermon-form-section';
+import SermonFormSection from '../forms/sermon-form-section';
 import { useDioceseSermonColumns } from '../../columns';
 const tabs = [{ label: 'view' }, { label: 'add' }];
 

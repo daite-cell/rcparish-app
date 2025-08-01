@@ -10,6 +10,7 @@ import { getReligiousPeopleSectionData } from '../../columns-sections';
 
 const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string | number | undefined }) => {
 	const { selectRow } = useStore();
+	const tabs = [{ label: 'profile' }, { label: 'edit' }, { label: 'back' }];
 
 	const isReligiousPerson = (data: unknown): data is ReligiousPersonProps => {
 		return data !== null && typeof data === 'object' && 'religiousPersonName' in data;
@@ -53,7 +54,7 @@ const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string
 			])
 		),
 	};
-	return <OverviewTabsLayout tabs={[]} pathName={pathName} componentMap={componentMap} />;
+	return <OverviewTabsLayout tabs={tabs} pathName={pathName} componentMap={componentMap} />;
 });
 
 export default RenderPiousGroupOverviewContainer;

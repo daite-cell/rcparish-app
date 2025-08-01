@@ -4,3 +4,4 @@ export { default as RenderDioceseTablesContainer } from './render-diocese-tables
 export { default as RenderDioceseOverviewContainer } from './render-diocese-overview-container';
 export { default as GenericDiocesePeopleDetailsContainer } from './generic-diocese-people-details-container';
 export { default as RenderDiocesePeopleDetailsContainer } from './render-people-overview-container';
+export { default as FormsContainer } from './forms-container';

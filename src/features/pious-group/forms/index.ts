@@ -3,3 +3,7 @@ export { default as ReligiousParishCouncilMembersForm } from './religious-people
 export { default as PriestNunParishForm } from './priest-nun-parish-form';
 export { default as AnbiamsForm } from './anbiams-form';
 export { default as AnbiamInchargeForm } from './anbiam-incharge-form';
+export { default as CouncilDetailsForm } from './council-details-form';
+export { default as FamiliesForm } from './families-form';
+export { default as AssociationsClubForm } from './associations-club-form';
+export { default as AssociationsInchargeForm } from './associations-incharge-form';

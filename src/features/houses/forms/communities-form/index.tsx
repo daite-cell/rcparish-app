@@ -144,7 +144,9 @@ const CommunitiesForm = () => {
 					/>
 				</div>
 			</div>
-			<FormButton type="submit" label="Submit" />
+			<div className="flex justify-center w-full">
+				<FormButton type="submit" label="Submit" />
+			</div>
 		</form>
 	);
 };

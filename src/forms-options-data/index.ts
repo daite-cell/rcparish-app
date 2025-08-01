@@ -369,6 +369,137 @@ const inchargeOptions = [
 	{ label: 'Other', value: 'Other' },
 ];
 
+const roofTypeOptions = [
+	{ label: 'Concrete Roof', value: 'Concrete Roof' },
+	{ label: 'Sheet Roof', value: 'Sheet Roof' },
+	{ label: 'Hut', value: 'Hut' },
+];
+
+const communityOptions = [
+	{ label: 'SC', value: 'SC' },
+	{ label: 'BC', value: 'BC' },
+	{ label: 'MBC', value: 'MBC' },
+	{ label: 'OC', value: 'OC' },
+];
+
+const houseOwnershipOptions = [
+	{ label: 'Own', value: 'Own' },
+	{ label: 'Rent in Private', value: 'Rent in Private' },
+	{ label: 'Rent in Diocese', value: 'Rent in Diocese' },
+	{ label: 'Living with Childern', value: 'Living with Childern' },
+	{ label: 'Living with Parent', value: 'Living with Parent' },
+];
+
+const livingStatusOptions = [
+	{ label: 'In Parish', value: 'In Parish' },
+	{ label: 'In Other Parish', value: 'In Other Parish' },
+	{ label: 'Foreign', value: 'Foreign' },
+];
+
+const settledAsOptions = [
+	{ label: 'Permanent', value: 'Permanent' },
+	{ label: 'Temporary', value: 'Temporary' },
+];
+
+const activenessOptions = [
+	{ label: 'Active', value: 'active' },
+	{ label: 'In-Active', value: 'inactive' },
+];
+
+const commissionOptions = [
+	{ label: 'Pastoral Commissions', value: 'pastoral-commissions' },
+	{ label: 'Social Commissions', value: 'social-commissions' },
+	{ label: 'Formative Commissions', value: 'formative-commissions' },
+	{ label: 'Marriage Tribunal', value: 'marriage-tribunal' },
+];
+
+const commissionPositionOptions = [
+	{ label: 'Catechism, Catechists & BCC - Pastoral Commissions', value: '5' },
+	{ label: 'Evangelization - Pastoral Commissions', value: '14' },
+	{ label: 'Bible - Pastoral Commissions', value: '3' },
+	{ label: 'Liturgy - Pastoral Commissions', value: '22' },
+	{ label: 'Family & Health - Pastoral Commissions', value: '15' },
+	{ label: 'Youth - Pastoral Commissions', value: '55' },
+	{ label: 'Laity - Pastoral Commissions', value: '20' },
+	{ label: 'Dialogue & Ecumenism - Pastoral Commissions', value: '12' },
+	{ label: 'Communication - Pastoral Commissions', value: '9' },
+	{ label: 'Pious Associations - Pastoral Commissions', value: '30' },
+];
+
+const secretaryPositionOptions = [
+	{ label: 'Secretary', value: 'Secretary' },
+	{ label: 'Join-Secretary', value: 'Join-Secretary' },
+];
+
+const categoryFromOptions = [
+	{ label: 'Religious Person', value: 'Religious People' },
+	{ label: 'Lay Person', value: 'Lay People' },
+];
+
+const statusOptions = [
+	{ label: 'Present', value: '0' },
+	{ label: 'Past', value: '1' },
+];
+
+const committeeOptions = [
+	{ label: 'Finance Committee', value: '0' },
+	{ label: 'Education Committee', value: '1' },
+	{ label: 'Pastoral Project Committee', value: '2' },
+	{ label: 'Social Project Committee', value: '3' },
+];
+
+const housingListParishOptions = [
+	{ label: 'Alapakkam Parish', value: 'V01P01' },
+	{ label: 'Arakkonam Parish', value: 'V01P02' },
+	{ label: 'Arcot Parish (Capuchins)', value: 'V01P03' },
+	{ label: 'Haffieldspet Parish', value: 'V01P04' },
+	{ label: 'Ranipet Parish', value: 'V01P05' },
+	{ label: 'Walajapet Parish', value: 'V01P06' },
+	{ label: 'Banavaram Parish', value: 'V02P01' },
+	{ label: 'Gudiyatham Parish', value: 'V02P02' },
+	{ label: 'Odugathur Parish', value: 'V02P03' },
+	{ label: 'Pallikonda Parish', value: 'V02P04' },
+	{ label: 'Thiruvalam Parish', value: 'V02P05' },
+	{ label: 'Vallimalai Parish', value: 'V02P06' },
+	{ label: 'Vellore Town Parish', value: 'V02P07' },
+	{ label: 'Veppoor Parish', value: 'V02P08' },
+	{ label: 'A.K.Pudur Parish', value: 'V03P01' },
+	{ label: 'Chinnasalem Parish', value: 'V03P02' },
+	{ label: 'Kallakurichi Parish', value: 'V03P03' },
+	{ label: 'Mangalampet Parish', value: 'V03P04' },
+	{ label: 'Sankarapuram Parish', value: 'V03P05' },
+	{ label: 'Siruvathur Parish', value: 'V03P06' },
+	{ label: 'Thiyagadurgam Parish', value: 'V03P07' },
+	{ label: 'Chengam Parish', value: 'V04P01' },
+	{ label: 'Chetpet Parish', value: 'V04P02' },
+	{ label: 'Javvadu Hills Parish', value: 'V04P03' },
+	{ label: 'Polur Parish', value: 'V04P04' },
+	{ label: 'Thiruvannamalai Parish', value: 'V04P05' },
+	{ label: 'Vettavalam Parish', value: 'V04P06' },
+	{ label: 'Anilady Parish', value: 'V05P01' },
+	{ label: 'Arni Parish', value: 'V05P02' },
+	{ label: 'Chethupattu Parish', value: 'V05P03' },
+	{ label: 'Kilpennathur Parish', value: 'V05P04' },
+	{ label: 'Mattanur Parish', value: 'V05P05' },
+	{ label: 'Vandavasi Parish', value: 'V05P06' },
+	{ label: 'Periyeri Parish', value: 'V06P01' },
+	{ label: 'Veeranam Parish', value: 'V06P02' },
+	{ label: 'Virudhachalam Parish', value: 'V06P03' },
+	{ label: 'Vazhapadi Parish', value: 'V06P04' },
+	{ label: 'Chinna Salem Parish (M)', value: 'V06P05' },
+	{ label: 'Perambalur Parish', value: 'V07P01' },
+	{ label: 'Kumbakonam Parish', value: 'V07P02' },
+	{ label: 'Jayankondam Parish', value: 'V07P03' },
+	{ label: 'Srimushnam Parish', value: 'V07P04' },
+	{ label: 'Chidambaram Parish', value: 'V07P05' },
+	{ label: 'Cuddalore Parish', value: 'V08P01' },
+	{ label: 'Panruti Parish', value: 'V08P02' },
+	{ label: 'Neyveli Parish', value: 'V08P03' },
+	{ label: 'Kurinjipadi Parish', value: 'V08P04' },
+	{ label: 'Parangipettai Parish', value: 'V08P05' },
+	{ label: 'Zamin Gudalore Parish', value: 'V08P06' },
+];
+
 export {
 	categoryOptions,
 	schoolTypeOptions,
@@ -399,4 +530,17 @@ export {
 	electedStatusOptions,
 	positionRoleOptions,
 	inchargeOptions,
+	roofTypeOptions,
+	communityOptions,
+	houseOwnershipOptions,
+	livingStatusOptions,
+	settledAsOptions,
+	activenessOptions,
+	commissionOptions,
+	commissionPositionOptions,
+	secretaryPositionOptions,
+	categoryFromOptions,
+	statusOptions,
+	committeeOptions,
+	housingListParishOptions,
 };

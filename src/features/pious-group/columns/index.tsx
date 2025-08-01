@@ -7,6 +7,7 @@ import type {
 	AnbiamCouncilDataProps,
 	AnbiamInchargeDataProps,
 	AssociationCouncilMemberProps,
+	ParishAssociationClubProps,
 } from '@/types';
 import type { CellContext, ColumnDef } from '@tanstack/react-table';
 import { Trash, IdCard } from 'lucide-react';
@@ -469,6 +470,51 @@ const useAssociationCouncilMemberPropsColumns = (): ColumnDef<AssociationCouncil
 	];
 };
 
+const useAssociationClubColumns = (): ColumnDef<ParishAssociationClubProps>[] => {
+	const { handleSelectRow } = useStore();
+
+	return [
+		...getCommonActionColumns<ParishAssociationClubProps>(handleSelectRow),
+
+		{
+			accessorKey: 'parishName',
+			header: 'Parish Name',
+		},
+		{
+			accessorKey: 'mainStation',
+			header: 'Main-Station / Sub-Station',
+		},
+		{
+			accessorKey: 'nameOfAssociations',
+			header: 'Name of the Associations',
+		},
+		{
+			accessorKey: 'associationsId',
+			header: 'Associations Id',
+		},
+		{
+			accessorKey: 'organisedBy',
+			header: 'Organised by',
+		},
+		{
+			accessorKey: 'electedOn',
+			header: 'Elected On',
+		},
+		{
+			accessorKey: 'periodOfYears',
+			header: 'Period Of (Years)',
+		},
+		{
+			accessorKey: 'ifExtended',
+			header: 'If Extended',
+		},
+		{
+			accessorKey: 'periodEndsOn',
+			header: 'Period Ends On',
+		},
+	];
+};
+
 export {
 	useParishCouncilColumns,
 	useFamilyOverviewColumns,
@@ -478,4 +524,5 @@ export {
 	useAnbiamsColumns,
 	useAnbiamsInchargeColumns,
 	useAssociationCouncilMemberPropsColumns,
+	useAssociationClubColumns,
 };

@@ -124,12 +124,120 @@ const anbiamsInchargeSchema = z.object({
 });
 type AnbiamInchargeType = z.infer<typeof anbiamsInchargeSchema>;
 
+const councilDetailSchema = z.object({
+	mainStationName: z.string().min(1, 'Main Station is required'),
+	electionConductedOn: z.string().min(1, 'Election date is required'),
+	periodYears: z
+		.string()
+		.min(1, 'Period duration is required')
+		.refine((val) => /^[0-9]+$/.test(val), { message: 'Only numbers allowed' }),
+	extendPeriod: z.enum(['yes', 'no'], {
+		required_error: 'Please select an option',
+	}),
+	periodEndOn: z.string().min(1, 'End date is required'),
+});
+
+type CouncilDetailFormType = z.infer<typeof councilDetailSchema>;
+
+const familesTypeSchema = z.object({
+	subStationName: z.string().min(1, 'Sub Station is required'),
+	selectedAnbiam: z.string().min(1, 'Anbiam is required'),
+	anbiamShortForm: z.string().min(1, 'Short Form is required'),
+	parishName: z.string().min(1, 'Father / Husband Name is required'),
+	anbiamName: z.string().min(1, 'Mother / Wife Name is required'),
+	marriageDateStatus: z.enum(['known', 'unknown']),
+	marriageDate: z.string().optional(),
+	oldFamilyNumber: z.string().optional(),
+	familyName: z.string().min(1, 'Family Name is required'),
+	headOfFamily: z.string().min(1, 'Head of Family is required'),
+	familyType: z.enum(['couple', 'single']),
+	roofType: z.string().min(1, 'Roof Type is required'),
+	community: z.string().min(1, 'Community is required'),
+	subCaste: z.string().optional(),
+	houseOwnership: z.string().min(1, 'House Ownership is required'),
+	familyIncome: z.string().optional(),
+	subscriptionStart: z.string().optional(),
+	subscriptionPeriod: z.string().optional(),
+	subscriptionEnd: z.string().optional(),
+	monthlySubscription: z.string().optional(),
+	cemeteryNumber: z.string().optional(),
+	livingStatus: z.string().min(1, 'Living Status is required'),
+	settledAs: z.string().min(1, 'Settled As is required'),
+	permanentAddressStatus: z.enum(['same_as_temporary', 'different']),
+	temporaryAddress: z.string().optional(),
+	mobileNumber: z.string().optional(),
+	email: z.string().email().optional(),
+	remark: z.string().optional(),
+	activeness: z.string().min(1, 'Activeness is required'),
+});
+
+type FamilesType = z.infer<typeof familesTypeSchema>;
+
+const associationsClubSchema = z.object({
+	parishName: z.string().min(1, 'Parish Name is required'),
+	subStationName: z.string().min(1, 'Sub Station is required'),
+	anbiamName: z.string().min(1, 'Association Name is required'),
+
+	organisedBy: z.enum(['diocese', 'parish', 'association'], {
+		required_error: 'Organised By is required',
+	}),
+	electedOn: z.string().min(1, 'Elected On date is required'),
+
+	periodYears: z
+		.string()
+		.min(1, 'Period (in years) is required')
+		.refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
+			message: 'Enter a valid number of years',
+		}),
+
+	extendPeriod: z.enum(['yes', 'no'], {
+		required_error: 'Extension selection is required',
+	}),
+	periodEndOn: z.string().min(1, 'Period End On date is required'),
+});
+
+type AssociationsClubFormType = z.infer<typeof associationsClubSchema>;
+
+const associationsInchargeSchema = z.object({
+	subStationName: z.string().min(1, 'Sub-station is required'),
+	selectedAnbiam: z.string().min(1, 'Association is required'),
+	electionConductedOn: z.string().min(1, 'Election Conducted On is required'),
+
+	position: z.enum(['President', 'Secretary', 'Treasurer', 'Caller', 'Member'], {
+		required_error: 'Position is required',
+	}),
+
+	electedStatus: z.enum(['regular', 'intermediate'], {
+		required_error: 'Elected Status is required',
+	}),
+
+	memberType: z.enum(['memberOfParish', 'memberOfReligious'], {
+		required_error: 'Member type is required',
+	}),
+
+	presidentName: z.string().min(1, 'President name is required'),
+
+	mobileNumber: z
+		.string()
+		.min(10, 'Mobile number must be 10 digits')
+		.regex(/^[6-9]\d{9}$/, 'Enter a valid Indian mobile number'),
+
+	electedDate: z.string().min(1, 'Elected Date is required'),
+	periodEndOn: z.string().min(1, 'Period End On is required'),
+});
+
+type AssociationsInchargeType = z.infer<typeof associationsInchargeSchema>;
+
 export {
 	parishCouncilMemberSchema,
 	religiousPeopleParishSchema,
 	priestNunParishSchema,
 	anbiamsSchema,
 	anbiamsInchargeSchema,
+	councilDetailSchema,
+	familesTypeSchema,
+	associationsClubSchema,
+	associationsInchargeSchema,
 };
 
 export type {
@@ -138,4 +246,8 @@ export type {
 	priestNunParishType,
 	AnbiamsType,
 	AnbiamInchargeType,
+	CouncilDetailFormType,
+	FamilesType,
+	AssociationsClubFormType,
+	AssociationsInchargeType,
 };

@@ -1,7 +1,7 @@
 import { CustomFormInput, FormButton, SingleSelectDropdown } from '@/components';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { requestSchema, type RequestFormValues } from '@/validations';
+import { requestSchema, type RequestFormValues } from '@/features/dashboard/validations';
 
 const parishOptions = [
 	{ label: "St. Mary's Parish", value: 'st_mary' },

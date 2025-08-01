@@ -1163,3 +1163,15 @@ export interface DioceseSermonProps {
 	scrollTo: string;
 	by: string;
 }
+
+export interface ParishAssociationClubProps {
+	parishName: string;
+	mainStation: string;
+	nameOfAssociations: string;
+	associationsId: string;
+	organisedBy: string;
+	electedOn: string;
+	periodOfYears: string;
+	ifExtended: string;
+	periodEndsOn: string;
+}

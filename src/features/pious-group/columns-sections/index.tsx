@@ -3,6 +3,7 @@ import type {
 	AnbiamInchargeDataProps,
 	AssociationCouncilMemberProps,
 	MembersInParishFamilyProps,
+	ParishAssociationClubProps,
 	ParishCouncilMemberDetailsProps,
 	ParishSonsAndDaughtersProps,
 	ReligiousPersonProps,
@@ -126,6 +127,47 @@ export const getAnbiamInchargeSectionData = (row: AnbiamInchargeDataProps) => [
 				data: {
 					elected_date: row.electedDate,
 					period_end_on: row.electedDate,
+				},
+			},
+		],
+	},
+];
+
+export const getAssociationClubSectionData = (row: ParishAssociationClubProps) => [
+	{
+		col: 1,
+		sections: [
+			{
+				heading: '',
+				data: {
+					'main_station_/_sub_station': row.mainStation,
+					parish_name: row.parishName,
+					association_id: row.associationsId,
+					organized_by: row.organisedBy,
+				},
+			},
+		],
+	},
+	{
+		col: 2,
+		sections: [
+			{
+				heading: '',
+				data: {
+					elected_on: row.electedOn,
+					period_of: row.periodOfYears,
+					if_the_period_extended: row.ifExtended,
+				},
+			},
+		],
+	},
+	{
+		col: 3,
+		sections: [
+			{
+				heading: '',
+				data: {
+					period_ends_on: row.periodEndsOn,
 				},
 			},
 		],

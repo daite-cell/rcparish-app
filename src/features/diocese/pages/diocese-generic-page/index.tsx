@@ -4,10 +4,11 @@ import { GenericMembersInFamilesOverview, PriorDignitariesContainer, TabsLayout 
 import { side_nav_links } from '@/data/side-navbar-content';
 import type { NavLinkProps, PriestDetailsProps } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
-import { RenderDioceseOverviewContainer, RenderDioceseTablesContainer } from '../../components';
+import { FormsContainer, RenderDioceseOverviewContainer, RenderDioceseTablesContainer } from '../../components';
 import { useStore } from '@/store/store';
 import { useRouteName } from '@/utils/getRouteName';
 import { getPriestsSectionData } from '../../columns-section';
+
 const priestData = {
 	id: 'VDP0001',
 	type: 'Diocese',
@@ -32,49 +33,50 @@ const DioceseGenericPage = () => {
 	const { selectRow, selectPriorRow } = useStore();
 
 	const type = useRouteName('type');
-
-	const priestsSectionData = getPriestsSectionData(priestData as PriestDetailsProps);
+	const [activeIndex, setActiveIndex] = useState(0);
 
 	const linksData = getSectionByPathName(side_nav_links, location.pathname);
 	const tabsData = linksData?.page_nav_links.find((link: NavLinkProps) => link.path_url === location.pathname)?.tabs;
 
-	const defaultTabIndex = useMemo(() => {
-		if (!tabsData) return 0;
-		const viewIndex = tabsData.findIndex((tab) => tab.label === 'view');
-		return viewIndex !== -1 ? viewIndex : 0;
+	useMemo(() => {
+		if (!tabsData) return;
+		const viewIndex = tabsData.findIndex((tab) => tab.label.toLowerCase() === 'view');
+		setActiveIndex(viewIndex !== -1 ? viewIndex : 0);
 	}, [tabsData]);
 
-	const [activeIndex, setActiveIndex] = useState(defaultTabIndex);
+	if (selectPriorRow) return <PriorDignitariesContainer />;
+	if (selectRow) return <RenderDioceseOverviewContainer />;
 
-	const handleToggleTab = (index: number) => {
-		setActiveIndex(index);
+	const priestsSectionData = getPriestsSectionData(priestData as PriestDetailsProps);
+
+	const renderTabContent = (label: string | undefined) => {
+		switch (label?.toLowerCase()) {
+			case 'view':
+			case 'print':
+				return type === 'bishop' ? (
+					<GenericMembersInFamilesOverview
+						isFamilyType={false}
+						showImage={true}
+						userName={(priestData as { name?: string })?.name || ''}
+						sectionData={priestsSectionData}
+					/>
+				) : (
+					<RenderDioceseTablesContainer />
+				);
+			case 'add':
+				return <FormsContainer />;
+			default:
+				return null;
+		}
 	};
-
-	if (selectPriorRow) {
-		return <PriorDignitariesContainer />;
-	}
-	if (selectRow) {
-		return <RenderDioceseOverviewContainer />;
-	}
 
 	return (
 		<TabsLayout
 			tabs={tabsData || [{ label: 'view' }, { label: 'add' }]}
-			onTabChange={handleToggleTab}
+			onTabChange={setActiveIndex}
 			activeTabId={activeIndex}
 		>
-			{type === 'bishop' ? (
-				<GenericMembersInFamilesOverview
-					isFamilyType={false}
-					showImage={true}
-					userName={(priestData as { name?: string })?.name || ''}
-					sectionData={priestsSectionData}
-				/>
-			) : (
-				(tabsData?.[activeIndex]?.label === 'view' || tabsData?.[activeIndex]?.label === 'print') && (
-					<RenderDioceseTablesContainer />
-				)
-			)}
+			{renderTabContent(tabsData?.[activeIndex]?.label)}
 		</TabsLayout>
 	);
 };
