@@ -30,7 +30,7 @@ const priestData = {
 
 const DioceseGenericPage = () => {
 	const location = useLocation();
-	const { selectRow, selectPriorRow } = useStore();
+	const { selectRow, selectPriorRow, editRow } = useStore();
 
 	const type = useRouteName('type');
 	const [activeIndex, setActiveIndex] = useState(0);
@@ -45,7 +45,7 @@ const DioceseGenericPage = () => {
 	}, [tabsData]);
 
 	if (selectPriorRow) return <PriorDignitariesContainer />;
-	if (selectRow) return <RenderDioceseOverviewContainer />;
+	if (selectRow || editRow) return <RenderDioceseOverviewContainer />;
 
 	const priestsSectionData = getPriestsSectionData(priestData as PriestDetailsProps);
 

@@ -23,10 +23,10 @@ import { SquarePen, Upload } from 'lucide-react';
 import { useMemo } from 'react';
 
 const usePriestColumns = (): ColumnDef<PriestDetailsProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<PriestDetailsProps>(handleSelectRow),
+		...getCommonActionColumns<PriestDetailsProps>(handleSelectRow, handleEditRow),
 		{
 			accessorKey: 'type',
 			header: 'Type',
@@ -111,14 +111,14 @@ const usePriestCalendarColumns = (): ColumnDef<PriestCalendarDetailsProps>[] => 
 ];
 
 const useCommissionColumns = (): ColumnDef<CommissionMemberProps>[] => {
-	const { handleSelectRow, handleSelectPriorRow } = useStore();
+	const { handleEditRow, handleSelectPriorRow } = useStore();
 
 	return [
 		{
 			id: 'actions',
 			header: 'Edit & Prior Dignitaries',
 			cell: ({ row }) => (
-				<TableActionButtons row={row.original} onEdit={handleSelectRow} onViewPrior={handleSelectPriorRow} />
+				<TableActionButtons row={row.original} onEdit={handleEditRow} onViewPrior={handleSelectPriorRow} />
 			),
 			meta: { isExportable: false },
 		},
@@ -208,14 +208,14 @@ const useCuriaMembersColumns = (): ColumnDef<CuriaMembersProps>[] => {
 };
 
 const useCommitteesColumns = (): ColumnDef<CommitteesProps>[] => {
-	const { handleSelectRow, handleSelectPriorRow } = useStore();
+	const { handleEditRow, handleSelectPriorRow } = useStore();
 
 	return [
 		{
 			id: 'actions',
 			header: 'Edit & Prior Dignitaries',
 			cell: ({ row }) => (
-				<TableActionButtons row={row.original} onEdit={handleSelectRow} onViewPrior={handleSelectPriorRow} />
+				<TableActionButtons row={row.original} onEdit={handleEditRow} onViewPrior={handleSelectPriorRow} />
 			),
 			meta: { isExportable: false },
 		},
@@ -256,10 +256,10 @@ const useCommitteesColumns = (): ColumnDef<CommitteesProps>[] => {
 };
 
 const useDioceseVSSSColumns = (): ColumnDef<DioceseVSSSMemberProps>[] => {
-	const { handleSelectRow, handleSelectPriorRow } = useStore();
+	const { handleSelectRow, handleSelectPriorRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<DioceseVSSSMemberProps>(handleSelectRow),
+		...getCommonActionColumns<DioceseVSSSMemberProps>(handleSelectRow, handleEditRow),
 		{
 			accessorKey: 'designation',
 			header: 'Designation',
@@ -307,10 +307,10 @@ const useDioceseVSSSColumns = (): ColumnDef<DioceseVSSSMemberProps>[] => {
 };
 
 const useDioceseSenateColumns = (): ColumnDef<DioceseSenateMemberProps>[] => {
-	const { handleSelectRow, handleSelectPriorRow } = useStore();
+	const { handleSelectRow, handleSelectPriorRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<DioceseSenateMemberProps>(handleSelectRow),
+		...getCommonActionColumns<DioceseSenateMemberProps>(handleSelectRow, handleEditRow),
 		{
 			accessorKey: 'role',
 			header: 'Designation',
@@ -358,10 +358,10 @@ const useDioceseSenateColumns = (): ColumnDef<DioceseSenateMemberProps>[] => {
 	];
 };
 const useVicariateForaneColumns = (): ColumnDef<VicariateForaneMemberProps>[] => {
-	const { handleSelectRow, handleSelectPriorRow } = useStore();
+	const { handleSelectRow, handleSelectPriorRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<VicariateForaneMemberProps>(handleSelectRow),
+		...getCommonActionColumns<VicariateForaneMemberProps>(handleSelectRow, handleEditRow),
 		{
 			id: 'priorDignitaries',
 			header: 'Prior Dignitaries',
@@ -414,10 +414,10 @@ const useVicariateForaneColumns = (): ColumnDef<VicariateForaneMemberProps>[] =>
 };
 
 const useParishColumns = (): ColumnDef<ParishTableDataProps>[] => {
-	const { handleSelectRow, handleSelectPriorRow } = useStore();
+	const { handleSelectRow, handleSelectPriorRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<ParishTableDataProps>(handleSelectRow),
+		...getCommonActionColumns<ParishTableDataProps>(handleSelectRow, handleEditRow),
 		{
 			id: 'priorDignitaries',
 			header: 'Prior Dignitaries',
@@ -483,10 +483,10 @@ const useParishColumns = (): ColumnDef<ParishTableDataProps>[] => {
 	];
 };
 const useLandDocumentColumns = (): ColumnDef<PropertiesProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<PropertiesProps>(handleSelectRow),
+		...getCommonActionColumns<PropertiesProps>(handleSelectRow, handleEditRow),
 
 		{
 			accessorKey: 'document',
@@ -590,10 +590,10 @@ const useVicariateColumns = (): ColumnDef<VicariateDetailsProps>[] => {
 };
 
 const useHouseListColumns = (): ColumnDef<HouseListProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<HouseListProps>(handleSelectRow),
+		...getCommonActionColumns<HouseListProps>(handleSelectRow, handleEditRow),
 
 		{
 			accessorKey: 'parish',
@@ -651,10 +651,10 @@ const useHouseListColumns = (): ColumnDef<HouseListProps>[] => {
 };
 
 const useInstitutionDetailsColumns = (): ColumnDef<InstitutionDetailsProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<InstitutionDetailsProps>(handleSelectRow),
+		...getCommonActionColumns<InstitutionDetailsProps>(handleSelectRow, handleEditRow),
 
 		{
 			accessorKey: 'category',
@@ -732,10 +732,10 @@ const useInstitutionDetailsColumns = (): ColumnDef<InstitutionDetailsProps>[] =>
 };
 
 const useNoviciateInstitutionColumns = (): ColumnDef<NoviciateInstitutionProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<NoviciateInstitutionProps>(handleSelectRow),
+		...getCommonActionColumns<NoviciateInstitutionProps>(handleSelectRow, handleEditRow),
 		{
 			accessorKey: 'noviciateName',
 			header: 'Noviciate Name',

@@ -20,13 +20,7 @@ const member_dummy_data = {
 	},
 };
 
-const parish_council_pages = [
-	'parish_council_members',
-	'associations_incharge',
-	'anbiam_incharge',
-	'associations_club',
-	'anbiams',
-];
+const parish_council_pages = ['associations_incharge', 'anbiam_incharge', 'associations_club', 'anbiams'];
 
 const family_member_table_data = [
 	{

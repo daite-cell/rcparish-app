@@ -12,6 +12,7 @@ import RenderDiocesePeopleDetailsContainer from '../render-people-overview-conta
 const RenderDioceseOverviewContainer = memo(() => {
 	const type = useRouteName('type');
 	const selectRow = useStore((state) => state.selectRow);
+	const editRow = useStore((state) => state.editRow);
 	console.warn('selectRow', selectRow);
 
 	const priestsSectionData = getPriestsSectionData(selectRow as PriestDetailsProps);
@@ -48,7 +49,9 @@ const RenderDioceseOverviewContainer = memo(() => {
 		),
 	};
 
-	return <OverviewTabsLayout pathName={type} componentMap={componentMap} />;
+	return (
+		<OverviewTabsLayout pathName={type} componentMap={componentMap} defaultTabLabel={editRow ? 'edit' : 'profile'} />
+	);
 });
 
 export default RenderDioceseOverviewContainer;
