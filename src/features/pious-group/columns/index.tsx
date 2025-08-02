@@ -16,10 +16,10 @@ import { AdminDefaultImage, TablePriorDignitariesButton } from '@/components';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
 
 const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[] => {
-	const { handleSelectRow, handleSelectPriorRow } = useStore();
+	const { handleSelectRow, handleSelectPriorRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<ParishCouncilMemberDetailsProps>(handleSelectRow),
+		...getCommonActionColumns<ParishCouncilMemberDetailsProps>(handleSelectRow, handleEditRow),
 		{
 			id: 'prior dignitaries',
 			header: 'Prior Dignitaries',
@@ -57,10 +57,10 @@ const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[]
 };
 
 const useFamilyOverviewColumns = (): ColumnDef<FamilyDataProps>[] => {
-	const { handleSelectRow, handleSelectFamilyCardRow } = useStore();
+	const { handleSelectRow, handleSelectFamilyCardRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<FamilyDataProps>(handleSelectRow),
+		...getCommonActionColumns<FamilyDataProps>(handleSelectRow, handleEditRow),
 		{
 			id: 'delete',
 			header: 'Delete',
@@ -119,10 +119,10 @@ const useFamilyOverviewColumns = (): ColumnDef<FamilyDataProps>[] => {
 };
 
 const useMembersInParishFamilyColumns = (): ColumnDef<MembersInParishFamilyProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<MembersInParishFamilyProps>(handleSelectRow),
+		...getCommonActionColumns<MembersInParishFamilyProps>(handleSelectRow, handleEditRow),
 		{
 			id: 'delete',
 			header: 'Delete',
@@ -175,10 +175,10 @@ const useMembersInParishFamilyColumns = (): ColumnDef<MembersInParishFamilyProps
 };
 
 const useParishSonsAndDaughtersColumns = (): ColumnDef<ParishSonsAndDaughtersProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<ParishSonsAndDaughtersProps>(handleSelectRow),
+		...getCommonActionColumns<ParishSonsAndDaughtersProps>(handleSelectRow, handleEditRow),
 
 		{
 			accessorKey: 'memberName',
@@ -271,10 +271,10 @@ const useParishSonsAndDaughtersColumns = (): ColumnDef<ParishSonsAndDaughtersPro
 	];
 };
 const useReligiousPeopleColumns = (): ColumnDef<ReligiousPersonProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<ReligiousPersonProps>(handleSelectRow),
+		...getCommonActionColumns<ReligiousPersonProps>(handleSelectRow, handleEditRow),
 		{
 			accessorKey: 'religiousPersonName',
 			header: 'Religious Person Name',
@@ -311,10 +311,10 @@ const useReligiousPeopleColumns = (): ColumnDef<ReligiousPersonProps>[] => {
 	];
 };
 const useAnbiamsColumns = (): ColumnDef<AnbiamCouncilDataProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<AnbiamCouncilDataProps>(handleSelectRow),
+		...getCommonActionColumns<AnbiamCouncilDataProps>(handleSelectRow, handleEditRow),
 		{
 			accessorKey: 'parishName',
 			header: 'Parish Name',
@@ -355,10 +355,10 @@ const useAnbiamsColumns = (): ColumnDef<AnbiamCouncilDataProps>[] => {
 };
 
 const useAnbiamsInchargeColumns = (): ColumnDef<AnbiamInchargeDataProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<AnbiamInchargeDataProps>(handleSelectRow),
+		...getCommonActionColumns<AnbiamInchargeDataProps>(handleSelectRow, handleEditRow),
 		{
 			accessorKey: 'mainStation',
 			header: 'Main-Station / Sub-Station',
@@ -413,10 +413,10 @@ const useAnbiamsInchargeColumns = (): ColumnDef<AnbiamInchargeDataProps>[] => {
 };
 
 const useAssociationCouncilMemberPropsColumns = (): ColumnDef<AssociationCouncilMemberProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<AssociationCouncilMemberProps>(handleSelectRow),
+		...getCommonActionColumns<AssociationCouncilMemberProps>(handleSelectRow, handleEditRow),
 		{
 			accessorKey: 'mainStation',
 			header: 'Main-Station / Sub-Station',
@@ -471,10 +471,10 @@ const useAssociationCouncilMemberPropsColumns = (): ColumnDef<AssociationCouncil
 };
 
 const useAssociationClubColumns = (): ColumnDef<ParishAssociationClubProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<ParishAssociationClubProps>(handleSelectRow),
+		...getCommonActionColumns<ParishAssociationClubProps>(handleSelectRow, handleEditRow),
 
 		{
 			accessorKey: 'parishName',

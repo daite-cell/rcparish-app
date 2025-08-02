@@ -12,7 +12,7 @@ import { CouncilDetailsForm } from '../../forms';
 const PiousGroupGenericPage = () => {
 	const type = useRouteName('type');
 	const pathName = usePathName();
-	const { selectRow, selectFamilyCardRow, selectPriorRow } = useStore();
+	const { selectRow, selectFamilyCardRow, selectPriorRow, editRow } = useStore();
 
 	const [activeIndex, setActiveIndex] = useState(0);
 
@@ -29,7 +29,7 @@ const PiousGroupGenericPage = () => {
 		return <PriorDignitariesContainer />;
 	}
 
-	if (selectRow || selectFamilyCardRow) {
+	if (selectRow || selectFamilyCardRow || editRow) {
 		return <RenderPiousGroupOverviewContainer pathName={type} />;
 	}
 

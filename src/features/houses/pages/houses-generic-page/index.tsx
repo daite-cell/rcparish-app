@@ -10,7 +10,7 @@ import { useRouteName } from '@/utils/getRouteName';
 const HousesGenericPage = () => {
 	const type = useRouteName('type');
 	const [activeIndex, setActiveIndex] = useState(0);
-	const { selectRow } = useStore();
+	const { selectRow, editRow } = useStore();
 
 	const handleToggleTab = (index: number) => {
 		setActiveIndex(index);
@@ -19,7 +19,7 @@ const HousesGenericPage = () => {
 	const linksData = getSectionByPathName(side_nav_links, type as string);
 	const tabsData = linksData?.page_nav_links.find((link: NavLinkProps) => link.path_url === type)?.tabs;
 
-	return selectRow ? (
+	return selectRow || editRow ? (
 		<RenderHouseMemberOverviewContainer />
 	) : (
 		<TabsLayout

@@ -7,10 +7,12 @@ import { memo } from 'react';
 import { useStore } from '@/store/store';
 import type { ReligiousPersonProps } from '@/types';
 import { getReligiousPeopleSectionData } from '../../columns-sections';
+import { ParishCouncilMembersForm, ReligiousParishCouncilMembersForm } from '../../forms';
 import { extractUserName } from '@/utils/extractUserName';
 
 const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string | number | undefined }) => {
-	const { selectRow } = useStore();
+	const { selectRow, editRow } = useStore();
+
 	const tabs = [{ label: 'profile' }, { label: 'edit' }, { label: 'back' }];
 
 	const isReligiousPerson = (data: unknown): data is ReligiousPersonProps => {
@@ -41,20 +43,31 @@ const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string
 					}
 				/>
 			),
-			form: <h1>Religious Form</h1>,
+			form: <ReligiousParishCouncilMembersForm />,
 		},
-
+		parish_council_members: {
+			view: <CouncilMemberDetailsContainer />,
+			form: <ParishCouncilMembersForm />,
+		},
 		...Object.fromEntries(
 			parish_council_pages.map((p) => [
 				p,
 				{
 					view: <CouncilMemberDetailsContainer />,
-					form: <h1 className="text-red-600">Parish Council Forms will be added soon .........</h1>,
+					form: <h1>Parish Council Forms will be added soon .........</h1>,
 				},
 			])
 		),
 	};
-	return <OverviewTabsLayout tabs={tabs} pathName={pathName} componentMap={componentMap} />;
+
+	return (
+		<OverviewTabsLayout
+			tabs={tabs}
+			pathName={pathName}
+			componentMap={componentMap}
+			defaultTabLabel={editRow ? 'edit' : 'profile'}
+		/>
+	);
 });
 
 export default RenderPiousGroupOverviewContainer;
