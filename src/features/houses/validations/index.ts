@@ -1,101 +1,69 @@
 import { z } from 'zod';
+import {
+	requiredString,
+	optionalEmail,
+	optionalMobileValidation,
+	optionalDateWithFormat,
+	optionalYear,
+	optionalString,
+} from '@/validations/stringValidations';
+import { enumFromArray } from '@/validations/enumValidations';
 
 export const institutionsFormSchema = z.object({
-	category: z.string().min(1, 'Category is required'),
-	schoolType: z.string().min(1, 'School Type is required'),
-	diocesanCategory: z.string().min(1, 'Diocesan Category is required'),
-	schoolName: z.string().min(1, 'School Name is required'),
-	placeName: z.string().min(1, 'Place Name is required'),
-	landOwnership: z.string().min(1, 'Land Ownership is required'),
-
-	establishedYear: z
-		.string()
-		.optional()
-		.refine((val) => !val || /^\d{4}$/.test(val), 'Established Year must be a 4-digit year'),
-
-	s_recognition_date: z
-		.string()
-		.optional()
-		.refine((val) => !val || /^\d{4}-\d{2}-\d{2}$/.test(val), 'Recognition Date must be in YYYY-MM-DD format'),
-
-	s_recognition_no: z.string().optional(),
-
-	class_from: z.string().min(1, 'Please select a class'),
-	gender: z.string().min(1, 'Please select gender'),
-	classUpto: z.string().min(1, 'Please select a class'),
-
-	runBy: z.string().min(1, 'Please specify who runs the institution'),
-	dioceseName: z.string().min(1, 'Diocese Name is required'),
-	medium: z.string().min(1, 'Please select a medium'),
-	management: z.string().min(1, 'Please select management'),
-
-	optionalContactNumber: z
-		.string()
-		.optional()
-		.refine((val) => !val || /^[6-9]\d{9}$/.test(val), 'Invalid mobile number'),
-
-	optionalContactMail: z
-		.string()
-		.optional()
-		.refine((val) => !val || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val), 'Invalid email address'),
+	category: requiredString('Category is required'),
+	schoolType: requiredString('School Type is required'),
+	diocesanCategory: requiredString('Diocesan Category is required'),
+	schoolName: requiredString('School Name is required'),
+	placeName: requiredString('Place Name is required'),
+	landOwnership: requiredString('Land Ownership is required'),
+	establishedYear: optionalYear('Established Year must be a 4-digit year'),
+	s_recognition_date: optionalDateWithFormat('Recognition Date must be in YYYY-MM-DD format'),
+	s_recognition_no: optionalString(),
+	class_from: requiredString('Please select a class'),
+	gender: requiredString('Please select gender'),
+	classUpto: requiredString('Please select a class'),
+	runBy: requiredString('Please specify who runs the institution'),
+	dioceseName: requiredString('Diocese Name is required'),
+	medium: requiredString('Please select a medium'),
+	management: requiredString('Please select management'),
+	optionalContactNumber: optionalMobileValidation(),
+	optionalContactMail: optionalEmail(),
 });
 
 export type InstitutionsFormData = z.infer<typeof institutionsFormSchema>;
+
 export const noviciateFormSchema = z.object({
-	name: z.string().min(1, 'Name is required'),
-	place: z.string().min(1, 'Place is required'),
-	landOwnerShip: z.string().min(1, 'Land Ownership is required'),
-	belongsTo: z.string().optional(),
-
-	congregationName: z.string().min(1, 'Congregation Name is required'),
-	seminary: z.string().min(1, 'Seminary is required'),
-
-	mobile_no: z
-		.string()
-		.optional()
-		.refine((val) => !val || /^[6-9]\d{9}$/.test(val), 'Invalid mobile number'),
-
-	mail_id: z
-		.string()
-		.optional()
-		.refine((val) => !val || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val), 'Invalid email address'),
-
-	address: z.string().optional(),
+	name: requiredString('Name is required'),
+	place: requiredString('Place is required'),
+	landOwnerShip: requiredString('Land Ownership is required'),
+	belongsTo: optionalString(),
+	congregationName: requiredString('Congregation Name is required'),
+	seminary: requiredString('Seminary is required'),
+	mobile_no: optionalMobileValidation(),
+	mail_id: optionalEmail(),
+	address: optionalString(),
 });
 
 export type NoviciateFormData = z.infer<typeof noviciateFormSchema>;
 
 export const communitiesFormSchema = z.object({
-	subStationName: z.string().min(1, 'Sub Station is required'),
-	conventType: z.string().min(1, 'Please select the type of convent'),
-	name: z.string().min(1, 'Name is required'),
-	place: z.string().min(1, 'Place is required'),
+	subStationName: requiredString('Sub Station is required'),
+	conventType: requiredString('Please select the type of convent'),
+	name: requiredString('Name is required'),
+	place: requiredString('Place is required'),
 
-	belongsTo: z.enum(['diocese', 'congregation'], {
-		required_error: 'Please select an option',
-	}),
+	belongsTo: enumFromArray(['diocese', 'congregation'], 'Please select an option'),
+	congregation: requiredString('Please select a congregation'),
+	abbreviation: requiredString('Please select an abbreviation'),
 
-	congregation: z.string().min(1, 'Please select a congregation'),
-	abbreviation: z.string().min(1, 'Please select an abbreviation'),
+	establishedDate: optionalDateWithFormat('Established Date must be in YYYY-MM-DD format'),
+	establishedBy: optionalString(),
 
-	establishedDate: z
-		.string()
-		.optional()
-		.refine((val) => !val || /^\d{4}-\d{2}-\d{2}$/.test(val), 'Established Date must be in YYYY-MM-DD format'),
+	landOwnership: requiredString('Land Ownership is required'),
+	address: optionalString(),
 
-	establishedBy: z.string().optional(),
-	landOwnership: z.string().min(1, 'Land Ownership is required'),
-	address: z.string().optional(),
-
-	mobile_no: z
-		.string()
-		.optional()
-		.refine((val) => !val || /^[6-9]\d{9}$/.test(val), 'Invalid mobile number'),
-
-	mail_id: z
-		.string()
-		.optional()
-		.refine((val) => !val || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val), 'Invalid email address'),
+	mobile_no: optionalMobileValidation(),
+	mail_id: optionalEmail(),
 });
 
 export type CommunitiesFormData = z.infer<typeof communitiesFormSchema>;

@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
-import { yearSelectionSchema, type YearSelectionFormValues } from '@/validations';
+import { yearSelectionSchema, type YearSelectionFormValues } from '@/features/dashboard/validations';
 
 interface YearSelectionFormProps {
 	value: string;
