@@ -3,8 +3,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FormButton, UploadPriestNameHeading } from '@/components';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
-import { uploadSchema, type UploadSchema } from '@/validations';
 import { useStore } from '@/store/store';
+import { uploadSchema, type UploadSchema } from '../../validations';
 
 const UploadFileComponent = () => {
 	const { handleCloseUploadedFileRow } = useStore();

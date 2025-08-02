@@ -1,119 +1,137 @@
 import { z } from 'zod';
-
-const fileValidation = z.custom<File>().refine((file) => file instanceof File && file.size > 0, {
-	message: 'Image file is required',
-});
-
-const mobileValidation = z.string().regex(/^[6-9]\d{9}$/, 'Enter a valid 10-digit mobile number');
-
-const emailValidation = z.string().email('Invalid email address');
-
-const optionalEmail = z.union([emailValidation, z.literal('')]).optional();
+import {
+	requiredString,
+	mobileValidation,
+	optionalMobileValidation,
+	optionalEmail,
+} from '@/validations/stringValidations';
+import { fileValidation } from '@/validations/fileValidations';
 
 const commissionsSchema = z.object({
-	commission: z.string().nonempty('Commission is required'),
-	position: z.string().nonempty('Commission Name is required'),
-	select_position: z.string().nonempty('Position is required'),
-	category_from: z.string().nonempty('Person category is required'),
-	personName: z.string().nonempty('Person name is required'),
-	status: z.string().nonempty('Status is required'),
-	electionConductedOn: z.string().nonempty('From the year is required'),
-	toYear: z.string().nonempty('To the year is required'),
-	mobileNumber: mobileValidation,
-	address: z.string().nonempty('Address is required'),
-	image: fileValidation,
+	commission: requiredString('Commission is required'),
+	position: requiredString('Commission Name is required'),
+	select_position: requiredString('Position is required'),
+	category_from: requiredString('Person category is required'),
+	personName: requiredString('Person name is required'),
+	status: requiredString('Status is required'),
+	electionConductedOn: requiredString('From the year is required'),
+	toYear: requiredString('To the year is required'),
+	mobileNumber: mobileValidation('Enter a valid 10-digit mobile number'),
+	address: requiredString('Address is required'),
+	image: fileValidation('Image file is required'),
 });
 
 const committeeSchema = z.object({
-	committee: z.string().nonempty('Committee is required'),
-	committeePosition: z.string().nonempty('Position is required'),
-	position: z.string().nonempty('Category is required'),
-	personName: z.string().nonempty('Name is required'),
-	status: z.string().nonempty('Status is required'),
-	electionConductedOn: z.string().nonempty('From Year is required'),
-	toYear: z.string().nonempty('To Year is required'),
-	mobileNumber: mobileValidation,
-	address: z.string().nonempty('Address is required'),
-	image: fileValidation,
+	committee: requiredString('Committee is required'),
+	committeePosition: requiredString('Position is required'),
+	position: requiredString('Category is required'),
+	personName: requiredString('Name is required'),
+	status: requiredString('Status is required'),
+	electionConductedOn: requiredString('From Year is required'),
+	toYear: requiredString('To Year is required'),
+	mobileNumber: mobileValidation('Enter a valid 10-digit mobile number'),
+	address: requiredString('Address is required'),
+	image: fileValidation('Image file is required'),
 });
 
 const socialServiceSocietyTypeSchema = z.object({
-	society: z.string().nonempty('SSS is required'),
-	category: z.string().nonempty('Category is required'),
-	personName: z.string().nonempty('Name is required'),
-	status: z.string().nonempty('Status is required'),
-	electionConductedOn: z.string().nonempty('From Year is required'),
-	toYear: z.string().nonempty('To Year is required'),
-	address: z.string().nonempty('Address is required'),
-	mobileNumber: mobileValidation,
-	image: fileValidation,
+	society: requiredString('SSS is required'),
+	category: requiredString('Category is required'),
+	personName: requiredString('Name is required'),
+	status: requiredString('Status is required'),
+	electionConductedOn: requiredString('From Year is required'),
+	toYear: requiredString('To Year is required'),
+	address: requiredString('Address is required'),
+	mobileNumber: mobileValidation('Enter a valid 10-digit mobile number'),
+	image: fileValidation('Image file is required'),
 });
 
 const houseListSchema = z.object({
-	parishName: z.string().nonempty('Parish name is required'),
-	churchName: z.string().nonempty('Name of the Church is required'),
-	vicariate: z.string().nonempty('Vicariate is required'),
-	houseType: z.string().nonempty('Name of the House type is required'),
-	houseName: z.string().nonempty('Name of the House is required'),
-	housePlace: z.string().nonempty('Place of the House is required'),
+	parishName: requiredString('Parish name is required'),
+	churchName: requiredString('Name of the Church is required'),
+	vicariate: requiredString('Vicariate is required'),
+	houseType: requiredString('Name of the House type is required'),
+	houseName: requiredString('Name of the House is required'),
+	housePlace: requiredString('Place of the House is required'),
 	incardinatedTo: z.enum(['diocese', 'pontifical', 'public'], {
 		required_error: 'Incardinated To is required',
 	}),
-	congregation: z.string().nonempty('Congregation is required'),
-	abbreviation: z.string().nonempty('Abbreviation is required'),
+	congregation: requiredString('Congregation is required'),
+	abbreviation: requiredString('Abbreviation is required'),
 	establishedOn: z.string().optional(),
 	establishedBy: z.string().optional(),
-	landOwnership: z.string().nonempty('Land Ownership is required'),
+	landOwnership: requiredString('Land Ownership is required'),
 	contactAddress: z.string().optional(),
 	contactNumber: z.string().optional(),
 	recognitionNumber: z.string().optional(),
 });
 
 const institutionsFormSchema = z.object({
-	category: z.string().nonempty('Category is required'),
-	schoolCategory: z.string().nonempty('School Category is required'),
-	instituteName: z.string().nonempty('Institute Name is required'),
-	place: z.string().nonempty('Place is required'),
-	parish: z.string().nonempty('Parish is required'),
-	vicariate: z.string().nonempty('Vicariate is required'),
-	landOwnership: z.string().nonempty('Land Ownership is required'),
+	category: requiredString('Category is required'),
+	schoolCategory: requiredString('School Category is required'),
+	instituteName: requiredString('Institute Name is required'),
+	place: requiredString('Place is required'),
+	parish: requiredString('Parish is required'),
+	vicariate: requiredString('Vicariate is required'),
+	landOwnership: requiredString('Land Ownership is required'),
 	establishedYear: z.string().optional(),
-	gender: z.string().nonempty('Gender is required'),
-	classFrom: z.string().nonempty('Starting class is required'),
-	runBy: z.string().nonempty('Run By is required'),
-	congregation: z.string().nonempty('Congregation is required'),
-	medium: z.string().nonempty('Medium is required'),
-	management: z.string().nonempty('Management is required'),
-	mobile: z.string().optional(),
-	email: optionalEmail,
+	gender: requiredString('Gender is required'),
+	classFrom: requiredString('Starting class is required'),
+	runBy: requiredString('Run By is required'),
+	congregation: requiredString('Congregation is required'),
+	medium: requiredString('Medium is required'),
+	management: requiredString('Management is required'),
+	mobile: optionalMobileValidation('Enter a valid mobile number'),
+	email: optionalEmail(),
 	address: z.string().optional(),
 	gradeName: z.string().optional(),
 });
 
 const vocationalListSchema = z.object({
-	noviciateName: z.string().nonempty('Name of the Noviciate is required'),
-	placeName: z.string().nonempty('Name of the Place is required'),
-	parish: z.string().nonempty('Parish is required'),
-	vicariate: z.string().nonempty('Vicariate is required'),
-	landOwnership: z.string().nonempty('Land Ownership is required'),
-	belongsTo: z.string().nonempty('Belongs To is required'),
-	congregationName: z.string().nonempty('Name of the Congregation is required'),
-	seminary: z.string().nonempty('Seminary is required'),
-	mobileNo: z
-		.string()
-		.optional()
-		.refine((val) => !val || /^[6-9]\d{9}$/.test(val), { message: 'Invalid mobile number' }),
-	mailId: optionalEmail,
+	noviciateName: requiredString('Name of the Noviciate is required'),
+	placeName: requiredString('Name of the Place is required'),
+	parish: requiredString('Parish is required'),
+	vicariate: requiredString('Vicariate is required'),
+	landOwnership: requiredString('Land Ownership is required'),
+	belongsTo: requiredString('Belongs To is required'),
+	congregationName: requiredString('Name of the Congregation is required'),
+	seminary: requiredString('Seminary is required'),
+	mobileNo: optionalMobileValidation('Invalid mobile number'),
+	mailId: optionalEmail(),
 	address: z.string().optional(),
 });
 
-// Types
+const uploadSchema = z.object({
+	document: z
+		.instanceof(FileList)
+		.refine((files) => files.length > 0, {
+			message: 'File is required',
+		})
+		.refine((files) => files[0]?.size <= 5 * 1024 * 1024, {
+			message: 'Max file size is 5MB',
+		})
+		.refine(
+			(files) => {
+				const allowedTypes = [
+					'application/pdf',
+					'application/vnd.ms-excel',
+					'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+				];
+				return allowedTypes.includes(files[0]?.type);
+			},
+			{
+				message: 'Only PDF and Excel files are allowed',
+			}
+		),
+});
+
 type CommissionsType = z.infer<typeof commissionsSchema>;
 type CommitteeType = z.infer<typeof committeeSchema>;
 type SocialServiceSocietyType = z.infer<typeof socialServiceSocietyTypeSchema>;
 type HouseListType = z.infer<typeof houseListSchema>;
 type InstitutionsType = z.infer<typeof institutionsFormSchema>;
 type VocationalListType = z.infer<typeof vocationalListSchema>;
+type UploadSchema = z.infer<typeof uploadSchema>;
 
 export {
 	commissionsSchema,
@@ -122,6 +140,7 @@ export {
 	houseListSchema,
 	institutionsFormSchema,
 	vocationalListSchema,
+	uploadSchema,
 };
 
 export type {
@@ -131,4 +150,5 @@ export type {
 	HouseListType,
 	InstitutionsType,
 	VocationalListType,
+	UploadSchema,
 };

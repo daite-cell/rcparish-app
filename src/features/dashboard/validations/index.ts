@@ -1,23 +1,33 @@
 import { z } from 'zod';
+import { requiredString } from '@/validations/stringValidations';
+import { enumFromArray } from '@/validations/enumValidations';
+import { optionalFileValidation } from '@/validations/fileValidations';
+import { requiredDate } from '@/validations';
 
 export const sermonSchema = z.object({
-	writtenBy: z.string().min(1, 'Written By is required'),
-	year: z.enum(['A', 'B', 'C'], { required_error: 'Year is required' }),
-	season: z.string().min(1, 'Season is required'),
-	week: z.string().min(1, 'Week is required'),
-	date: z.string().min(1, 'Date is required'),
-	day: z.string().min(1, 'Day is required'),
-	document: z.any().optional(),
-	description: z.string().min(1, 'Description is required'),
+	writtenBy: requiredString('Written By is required'),
+	year: enumFromArray(['A', 'B', 'C'], 'Year is required'),
+	season: requiredString('Season is required'),
+	week: requiredString('Week is required'),
+	date: requiredDate('Date is required'),
+	day: requiredString('Day is required'),
+	document: optionalFileValidation('Please upload a valid file'),
+	description: requiredString('Description is required'),
 });
 
 export type SermonFormValues = z.infer<typeof sermonSchema>;
 
 export const requestSchema = z.object({
-	parish: z.string().min(1, 'Parish is required'),
-	priests: z.string().min(1, 'Priest is required'),
-	requestFor: z.string().min(1, 'Request For is required'),
-	description: z.string().min(1, 'Description is required'),
+	parish: requiredString('Parish is required'),
+	priests: requiredString('Priest is required'),
+	requestFor: requiredString('Request For is required'),
+	description: requiredString('Description is required'),
 });
 
 export type RequestFormValues = z.infer<typeof requestSchema>;
+
+export const yearSelectionSchema = z.object({
+	year_type: enumFromArray(['current_year', 'next_year'], 'Please select a year type'),
+});
+
+export type YearSelectionFormValues = z.infer<typeof yearSelectionSchema>;
