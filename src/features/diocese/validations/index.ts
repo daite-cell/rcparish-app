@@ -144,6 +144,7 @@ const priestsSchema = z.object({
 	isSameAsBirthPlaceForPlace: z.boolean().optional(),
 	nativeParish: requiredString('Native Parish is required'),
 	isSameAsBirthPlaceForParish: z.boolean().optional(),
+	isSameAsNativePlaceForBaptism: z.boolean().optional(),
 	dateOfBaptism: optionalString(),
 	nativeBaptism: optionalString(),
 	dateOfFirstProfession: optionalString(),

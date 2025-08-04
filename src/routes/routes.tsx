@@ -99,6 +99,12 @@ export const appRoutes: AppRoute[] = [
 		element: <HistoryPage />,
 		layout: true,
 	},
+	{
+		path: '/diocese/priests/:id',
+		name: 'DioceseGeneric',
+		element: <PriestsGenericPage />,
+		layout: true,
+	},
 
 	{
 		path: '/diocese/:type',
@@ -106,12 +112,7 @@ export const appRoutes: AppRoute[] = [
 		element: <DioceseGenericPage />,
 		layout: true,
 	},
-	{
-		path: '/diocese/priests/:id',
-		name: 'DioceseGeneric',
-		element: <PriestsGenericPage />,
-		layout: true,
-	},
+
 	{
 		path: '/diocese/statutes/:rule',
 		name: 'DioceseStatutesGeneric',

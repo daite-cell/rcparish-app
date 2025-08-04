@@ -125,7 +125,7 @@ const PriestsForm = () => {
 					<InputWithCheckbox
 						control={control}
 						name="nativeBaptism"
-						checkboxName="isSameAsBirthPlaceForParish"
+						checkboxName="isSameAsNativePlaceForBaptism"
 						label="Place of Baptism"
 						checkboxLabel="Same as Native Place"
 						placeholder="Enter Place of Baptism"
