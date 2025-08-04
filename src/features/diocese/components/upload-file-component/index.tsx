@@ -4,7 +4,7 @@ import { FormButton, UploadPriestNameHeading } from '@/components';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import { useStore } from '@/store/store';
-import { uploadSchema, type UploadSchema } from '../../validations';
+import { uploadSchema, type UploadSchemaType } from '../../validations';
 
 const UploadFileComponent = () => {
 	const { handleCloseUploadedFileRow } = useStore();
@@ -13,13 +13,13 @@ const UploadFileComponent = () => {
 		handleSubmit,
 		formState: { errors },
 		reset,
-	} = useForm<UploadSchema>({
+	} = useForm<UploadSchemaType>({
 		resolver: zodResolver(uploadSchema),
 	});
 
 	const [uploading, setUploading] = useState(false);
 
-	const onSubmit = (data: UploadSchema) => {
+	const onSubmit = (data: UploadSchemaType) => {
 		setUploading(true);
 
 		const formData = new FormData();

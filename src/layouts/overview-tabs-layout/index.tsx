@@ -24,7 +24,13 @@ const OverviewTabsLayout = ({
 	tabs = defaultTabs,
 	defaultTabLabel = 'profile',
 }: OverviewTabsProps) => {
-	const { handleCloseRow, handleCloseFamilyCardRow, handleCloseEditRow } = useStore();
+	const {
+		handleCloseRow,
+		handleCloseFamilyCardRow,
+		handleCloseEditRow,
+		handleCloseEditPriestsRow,
+		handleClosePriestsRow,
+	} = useStore();
 	const page = String(pathName);
 
 	const getTabIndexByLabel = (label: string) =>
@@ -39,6 +45,8 @@ const OverviewTabsLayout = ({
 			handleCloseRow();
 			handleCloseFamilyCardRow();
 			handleCloseEditRow();
+			handleCloseEditPriestsRow();
+			handleClosePriestsRow();
 			setActiveTabIndex(getTabIndexByLabel('profile'));
 		} else {
 			setActiveTabIndex(index);

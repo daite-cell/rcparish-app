@@ -65,3 +65,4 @@ export { default as TableActionButtons } from './table-action-buttons';
 export { default as ControlledDateInputField } from './controlled-date-input-field';
 export { default as ControlledRadioGroup } from './controlled-radio-group';
 export { default as ControlledFileUpload } from './controlled-file-upload';
+export { default as InputWithCheckbox } from './input-with-checkbox';

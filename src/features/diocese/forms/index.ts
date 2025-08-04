@@ -4,3 +4,4 @@ export { default as SocialServiceSocietyForm } from './social-service-society-fo
 export { default as HousesListForm } from './houses-list-form';
 export { default as InstitutionsListForm } from './institutions-list-form';
 export { default as VocationalListForm } from './vocational-list-form';
+export { default as PriestsForm } from './priests-form';

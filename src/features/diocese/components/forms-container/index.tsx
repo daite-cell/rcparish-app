@@ -4,6 +4,7 @@ import {
 	CommitteesForm,
 	HousesListForm,
 	InstitutionsListForm,
+	PriestsForm,
 	SocialServiceSocietyForm,
 	VocationalListForm,
 } from '../../forms';
@@ -35,6 +36,10 @@ const RenderFormsContainer = () => {
 		{
 			pageName: 'vocational_list',
 			component: <VocationalListForm />,
+		},
+		{
+			pageName: 'priests',
+			component: <PriestsForm />,
 		},
 	];
 	return renderForms.find((form) => form.pageName === type)?.component || <h1>forms will be added</h1>;

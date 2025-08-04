@@ -396,6 +396,12 @@ const livingStatusOptions = [
 	{ label: 'Foreign', value: 'Foreign' },
 ];
 
+const currentLivingStatusOptions = [
+	{ label: 'Alive', value: 'alive' },
+	{ label: 'Death', value: 'death' },
+	{ label: 'Left', value: 'left' },
+];
+
 const settledAsOptions = [
 	{ label: 'Permanent', value: 'Permanent' },
 	{ label: 'Temporary', value: 'Temporary' },
@@ -543,4 +549,5 @@ export {
 	statusOptions,
 	committeeOptions,
 	housingListParishOptions,
+	currentLivingStatusOptions,
 };

@@ -8,12 +8,12 @@ import type { PriestDetailsProps } from '@/types';
 import { member_over_view_pages, people_over_view_pages } from '../../data';
 import GenericDiocesePeopleDetailsContainer from '../generic-diocese-people-details-container';
 import RenderDiocesePeopleDetailsContainer from '../render-people-overview-container';
+import { PriestsForm } from '../../forms';
 
 const RenderDioceseOverviewContainer = memo(() => {
 	const type = useRouteName('type');
 	const selectRow = useStore((state) => state.selectRow);
 	const editRow = useStore((state) => state.editRow);
-	console.warn('selectRow', selectRow);
 
 	const priestsSectionData = getPriestsSectionData(selectRow as PriestDetailsProps);
 	const componentMap = {
@@ -26,7 +26,7 @@ const RenderDioceseOverviewContainer = memo(() => {
 					sectionData={priestsSectionData}
 				/>
 			),
-			form: <h1>Priests Form</h1>,
+			form: <PriestsForm />,
 		},
 
 		...Object.fromEntries(

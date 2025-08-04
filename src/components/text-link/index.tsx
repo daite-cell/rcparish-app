@@ -5,11 +5,12 @@ interface TextLinkProps {
 	to: string;
 	children: React.ReactNode;
 	className?: string;
+	onClick?: () => void;
 }
 
-const TextLink: React.FC<TextLinkProps> = ({ to, children, className }) => {
+const TextLink: React.FC<TextLinkProps> = ({ to, children, className, onClick }) => {
 	return (
-		<Link to={to} className={`hover:underline text-[#0d73c4] hover:text-blue-800 ${className ?? ''}`}>
+		<Link onClick={onClick} to={to} className={`hover:underline text-[#0d73c4] hover:text-blue-800 ${className ?? ''}`}>
 			{children}
 		</Link>
 	);

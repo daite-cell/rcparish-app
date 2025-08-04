@@ -278,6 +278,7 @@ export type BishopPositionTableProps = {
 };
 
 export interface PriestPersonalDetailsProps {
+	id: string;
 	nameOfThePriests: string;
 	image: string;
 	presentPosition: string;
@@ -1174,4 +1175,20 @@ export interface ParishAssociationClubProps {
 	periodOfYears: string;
 	ifExtended: string;
 	periodEndsOn: string;
+}
+
+export interface PriestReligiousProps {
+	id: string;
+	nameOfThePriests: string;
+	birthDate: string;
+	ordinationDate: string;
+	presentPosition: string;
+	presentResidential: string;
+	mobileNumber: string;
+	optionalMobileNumber: string;
+	mailId: string;
+	adhaarNumber: string;
+	nativePlace: string;
+	image: string;
+	livingStatus: 'Alive' | 'Dead' | string;
 }

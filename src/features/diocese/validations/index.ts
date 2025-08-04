@@ -4,8 +4,12 @@ import {
 	mobileValidation,
 	optionalMobileValidation,
 	optionalEmail,
+	optionalString,
+	aadhaarValidation,
+	emailValidation,
 } from '@/validations/stringValidations';
 import { fileValidation } from '@/validations/fileValidations';
+import { enumFromArray } from '@/validations';
 
 const commissionsSchema = z.object({
 	commission: requiredString('Commission is required'),
@@ -53,17 +57,16 @@ const houseListSchema = z.object({
 	houseType: requiredString('Name of the House type is required'),
 	houseName: requiredString('Name of the House is required'),
 	housePlace: requiredString('Place of the House is required'),
-	incardinatedTo: z.enum(['diocese', 'pontifical', 'public'], {
-		required_error: 'Incardinated To is required',
-	}),
+	incardinatedTo: enumFromArray(['diocese', 'pontifical', 'public'], 'Incardinated To is required'),
+
 	congregation: requiredString('Congregation is required'),
 	abbreviation: requiredString('Abbreviation is required'),
-	establishedOn: z.string().optional(),
-	establishedBy: z.string().optional(),
+	establishedOn: optionalString(),
+	establishedBy: optionalString(),
 	landOwnership: requiredString('Land Ownership is required'),
-	contactAddress: z.string().optional(),
-	contactNumber: z.string().optional(),
-	recognitionNumber: z.string().optional(),
+	contactAddress: optionalString(),
+	contactNumber: optionalString(),
+	recognitionNumber: optionalString(),
 });
 
 const institutionsFormSchema = z.object({
@@ -74,7 +77,7 @@ const institutionsFormSchema = z.object({
 	parish: requiredString('Parish is required'),
 	vicariate: requiredString('Vicariate is required'),
 	landOwnership: requiredString('Land Ownership is required'),
-	establishedYear: z.string().optional(),
+	establishedYear: optionalString(),
 	gender: requiredString('Gender is required'),
 	classFrom: requiredString('Starting class is required'),
 	runBy: requiredString('Run By is required'),
@@ -83,8 +86,8 @@ const institutionsFormSchema = z.object({
 	management: requiredString('Management is required'),
 	mobile: optionalMobileValidation('Enter a valid mobile number'),
 	email: optionalEmail(),
-	address: z.string().optional(),
-	gradeName: z.string().optional(),
+	address: optionalString(),
+	gradeName: optionalString(),
 });
 
 const vocationalListSchema = z.object({
@@ -98,7 +101,7 @@ const vocationalListSchema = z.object({
 	seminary: requiredString('Seminary is required'),
 	mobileNo: optionalMobileValidation('Invalid mobile number'),
 	mailId: optionalEmail(),
-	address: z.string().optional(),
+	address: optionalString(),
 });
 
 const uploadSchema = z.object({
@@ -125,13 +128,53 @@ const uploadSchema = z.object({
 		),
 });
 
+const priestsSchema = z.object({
+	belongsTo: z.enum(['diocese', 'congregation'], {
+		required_error: 'This field is required',
+	}),
+
+	priestPermanentId: requiredString('Priest ID is required'),
+	nameOfPriest: requiredString('Name is required'),
+	livingStatus: requiredString('Living status is required'),
+	priestOrdinationDate: requiredString('Date of Priestly Ordination is required'),
+	priestOrdinationPlace: requiredString('Place of Priestly Ordination is required'),
+	dateOfBirth: requiredString('Date of Birth is required'),
+	placeOfBirth: requiredString('Place of Birth is required'),
+	nativePlace: requiredString('Native Place is required'),
+	isSameAsBirthPlaceForPlace: z.boolean().optional(),
+	nativeParish: requiredString('Native Parish is required'),
+	isSameAsBirthPlaceForParish: z.boolean().optional(),
+	dateOfBaptism: optionalString(),
+	nativeBaptism: optionalString(),
+	dateOfFirstProfession: optionalString(),
+	placeOfFirstProfession: optionalString(),
+	dateOfDiaconate: optionalString(),
+	placeOfDiaconate: optionalString(),
+	mobileNumber: mobileValidation(),
+	optionalNumber: optionalMobileValidation(),
+	email: emailValidation(),
+	aadhaarNumber: aadhaarValidation().optional(),
+	presentAddress: optionalString(),
+	fatherName: optionalString(),
+	motherName: optionalString(),
+	numberOfSiblings: optionalString(),
+	birthOrder: optionalString(),
+	elderBrothers: optionalString(),
+	youngerBrothers: optionalString(),
+	elderSisters: optionalString(),
+	youngerSisters: optionalString(),
+	remarks: optionalString(),
+	image: fileValidation('Image file is required'),
+});
+
+type PriestsType = z.infer<typeof priestsSchema>;
 type CommissionsType = z.infer<typeof commissionsSchema>;
 type CommitteeType = z.infer<typeof committeeSchema>;
 type SocialServiceSocietyType = z.infer<typeof socialServiceSocietyTypeSchema>;
 type HouseListType = z.infer<typeof houseListSchema>;
 type InstitutionsType = z.infer<typeof institutionsFormSchema>;
 type VocationalListType = z.infer<typeof vocationalListSchema>;
-type UploadSchema = z.infer<typeof uploadSchema>;
+type UploadSchemaType = z.infer<typeof uploadSchema>;
 
 export {
 	commissionsSchema,
@@ -141,6 +184,7 @@ export {
 	institutionsFormSchema,
 	vocationalListSchema,
 	uploadSchema,
+	priestsSchema,
 };
 
 export type {
@@ -150,5 +194,6 @@ export type {
 	HouseListType,
 	InstitutionsType,
 	VocationalListType,
-	UploadSchema,
+	UploadSchemaType,
+	PriestsType,
 };
