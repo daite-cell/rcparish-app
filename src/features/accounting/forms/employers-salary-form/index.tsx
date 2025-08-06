@@ -91,10 +91,10 @@ const EmployersSalaryForm = () => {
 					/>
 					<CustomFormInput
 						control={control}
-						name="nowPayingAmount"
-						label="Now Paying Amount"
-						placeholder="Enter Now Paying Amount"
-						error={errors.nowPayingAmount?.message}
+						name="voucherNumber"
+						label="Voucher Number"
+						placeholder="Enter Voucher Number"
+						error={errors.voucherNumber?.message}
 					/>
 				</div>
 
@@ -111,10 +111,10 @@ const EmployersSalaryForm = () => {
 					/>
 					<CustomFormInput
 						control={control}
-						name="grandPaidAmount"
-						label="Grand Paid Amount"
-						placeholder="Enter Grand Paid Amount"
-						error={errors.grandPaidAmount?.message}
+						name="nowPayingAmount"
+						label="Now Paying Amount"
+						placeholder="Enter Now Paying Amount"
+						error={errors.nowPayingAmount?.message}
 					/>
 					<CustomFormInput
 						control={control}

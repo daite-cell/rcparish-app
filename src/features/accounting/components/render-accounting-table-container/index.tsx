@@ -17,7 +17,6 @@ const RenderAccountingTableContainer = () => {
 	}
 	return (
 		<div className="space-y-10">
-			{type === 'auditing_income' && <AuditingContainer />}
 			{Object.entries(columnsMap[type]).map(([tableKey, columns]) => {
 				const tableData = dataMap[type][tableKey];
 				if (!tableData) return null;

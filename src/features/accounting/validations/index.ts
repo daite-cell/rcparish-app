@@ -78,11 +78,11 @@ export const employersSalarySchema = z.object({
 	fixedFrom: requiredDate('Fixed salary from date is required'),
 	paidUpto: requiredDate('Salary paid upto date is required'),
 	subscriptionFor: requiredDate('Date is required'),
-	nowPayingAmount: requiredString('Voucher number is required'),
+	voucherNumber: requiredString('Voucher number is required'),
 	hasPriorBalance: z.enum(['yes', 'no'], {
 		required_error: 'Please select if advance is being received',
 	}),
-	grandPaidAmount: requiredString('Now paying amount is required'),
+	nowPayingAmount: requiredString('Now paying amount is required'),
 	lastPaidAmount: requiredString('Last paid amount is required'),
 	lastPaidDate: requiredDate('Last paid date is required'),
 	lastPaidVoucherNumber: requiredString('Last paid voucher number is required'),

@@ -187,7 +187,7 @@ const propertiesSchema = z.object({
 	pattaNumber: requiredString('Patta No is required'),
 	availabilityOfDocument: requiredString('Availability of Document is required'),
 	image: fileValidation('Image file is required'),
-	usageOfLand: enumFromArray(['public', 'private'], 'Usage of Land is required'),
+	usageOfLand: enumFromArray(['in_use', 'not_in_use'], 'Usage of Land is required'),
 	typeOfLand: enumFromArray(['Nanjai', 'Punjai', 'Natham', 'Manai'], 'Type of Land is required'),
 	remarks: requiredString('Remarks'),
 });

@@ -605,7 +605,7 @@ const useDayBookColumns = (): ColumnDef<DayBookEntry>[] => {
 			footer: (info) => {
 				const total = info.table
 					.getFilteredRowModel()
-					.rows.reduce((sum, row) => sum + ((row.getValue('paidAmount') as number) || 0), 0);
+					.rows.reduce((sum, row) => sum + ((row.getValue('incomeAmount') as number) || 0), 0);
 
 				return `Total: ₹${total.toLocaleString('en-IN')}`;
 			},
