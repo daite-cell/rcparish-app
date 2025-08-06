@@ -1192,3 +1192,63 @@ export interface PriestReligiousProps {
 	image: string;
 	livingStatus: 'Alive' | 'Dead' | string;
 }
+
+export type SubscriptionProps = {
+	familyStatus: string;
+	familyName: string;
+	uniqueFamilyNumber: string;
+	oldFamilyNumber: string;
+	familyHeadName: string;
+	familyHeadMobileNumber: string;
+	mainStation: string;
+	subStationId: string;
+	anbiam: string;
+	anbiamId: string;
+	familyMonthlyIncome: string;
+	fixedAmount: string;
+	fixedFrom: string;
+	grandPaidAmount: string;
+	paidUpto: string;
+	priorDueAmount: string;
+	unpaidAmount: string;
+	paidAmount: string;
+	date: string;
+	voucherNumber: string;
+};
+
+export interface PaymentDetailsProps {
+	familyStatus: string;
+	familyName: string;
+	uniqueFamilyNumber: string;
+	mainStation: string;
+	anbiam: string;
+	paidAmount: number;
+	paidDate: string;
+	receiptNo: string;
+}
+
+export interface RentPropertyPaymentProps {
+	property: string;
+	propertyName: string;
+	renderName: string;
+	mobileNumber: string;
+	paidAmount: number;
+	paidDate: string;
+	receiptNumber: string;
+}
+
+export interface DayBookEntry {
+	date: string;
+	name: string;
+	voucherNumber: string;
+	purpose: string;
+	description: string;
+	details: string;
+	incomeAmount: number;
+	expenseAmount: number;
+}
+
+export type AuditingProps = {
+	description: string;
+	amount: number;
+};

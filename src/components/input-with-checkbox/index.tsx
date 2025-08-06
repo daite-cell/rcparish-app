@@ -25,7 +25,6 @@ function InputWithCheckboxInner<T extends FieldValues>({
 	checkboxLabel = 'Same as Birth Place',
 	labelClassName,
 }: InputWithCheckBoxProps<T>) {
-	// Proper way to track checkbox value
 	const isCheckboxChecked = useWatch({
 		control,
 		name: checkboxName,

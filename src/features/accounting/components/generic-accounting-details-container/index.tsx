@@ -2,33 +2,34 @@ import { GenericCouncilMemberDetails } from '@/components';
 import { useStore } from '@/store/store';
 import { useRouteName } from '@/utils/getRouteName';
 import { useCallback } from 'react';
-import { getWorkersSectionData } from '../../columns-section';
-import type { WorkerProps } from '@/types';
-import { accounting_pages } from '../../data';
+import {
+	getEmployersSalarySectionData,
+	getSubscriptionSectionData,
+	getWorkersSectionData,
+} from '../../columns-section';
+import type { EmployersSalaryProps, SubscriptionProps, WorkerProps } from '@/types';
+import { extractUserName } from '@/utils/extractUserName';
 
 const GenericAccountingDetailsContainer = () => {
 	const type = useRouteName('type');
 	const { selectRow } = useStore();
-	const isValidType = (type: unknown): type is string => {
-		return typeof type === 'string' && accounting_pages.includes(type);
-	};
-
-	const isWorkerProps = (obj: unknown): obj is WorkerProps => {
-		return obj !== null && typeof obj === 'object';
-	};
 
 	const getSectionData = useCallback(() => {
-		if (isValidType(type) && isWorkerProps(selectRow)) {
-			return getWorkersSectionData(selectRow);
+		switch (type) {
+			case 'workers':
+				return getWorkersSectionData(selectRow as WorkerProps);
+			case 'subscription':
+				return getSubscriptionSectionData(selectRow as SubscriptionProps);
+			case 'employers_salary':
+				return getEmployersSalarySectionData(selectRow as EmployersSalaryProps);
+			default:
+				return [];
 		}
-		return [];
 	}, [selectRow, type]);
-	return (
-		<GenericCouncilMemberDetails
-			userName={isWorkerProps(selectRow) && 'name' in selectRow ? selectRow.name || '' : ''}
-			sectionData={getSectionData()}
-		/>
-	);
+
+	const userName = extractUserName(selectRow as Record<string, unknown>);
+
+	return <GenericCouncilMemberDetails userName={userName} sectionData={getSectionData()} />;
 };
 
 export default GenericAccountingDetailsContainer;

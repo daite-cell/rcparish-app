@@ -39,6 +39,7 @@ interface DynamicDataTableProps<T extends object, U> {
 	enableDateSorting?: boolean;
 	enableLetterSorting?: boolean;
 	enableExport?: boolean;
+	showFooter?: boolean;
 }
 
 const DynamicDataTable = <T extends object, U>({
@@ -58,6 +59,7 @@ const DynamicDataTable = <T extends object, U>({
 	onEdit,
 	onDelete,
 	onView,
+	showFooter = false,
 }: DynamicDataTableProps<T, U>) => {
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [pageSize, setPageSize] = useState(defaultPageSize);
@@ -264,6 +266,7 @@ const DynamicDataTable = <T extends object, U>({
 						isDynamic={isDynamic}
 						data={data}
 						tableId={generatedTableId}
+						showFooter={showFooter}
 					/>
 
 					{isDynamic && data.length > 0 && <PaginationControls table={table as unknown as ReactTableType<unknown>} />}

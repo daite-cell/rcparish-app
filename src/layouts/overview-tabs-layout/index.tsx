@@ -66,7 +66,12 @@ const OverviewTabsLayout = ({
 	);
 
 	return (
-		<TabsLayout tabs={tabs} activeTabId={activeTabIndex} onTabChange={handleTabChange}>
+		<TabsLayout
+			hasPageHeading={tabs[activeTabIndex]?.label.toLowerCase() !== 'edit'}
+			tabs={tabs}
+			activeTabId={activeTabIndex}
+			onTabChange={handleTabChange}
+		>
 			{content}
 		</TabsLayout>
 	);

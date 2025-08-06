@@ -459,11 +459,13 @@ const side_nav_links = [
 				path_url: '/accounting/donations',
 				label: 'Donations',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/accounting/church_collections',
 				label: 'Church Collections',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/accounting/rent_shop',
@@ -475,6 +477,7 @@ const side_nav_links = [
 				path_url: '/accounting/workers',
 				label: 'Workers (Employers)',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/accounting/employers_salary',
@@ -487,6 +490,7 @@ const side_nav_links = [
 				path_url: '/accounting/day_book',
 				label: 'Day Book',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 
 			{

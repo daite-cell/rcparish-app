@@ -2,7 +2,7 @@ import { useStore } from '@/store/store';
 import ButtonActions from '../button-actions';
 import DynamicDataTable from '../dynamic-table';
 import HeadingWithUnderline from '../heading-with-underline';
-import TabsLayout from '../tabs-layout';
+import TabsLayout from '../../layouts/tabs-layout';
 import { electedMembersColumns } from '@/table-columns';
 import { useRef } from 'react';
 

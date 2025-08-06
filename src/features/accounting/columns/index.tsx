@@ -1,17 +1,22 @@
 import type { ColumnDef } from '@tanstack/react-table';
 import { useStore } from '@/store/store';
 import type {
-	ActiveDonationTableProps,
 	InActiveDonationTableProps,
 	RentPropertyProps,
 	AdvanceRentPropertyProps,
 	ChurchCollectionsProps,
 	WorkerProps,
 	EmployersSalaryProps,
+	ActiveDonationTableProps,
+	SubscriptionProps,
+	PaymentDetailsProps,
+	RentPropertyPaymentProps,
+	DayBookEntry,
+	AuditingProps,
 } from '@/types';
 import { SquarePen, Trash2 } from 'lucide-react';
 import type { CellContext } from '@tanstack/react-table';
-import { TableDetailsViewButton } from '@/components';
+import { TableDetailsViewButton, TextLink } from '@/components';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
 
 const useActiveDonationColumns = (): ColumnDef<ActiveDonationTableProps>[] => {
@@ -309,10 +314,10 @@ const useChurchCollectionsColumns = (): ColumnDef<ChurchCollectionsProps>[] => {
 };
 
 const useWorkersColumns = (): ColumnDef<WorkerProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<WorkerProps>(handleSelectRow),
+		...getCommonActionColumns<WorkerProps>(handleSelectRow, handleEditRow),
 		{ accessorKey: 'workingAs', header: 'Working As' },
 		{ accessorKey: 'name', header: 'Name of the Worker' },
 		{ accessorKey: 'workerId', header: 'Worker Id' },
@@ -335,34 +340,11 @@ const useWorkersColumns = (): ColumnDef<WorkerProps>[] => {
 };
 
 const useEmployersSalaryColumns = (): ColumnDef<EmployersSalaryProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		{
-			id: 'select',
-			header: () => <SquarePen className="w-4 h-4 text-center" />,
-			cell: ({ row }) => (
-				<input
-					title="select"
-					type="checkbox"
-					onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
-				/>
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
+		...getCommonActionColumns<EmployersSalaryProps>(handleSelectRow, handleEditRow),
 
-		{
-			id: 'view',
-			header: 'Details',
-			cell: ({ row }: CellContext<EmployersSalaryProps, unknown>) => (
-				<TableDetailsViewButton onClick={() => handleSelectRow(row.original)} />
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
 		{ accessorKey: 'workingStatus', header: 'Working Status' },
 		{ accessorKey: 'workerName', header: 'Worker Name' },
 		{ accessorKey: 'workerId', header: 'Worker Id' },
@@ -408,6 +390,260 @@ const useEmployersSalaryColumns = (): ColumnDef<EmployersSalaryProps>[] => {
 	];
 };
 
+const useSubscriptionColumns = (): ColumnDef<SubscriptionProps>[] => {
+	const { handleSelectRow, handleEditRow } = useStore();
+
+	return [
+		...getCommonActionColumns<SubscriptionProps>(handleSelectRow, handleEditRow),
+		{
+			id: 'familyInfo',
+			header: '',
+			columns: [
+				{ accessorKey: 'familyStatus', header: 'Family Status' },
+
+				{
+					accessorKey: 'familyName',
+					header: 'Family Name',
+					cell: ({ row }) => <TextLink to="">{row.original.familyName}</TextLink>,
+				},
+				{ accessorKey: 'uniqueFamilyNumber', header: 'Unique Family Number' },
+				{ accessorKey: 'oldFamilyNumber', header: 'Old Family Number' },
+				{ accessorKey: 'familyHeadName', header: 'Family Head Name' },
+				{ accessorKey: 'familyHeadMobileNumber', header: 'Family Head Mobile Number' },
+				{ accessorKey: 'mainStation', header: 'Main-Station / Sub-Station' },
+				{ accessorKey: 'subStationId', header: 'Sub-Station Id' },
+				{ accessorKey: 'anbiam', header: 'Anbiam' },
+				{ accessorKey: 'anbiamId', header: 'Anbiam Id' },
+				{ accessorKey: 'familyMonthlyIncome', header: 'Family Monthly Income' },
+			],
+		},
+		{
+			id: 'subscriptionDetails',
+			header: 'Subscription Details',
+			columns: [
+				{ accessorKey: 'fixedAmount', header: 'Fixed Amount' },
+				{ accessorKey: 'fixedFrom', header: 'Fixed From' },
+			],
+		},
+		{
+			id: 'paymentInfo',
+			header: '',
+			columns: [
+				{ accessorKey: 'grandPaidAmount', header: 'Grand Paid Amount' },
+				{ accessorKey: 'paidUpto', header: 'Paid upto' },
+				{ accessorKey: 'priorDueAmount', header: 'Prior Due Amount' },
+				{ accessorKey: 'unpaidAmount', header: 'Remaining Balance UnPaid Amount' },
+			],
+		},
+		{
+			id: 'lastPaidDetails',
+			header: 'Last Paid Details',
+			columns: [
+				{ accessorKey: 'paidAmount', header: 'Amount' },
+				{ accessorKey: 'date', header: 'Date' },
+				{ accessorKey: 'voucherNumber', header: 'Voucher Number' },
+			],
+		},
+	];
+};
+
+const usePaymentColumns = (): ColumnDef<PaymentDetailsProps>[] => {
+	return [
+		{
+			id: 'select',
+			header: () => <SquarePen className="w-4 h-4 text-center" />,
+			cell: ({ row }) => (
+				<input
+					title="select"
+					type="checkbox"
+					onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
+				/>
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+
+		{
+			accessorKey: 'familyStatus',
+			header: 'Family Status',
+		},
+		{
+			accessorKey: 'familyName',
+			header: 'Family Name',
+		},
+		{
+			accessorKey: 'uniqueFamilyNumber',
+			header: 'Unique Family Number',
+		},
+		{
+			accessorKey: 'mainStation',
+			header: 'Main-Station / Sub-Station',
+		},
+		{
+			accessorKey: 'anbiam',
+			header: 'Anbiam',
+		},
+		{
+			accessorKey: 'paidAmount',
+			header: 'Paid Amount',
+			cell: ({ getValue }) => {
+				const value = getValue<number>();
+				return value.toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
+			},
+			footer: (info) => {
+				const total = info.table
+					.getFilteredRowModel()
+					.rows.reduce((sum, row) => sum + ((row.getValue('paidAmount') as number) || 0), 0);
+
+				return `Total: ₹${total.toLocaleString('en-IN')}`;
+			},
+		},
+		{
+			accessorKey: 'paidDate',
+			header: 'Paid Date',
+		},
+		{
+			accessorKey: 'receiptNo',
+			header: 'Receipt No',
+		},
+	];
+};
+
+const useRentPaymentColumns = (): ColumnDef<RentPropertyPaymentProps>[] => {
+	return [
+		{
+			id: 'select',
+			header: () => <SquarePen className="w-4 h-4 text-center" />,
+			cell: ({ row }) => (
+				<input
+					title="select"
+					type="checkbox"
+					onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
+				/>
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+
+		{
+			header: 'Property',
+			accessorKey: 'property',
+		},
+		{
+			header: 'Property Name',
+			accessorKey: 'propertyName',
+		},
+		{
+			header: 'Render Name',
+			accessorKey: 'renderName',
+		},
+		{
+			header: 'Mobile No',
+			accessorKey: 'mobileNumber',
+		},
+		{
+			accessorKey: 'paidAmount',
+			header: 'Paid Amount',
+			cell: ({ getValue }) => {
+				const value = getValue<number>();
+				return value.toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
+			},
+			footer: (info) => {
+				const total = info.table
+					.getFilteredRowModel()
+					.rows.reduce((sum, row) => sum + ((row.getValue('paidAmount') as number) || 0), 0);
+
+				return `Total: ₹${total.toLocaleString('en-IN')}`;
+			},
+		},
+		{
+			header: 'Paid Date',
+			accessorKey: 'paidDate',
+		},
+		{
+			header: 'Receipt No',
+			accessorKey: 'receiptNumber',
+		},
+	];
+};
+
+const useDayBookColumns = (): ColumnDef<DayBookEntry>[] => {
+	const { handleSelectRow } = useStore();
+
+	return [
+		...getCommonActionColumns<DayBookEntry>(handleSelectRow),
+
+		{
+			accessorKey: 'date',
+			header: 'Date',
+		},
+		{
+			accessorKey: 'name',
+			header: 'Name',
+		},
+		{
+			accessorKey: 'voucherNumber',
+			header: 'Voucher Number',
+		},
+		{
+			accessorKey: 'purpose',
+			header: 'Purpose',
+		},
+		{
+			accessorKey: 'description',
+			header: 'Description',
+		},
+		{
+			accessorKey: 'details',
+			header: 'Details',
+		},
+		{
+			accessorKey: 'incomeAmount',
+			header: 'Income Amount',
+			footer: (info) => {
+				const total = info.table
+					.getFilteredRowModel()
+					.rows.reduce((sum, row) => sum + ((row.getValue('paidAmount') as number) || 0), 0);
+
+				return `Total: ₹${total.toLocaleString('en-IN')}`;
+			},
+		},
+		{
+			accessorKey: 'expenseAmount',
+			header: 'Expense Amount',
+			footer: (info) => {
+				const total = info.table
+					.getFilteredRowModel()
+					.rows.reduce((sum, row) => sum + ((row.getValue('expenseAmount') as number) || 0), 0);
+
+				return `Total: ₹${total.toLocaleString('en-IN')}`;
+			},
+		},
+	];
+};
+const useAuditingColumns = (): ColumnDef<AuditingProps>[] => {
+	return [
+		{
+			accessorKey: 'description',
+			header: 'DESCRIPTION',
+		},
+		{
+			accessorKey: 'amount',
+			header: 'AMOUNT',
+			cell: (info) => `₹ ${info.getValue<number>().toLocaleString()}`,
+
+			footer: (info) => {
+				const total = info.table
+					.getFilteredRowModel()
+					.rows.reduce((sum, row) => sum + ((row.getValue('amount') as number) || 0), 0);
+
+				return `Total: ₹${total.toLocaleString('en-IN')}`;
+			},
+		},
+	];
+};
 export {
 	useActiveDonationColumns,
 	useInActiveDonationColumns,
@@ -416,4 +652,9 @@ export {
 	useChurchCollectionsColumns,
 	useWorkersColumns,
 	useEmployersSalaryColumns,
+	useSubscriptionColumns,
+	usePaymentColumns,
+	useRentPaymentColumns,
+	useDayBookColumns,
+	useAuditingColumns,
 };

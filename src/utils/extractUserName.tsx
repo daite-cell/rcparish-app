@@ -13,6 +13,8 @@ const extractUserName = (row: Record<string, unknown>): string => {
 	if (typeof row.dioceseName === 'string') return row.dioceseName;
 	if (typeof row.priestName === 'string') return row.priestName;
 	if (typeof row.religiousPersonName === 'string') return row.religiousPersonName;
+	if (typeof row.familyName === 'string') return row.familyName;
+	if (typeof row.workerName === 'string') return row.workerName;
 
 	return '';
 };

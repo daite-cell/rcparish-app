@@ -23,6 +23,7 @@ const HousesGenericPage = () => {
 		<RenderHouseMemberOverviewContainer />
 	) : (
 		<TabsLayout
+			hasPageHeading={activeIndex === 0}
 			onTabChange={handleToggleTab}
 			activeTabId={activeIndex}
 			tabs={tabsData || [{ label: 'view' }, { label: 'add' }]}

@@ -168,6 +168,30 @@ const priestsSchema = z.object({
 	image: fileValidation('Image file is required'),
 });
 
+const propertiesSchema = z.object({
+	vicariate: enumFromArray(['V01', 'V02', 'V03', 'V04', 'V05', 'V06', 'V07', 'V08'], 'Vicariate is required'),
+	parish: enumFromArray(
+		['V01P01', 'V01P02', 'V01P03', 'V01P04', 'V01P05', 'V01P06', 'V01P07', 'V01P08'],
+		'Parish is required'
+	),
+	villageName: requiredString('Village Name Is required'),
+	documentNumber: requiredString('Document Number is required'),
+	registrationDates: requiredString('Date of Registration is required'),
+	electionConductedOn: requiredString('Registration Date is required'),
+	purchasingAmount: requiredString('Purchasing Amount is required'),
+	purchaserName: requiredString('Purchaser Name is required'),
+	vendorName: requiredString('Vendor Name is required'),
+	oldSurvey: requiredString('Old Survey is required'),
+	newSurvey: requiredString('New Survey is required'),
+	extent: requiredString('Extent is required'),
+	pattaNumber: requiredString('Patta No is required'),
+	availabilityOfDocument: requiredString('Availability of Document is required'),
+	image: fileValidation('Image file is required'),
+	usageOfLand: enumFromArray(['public', 'private'], 'Usage of Land is required'),
+	typeOfLand: enumFromArray(['Nanjai', 'Punjai', 'Natham', 'Manai'], 'Type of Land is required'),
+	remarks: requiredString('Remarks'),
+});
+
 type PriestsType = z.infer<typeof priestsSchema>;
 type CommissionsType = z.infer<typeof commissionsSchema>;
 type CommitteeType = z.infer<typeof committeeSchema>;
@@ -176,6 +200,7 @@ type HouseListType = z.infer<typeof houseListSchema>;
 type InstitutionsType = z.infer<typeof institutionsFormSchema>;
 type VocationalListType = z.infer<typeof vocationalListSchema>;
 type UploadSchemaType = z.infer<typeof uploadSchema>;
+type PropertiesType = z.infer<typeof propertiesSchema>;
 
 export {
 	commissionsSchema,
@@ -186,6 +211,7 @@ export {
 	vocationalListSchema,
 	uploadSchema,
 	priestsSchema,
+	propertiesSchema,
 };
 
 export type {
@@ -197,4 +223,5 @@ export type {
 	VocationalListType,
 	UploadSchemaType,
 	PriestsType,
+	PropertiesType,
 };

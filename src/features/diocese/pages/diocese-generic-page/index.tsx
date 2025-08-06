@@ -72,6 +72,7 @@ const DioceseGenericPage = () => {
 
 	return (
 		<TabsLayout
+			hasPageHeading={activeIndex === 0}
 			tabs={tabsData || [{ label: 'view' }, { label: 'add' }]}
 			onTabChange={setActiveIndex}
 			activeTabId={activeIndex}

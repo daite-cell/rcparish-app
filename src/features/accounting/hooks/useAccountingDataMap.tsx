@@ -1,8 +1,8 @@
-import { workers_dummy_data } from '../data';
+import { subscription_dummy_data, worker_salary_dummy_data, workers_dummy_data } from '../data';
 
 const useAccountingDataMap = (): Record<
 	string,
-	Record<string, { heading?: string; data: object[]; enable_date_sorting?: boolean }>
+	Record<string, { heading?: string; data: object[]; enable_date_sorting?: boolean; enable_footer?: boolean }>
 > => ({
 	donations: {
 		table_1: {
@@ -27,10 +27,17 @@ const useAccountingDataMap = (): Record<
 			data: [],
 			enable_date_sorting: false,
 		},
+		table_3: {
+			heading: 'LEASE',
+			data: [],
+			enable_date_sorting: false,
+		},
 	},
 	church_collections: { main: { data: [], enable_date_sorting: false } },
 	workers: { main: { data: workers_dummy_data, enable_date_sorting: false } },
-	employers_salary: { main: { data: [], enable_date_sorting: false } },
+	employers_salary: { main: { data: worker_salary_dummy_data, enable_date_sorting: false } },
+	subscription: { main: { data: subscription_dummy_data, enable_date_sorting: false } },
+	day_book: { main: { data: [], enable_date_sorting: true, enable_footer: true } },
 });
 
 export default useAccountingDataMap;
