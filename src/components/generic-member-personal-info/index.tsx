@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import type { PriestPersonalDetailsProps } from '@/types';
+import type { PriestDetails } from '@/types';
 import AdminDefaultImage from '../admin-default-image';
 import InfoRow from '../info-row';
 import ServiceRecord from '../service-record';
@@ -8,25 +8,25 @@ import FormButton from '../form-button';
 import { useStore } from '@/store/store';
 import { toTitleCaseFromSnake } from '@/utils/toTitleCaseFromSnake';
 
-const createPersonalInfo = (selectRow: PriestPersonalDetailsProps) => ({
+const createPersonalInfo = (selectRow: PriestDetails) => ({
 	priest_from: 'Diocese',
-	ordination_date: selectRow?.ordinationDate || '',
-	birth_date: selectRow?.birthDate || '',
-	living_status: selectRow?.livingStatus || '',
-	native_place: selectRow?.nativePlace || '',
+	ordination_date: selectRow?.ordination_date || '',
+	birth_date: selectRow?.birth_date || '',
+	living_status: selectRow?.living_status_content || '',
+	native_place: selectRow?.native_place || '',
 });
 
-const createContactInfo = (selectRow: PriestPersonalDetailsProps) => ({
-	adhaar_number: selectRow?.adhaarNumber || '',
-	phone_number: selectRow?.mobileNumber || '',
-	email: selectRow?.mailId || '',
-	address: selectRow?.presentResidential || '',
+const createContactInfo = (selectRow: PriestDetails) => ({
+	adhaar_number: selectRow?.adhaar_no || '',
+	phone_number: selectRow?.mobile_no_1 || '',
+	email: selectRow?.mail_id || '',
+	address: selectRow?.address || '',
 });
 
 const GenericMemberPersonalInfo = () => {
-	const selectRow = useStore((state) => state.selectRow) as PriestPersonalDetailsProps;
+	const selectRow = useStore((state) => state.selectRow) as PriestDetails;
 	const printRef = useRef<HTMLDivElement>(null);
-
+	console.warn('Selected Row:', selectRow);
 	const handlePrint = () => {
 		window.print();
 	};
@@ -51,7 +51,7 @@ const GenericMemberPersonalInfo = () => {
 						<AdminDefaultImage height={200} width={200} />
 					</div>
 					<div className="flex-[2] ">
-						<h1 className="font-bold text-3xl text-[#998c70] mb-4">{selectRow?.nameOfThePriests || ''}</h1>
+						<h1 className="font-bold text-3xl text-[#998c70] mb-4">{selectRow?.priest_name || ''}</h1>
 						<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 							{[createPersonalInfo(selectRow), createContactInfo(selectRow)].map((info, i) => (
 								<div key={i}>

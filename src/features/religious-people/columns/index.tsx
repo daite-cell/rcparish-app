@@ -1,17 +1,17 @@
 import { AdminDefaultImage, TableDetailsViewButton, TextLink } from '@/components';
 import { useStore } from '@/store/store';
-import type { PriestPersonalDetailsProps } from '@/types';
+import type { PriestDetails } from '@/types';
 import type { CellContext, ColumnDef } from '@tanstack/react-table';
 import { SquarePen } from 'lucide-react';
 
-const usePriestColumns = (): ColumnDef<PriestPersonalDetailsProps>[] => {
+const usePriestColumns = (): ColumnDef<PriestDetails>[] => {
 	const { handleSelectRow, handleSelectPriestsRow, handleEditPriestsRow } = useStore();
 
 	return [
 		{
 			id: 'select',
 			header: () => <SquarePen className="w-4 h-4 text-center" />,
-			cell: ({ row }: CellContext<PriestPersonalDetailsProps, unknown>) => (
+			cell: ({ row }: CellContext<PriestDetails, unknown>) => (
 				<input
 					title="select"
 					type="checkbox"
@@ -27,7 +27,7 @@ const usePriestColumns = (): ColumnDef<PriestPersonalDetailsProps>[] => {
 		{
 			id: 'view',
 			header: 'Details',
-			cell: ({ row }: CellContext<PriestPersonalDetailsProps, unknown>) => (
+			cell: ({ row }: CellContext<PriestDetails, unknown>) => (
 				<TableDetailsViewButton onClick={() => handleSelectRow(row.original)} />
 			),
 			meta: { isExportable: false },
@@ -35,7 +35,7 @@ const usePriestColumns = (): ColumnDef<PriestPersonalDetailsProps>[] => {
 			enableHiding: true,
 		},
 		{
-			accessorKey: 'nameOfThePriests',
+			accessorKey: 'priest_name',
 			header: 'Name of the Priests',
 			cell: ({ row }) => (
 				<TextLink
@@ -43,9 +43,9 @@ const usePriestColumns = (): ColumnDef<PriestPersonalDetailsProps>[] => {
 						handleSelectPriestsRow(row.original);
 						handleEditPriestsRow(row.original);
 					}}
-					to={`/diocese/priests/${row.original.id}`}
+					to={`/diocese/priests/${row.original.priest_id}`}
 				>
-					{row.original.nameOfThePriests ?? ''}
+					{row.original.priest_name ?? ''}
 				</TextLink>
 			),
 		},
@@ -55,16 +55,16 @@ const usePriestColumns = (): ColumnDef<PriestPersonalDetailsProps>[] => {
 			cell: () => <AdminDefaultImage />,
 			meta: { isExportable: false },
 		},
-		{ accessorKey: 'presentPosition', header: 'Present Position' },
-		{ accessorKey: 'ordinationDate', header: 'Ordination Date' },
-		{ accessorKey: 'birthDate', header: 'Birth Date' },
-		{ accessorKey: 'livingStatus', header: 'Living Status' },
-		{ accessorKey: 'mobileNumber', header: 'Mobile Number' },
-		{ accessorKey: 'optionalMobileNumber', header: 'Optional Mobile Number' },
-		{ accessorKey: 'mailId', header: 'Mail Id' },
-		{ accessorKey: 'nativePlace', header: 'Native Place' },
-		{ accessorKey: 'adhaarNumber', header: 'Adhaar Number' },
-		{ accessorKey: 'presentResidential', header: 'Present Residential' },
+		{ accessorKey: 'present_position', header: 'Present Position' },
+		{ accessorKey: 'ordination_date', header: 'Ordination Date' },
+		{ accessorKey: 'birth_date', header: 'Birth Date' },
+		{ accessorKey: 'living_status_content', header: 'Living Status' },
+		{ accessorKey: 'mobile_no_1', header: 'Mobile Number' },
+		{ accessorKey: 'mobile_no_2', header: 'Optional Mobile Number' },
+		{ accessorKey: 'mail_id', header: 'Mail Id' },
+		{ accessorKey: 'native_place', header: 'Native Place' },
+		{ accessorKey: 'adhaar_no', header: 'Adhaar Number' },
+		{ accessorKey: 'address', header: 'Present Residential' },
 	];
 };
 

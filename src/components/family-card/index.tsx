@@ -1,5 +1,5 @@
 import { useStore } from '@/store/store';
-import type { FamilyDataProps } from '@/types';
+import type { FamilyCardDataProps } from '@/types';
 import { toTitleCaseFromSnake } from '@/utils/toTitleCaseFromSnake';
 import InfoRow from '../info-row';
 import HeadingWithUnderline from '../heading-with-underline';
@@ -8,7 +8,7 @@ import { familyMemberDetailsTableOneColumns, familyMemberDetailsTableTwoColumns 
 import FormButton from '../form-button';
 
 const FamilyCard = () => {
-	const selectFamilyCardRow = useStore((state) => state.selectFamilyCardRow) as FamilyDataProps;
+	const selectFamilyCardRow = useStore((state) => state.selectFamilyCardRow) as FamilyCardDataProps;
 
 	if (!selectFamilyCardRow) return null;
 

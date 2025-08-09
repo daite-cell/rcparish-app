@@ -1,1 +1,10 @@
 export { default as ChroniclesForm } from './chronicles-form';
+export { default as BaptismForm } from './baptism-form';
+export { default as BaptismEditForm } from './baptism-edit-form';
+export { default as HolyCommunionForm } from './holy-communion-form';
+export { default as HolyCommunionEditForm } from './holy-communion-edit-form';
+export { default as ConfirmationsForm } from './confirmations-form';
+export { default as ConfirmationsEditForm } from './confirmations-edit-form';
+export { default as DeathRegisterForm } from './death-register-form';
+export { default as MarriageProposalForm } from './marriage-proposal-form';
+export { default as MarriageRegistrationForm } from './marriage-registration-form';

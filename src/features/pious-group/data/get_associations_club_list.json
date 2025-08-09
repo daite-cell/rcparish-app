@@ -1,0 +1,160 @@
+{
+	"associations_club_list": [
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "St Vincent de Paul",
+			"association_id": "S01C01",
+			"organised_by": "parish",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Jeeva Madha Kolping Club",
+			"association_id": "S01C02",
+			"organised_by": "parish",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Legion of Mary",
+			"association_id": "S01C03",
+			"organised_by": "parish",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Youth",
+			"association_id": "S01C04",
+			"organised_by": "parish",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Ilanthendral Madhar Sangam",
+			"association_id": "S01C05",
+			"organised_by": "parish",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Anbu Madahar Sangam",
+			"association_id": "S01C06",
+			"organised_by": "parish",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Christu Arasar Kolping Club",
+			"association_id": "S01C07",
+			"organised_by": "parish",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Christu Arasar Mandram",
+			"association_id": "S01C08",
+			"organised_by": "parish",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Don Bosco Mandram",
+			"association_id": "S01C09",
+			"organised_by": "parish",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Ave Maria Mandram",
+			"association_id": "S01C10",
+			"organised_by": "parish",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Choir Group",
+			"association_id": "S01C11",
+			"organised_by": "parish",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Catechism Teachers Club",
+			"association_id": "S01C12",
+			"organised_by": "parish",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Catechist",
+			"association_id": "S01C13",
+			"organised_by": "parish",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		}
+	]
+}

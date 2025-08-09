@@ -1,13 +1,15 @@
-import { useMemo, useState } from 'react';
+import { lazy, Suspense, useMemo, useState } from 'react';
 import { PriorDignitariesContainer, TabsLayout } from '@/components';
 import { side_nav_links } from '@/data/side-navbar-content';
 import type { NavLinkProps } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
 import { useRouteName } from '@/utils/getRouteName';
 import { useStore } from '@/store/store';
-import { FormsContainer, RenderPiousGroupOverviewContainer, RenderPiousGroupTables } from '../../components';
+import { FormsContainer, RenderPiousGroupOverviewContainer } from '../../components';
 import { usePathName } from '@/utils/getPathName';
 import { CouncilDetailsForm } from '../../forms';
+
+const RenderPiousGroupTables = lazy(() => import('../../components/render-pious-group-tables'));
 
 const PiousGroupGenericPage = () => {
 	const type = useRouteName('type');
@@ -36,7 +38,11 @@ const PiousGroupGenericPage = () => {
 	const renderTabContent = (label: string | undefined) => {
 		switch (label?.toLowerCase()) {
 			case 'view':
-				return <RenderPiousGroupTables />;
+				return (
+					<Suspense fallback={<div>Loading...</div>}>
+						<RenderPiousGroupTables />
+					</Suspense>
+				);
 			case 'add':
 				return <FormsContainer />;
 			case 'council details':

@@ -160,7 +160,7 @@ const useCommissionColumns = (): ColumnDef<CommissionMemberProps>[] => {
 };
 
 const useCuriaMembersColumns = (): ColumnDef<CuriaMembersProps>[] => {
-	const { handleSelectPriorRow } = useStore();
+	const { handleSelectPriorRow, handleSelectPriestsRow, handleEditPriestsRow } = useStore();
 
 	return [
 		{
@@ -170,7 +170,17 @@ const useCuriaMembersColumns = (): ColumnDef<CuriaMembersProps>[] => {
 		{
 			accessorKey: 'name',
 			header: 'Name',
-			cell: ({ row }) => <TextLink to="">{row.original.name ?? ''}</TextLink>,
+			cell: ({ row }) => (
+				<TextLink
+					onClick={() => {
+						handleSelectPriestsRow(row.original);
+						handleEditPriestsRow(row.original);
+					}}
+					to={`/diocese/priests/${row.original.id}`}
+				>
+					{row.original.name ?? ''}
+				</TextLink>
+			),
 		},
 		{
 			accessorKey: 'presentPosition',

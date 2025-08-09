@@ -30,14 +30,14 @@ const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[]
 			enableSorting: false,
 			enableHiding: true,
 		},
-		{ accessorKey: 'mainStation', header: 'Main-Station / Sub-Station' },
+		{ accessorKey: 'sub_station_name', header: 'Main-Station / Sub-Station' },
 		{ accessorKey: 'position', header: 'Position' },
-		{ accessorKey: 'name', header: 'Name' },
-		{ accessorKey: 'mobile', header: 'Mobile' },
-		{ accessorKey: 'memberId', header: 'Member ID' },
-		{ accessorKey: 'electedStatus', header: 'Elected Status' },
+		{ accessorKey: 'member_name', header: 'Name' },
+		{ accessorKey: 'mobile_no', header: 'Mobile' },
+		{ accessorKey: 'unique_member_id', header: 'Member ID' },
+		{ accessorKey: 'elected_status', header: 'Elected Status' },
 		{
-			accessorKey: 'electedDate',
+			accessorKey: 'elected_date',
 			header: 'Elected Date',
 			cell: ({ getValue }) => {
 				try {
@@ -50,9 +50,9 @@ const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[]
 				}
 			},
 		},
-		{ accessorKey: 'electedFrom', header: 'Elected From' },
-		{ accessorKey: 'nameOfRespectives', header: 'Name of Respectives' },
-		{ accessorKey: 'positionInDiscipline', header: 'Position in Discipline' },
+		{ accessorKey: 'elected_from', header: 'Elected From' },
+		{ accessorKey: 'elected_category_name', header: 'Elected Category Name' },
+		{ accessorKey: 'member_position', header: 'Member Position' },
 	];
 };
 
@@ -65,7 +65,7 @@ const useFamilyOverviewColumns = (): ColumnDef<FamilyDataProps>[] => {
 			id: 'delete',
 			header: 'Delete',
 			cell: ({ row }: CellContext<FamilyDataProps, unknown>) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="View">
+				<button type="button" onClick={() => handleSelectRow(row.original)} title="Delete">
 					<Trash className="w-4 h-4 text-center cursor-pointer" />
 				</button>
 			),
@@ -86,35 +86,27 @@ const useFamilyOverviewColumns = (): ColumnDef<FamilyDataProps>[] => {
 			enableHiding: true,
 		},
 
-		{ accessorKey: 'mainStation', header: 'Main-Station / Sub-Station' },
-		{ accessorKey: 'anbiam', header: 'Anbiam' },
-		{ accessorKey: 'familyNumber', header: 'Family Number' },
-		{ accessorKey: 'familyName', header: 'Family Name' },
-		{ accessorKey: 'marriageDate1', header: 'Marriage Date' },
-		{ accessorKey: 'marriageDate2', header: 'Marriage Date (Full)' },
-		{ accessorKey: 'oldFamilyNumber', header: 'Old Family Number' },
-		{ accessorKey: 'familyHead', header: 'Family Head' },
-		{ accessorKey: 'membersInFamily', header: 'Members in Family' },
-		{ accessorKey: 'familyType', header: 'Family Type' },
-		{ accessorKey: 'monthlySubscription', header: 'Monthly Subscription' },
-		{ accessorKey: 'subscriptionFrom', header: 'Subscription From' },
-		{ accessorKey: 'houseType', header: 'House Type' },
+		{ accessorKey: 'sub_station_name', header: 'Main-Station / Sub-Station' },
+		{ accessorKey: 'anbiam_name', header: 'Anbiam' },
+		{ accessorKey: 'unique_family_id', header: 'Family Number' },
+		{ accessorKey: 'family_name', header: 'Family Name' },
+		{ accessorKey: 'marriage_date', header: 'Marriage Date' },
+		{ accessorKey: 'old_family_id', header: 'Old Family Number' },
+		{ accessorKey: 'family_head', header: 'Family Head' },
+		{ accessorKey: 'total_members', header: 'Members in Family' },
+		{ accessorKey: 'family_type', header: 'Family Type' },
+		{ accessorKey: 'monthly_subscription', header: 'Monthly Subscription' },
+		{ accessorKey: 'subscription_from', header: 'Subscription From' },
+		{ accessorKey: 'social_status', header: 'House Type' },
 		{ accessorKey: 'community', header: 'Community' },
-		{ accessorKey: 'ownership', header: 'Ownership' },
-		{ accessorKey: 'livingStatus', header: 'Living Status' },
-		{ accessorKey: 'settledAs', header: 'Settled As' },
-		{ accessorKey: 'mobile', header: 'Mobile' },
-		{ accessorKey: 'permanentAddress', header: 'Permanent Address' },
-		{ accessorKey: 'temporaryAddress', header: 'Temporary Address' },
-		{ accessorKey: 'remarks', header: 'Remarks' },
-		{ accessorKey: 'position', header: 'Position' },
-		{ accessorKey: 'name', header: 'Member Name' },
-		{ accessorKey: 'memberId', header: 'Member ID' },
-		{ accessorKey: 'electedStatus', header: 'Elected Status' },
-		{ accessorKey: 'electedDate', header: 'Elected Date' },
-		{ accessorKey: 'electedFrom', header: 'Elected From' },
-		{ accessorKey: 'nameOfRespectives', header: 'Name of Respectives' },
-		{ accessorKey: 'positionInDiscipline', header: 'Position in Discipline' },
+		{ accessorKey: 'house_ownership', header: 'Ownership' },
+		{ accessorKey: 'living_status', header: 'Living Status' },
+		{ accessorKey: 'settled_as', header: 'Settled As' },
+		{ accessorKey: 'family_mobile_no', header: 'Mobile' },
+		{ accessorKey: 'permanent_address', header: 'Permanent Address' },
+		{ accessorKey: 'temporary_address', header: 'Temporary Address' },
+		{ accessorKey: 'any_remark', header: 'Remarks' },
+		{ accessorKey: 'activeness_content', header: 'Position' },
 	];
 };
 
@@ -136,41 +128,41 @@ const useMembersInParishFamilyColumns = (): ColumnDef<MembersInParishFamilyProps
 			enableHiding: true,
 		},
 
-		{ accessorKey: 'memberName', header: 'Member Name' },
-		{ accessorKey: 'uniqueMembershipNumber', header: 'Unique Membership Number' },
-		{ accessorKey: 'familyName', header: 'Family Name' },
-		{ accessorKey: 'uniqueAnbiamFamilyNumber', header: 'Unique Anbiam Family Number' },
-		{ accessorKey: 'oldFamilyNumber', header: 'Old Family Number' },
-		{ accessorKey: 'mainStationSubStation', header: 'Main Station / Sub-Station' },
-		{ accessorKey: 'anbiam', header: 'Anbiam' },
-		{ accessorKey: 'relationshipToFamily', header: 'Relationship to Family' },
+		{ accessorKey: 'member_name', header: 'Member Name' },
+		{ accessorKey: 'unique_member_id', header: 'Unique Membership Number' },
+		{ accessorKey: 'family_name', header: 'Family Name' },
+		{ accessorKey: 'unique_family_id', header: 'Unique Anbiam Family Number' },
+		{ accessorKey: 'old_family_id', header: 'Old Family Number' },
+		{ accessorKey: 'sub_station_name', header: 'Main Station / Sub-Station' },
+		{ accessorKey: 'anbiam_name', header: 'Anbiam' },
+		{ accessorKey: 'relation', header: 'Relationship to Family' },
 		{ accessorKey: 'gender', header: 'Gender' },
-		{ accessorKey: 'fatherName', header: 'Father Name' },
-		{ accessorKey: 'motherName', header: 'Mother Name' },
-		{ accessorKey: 'livingWith', header: 'Living With' },
-		{ accessorKey: 'physicallyChallenged', header: 'Physically Challenged' },
-		{ accessorKey: 'bloodGroup', header: 'Blood Group' },
-		{ accessorKey: 'communityCaste', header: 'Community (Caste)' },
-		{ accessorKey: 'subCaste', header: 'Sub Caste' },
+		{ accessorKey: 'father_name', header: 'Father Name' },
+		{ accessorKey: 'mother_name', header: 'Mother Name' },
+		{ accessorKey: 'living_with', header: 'Living With' },
+		{ accessorKey: 'physically_challenged', header: 'Physically Challenged' },
+		{ accessorKey: 'blood_group_content', header: 'Blood Group' },
+		{ accessorKey: 'community_category', header: 'Community (Caste)' },
+		{ accessorKey: 'sub_caste', header: 'Sub Caste' },
 		{ accessorKey: 'religion', header: 'Religion' },
-		{ accessorKey: 'vocationStatus', header: 'Vocation Status' },
-		{ accessorKey: 'marriageStatus', header: 'Marriage Status' },
-		{ accessorKey: 'marriageDate', header: 'Marriage Date' },
-		{ accessorKey: 'marriageRemarks', header: 'Marriage Remarks' },
-		{ accessorKey: 'birthDate', header: 'Birth Date' },
-		{ accessorKey: 'baptismDate', header: 'Baptism Date' },
-		{ accessorKey: 'holyCommunionDate', header: 'Holy Communion Date' },
-		{ accessorKey: 'confirmationDate', header: 'Confirmation Date' },
-		{ accessorKey: 'mobileNumber', header: 'Mobile Number' },
-		{ accessorKey: 'adhaarNumber', header: 'Adhaar Number' },
-		{ accessorKey: 'qualification', header: 'Qualification' },
+		{ accessorKey: 'vocation_status', header: 'Vocation Status' },
+		{ accessorKey: 'marriage_status', header: 'Marriage Status' },
+		{ accessorKey: 'individual_marriage_date', header: 'Marriage Date' },
+		{ accessorKey: 'marriage_remark', header: 'Marriage Remarks' },
+		{ accessorKey: 'birth_date', header: 'Birth Date' },
+		{ accessorKey: 'baptism_date', header: 'Baptism Date' },
+		{ accessorKey: 'holy_communion_date', header: 'Holy Communion Date' },
+		{ accessorKey: 'confirmation_date', header: 'Confirmation Date' },
+		{ accessorKey: 'mobile_no', header: 'Mobile Number' },
+		{ accessorKey: 'adhaar_no', header: 'Adhaar Number' },
+		{ accessorKey: 'full_qualification', header: 'Qualification' },
 		{ accessorKey: 'occupation', header: 'Occupation' },
-		{ accessorKey: 'monthlyIncome', header: 'Monthly Income' },
-		{ accessorKey: 'livingStatus', header: 'Living Status' },
-		{ accessorKey: 'permanentAddress', header: 'Permanent Address' },
-		{ accessorKey: 'residentialAddress', header: 'Residential Address' },
-		{ accessorKey: 'subStationId', header: 'Sub Station ID' },
-		{ accessorKey: 'anbiamId', header: 'Anbiam ID' },
+		{ accessorKey: 'monthly_income', header: 'Monthly Income' },
+		{ accessorKey: 'living_status', header: 'Living Status' },
+		{ accessorKey: 'permanent_address', header: 'Permanent Address' },
+		{ accessorKey: 'temporary_address', header: 'Residential Address' },
+		{ accessorKey: 'sub_station_id', header: 'Sub Station ID' },
+		{ accessorKey: 'anbiam_id', header: 'Anbiam ID' },
 	];
 };
 
@@ -181,35 +173,35 @@ const useParishSonsAndDaughtersColumns = (): ColumnDef<ParishSonsAndDaughtersPro
 		...getCommonActionColumns<ParishSonsAndDaughtersProps>(handleSelectRow, handleEditRow),
 
 		{
-			accessorKey: 'memberName',
+			accessorKey: 'member_name',
 			header: 'Member Name',
 		},
 		{
-			accessorKey: 'uniqueMemberId',
+			accessorKey: 'unique_member_id',
 			header: 'Unique Member Id',
 		},
 		{
-			accessorKey: 'familyName',
+			accessorKey: 'family_name',
 			header: 'Family Name',
 		},
 		{
-			accessorKey: 'uniqueFamilyId',
+			accessorKey: 'unique_family_id',
 			header: 'Unique Family Id',
 		},
 		{
-			accessorKey: 'station',
+			accessorKey: 'sub_station_name',
 			header: 'Sub-Station / Main Station',
 		},
 		{
-			accessorKey: 'subStationId',
+			accessorKey: 'sub_station_id',
 			header: 'Sub-Station Id',
 		},
 		{
-			accessorKey: 'anbiam',
+			accessorKey: 'anbiam_name',
 			header: 'Anbiam',
 		},
 		{
-			accessorKey: 'anbiamId',
+			accessorKey: 'anbiam_id',
 			header: 'Anbiam Id',
 		},
 		{
@@ -217,66 +209,67 @@ const useParishSonsAndDaughtersColumns = (): ColumnDef<ParishSonsAndDaughtersPro
 			header: 'Gender',
 		},
 		{
-			accessorKey: 'familyHead',
+			accessorKey: 'father_name',
 			header: 'Family Head',
 		},
 		{
-			accessorKey: 'relationshipToFamily',
+			accessorKey: 'relation',
 			header: 'Relationship to Family',
 		},
 		{
-			accessorKey: 'fatherName',
+			accessorKey: 'father_name',
 			header: 'Father Name',
 		},
 		{
-			accessorKey: 'motherName',
+			accessorKey: 'mother_name',
 			header: 'Mother Name',
 		},
 		{
-			accessorKey: 'category',
+			accessorKey: 'vs_data_1',
 			header: 'Category',
 		},
 		{
-			accessorKey: 'nameOfRespective',
+			accessorKey: 'vs_data_2',
 			header: 'Name of Respective',
 		},
 		{
-			accessorKey: 'presentStatus',
+			accessorKey: 'vs_data_3',
 			header: 'Present Status',
 		},
 		{
-			accessorKey: 'studyingOrPosition',
+			accessorKey: 'vs_data_4',
 			header: 'Studying/Position',
 		},
 		{
-			accessorKey: 'place',
+			accessorKey: 'vs_data_5',
 			header: 'Place',
 		},
 		{
-			accessorKey: 'mobileNumber',
+			accessorKey: 'mobile_no',
 			header: 'Mobile No',
 		},
 		{
-			accessorKey: 'email',
+			accessorKey: 'email_id',
 			header: 'Email',
 		},
 		{
-			accessorKey: 'permanentAddress',
+			accessorKey: 'permanent_address',
 			header: 'Permanent Address',
 		},
 		{
-			accessorKey: 'temporaryAddress',
+			accessorKey: 'temporary_address',
 			header: 'Temporary Address',
 		},
 	];
 };
+
 const useReligiousPeopleColumns = (): ColumnDef<ReligiousPersonProps>[] => {
 	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
 		...getCommonActionColumns<ReligiousPersonProps>(handleSelectRow, handleEditRow),
 		{
-			accessorKey: 'religiousPersonName',
+			accessorKey: 'person_name',
 			header: 'Religious Person Name',
 		},
 		{
@@ -285,7 +278,7 @@ const useReligiousPeopleColumns = (): ColumnDef<ReligiousPersonProps>[] => {
 			cell: () => <AdminDefaultImage height={50} width={50} className="rounded-full" />,
 		},
 		{
-			accessorKey: 'personId',
+			accessorKey: 'person_id',
 			header: 'Person Id',
 		},
 		{
@@ -297,58 +290,59 @@ const useReligiousPeopleColumns = (): ColumnDef<ReligiousPersonProps>[] => {
 			header: 'Position',
 		},
 		{
-			accessorKey: 'institution',
+			accessorKey: 'name',
 			header: 'Institution/Convent',
 		},
 		{
-			accessorKey: 'inChargeFor',
+			accessorKey: 'in_charge',
 			header: 'In-Charge for',
 		},
 		{
-			accessorKey: 'contactMobileNumber',
+			accessorKey: 'mobile_no',
 			header: 'Contact Mobile Number',
 		},
 	];
 };
+
 const useAnbiamsColumns = (): ColumnDef<AnbiamCouncilDataProps>[] => {
 	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
 		...getCommonActionColumns<AnbiamCouncilDataProps>(handleSelectRow, handleEditRow),
 		{
-			accessorKey: 'parishName',
+			accessorKey: 'parish_content',
 			header: 'Parish Name',
 		},
 		{
-			accessorKey: 'mainStationOrSubStation',
+			accessorKey: 'sub_station_name',
 			header: 'Main-Station / Sub-Station',
 		},
 		{
-			accessorKey: 'anbiamName',
+			accessorKey: 'anbiam_name',
 			header: 'Name of the Anbiam',
 		},
 		{
-			accessorKey: 'anbiamId',
+			accessorKey: 'anbiam_id',
 			header: 'Anbiam Id',
 		},
 		{
-			accessorKey: 'shortForm',
+			accessorKey: 'anbiam_short_form',
 			header: 'Short Form',
 		},
 		{
-			accessorKey: 'electedOn',
+			accessorKey: 'elected_on',
 			header: 'Elected On',
 		},
 		{
-			accessorKey: 'periodOfYears',
+			accessorKey: 'period_of',
 			header: 'Period Of (Years)',
 		},
 		{
-			accessorKey: 'ifExtended',
+			accessorKey: 'extend_period',
 			header: 'If Extended',
 		},
 		{
-			accessorKey: 'periodEndsOn',
+			accessorKey: 'period_end_on',
 			header: 'Period Ends On',
 		},
 	];
@@ -360,11 +354,11 @@ const useAnbiamsInchargeColumns = (): ColumnDef<AnbiamInchargeDataProps>[] => {
 	return [
 		...getCommonActionColumns<AnbiamInchargeDataProps>(handleSelectRow, handleEditRow),
 		{
-			accessorKey: 'mainStation',
+			accessorKey: 'sub_station_name',
 			header: 'Main-Station / Sub-Station',
 		},
 		{
-			accessorKey: 'anbiam',
+			accessorKey: 'anbiam_name',
 			header: 'Anbiam',
 		},
 		{
@@ -382,54 +376,54 @@ const useAnbiamsInchargeColumns = (): ColumnDef<AnbiamInchargeDataProps>[] => {
 			header: 'Position',
 		},
 		{
-			accessorKey: 'electedStatus',
+			accessorKey: 'elected_status',
 			header: 'Elected Status',
 		},
 		{
-			accessorKey: 'reason',
+			accessorKey: 'reason_content',
 			header: 'Reason',
 		},
 		{
-			accessorKey: 'name',
+			accessorKey: 'member_name',
 			header: 'Name',
 		},
 		{
-			accessorKey: 'mobile1',
+			accessorKey: 'mobile_no',
 			header: 'Mobile 1',
 		},
 		{
-			accessorKey: 'mobile2',
+			accessorKey: 'mobile_no_1',
 			header: 'Mobile 2',
 		},
 		{
-			accessorKey: 'memberId',
-			header: 'Member id',
+			accessorKey: 'unique_member_id',
+			header: 'Member ID',
 		},
 		{
-			accessorKey: 'electedDate',
+			accessorKey: 'elected_date',
 			header: 'Elected Date',
 		},
 	];
 };
 
 const useAssociationCouncilMemberPropsColumns = (): ColumnDef<AssociationCouncilMemberProps>[] => {
-	const { handleSelectRow, handleEditRow } = useStore();
+	const { handleSelectRow, handleEditRow, handleSelectPriorRow } = useStore();
 
 	return [
 		...getCommonActionColumns<AssociationCouncilMemberProps>(handleSelectRow, handleEditRow),
 		{
-			accessorKey: 'mainStation',
+			accessorKey: 'sub_station_name',
 			header: 'Main-Station / Sub-Station',
 		},
 		{
-			accessorKey: 'association',
+			accessorKey: 'association_name',
 			header: 'Association',
 		},
 		{
 			id: 'prior dignitaries',
 			header: 'Prior Dignitaries',
 			cell: ({ row }: CellContext<AssociationCouncilMemberProps, unknown>) => (
-				<TablePriorDignitariesButton onClick={() => handleSelectRow(row.original)} />
+				<TablePriorDignitariesButton onClick={() => handleSelectPriorRow(row.original)} />
 			),
 			meta: { isExportable: false },
 			enableSorting: false,
@@ -440,31 +434,31 @@ const useAssociationCouncilMemberPropsColumns = (): ColumnDef<AssociationCouncil
 			header: 'Position',
 		},
 		{
-			accessorKey: 'memberFrom',
+			accessorKey: 'member_from',
 			header: 'Member From',
 		},
 		{
-			accessorKey: 'electedStatus',
+			accessorKey: 'elected_status',
 			header: 'Elected Status',
 		},
 		{
-			accessorKey: 'reason',
+			accessorKey: 'reason_content',
 			header: 'Reason',
 		},
 		{
-			accessorKey: 'name',
+			accessorKey: 'member_name',
 			header: 'Name',
 		},
 		{
-			accessorKey: 'mobile',
+			accessorKey: 'mobile_no',
 			header: 'Mobile',
 		},
 		{
-			accessorKey: 'memberId',
+			accessorKey: 'unique_member_id',
 			header: 'Member ID',
 		},
 		{
-			accessorKey: 'electedDate',
+			accessorKey: 'elected_date',
 			header: 'Elected Date',
 		},
 	];
@@ -477,39 +471,39 @@ const useAssociationClubColumns = (): ColumnDef<ParishAssociationClubProps>[] =>
 		...getCommonActionColumns<ParishAssociationClubProps>(handleSelectRow, handleEditRow),
 
 		{
-			accessorKey: 'parishName',
+			accessorKey: 'parish_content',
 			header: 'Parish Name',
 		},
 		{
-			accessorKey: 'mainStation',
+			accessorKey: 'sub_station_name',
 			header: 'Main-Station / Sub-Station',
 		},
 		{
-			accessorKey: 'nameOfAssociations',
+			accessorKey: 'association_content',
 			header: 'Name of the Associations',
 		},
 		{
-			accessorKey: 'associationsId',
+			accessorKey: 'association_id',
 			header: 'Associations Id',
 		},
 		{
-			accessorKey: 'organisedBy',
+			accessorKey: 'organised_by',
 			header: 'Organised by',
 		},
 		{
-			accessorKey: 'electedOn',
+			accessorKey: 'elected_on',
 			header: 'Elected On',
 		},
 		{
-			accessorKey: 'periodOfYears',
+			accessorKey: 'period_of',
 			header: 'Period Of (Years)',
 		},
 		{
-			accessorKey: 'ifExtended',
+			accessorKey: 'extend_period',
 			header: 'If Extended',
 		},
 		{
-			accessorKey: 'periodEndsOn',
+			accessorKey: 'period_end_on',
 			header: 'Period Ends On',
 		},
 	];

@@ -1,0 +1,30 @@
+{
+	"religious_people_parish_list": [
+		{
+			"convent_id": "CP0001",
+			"name": "SD Convent",
+			"person_name": "Sr Helen Rose",
+			"person_id": "RP001",
+			"gender": "Female",
+			"position": "Sr",
+			"position_content": "-",
+			"in_charge": "Choir",
+			"in_charge_content": "-",
+			"mobile_no": "",
+			"image": ""
+		},
+		{
+			"convent_id": "CP0001",
+			"name": "SD Convent",
+			"person_name": "f",
+			"person_id": "RP002",
+			"gender": "Male",
+			"position": "Asst.PP",
+			"position_content": "-",
+			"in_charge": "Choir",
+			"in_charge_content": "-",
+			"mobile_no": "",
+			"image": ""
+		}
+	]
+}
