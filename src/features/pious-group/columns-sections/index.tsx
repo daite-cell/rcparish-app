@@ -16,9 +16,9 @@ export const getParishCouncilSectionData = (row: ParishCouncilMemberDetailsProps
 			{
 				heading: 'Parish Council',
 				data: {
-					main_station: row.mainStation,
-					general_election_conducted_on: row.electedDate,
-					periods_ends_on: row.electedDate,
+					main_station: row.sub_station_name,
+					general_election_conducted_on: row.election_conducted,
+					periods_ends_on: row.period_end_on,
 				},
 			},
 		],
@@ -29,9 +29,9 @@ export const getParishCouncilSectionData = (row: ParishCouncilMemberDetailsProps
 			{
 				heading: 'Parish Council Member',
 				data: {
-					position: row.positionInDiscipline,
-					elected_status: row.electedStatus,
-					elected_date: row.electedDate,
+					position: row.position,
+					elected_status: row.elected_status,
+					elected_date: row.elected_date,
 				},
 			},
 		],
@@ -42,10 +42,10 @@ export const getParishCouncilSectionData = (row: ParishCouncilMemberDetailsProps
 			{
 				heading: 'Parish Council Member',
 				data: {
-					elected_from: row.electedFrom,
-					respective_name: row.nameOfRespectives,
+					elected_from: row.elected_from,
+					respective_name: row.elected_category_name,
 					member_position: row.position,
-					mobile_number: row.mobile,
+					mobile_number: row.mobile_no,
 				},
 			},
 		],
@@ -59,9 +59,9 @@ export const getAnbiamSectionData = (row: AnbiamCouncilDataProps) => [
 			{
 				heading: '',
 				data: {
-					main_station: row.mainStationOrSubStation,
-					parish_name: row.parishName,
-					anbiam_id: row.anbiamId,
+					main_station: row.sub_station_name,
+					parish_name: row.parish_content,
+					anbiam_id: row.anbiam_id,
 				},
 			},
 		],
@@ -72,9 +72,9 @@ export const getAnbiamSectionData = (row: AnbiamCouncilDataProps) => [
 			{
 				heading: '',
 				data: {
-					elected_on: row.electedOn,
-					period_of: row.periodOfYears,
-					if_the_period_extended: row.ifExtended,
+					elected_on: row.elected_on,
+					period_of: row.period_of,
+					if_the_period_extended: row.extend_period,
 				},
 			},
 		],
@@ -85,7 +85,7 @@ export const getAnbiamSectionData = (row: AnbiamCouncilDataProps) => [
 			{
 				heading: '',
 				data: {
-					period_ends_on: row.periodEndsOn,
+					period_ends_on: row.period_end_on,
 				},
 			},
 		],
@@ -100,8 +100,8 @@ export const getAnbiamInchargeSectionData = (row: AnbiamInchargeDataProps) => [
 				heading: '',
 				data: {
 					position: row.position,
-					'main_station_/_sub_station': row.mainStation,
-					anbiam: row.anbiam,
+					'main_station_/_sub_station': row.sub_station_name,
+					anbiam: row.anbiam_name,
 				},
 			},
 		],
@@ -112,9 +112,9 @@ export const getAnbiamInchargeSectionData = (row: AnbiamInchargeDataProps) => [
 			{
 				heading: '',
 				data: {
-					mobile_number: row.mobile1,
-					general_election_conducted_data: row.electedDate,
-					elected_status: row.electedStatus,
+					mobile_number: row.mobile_no,
+					general_election_conducted_data: row.elected_date,
+					elected_status: row.elected_status,
 				},
 			},
 		],
@@ -125,8 +125,8 @@ export const getAnbiamInchargeSectionData = (row: AnbiamInchargeDataProps) => [
 			{
 				heading: '',
 				data: {
-					elected_date: row.electedDate,
-					period_end_on: row.electedDate,
+					elected_date: row.elected_date,
+					period_end_on: row.period_end_on,
 				},
 			},
 		],
@@ -140,10 +140,10 @@ export const getAssociationClubSectionData = (row: ParishAssociationClubProps) =
 			{
 				heading: '',
 				data: {
-					'main_station_/_sub_station': row.mainStation,
-					parish_name: row.parishName,
-					association_id: row.associationsId,
-					organized_by: row.organisedBy,
+					'main_station_/_sub_station': row.sub_station_name,
+					parish_name: row.parish_content,
+					association_id: row.association_id,
+					organized_by: row.organised_by,
 				},
 			},
 		],
@@ -154,9 +154,9 @@ export const getAssociationClubSectionData = (row: ParishAssociationClubProps) =
 			{
 				heading: '',
 				data: {
-					elected_on: row.electedOn,
-					period_of: row.periodOfYears,
-					if_the_period_extended: row.ifExtended,
+					elected_on: row.elected_on,
+					period_of: row.period_of,
+					if_the_period_extended: 'Yes',
 				},
 			},
 		],
@@ -167,7 +167,7 @@ export const getAssociationClubSectionData = (row: ParishAssociationClubProps) =
 			{
 				heading: '',
 				data: {
-					period_ends_on: row.periodEndsOn,
+					period_ends_on: row.period_end_on,
 				},
 			},
 		],
@@ -182,9 +182,9 @@ export const getAssociationInchargeSectionData = (row: AssociationCouncilMemberP
 				heading: '',
 				data: {
 					position: row.position,
-					memb_from: row.memberFrom,
-					'main_station_/_sub_station': row.mainStation,
-					association: row.association,
+
+					'main_station_/_sub_station': row.sub_station_name,
+					association: row.association_name,
 				},
 			},
 		],
@@ -195,9 +195,9 @@ export const getAssociationInchargeSectionData = (row: AssociationCouncilMemberP
 			{
 				heading: '',
 				data: {
-					mobile_number: row.mobile,
-					general_election_conducted_data: row.electedDate,
-					elected_status: row.electedStatus,
+					mobile_number: row.mobile_no,
+					general_election_conducted_data: row.elected_date,
+					elected_status: row.elected_status,
 				},
 			},
 		],
@@ -208,8 +208,8 @@ export const getAssociationInchargeSectionData = (row: AssociationCouncilMemberP
 			{
 				heading: '',
 				data: {
-					elected_date: row.electedDate,
-					period_end_on: row.electedDate,
+					elected_date: row.elected_date,
+					period_end_on: '',
 				},
 			},
 		],
@@ -223,22 +223,27 @@ export const getFamilesSectionData = (row: MembersInParishFamilyProps) => [
 			{
 				data: {
 					activeness: 'Active',
-					unique_membership_number: row.uniqueMembershipNumber,
+					unique_membership_number: row.unique_member_id,
 				},
 			},
 			{
 				heading: 'Contact Details',
 				data: {
-					mobile_number: row.mobileNumber,
-					adhaar_number: row.adhaarNumber,
+					mobile_number: row.mobile_no,
+					adhaar_number: row.adhaar_no,
+					living_with: row.living_with,
+					living_status: row.living_status,
+					email_id: '',
+					temporary_address: row.temporary_address,
+					permanent_address: row.permanent_address,
 				},
 			},
 			{
 				heading: 'Occupation',
 				data: {
-					occupation: 'None',
-					occupation_sector: 'None',
-					monthly_income: row.monthlyIncome,
+					occupation: row.occupation,
+					occupation_sector: row.occupation,
+					monthly_income: row.monthly_income,
 				},
 			},
 		],
@@ -249,20 +254,19 @@ export const getFamilesSectionData = (row: MembersInParishFamilyProps) => [
 			{
 				heading: 'Personal Details',
 				data: {
-					birth_date: row.birthDate,
+					birth_date: row.birth_date,
 					gender: row.gender,
-					blood_group: row.bloodGroup,
-					physically_challenged: row.physicallyChallenged,
-					community: row.communityCaste,
-					sub_caste: row.subCaste,
-					relation: row.relationshipToFamily,
-					father_name: row.fatherName,
-					mother_name: row.motherName,
+					blood_group: row.blood_group_content,
+					physically_challenged: row.physically_challenged,
+					community: row.community_category,
+					sub_caste: row.sub_caste,
+					relation: row.relation,
+					father_name: row.father_name,
+					mother_name: row.mother_name,
 					religion: row.religion,
-					marriage_status: row.marriageStatus,
-					marriage_date: row.marriageDate,
-					vocation_status: row.vocationStatus,
-					congregation_name: '',
+					marriage_status: row.marriage_status,
+					marriage_date: row.individual_marriage_date,
+					vocation_status: row.vocation_status,
 				},
 			},
 		],
@@ -273,10 +277,10 @@ export const getFamilesSectionData = (row: MembersInParishFamilyProps) => [
 			{
 				heading: 'Family Details',
 				data: {
-					family_name: row.familyName,
-					unique_anbiam_family_number: row.uniqueAnbiamFamilyNumber,
-					anbiam: row.anbiam,
-					main_station: row.mainStationSubStation,
+					family_name: row.family_name,
+					unique_anbiam_family_number: row.unique_family_id,
+					anbiam: row.anbiam_name,
+					main_station: row.sub_station_name,
 				},
 			},
 			{
@@ -284,18 +288,18 @@ export const getFamilesSectionData = (row: MembersInParishFamilyProps) => [
 				data: {
 					god_father_name: '',
 					god_mother_name: '',
-					bapstim_date: row.baptismDate,
-					holy_communion_date: row.holyCommunionDate,
-					confirmation_date: row.confirmationDate,
+					bapstim_date: row.baptism_date,
+					holy_communion_date: row.holy_communion_date,
+					confirmation_date: row.confirmation_date,
 				},
 			},
 			{
 				heading: 'QUALIFICATION & PROF.QUALIFICATION',
 				data: {
-					qualification_status: row.qualification,
+					qualification_status: row.q_status,
 					qualification: '',
 					category_of_qualification: "Entry didn't make",
-					prof_qualification_status: row.qualification,
+					prof_qualification_status: '',
 					prof_qualification: "Entry didn't make",
 				},
 			},
@@ -311,8 +315,8 @@ export const getSonsAndDaughtersSectionData = (row: ParishSonsAndDaughtersProps)
 				heading: '',
 				data: {
 					members_from_familes: 'Member from family',
-					mobile_number: row.mobileNumber,
-					email_id: '',
+					mobile_number: row.mobile_no,
+					email_id: row.email_id,
 					gender: row.gender,
 				},
 			},
@@ -324,14 +328,14 @@ export const getSonsAndDaughtersSectionData = (row: ParishSonsAndDaughtersProps)
 			{
 				heading: '',
 				data: {
-					family_name: row.familyName,
-					unique_anbiam_family_number: row.uniqueFamilyId,
-					main_station: row.station,
-					anbiam: row.anbiam,
-					relation_to_family: row.relationshipToFamily,
-					family_head: row.familyHead,
-					father_name: row.fatherName,
-					mother_name: row.motherName,
+					family_name: row.family_name,
+					unique_anbiam_family_number: row.unique_family_id,
+					main_station: row.sub_station_name,
+					anbiam: row.anbiam_name,
+					relation_to_family: row.relation,
+					family_head: row.father_name,
+					father_name: row.father_name,
+					mother_name: row.mother_name,
 				},
 			},
 		],
@@ -342,13 +346,13 @@ export const getSonsAndDaughtersSectionData = (row: ParishSonsAndDaughtersProps)
 			{
 				heading: '',
 				data: {
-					category: row.category,
-					diocese_name: row.nameOfRespective,
-					current_status: row.presentStatus,
-					position: row.studyingOrPosition,
-					place: row.place,
-					permanent_address: row.permanentAddress,
-					temporary_address: row.temporaryAddress || '',
+					category: row.vs_data_1,
+					diocese_name: row.vs_data_2,
+					current_status: row.vs_data_3,
+					position: row.vs_data_4,
+					place: row.vs_data_5,
+					permanent_address: row.permanent_address,
+					temporary_address: row.temporary_address || '',
 				},
 			},
 		],
@@ -358,16 +362,26 @@ export const getSonsAndDaughtersSectionData = (row: ParishSonsAndDaughtersProps)
 export const getReligiousPeopleSectionData = (row: ReligiousPersonProps) => [
 	{
 		col: 1,
-		sections: [{ data: { person_id: row.personId, gender: row.gender, position: row.position } }],
+		sections: [
+			{
+				heading: '',
+				data: {
+					person_id: row.convent_id,
+					gender: row.gender,
+					position: row.position,
+				},
+			},
+		],
 	},
 	{
 		col: 2,
 		sections: [
 			{
+				heading: '',
 				data: {
-					'Institution_/_convent': row.institution,
-					in_charge_for: row.inChargeFor,
-					mobile_number: row.contactMobileNumber || '',
+					'institution_/_convert': row.name,
+					in_charge_for: row.in_charge,
+					mobile_number: row.mobile_no,
 				},
 			},
 		],

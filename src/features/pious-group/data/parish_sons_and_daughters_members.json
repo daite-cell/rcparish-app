@@ -1,0 +1,32 @@
+{
+	"priest_nun_list": [
+		{
+			"family_name": "Rayappan-Josephine Lourdurani",
+			"family_head": "Rayappan",
+			"sub_station_name": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"anbiam_name": "St Thomaiyar Anbiam",
+			"anbiam_id": "S01A02",
+			"unique_family_id": "TH041",
+			"unique_member_id": "TH041M06",
+			"member_name": "Maria Anthony alias AR Anthonysamy",
+			"gender": "Male",
+			"relation": "Brother",
+			"activeness": "0",
+			"father_name": "Rayappan",
+			"mother_name": "",
+			"vocation_status": "yes",
+			"vs_data_1": "Diocese",
+			"vs_data_2": "Vellore",
+			"vs_data_3": "Priesthood",
+			"vs_data_4": "Parish Priest",
+			"vs_data_5": "Gandhi Nagar",
+			"mobile_no": "8056281135",
+			"email_id": "",
+			"permanent_address": "708, Madha Koil Street, Perumanam",
+			"temporary_address": "708, Madha Koil Street, Perumanam",
+			"image": ""
+		}
+	],
+	"in_active_list": []
+}

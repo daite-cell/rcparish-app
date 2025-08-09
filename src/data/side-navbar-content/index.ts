@@ -359,7 +359,7 @@ const side_nav_links = [
 				path_url: '/pious_group/associations_incharge',
 				label: 'Associations Incharge',
 				icon: 'BookText',
-				tabs: [{ label: 'ASSOCIATION DETAILS' }, { label: 'view' }, { label: 'add' }],
+				tabs: [{ label: 'association details' }, { label: 'view' }, { label: 'add' }],
 			},
 		],
 	},

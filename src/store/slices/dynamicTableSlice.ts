@@ -8,6 +8,7 @@ export interface TableSlice<RowType = unknown> {
 	selectUploadedFileRow: RowType | null;
 	editRow: RowType | null;
 	selectPriestsRow: RowType | null;
+	selectAssociationRow: RowType | null;
 	editPriestsRow: RowType | null;
 	handleSelectRow: (row: RowType) => void;
 	handleSelectFamilyCardRow: (row: RowType) => void;
@@ -16,6 +17,7 @@ export interface TableSlice<RowType = unknown> {
 	handleEditRow: (row: RowType) => void;
 	handleEditPriestsRow: (row: RowType) => void;
 	handleSelectPriestsRow: (row: RowType) => void;
+	handleSelectAssociationRow: (row: RowType) => void;
 	handleCloseRow: () => void;
 	handleCloseFamilyCardRow: () => void;
 	handleClosePriorRow: () => void;
@@ -23,6 +25,7 @@ export interface TableSlice<RowType = unknown> {
 	handleCloseEditRow: () => void;
 	handleClosePriestsRow: () => void;
 	handleCloseEditPriestsRow: () => void;
+	handleCloseAssociationRow: () => void;
 }
 /**
  * Zustand slice for managing dynamic table state.
@@ -45,10 +48,11 @@ export const createDynamicTableSlice: StateCreator<Partial<AppState> & TableSlic
 	selectFamilyCardRow: null,
 	selectPriorRow: null,
 	selectUploadedFileRow: null,
+	selectAssociationRow: null,
 	editRow: null,
 	selectPriestsRow: null,
 	editPriestsRow: null,
-
+	handleSelectAssociationRow: (row) => set({ selectAssociationRow: row }),
 	handleSelectPriorRow: (row) => set({ selectPriorRow: row }),
 	handleSelectRow: (row) => set({ selectRow: row }),
 	handleSelectFamilyCardRow: (row) => set({ selectFamilyCardRow: row }),
@@ -63,4 +67,5 @@ export const createDynamicTableSlice: StateCreator<Partial<AppState> & TableSlic
 	handleCloseEditRow: () => set({ editRow: null }),
 	handleClosePriestsRow: () => set({ selectPriestsRow: null }),
 	handleCloseEditPriestsRow: () => set({ editPriestsRow: null }),
+	handleCloseAssociationRow: () => set({ selectAssociationRow: null }),
 });

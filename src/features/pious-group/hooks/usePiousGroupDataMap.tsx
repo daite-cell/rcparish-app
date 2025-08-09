@@ -1,25 +1,23 @@
-import {
-	anbiam_council_dummy_data,
-	anbiam_incharge_dummy_data,
-	association_council_member_dummy_data,
-	family_overview_dummy_data,
-	parish_associations_dummy_data,
-	parish_council_family_members_dummy_data,
-	parish_council_members_dummy_data,
-	parish_sons_and_daughters_dummy_data,
-	religious_person_dummy_data,
-} from '../data';
+import get_present_parish_council_members from '../data/get_present_parish_council_members.json';
+import get_religious_people_parish_list from '../data/get_religious_people_parish_list.json';
+import parish_sons_and_daughters_members from '../data/parish_sons_and_daughters_members.json';
+import parish_council_family_members from '../data/parish_council_family_members.json';
+import get_family_members from '../data/get_family_members.json';
+import get_anbiams_list from '../data/get_anbiams_list.json';
+import get_associations_club_list from '../data/get_associations_club_list.json';
+import get_present_anbiam_incharge from '../data/get_present_anbiam_incharge.json';
+import get_present_association_incharge from '../data/get_present_association_incharge.json';
 
 const usePiousGroupDataMap = (): Record<string, object[]> => ({
-	families: family_overview_dummy_data,
-	parish_council_members: parish_council_members_dummy_data,
-	family_members: parish_council_family_members_dummy_data,
-	priest_nun_parish: parish_sons_and_daughters_dummy_data,
-	religious_people_parish: religious_person_dummy_data,
-	anbiams: anbiam_council_dummy_data,
-	anbiam_incharge: anbiam_incharge_dummy_data,
-	associations_incharge: association_council_member_dummy_data,
-	associations_club: parish_associations_dummy_data,
+	families: get_family_members.families_list,
+	parish_council_members: get_present_parish_council_members.member_list,
+	family_members: parish_council_family_members.members_list,
+	priest_nun_parish: parish_sons_and_daughters_members.priest_nun_list,
+	religious_people_parish: get_religious_people_parish_list.religious_people_parish_list,
+	anbiams: get_anbiams_list.anbiams_list,
+	anbiam_incharge: get_present_anbiam_incharge.president_list,
+	associations_incharge: get_present_association_incharge.president_list,
+	associations_club: get_associations_club_list.associations_club_list,
 });
 
 export default usePiousGroupDataMap;

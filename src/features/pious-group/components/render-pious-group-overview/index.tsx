@@ -15,10 +15,6 @@ const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string
 
 	const tabs = [{ label: 'profile' }, { label: 'edit' }, { label: 'back' }];
 
-	const isReligiousPerson = (data: unknown): data is ReligiousPersonProps => {
-		return data !== null && typeof data === 'object' && 'religiousPersonName' in data;
-	};
-
 	const userName = extractUserName(selectRow as Record<string, unknown>);
 
 	const componentMap = {
@@ -38,9 +34,7 @@ const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string
 			view: (
 				<GenericPeopleDetailsOverview
 					userName={userName}
-					sectionData={
-						isReligiousPerson(selectRow) ? getReligiousPeopleSectionData(selectRow as ReligiousPersonProps) : []
-					}
+					sectionData={getReligiousPeopleSectionData(selectRow as ReligiousPersonProps)}
 				/>
 			),
 			form: <ReligiousParishCouncilMembersForm />,

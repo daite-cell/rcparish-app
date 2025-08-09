@@ -1,7 +1,7 @@
 const member_overview_pages_with_tables = [
-	'confirmations',
 	'baptism',
 	'holy_communion',
+	'confirmations',
 	'chronicles',
 	'marriage_registration',
 	'marriage_proposal',

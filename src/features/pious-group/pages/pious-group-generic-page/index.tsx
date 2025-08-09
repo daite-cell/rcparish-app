@@ -1,18 +1,25 @@
-import { useMemo, useState } from 'react';
+import { lazy, Suspense, useMemo, useState } from 'react';
 import { PriorDignitariesContainer, TabsLayout } from '@/components';
 import { side_nav_links } from '@/data/side-navbar-content';
 import type { NavLinkProps } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
 import { useRouteName } from '@/utils/getRouteName';
 import { useStore } from '@/store/store';
-import { FormsContainer, RenderPiousGroupOverviewContainer, RenderPiousGroupTables } from '../../components';
+import {
+	AssociationDetailsTable,
+	AssociationInchargeDetails,
+	FormsContainer,
+	RenderPiousGroupOverviewContainer,
+} from '../../components';
 import { usePathName } from '@/utils/getPathName';
 import { CouncilDetailsForm } from '../../forms';
+
+const RenderPiousGroupTables = lazy(() => import('../../components/render-pious-group-tables'));
 
 const PiousGroupGenericPage = () => {
 	const type = useRouteName('type');
 	const pathName = usePathName();
-	const { selectRow, selectFamilyCardRow, selectPriorRow, editRow } = useStore();
+	const { selectRow, selectFamilyCardRow, selectPriorRow, editRow, selectAssociationRow } = useStore();
 
 	const [activeIndex, setActiveIndex] = useState(0);
 
@@ -29,6 +36,9 @@ const PiousGroupGenericPage = () => {
 		return <PriorDignitariesContainer />;
 	}
 
+	if (selectAssociationRow) {
+		return <AssociationInchargeDetails />;
+	}
 	if (selectRow || selectFamilyCardRow || editRow) {
 		return <RenderPiousGroupOverviewContainer pathName={type} />;
 	}
@@ -36,11 +46,17 @@ const PiousGroupGenericPage = () => {
 	const renderTabContent = (label: string | undefined) => {
 		switch (label?.toLowerCase()) {
 			case 'view':
-				return <RenderPiousGroupTables />;
+				return (
+					<Suspense fallback={<div>Loading...</div>}>
+						<RenderPiousGroupTables />
+					</Suspense>
+				);
 			case 'add':
 				return <FormsContainer />;
 			case 'council details':
 				return <CouncilDetailsForm />;
+			case 'association details':
+				return <AssociationDetailsTable />;
 			default:
 				return null;
 		}

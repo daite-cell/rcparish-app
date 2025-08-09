@@ -22,18 +22,18 @@ const GenericFamilesDetailsOverview = () => {
 		{
 			col: 1,
 			sections: [
-				{ data: { active: 'Active' } },
+				{ heading: '', data: { active: 'Active' } },
 				{
 					heading: 'FAMILY DETAILS',
 					data: {
-						family_head_name: selectRow.familyHead,
-						unique_anbiam_family_number: selectRow.familyNumber,
-						old_family_number: selectRow.oldFamilyNumber || '',
-						'main_station_/_sub_station': selectRow.mainStation,
-						anbiam: selectRow.anbiam,
-						father_or_husband_name: selectRow.familyHead,
-						mother_or_wife_name: selectRow.nameOfRespectives || '',
-						marriage_date: selectRow.marriageDate1,
+						family_head_name: selectRow.family_head,
+						unique_anbiam_family_number: selectRow.unique_family_id,
+						old_family_number: '',
+						'main_station_/_sub_station': selectRow.sub_station_name,
+						anbiam: selectRow.anbiam_name,
+						father_or_husband_name: selectRow.family_head,
+						mother_or_wife_name: '',
+						marriage_date: 'unknown',
 					},
 				},
 			],
@@ -44,20 +44,19 @@ const GenericFamilesDetailsOverview = () => {
 				{
 					heading: 'SOCIAL STATUS DETAILS',
 					data: {
-						house_type: selectRow.houseType,
-						house_ownership: selectRow.ownership,
+						house_type: selectRow.social_status,
+						house_ownership: selectRow.house_ownership,
 					},
 				},
 				{
 					heading: 'INCOME & SUBSCRIPTION DETAILS',
 					data: {
-						family_monthly_income: selectRow.familyMonthlyIncome || 0,
-						subscription_from: selectRow.subscriptionFrom,
-						family_card_valid_upto: selectRow.subscriptionFrom || '--',
-						monthly_subscription: selectRow.monthlySubscription || '',
+						family_monthly_income: 0,
+						subscription_from: selectRow.subscription_from,
+						family_card_valid_upto: selectRow.subscription_period || '--',
+						monthly_subscription: selectRow.monthly_subscription || '',
 						cemetery_number: '',
 						community: selectRow.community,
-						sub_caste: selectRow.subCaste || '',
 					},
 				},
 			],
@@ -65,18 +64,17 @@ const GenericFamilesDetailsOverview = () => {
 		{
 			col: 3,
 			sections: [
+				{ heading: '', data: { sub_caste: 'Adi Dravidar' } },
 				{
 					heading: 'FAMILY CONTACT DETAILS',
 					data: {
-						living_status: selectRow.livingStatus,
-						parish_name: '--',
-						diocese_name: '--',
-						country_name: '--',
-						settled_as: selectRow.settledAs,
-						mobile_number: selectRow.mobile,
-						email_id: '--',
-						temporary_address: selectRow.temporaryAddress,
-						permanent_address: selectRow.permanentAddress,
+						living_status: selectRow.living_status,
+
+						settled_as: selectRow.settled_as,
+						mobile_number: selectRow.family_mobile_no,
+						email_id: '',
+						temporary_address: selectRow.temporary_address,
+						permanent_address: selectRow.permanent_address,
 					},
 				},
 			],
@@ -108,7 +106,7 @@ const GenericFamilesDetailsOverview = () => {
 					</Suspense>
 				) : (
 					<div className="p-6">
-						<DisplayUserName userName={selectRow?.familyName} />
+						<DisplayUserName userName={selectRow?.family_name} />
 						<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 							{sectionData.map((column, colIndex) => (
 								<div key={colIndex}>
