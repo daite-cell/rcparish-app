@@ -8,11 +8,13 @@ import type {
 	AnbiamInchargeDataProps,
 	AssociationCouncilMemberProps,
 	ParishAssociationClubProps,
+	AssociationDetailsProps,
+	AssociationInchargeProps,
 } from '@/types';
 import type { CellContext, ColumnDef } from '@tanstack/react-table';
 import { Trash, IdCard } from 'lucide-react';
 import { useStore } from '@/store/store';
-import { AdminDefaultImage, TablePriorDignitariesButton } from '@/components';
+import { AdminDefaultImage, TableDetailsViewButton, TablePriorDignitariesButton } from '@/components';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
 
 const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[] => {
@@ -508,6 +510,74 @@ const useAssociationClubColumns = (): ColumnDef<ParishAssociationClubProps>[] =>
 		},
 	];
 };
+const useAssociationDetailsColumns = (): ColumnDef<AssociationDetailsProps>[] => {
+	const { handleSelectAssociationRow } = useStore();
+	return [
+		{
+			accessorKey: 'sub_station_id',
+			header: ' Sub-Station Id',
+		},
+		{
+			accessorKey: 'sub_station_name',
+			header: 'Main-Station / Sub-Station',
+		},
+		{
+			accessorKey: 'association_content',
+			header: 'Association Id',
+		},
+		{
+			accessorKey: 'association_id',
+			header: 'Association',
+		},
+		{
+			accessorKey: 'total_members',
+			header: 'Total Members',
+		},
+		{
+			id: 'view',
+			header: 'Details',
+			cell: ({ row }: CellContext<AssociationDetailsProps, unknown>) => (
+				<TableDetailsViewButton onClick={() => handleSelectAssociationRow(row.original)} />
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+	];
+};
+const useAssociationInchargeDetailsColumns = (): ColumnDef<AssociationInchargeProps>[] => {
+	return [
+		{
+			header: 'Position',
+			accessorKey: 'position',
+		},
+		{
+			header: 'Member Name',
+			accessorKey: 'member_name',
+		},
+
+		{
+			header: 'Elected Status',
+			accessorKey: 'elected_status',
+		},
+		{
+			header: 'Member From',
+			accessorKey: 'member_from',
+		},
+		{
+			header: 'Mobile',
+			accessorKey: 'mobile_no',
+		},
+		{
+			header: 'Elected Date',
+			accessorKey: 'elected_date',
+		},
+		{
+			header: 'Period End',
+			accessorKey: 'period_end_on',
+		},
+	];
+};
 
 export {
 	useParishCouncilColumns,
@@ -519,4 +589,6 @@ export {
 	useAnbiamsInchargeColumns,
 	useAssociationCouncilMemberPropsColumns,
 	useAssociationClubColumns,
+	useAssociationDetailsColumns,
+	useAssociationInchargeDetailsColumns,
 };

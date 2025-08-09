@@ -1287,3 +1287,21 @@ export type AuditingProps = {
 	description: string;
 	amount: number;
 };
+
+export interface AssociationDetailsProps {
+	sub_station_id: string;
+	sub_station_name: string;
+	association_content: string;
+	association_id: string;
+	total_members: number;
+}
+
+export interface AssociationInchargeProps {
+	member_from: string;
+	member_name: string;
+	mobile_no: string;
+	elected_status: string;
+	position: string;
+	elected_date: string;
+	period_end_on: string;
+}

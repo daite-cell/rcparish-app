@@ -1,0 +1,95 @@
+{
+	"association_details": [
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "St Vincent de Paul",
+			"association_id": "S01C01",
+			"total_members": 3
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Jeeva Madha Kolping Club",
+			"association_id": "S01C02",
+			"total_members": 13
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Legion of Mary",
+			"association_id": "S01C03",
+			"total_members": 0
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Youth",
+			"association_id": "S01C04",
+			"total_members": 0
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Ilanthendral Madhar Sangam",
+			"association_id": "S01C05",
+			"total_members": 0
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Anbu Madahar Sangam",
+			"association_id": "S01C06",
+			"total_members": 0
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Christu Arasar Kolping Club",
+			"association_id": "S01C07",
+			"total_members": 0
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Christu Arasar Mandram",
+			"association_id": "S01C08",
+			"total_members": 0
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Don Bosco Mandram",
+			"association_id": "S01C09",
+			"total_members": 0
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Ave Maria Mandram",
+			"association_id": "S01C10",
+			"total_members": 0
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Choir Group",
+			"association_id": "S01C11",
+			"total_members": 0
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Catechism Teachers Club",
+			"association_id": "S01C12",
+			"total_members": 0
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"association_content": "Catechist",
+			"association_id": "S01C13",
+			"total_members": 0
+		}
+	]
+}
