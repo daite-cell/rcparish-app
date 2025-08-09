@@ -1,8 +1,10 @@
 import { OverviewTabsLayout } from '@/layouts';
 import { member_overview_pages_with_tables } from '../../data';
 import GenericRegisterPeopleDetailsContainer from '../generic-register-people-details-container';
+import { useStore } from '@/store/store';
 
 const RenderRegisterPeopleOverview = ({ pathName }: { pathName: string | number | undefined }) => {
+	const { editRow } = useStore();
 	const tabs = [{ label: 'profile' }, { label: 'edit' }, { label: 'back' }];
 
 	const componentMap = {
@@ -16,7 +18,14 @@ const RenderRegisterPeopleOverview = ({ pathName }: { pathName: string | number 
 			])
 		),
 	};
-	return <OverviewTabsLayout tabs={tabs} pathName={pathName} componentMap={componentMap} />;
+	return (
+		<OverviewTabsLayout
+			tabs={tabs}
+			pathName={pathName}
+			componentMap={componentMap}
+			defaultTabLabel={editRow ? 'edit' : 'profile'}
+		/>
+	);
 };
 
 export default RenderRegisterPeopleOverview;

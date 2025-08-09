@@ -4,10 +4,10 @@ import { getCommonActionColumns } from '@/utils/commonActionColumns';
 import type { CongregationInstitutionType, ConventDetailsTypeProps, VocationalInstitutionType } from '@/types';
 
 const useInstitutionColumns = (): ColumnDef<CongregationInstitutionType>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<CongregationInstitutionType>(handleSelectRow),
+		...getCommonActionColumns<CongregationInstitutionType>(handleSelectRow, handleEditRow),
 
 		{
 			accessorKey: 'category',
@@ -43,10 +43,10 @@ const useInstitutionColumns = (): ColumnDef<CongregationInstitutionType>[] => {
 };
 
 const useVocationalInstitutionColumns = (): ColumnDef<VocationalInstitutionType>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<VocationalInstitutionType>(handleSelectRow),
+		...getCommonActionColumns<VocationalInstitutionType>(handleSelectRow, handleEditRow),
 
 		{
 			accessorKey: 'noviciateName',
@@ -63,10 +63,10 @@ const useVocationalInstitutionColumns = (): ColumnDef<VocationalInstitutionType>
 };
 
 const useCommunitiesDetailsColumns = (): ColumnDef<ConventDetailsTypeProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<ConventDetailsTypeProps>(handleSelectRow),
+		...getCommonActionColumns<ConventDetailsTypeProps>(handleSelectRow, handleEditRow),
 
 		{
 			accessorKey: 'stationType',

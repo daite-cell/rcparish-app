@@ -1129,7 +1129,7 @@ const college_consulters_dummy_data = [
 	},
 ];
 
-const member_over_view_pages = ['vocational_list', 'institutions_list', 'properties'];
+const member_over_view_pages = ['properties'];
 const people_over_view_pages = ['vsss', 'senate_members', 'vf', 'parishes'];
 const table_with_export_pages = ['curia_members', 'commissions', 'committees', 'college_consulters'];
 

@@ -8,7 +8,7 @@ import { Controller, type Control, type FieldValues, type Path } from 'react-hoo
 import { format } from 'date-fns';
 
 interface ControlledDateInputFieldProps<T extends FieldValues> {
-	label: string;
+	label?: string;
 	name: Path<T>;
 	control: Control<T>;
 	placeholder?: string;

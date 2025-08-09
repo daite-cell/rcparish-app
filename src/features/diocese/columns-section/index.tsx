@@ -7,6 +7,7 @@ import type {
 	DioceseSenateMemberProps,
 	VicariateForaneMemberProps,
 	ParishTableDataProps,
+	PriestReligiousProps,
 } from '@/types';
 
 const getPriestsSectionData = (row: PriestDetailsProps) => [
@@ -55,6 +56,58 @@ const getPriestsSectionData = (row: PriestDetailsProps) => [
 					email: row?.email ?? '',
 					address: row?.residence ?? row?.address ?? '',
 					living_status: row?.livingStatus ?? row?.status ?? '',
+				},
+			},
+		],
+	},
+];
+
+const getPriestsReligiousSectionData = (row: PriestReligiousProps) => [
+	{
+		col: 1,
+		sections: [
+			{
+				heading: 'Priestly Info',
+				data: {
+					priest_permanent_Id: row?.id ?? '',
+					priest_from: '',
+					date_of_priestly_ordination: row?.ordinationDate ?? '',
+					place_of_priestly_ordination: '',
+				},
+			},
+		],
+	},
+	{
+		col: 2,
+		sections: [
+			{
+				heading: 'Birth & Native Info',
+				data: {
+					birth_of_date: row?.birthDate ?? '',
+					place_of_birth: '',
+					native_place: row?.nativePlace ?? '',
+					native_parish: '',
+					date_of_baptism: '',
+					place_of_baptism: '',
+					date_of_first_profession: '',
+					place_of_first_profession: '',
+				},
+			},
+		],
+	},
+	{
+		col: 3,
+		sections: [
+			{
+				heading: 'Other Details',
+				data: {
+					date_of_diaconate: '',
+					place_of_diaconate: '',
+					adhaar_no: row?.adhaarNumber ?? '',
+					contact: row?.mobileNumber ?? '',
+					email: row?.mailId ?? '',
+					address: row?.presentPosition ?? row?.presentResidential ?? '',
+					living_status: row?.livingStatus ?? '',
 				},
 			},
 		],
@@ -334,6 +387,7 @@ const getParishesMemberData = (row: ParishTableDataProps) => [
 ];
 export {
 	getPriestsSectionData,
+	getPriestsReligiousSectionData,
 	getNoVocationalListSectionData,
 	getInstitutionDetailsSectionData,
 	getPropertiesSectionData,

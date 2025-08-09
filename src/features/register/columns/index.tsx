@@ -17,9 +17,9 @@ import { useStore } from '@/store/store';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
 
 const useHolyCommunionMemberColumns = (): ColumnDef<HolyCommunionMemberType>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 	return [
-		...getCommonActionColumns<HolyCommunionMemberType>(handleSelectRow),
+		...getCommonActionColumns<HolyCommunionMemberType>(handleSelectRow, handleEditRow),
 		{
 			header: 'Member Name',
 			accessorKey: 'memberName',
@@ -54,9 +54,9 @@ const useHolyCommunionMemberColumns = (): ColumnDef<HolyCommunionMemberType>[] =
 };
 
 const useChronicleMemberColumns = (): ColumnDef<ChronicleMemberProps>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 	return [
-		...getCommonActionColumns<ChronicleMemberProps>(handleSelectRow),
+		...getCommonActionColumns<ChronicleMemberProps>(handleSelectRow, handleEditRow),
 		{ accessorKey: 'date', header: 'Date' },
 		{ accessorKey: 'event', header: 'Event' },
 		{ accessorKey: 'descriptions', header: 'Descriptions' },
@@ -69,9 +69,9 @@ const useChronicleMemberColumns = (): ColumnDef<ChronicleMemberProps>[] => {
 };
 
 const useBaptismMemberColumns = (): ColumnDef<BaptismMemberType>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 	return [
-		...getCommonActionColumns<BaptismMemberType>(handleSelectRow),
+		...getCommonActionColumns<BaptismMemberType>(handleSelectRow, handleEditRow),
 
 		{
 			header: 'Member Name (Baptism Name)',
@@ -106,10 +106,10 @@ const useBaptismMemberColumns = (): ColumnDef<BaptismMemberType>[] => {
 };
 
 const useMemberFromFamiliesColumns = (): ColumnDef<ConfirmationFromFamilyMemberType>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<ConfirmationFromFamilyMemberType>(handleSelectRow),
+		...getCommonActionColumns<ConfirmationFromFamilyMemberType>(handleSelectRow, handleEditRow),
 
 		{
 			header: 'Member Name ',
@@ -145,10 +145,10 @@ const useMemberFromFamiliesColumns = (): ColumnDef<ConfirmationFromFamilyMemberT
 };
 
 const useConfirmationRegisterColumns = (): ColumnDef<ConfirmationRegisteredMemberType>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<ConfirmationRegisteredMemberType>(handleSelectRow),
+		...getCommonActionColumns<ConfirmationRegisteredMemberType>(handleSelectRow, handleEditRow),
 
 		{
 			header: 'Member Name',
@@ -177,10 +177,10 @@ const useConfirmationRegisterColumns = (): ColumnDef<ConfirmationRegisteredMembe
 	];
 };
 const useMarriageRegisterAsParishColumns = (): ColumnDef<MarriageRegisterMemberAsParishType>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<MarriageRegisterMemberAsParishType>(handleSelectRow),
+		...getCommonActionColumns<MarriageRegisterMemberAsParishType>(handleSelectRow, handleEditRow),
 
 		{
 			header: 'Banns / Rectification',
@@ -261,10 +261,10 @@ const useMarriageRegisterAsParishColumns = (): ColumnDef<MarriageRegisterMemberA
 	];
 };
 const useMarriageRegisterColumns = (): ColumnDef<MarriageRegisterMemberType>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<MarriageRegisterMemberType>(handleSelectRow),
+		...getCommonActionColumns<MarriageRegisterMemberType>(handleSelectRow, handleEditRow),
 
 		{
 			header: 'Banns / Rectification',
@@ -296,10 +296,10 @@ const useMarriageRegisterColumns = (): ColumnDef<MarriageRegisterMemberType>[] =
 };
 
 const useMarriageProposalColumns = (): ColumnDef<MarriageProposalMemberType>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<MarriageProposalMemberType>(handleSelectRow),
+		...getCommonActionColumns<MarriageProposalMemberType>(handleSelectRow, handleEditRow),
 
 		{
 			header: 'Bride / Bridegroom Name',
@@ -319,10 +319,10 @@ const useMarriageProposalColumns = (): ColumnDef<MarriageProposalMemberType>[] =
 };
 
 const useMarriageProposalFormColumns = (): ColumnDef<MarriageProposalMemberFormType>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<MarriageProposalMemberFormType>(handleSelectRow),
+		...getCommonActionColumns<MarriageProposalMemberFormType>(handleSelectRow, handleEditRow),
 
 		{
 			header: 'Bride / Bridegroom Name',
@@ -347,10 +347,10 @@ const useMarriageProposalFormColumns = (): ColumnDef<MarriageProposalMemberFormT
 };
 
 const useDeathRegisterColumns = (): ColumnDef<DeathRegisterMemberType>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<DeathRegisterMemberType>(handleSelectRow),
+		...getCommonActionColumns<DeathRegisterMemberType>(handleSelectRow, handleEditRow),
 
 		{
 			header: 'Person who died',
@@ -382,10 +382,10 @@ const useDeathRegisterColumns = (): ColumnDef<DeathRegisterMemberType>[] => {
 };
 
 const useDeathRegisterAsParishColumns = (): ColumnDef<DeathRegisterMemberAsParishType>[] => {
-	const { handleSelectRow } = useStore();
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<DeathRegisterMemberAsParishType>(handleSelectRow),
+		...getCommonActionColumns<DeathRegisterMemberAsParishType>(handleSelectRow, handleEditRow),
 
 		{
 			header: 'Person who died',

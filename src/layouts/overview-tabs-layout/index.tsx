@@ -13,20 +13,41 @@ interface OverviewTabsProps {
 	pathName: string | number | undefined;
 	componentMap: Record<string, OverviewEntry>;
 	tabs?: Tab[];
+	defaultTabLabel?: string;
 }
 
 const defaultTabs: Tab[] = [{ label: 'profile' }, { label: 'edit' }, { label: 'back' }];
 
-const OverviewTabsLayout = ({ pathName, componentMap, tabs = defaultTabs }: OverviewTabsProps) => {
-	const [activeTabIndex, setActiveTabIndex] = useState(0);
-	const { handleCloseRow, handleCloseFamilyCardRow } = useStore();
+const OverviewTabsLayout = ({
+	pathName,
+	componentMap,
+	tabs = defaultTabs,
+	defaultTabLabel = 'profile',
+}: OverviewTabsProps) => {
+	const {
+		handleCloseRow,
+		handleCloseFamilyCardRow,
+		handleCloseEditRow,
+		handleCloseEditPriestsRow,
+		handleClosePriestsRow,
+	} = useStore();
 	const page = String(pathName);
 
+	const getTabIndexByLabel = (label: string) =>
+		tabs.findIndex((tab) => tab.label.toLowerCase() === label.toLowerCase());
+
+	const [activeTabIndex, setActiveTabIndex] = useState(() => getTabIndexByLabel(defaultTabLabel));
+
 	const handleTabChange = (index: number) => {
-		if (tabs[index].label.toLowerCase() === 'back') {
+		const label = tabs[index].label.toLowerCase();
+
+		if (label === 'back') {
 			handleCloseRow();
 			handleCloseFamilyCardRow();
-			setActiveTabIndex(0);
+			handleCloseEditRow();
+			handleCloseEditPriestsRow();
+			handleClosePriestsRow();
+			setActiveTabIndex(getTabIndexByLabel('profile'));
 		} else {
 			setActiveTabIndex(index);
 		}
@@ -35,7 +56,7 @@ const OverviewTabsLayout = ({ pathName, componentMap, tabs = defaultTabs }: Over
 	const componentEntry = componentMap[page];
 
 	const content: JSX.Element = componentEntry ? (
-		activeTabIndex === 0 ? (
+		activeTabIndex === getTabIndexByLabel('profile') ? (
 			componentEntry.view
 		) : (
 			(componentEntry.form ?? <h1 className="text-gray-500">Form not implemented</h1>)
@@ -45,7 +66,12 @@ const OverviewTabsLayout = ({ pathName, componentMap, tabs = defaultTabs }: Over
 	);
 
 	return (
-		<TabsLayout tabs={tabs} activeTabId={activeTabIndex} onTabChange={handleTabChange}>
+		<TabsLayout
+			hasPageHeading={tabs[activeTabIndex]?.label.toLowerCase() !== 'edit'}
+			tabs={tabs}
+			activeTabId={activeTabIndex}
+			onTabChange={handleTabChange}
+		>
 			{content}
 		</TabsLayout>
 	);

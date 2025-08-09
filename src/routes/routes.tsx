@@ -18,8 +18,8 @@ const DioceseStatutesGenericPage = lazy(() => import('../features/diocese/pages/
 const RulesOfParishGenericPage = lazy(() => import('../features/parish/pages/rule-of-parish-page'));
 const DashboardGenericPage = lazy(() => import('../features/dashboard/pages/dashboard-generic-page'));
 const HistoryPage = lazy(() => import('../features/diocese/pages/history-page'));
-
 const Profile = lazy(() => import('../features/profile/index'));
+const PriestsGenericPage = lazy(() => import('../features/diocese/pages/priests-generic-page'));
 
 export const appRoutes: AppRoute[] = [
 	{ path: '/dashboard', name: 'Dashboard', element: <DashBoardPage />, layout: true },
@@ -43,6 +43,7 @@ export const appRoutes: AppRoute[] = [
 		element: <ReligiousPeopleGenericPage />,
 		layout: true,
 	},
+
 	{
 		path: '/sacraments/:type',
 		name: 'RegisterGeneric',
@@ -98,6 +99,12 @@ export const appRoutes: AppRoute[] = [
 		element: <HistoryPage />,
 		layout: true,
 	},
+	{
+		path: '/diocese/priests/:id',
+		name: 'DioceseGeneric',
+		element: <PriestsGenericPage />,
+		layout: true,
+	},
 
 	{
 		path: '/diocese/:type',
@@ -105,6 +112,7 @@ export const appRoutes: AppRoute[] = [
 		element: <DioceseGenericPage />,
 		layout: true,
 	},
+
 	{
 		path: '/diocese/statutes/:rule',
 		name: 'DioceseStatutesGeneric',

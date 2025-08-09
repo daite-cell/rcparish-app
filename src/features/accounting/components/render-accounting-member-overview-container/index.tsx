@@ -2,16 +2,27 @@ import { OverviewTabsLayout } from '@/layouts';
 import { useRouteName } from '@/utils/getRouteName';
 import GenericAccountingDetailsContainer from '../generic-accounting-details-container';
 import { accounting_pages } from '../../data';
+import { useStore } from '@/store/store';
+import { EmployersSalaryForm, SubscriptionForm, WorkersForm } from '../../forms';
 
 const RenderAccountingMemberOverviewContainer = () => {
+	const { editRow } = useStore();
 	const pathName = useRouteName('type');
-	const tabs = [{ label: 'profile' }, { label: 'edit' }, { label: 'back' }];
-
-	if (!pathName || !accounting_pages.includes(pathName as string)) {
-		return <div className="text-center mt-10 text-gray-500">Invalid page type</div>;
-	}
 
 	const componentMap = {
+		workers: {
+			view: <GenericAccountingDetailsContainer />,
+			form: <WorkersForm />,
+		},
+		subscription: {
+			view: <GenericAccountingDetailsContainer />,
+			form: <SubscriptionForm />,
+		},
+		employers_salary: {
+			view: <GenericAccountingDetailsContainer />,
+			form: <EmployersSalaryForm />,
+		},
+
 		...Object.fromEntries(
 			accounting_pages.map((p) => [
 				p,
@@ -22,7 +33,13 @@ const RenderAccountingMemberOverviewContainer = () => {
 			])
 		),
 	};
-	return <OverviewTabsLayout tabs={tabs} pathName={pathName} componentMap={componentMap} />;
+	return (
+		<OverviewTabsLayout
+			pathName={pathName}
+			componentMap={componentMap}
+			defaultTabLabel={editRow ? 'edit' : 'profile'}
+		/>
+	);
 };
 
 export default RenderAccountingMemberOverviewContainer;

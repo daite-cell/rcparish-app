@@ -8,14 +8,14 @@ import { useStore } from '@/store/store';
 const ReligiousPeopleGenericPage = () => {
 	useAutoDocumentTitle();
 	const [activeIndex, setActiveIndex] = useState(0);
-	const { selectRow } = useStore();
+	const { selectRow, editRow } = useStore();
 	const type = useRouteName('type');
 
 	const handleToggleTab = (index: number) => {
 		setActiveIndex(index);
 	};
 
-	return selectRow ? (
+	return selectRow || editRow ? (
 		<RenderReligiousPeopleOverviewContainer pathName={type} />
 	) : (
 		<TabsLayout onTabChange={handleToggleTab} activeTabId={activeIndex} tabs={[{ label: 'View' }]}>

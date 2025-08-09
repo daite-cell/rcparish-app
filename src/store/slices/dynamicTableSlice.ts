@@ -6,14 +6,23 @@ export interface TableSlice<RowType = unknown> {
 	selectFamilyCardRow: RowType | null;
 	selectPriorRow: RowType | null;
 	selectUploadedFileRow: RowType | null;
+	editRow: RowType | null;
+	selectPriestsRow: RowType | null;
+	editPriestsRow: RowType | null;
 	handleSelectRow: (row: RowType) => void;
 	handleSelectFamilyCardRow: (row: RowType) => void;
 	handleSelectPriorRow: (row: RowType) => void;
 	handleSelectUploadedFileRow: (row: RowType) => void;
+	handleEditRow: (row: RowType) => void;
+	handleEditPriestsRow: (row: RowType) => void;
+	handleSelectPriestsRow: (row: RowType) => void;
 	handleCloseRow: () => void;
 	handleCloseFamilyCardRow: () => void;
 	handleClosePriorRow: () => void;
 	handleCloseUploadedFileRow: () => void;
+	handleCloseEditRow: () => void;
+	handleClosePriestsRow: () => void;
+	handleCloseEditPriestsRow: () => void;
 }
 /**
  * Zustand slice for managing dynamic table state.
@@ -36,12 +45,22 @@ export const createDynamicTableSlice: StateCreator<Partial<AppState> & TableSlic
 	selectFamilyCardRow: null,
 	selectPriorRow: null,
 	selectUploadedFileRow: null,
+	editRow: null,
+	selectPriestsRow: null,
+	editPriestsRow: null,
+
 	handleSelectPriorRow: (row) => set({ selectPriorRow: row }),
 	handleSelectRow: (row) => set({ selectRow: row }),
 	handleSelectFamilyCardRow: (row) => set({ selectFamilyCardRow: row }),
 	handleSelectUploadedFileRow: (row) => set({ selectUploadedFileRow: row }),
+	handleEditRow: (row) => set({ editRow: row }),
+	handleSelectPriestsRow: (row) => set({ selectPriestsRow: row }),
+	handleEditPriestsRow: (row) => set({ editPriestsRow: row }),
 	handleCloseRow: () => set({ selectRow: null }),
 	handleCloseFamilyCardRow: () => set({ selectFamilyCardRow: null }),
 	handleClosePriorRow: () => set({ selectPriorRow: null }),
 	handleCloseUploadedFileRow: () => set({ selectUploadedFileRow: null }),
+	handleCloseEditRow: () => set({ editRow: null }),
+	handleClosePriestsRow: () => set({ selectPriestsRow: null }),
+	handleCloseEditPriestsRow: () => set({ editPriestsRow: null }),
 });

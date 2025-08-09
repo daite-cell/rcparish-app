@@ -396,6 +396,12 @@ const livingStatusOptions = [
 	{ label: 'Foreign', value: 'Foreign' },
 ];
 
+const currentLivingStatusOptions = [
+	{ label: 'Alive', value: 'alive' },
+	{ label: 'Death', value: 'death' },
+	{ label: 'Left', value: 'left' },
+];
+
 const settledAsOptions = [
 	{ label: 'Permanent', value: 'Permanent' },
 	{ label: 'Temporary', value: 'Temporary' },
@@ -500,6 +506,108 @@ const housingListParishOptions = [
 	{ label: 'Zamin Gudalore Parish', value: 'V08P06' },
 ];
 
+const activeToOptions = [
+	{ label: 'Active Member', value: 'active member' },
+	{ label: 'In-Active Member', value: 'in active member' },
+];
+
+const familyOptions = [
+	{ label: 'Anthonydass as Savarimuthu-Amala', value: 'SU001' },
+	{ label: 'Velankanni Alias Dass-Arockia Devi', value: 'SU002' },
+	{ label: 'Christuraj -Christha', value: 'SU003' },
+	{ label: 'Albin Raj - Mary Stella', value: 'SU004' },
+	{ label: 'Joseph - Jeyaseeli', value: 'SU005' },
+	{ label: 'Michael Soosairaj - Agatha', value: 'SU006' },
+	{ label: 'Michael Suresh - Rita', value: 'SU007' },
+	{ label: 'Selvamuthu - Lourdu Mary', value: 'SU008' },
+	{ label: 'David Raj - Shanthamani', value: 'SU009' },
+	{ label: 'Francis - Mariammal', value: 'SU010' },
+	{ label: 'Sebastin - Annamary', value: 'SU011' },
+	{ label: 'Savariar - Manonmani', value: 'SU012' },
+	{ label: 'Jeganathan - Mary Catherin', value: 'SU013' },
+	{ label: 'Jeyaseelan - Mary Margaret', value: 'SU014' },
+	{ label: 'Rajasekar - Philomina', value: 'SU015' },
+	{ label: 'Arul Samy - Chitra', value: 'SU016' },
+	{ label: 'Sebastin - Gracy', value: 'SU017' },
+	{ label: 'Michael - Sagaya Mary', value: 'SU018' },
+	{ label: 'Dhayanand - Vimalarani', value: 'SU019' },
+	{ label: 'Jeyabalan - Vimala Mary', value: 'SU020' },
+	{ label: 'Anthonysamy - Pushpamary', value: 'SU021' },
+	{ label: 'Gnanapragasam - Gnanapoomani', value: 'SU022' },
+	{ label: 'Rajarethinam - Antonypushpam', value: 'SU023' },
+	{ label: 'Michael Raj - Pushpam', value: 'SU024' },
+	{ label: 'Arockia Raj - Magi', value: 'SU025' },
+	{ label: 'Stephenraj - Mary', value: 'SU026' },
+	{ label: 'Arokia Raj - Annamary', value: 'SU027' },
+	{ label: 'Selvaraj - Panimaya Mary', value: 'SU028' },
+	{ label: 'Rajendran - Jansi Rani', value: 'SU029' },
+	{ label: 'Paulraj - Mary', value: 'SU030' },
+];
+
+const memberNameOptions = [
+	{ label: 'Anthonydass as Savarimuthu', value: 'SU001M01' },
+	{ label: 'Amala', value: 'SU001M02' },
+];
+
+const donationForOptions = [
+	{ label: 'Festival Fund', value: '0' },
+	{ label: 'Church Fund', value: '1' },
+	{ label: 'Construction', value: '2' },
+	{ label: 'Education', value: '3' },
+	{ label: 'Church Development', value: '4' },
+	{ label: 'Mass Indention', value: '5' },
+	{ label: 'Charity work', value: '6' },
+	{ label: 'Other', value: '7' },
+];
+
+const workingOptions = [
+	{ label: 'Cook', value: '0' },
+	{ label: 'Driver', value: '1' },
+	{ label: 'Watchman', value: '2' },
+	{ label: 'Sweeper', value: '3' },
+	{ label: 'Catist', value: '4' },
+	{ label: 'Accountant', value: '5' },
+	{ label: 'Office Assistant', value: '6' },
+	{ label: 'Other', value: '7' },
+];
+
+const religionOptions = [
+	{ label: 'RC Christian', value: '0' },
+	{ label: 'CSI', value: '1' },
+	{ label: 'Hindu', value: '2' },
+	{ label: 'Muslim', value: '3' },
+	{ label: 'Others', value: '4' },
+];
+
+const vicariateOptions = [
+	{ label: 'Arakkonam', value: 'V01' },
+	{ label: 'Chetpet', value: 'V02' },
+	{ label: 'Polur', value: 'V03' },
+	{ label: 'Tirupattur', value: 'V04' },
+	{ label: 'Thiruvannamalai', value: 'V05' },
+	{ label: 'Vandavasi', value: 'V06' },
+	{ label: 'Vellore', value: 'V07' },
+	{ label: 'Vettavalam', value: 'V08' },
+];
+
+const parishNameOptions = [
+	{ label: 'Alapakkam Parish', value: 'V01P01' },
+	{ label: 'Arakkonam Parish', value: 'V01P02' },
+	{ label: 'Arcot Parish (Capuchins)', value: 'V01P03' },
+	{ label: 'Haffieldspet Parish', value: 'V01P04' },
+	{ label: 'Ranipet Parish', value: 'V01P05' },
+	{ label: 'Sipcot Parish', value: 'V01P06' },
+	{ label: 'Soganur Parish', value: 'V01P07' },
+	{ label: 'Uriyurkuppam Parish', value: 'V01P08' },
+];
+
+const landTypeOptions = [
+	{ label: 'Nanjai', value: 'Nanjai' },
+	{ label: 'Punjai', value: 'Punjai' },
+	{ label: 'Natham', value: 'Natham' },
+	{ label: 'Manai', value: 'Manai' },
+];
+
 export {
 	categoryOptions,
 	schoolTypeOptions,
@@ -543,4 +651,14 @@ export {
 	statusOptions,
 	committeeOptions,
 	housingListParishOptions,
+	currentLivingStatusOptions,
+	activeToOptions,
+	familyOptions,
+	memberNameOptions,
+	donationForOptions,
+	workingOptions,
+	religionOptions,
+	vicariateOptions,
+	parishNameOptions,
+	landTypeOptions,
 };

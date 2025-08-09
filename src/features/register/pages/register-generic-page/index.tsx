@@ -6,7 +6,7 @@ import { useRouteName } from '@/utils/getRouteName';
 
 const RegisterGenericPage = () => {
 	const [activeIndex, setActiveIndex] = useState(0);
-	const { selectRow } = useStore();
+	const { selectRow, editRow } = useStore();
 	const type = useRouteName('type');
 
 	const handleToggleTab = (index: number) => {
@@ -19,10 +19,15 @@ const RegisterGenericPage = () => {
 		}
 	}, [selectRow]);
 
-	return selectRow ? (
+	return selectRow || editRow ? (
 		<RenderRegisterPeopleOverview pathName={type} />
 	) : (
-		<TabsLayout onTabChange={handleToggleTab} activeTabId={activeIndex} tabs={[{ label: 'view' }, { label: 'add' }]}>
+		<TabsLayout
+			hasPageHeading={activeIndex === 0}
+			onTabChange={handleToggleTab}
+			activeTabId={activeIndex}
+			tabs={[{ label: 'view' }, { label: 'add' }]}
+		>
 			{activeIndex === 0 ? <RenderRegisterPeopleTables /> : <RenderFormsContainer />}
 		</TabsLayout>
 	);
