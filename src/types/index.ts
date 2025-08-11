@@ -160,27 +160,33 @@ export interface PriestFamilyDataProps {
 }
 
 export type HolyCommunionMemberType = {
-	memberName: string;
-	memberId: string;
-	familyName: string;
-	familyId: string;
-	mainStation: string;
-	subStationId: string;
-	anbiam: string;
-	anbiamId: string;
+	sub_station_name: string;
+	sub_station_id: string;
+	anbiam_name: string;
+	anbiam_id: string;
+	family_name: string;
+	unique_family_id: string;
+	family_head: string;
+	member_name: string;
+	unique_member_id: string;
+	god_mother_name: string;
+	god_father_name: string;
+	baptism_name: string;
+	baptism_received: string;
+	baptism_date: string;
+	baptism_date_remark: string;
 	gender: string;
-	familyHead: string;
-	fatherName: string;
-	motherName: string;
-	godFatherName: string;
-	godMotherName: string;
-	baptismDate: string;
-	fhcDate: string;
-	fhcReceived: string;
-	fhcAt: string;
-	fhcIn: string;
+	activeness: string;
+	activeness_content: string;
+	father_name: string;
+	mother_name: string;
+	holy_communion_received: string;
+	holy_communion_date: string;
+	holy_communion_date_remark: string;
+	holy_communion_at: string;
+	holy_communion_in: string;
 	minister: string;
-	registrationNumber: string;
+	record_no: string;
 	remarks: string;
 };
 
@@ -533,70 +539,95 @@ export interface ChronicleMemberProps {
 }
 
 export interface BaptismMemberType {
-	memberName: string;
-	memberId: string;
-	familyName: string;
-	familyId: string;
-	mainStation: string;
-	subStationId: string;
-	anbiam: string;
-	anbiamId: string;
+	sub_station_name: string;
+	sub_station_id: string;
+	anbiam_name: string;
+	anbiam_id: string;
+	family_name: string;
+	unique_family_id: string;
+	family_head: string;
+	member_name: string;
+	unique_member_id: string;
+	activeness: string;
+	activeness_content: string;
 	gender: string;
-	familyHead: string;
-	fatherName: string;
-	motherName: string;
-	godFatherName: string;
-	godMotherName: string;
-	dateOfBirth: string;
-	baptistDate: string;
-	baptistAt: string;
-	baptistIn: string;
+	father_name: string;
+	mother_name: string;
+	god_mother_name: string;
+	god_father_name: string;
+	baptism_name: string;
+	dob_received: string;
+	birth_date: string;
+	birth_date_remark: string;
+	baptism_received: string;
+	baptism_date: string;
+	baptism_date_remark: string;
+	baptism_at: string;
+	baptism_in: string;
 	minister: string;
-	registrationNumber: string;
+	record_no: string;
 	remarks: string;
 }
 
 export interface ConfirmationFromFamilyMemberType {
-	memberName: string;
-	memberId: string;
-	familyName: string;
-	familyId: string;
-	mainStation: string;
-	subStationId: string;
-	anbiam: string;
-	anbiamId: string;
+	sub_station_name: string;
+	sub_station_id: string;
+	anbiam_name: string;
+	anbiam_id: string;
+	family_name: string;
+	unique_family_id: string;
+	family_head: string;
+	member_name: string;
+	unique_member_id: string;
+	god_mother_name: string;
+	god_father_name: string;
+	baptism_name: string;
+	baptism_received: string;
+	baptism_date: string;
+	baptism_date_remark: string;
 	gender: string;
-	familyHead: string;
-	fatherName: string;
-	motherName: string;
-	godFatherName: string;
-	godMotherName: string;
-	baptismDate: string;
-	confirmationDate: string;
-	confirmationReceived: string;
-	confirmationAt: string;
-	confirmationIn: string;
+	activeness: string;
+	activeness_content: string;
+	father_name: string;
+	mother_name: string;
+	holy_communion_received: string;
+	holy_communion_date: string;
+	holy_communion_date_remark: string;
+	holy_communion_at: string;
+	holy_communion_in: string;
 	minister: string;
-	registrationNumber: string;
+	record_no: string;
 	remarks: string;
 }
 
 export interface ConfirmationRegisteredMemberType {
-	memberName: string;
-	memberId: string;
-	isMemberInParish: string;
+	sub_station_name: string;
+	sub_station_id: string;
+	anbiam_name: string;
+	anbiam_id: string;
+	family_name: string;
+	unique_family_id: string;
+	family_head: string;
+	member_name: string;
+	unique_member_id: string;
+	god_mother_name: string;
+	god_father_name: string;
+	baptism_name: string;
+	baptism_received: string;
+	baptism_date: string;
+	baptism_date_remark: string;
 	gender: string;
-	fatherName: string;
-	motherName: string;
-	domicileName: string;
-	godFatherName: string;
-	godMotherName: string;
-	baptismDate: string;
-	confirmationDate: string;
-	confirmationAt: string;
-	confirmationIn: string;
+	activeness: string;
+	activeness_content: string;
+	father_name: string;
+	mother_name: string;
+	holy_communion_received: string;
+	holy_communion_date: string;
+	holy_communion_date_remark: string;
+	holy_communion_at: string;
+	holy_communion_in: string;
 	minister: string;
-	registrationNumber: string;
+	record_no: string;
 	remarks: string;
 }
 
@@ -723,24 +754,25 @@ export interface RegisterSectionOverviewProps {
 }
 
 export interface CongregationInstitutionType {
-	id?: string;
-	category: string;
-	institutionCategory: string;
-	institutionType: string;
+	category_content: string;
+	religious_content: string;
+	type_content: string;
 	name: string;
+	institute_id: string;
 	place: string;
-	landOwnership: string;
-	establishedYear: string;
-	recognitionDate: string;
-	recognitionNumber: string;
-	classesFrom: string;
-	classesUpto: string;
-	gender: string;
-	runBy: string;
-	medium: string;
-	management: string;
-	contactNumber: string;
-	mailId: string;
+	parish: string;
+	land_ownership_content: string;
+	established_year_content: string;
+	recognition_date: string;
+	recognition_no: string;
+	class_from: string;
+	class_to: string;
+	gender_content: string;
+	run_by_content: string;
+	medium_content: string;
+	management_content: string;
+	mobile_no: string;
+	mail_id: string;
 	address: string;
 }
 
@@ -756,17 +788,20 @@ export interface VocationalInstitutionType {
 }
 
 export interface ConventDetailsTypeProps {
-	stationType: string;
-	conventType: string;
-	conventName: string;
-	conventPlace: string;
-	belongsTo: string;
-	establishedYear: string;
-	establishedBy: string;
-	landOwnership: string;
-	contactAddress: string;
-	mobileNumber: string;
-	email: string;
+	parish: string;
+	sub_station_name: string;
+	sub_station_id: string;
+	type_content: string;
+	name: string;
+	convent_id: string;
+	place: string;
+	belongs_to: string;
+	established_year_content: string;
+	established_by: string;
+	land_ownership_content: string;
+	address: string;
+	mobile_no: string;
+	mail_id: string;
 }
 
 export type CommonPoolSearchDataType = {
@@ -864,35 +899,45 @@ export interface ChurchCollectionsProps {
 }
 
 export interface WorkerProps {
-	workingAs: string;
-	name: string;
-	workerId: string;
-	dateOfJoining: string;
-	salaryPerMonth: number;
-	salaryFixedFromOn: string;
+	id: number;
+	parish: string;
+	parish_content: string;
+	vicariate: string;
+	vicariate_content: string;
+	working_as: string;
+	working_as_content: string;
+	worker_name: string;
+	worker_id: string;
+	joining_date: string;
+	salary: string;
+	salary_from: string;
 	religion: string;
-	mobileNumber: string;
-	aadhaarNumber: string;
-	permanentAddress: string;
-	temporaryAddress: string;
+	religion_content: string;
+	mobile_no: string;
+	adhaar_no: string;
+	temporary_address: string;
+	check_address: string;
+	permanent_address: string;
+	registered_date: string;
+	updated_date: string;
 }
 
 export interface EmployersSalaryProps {
-	workingStatus: string;
-	workerName: string;
-	workerId: string;
-	mobileNumber: string;
-	fixedSalaryAmount: number;
-	fixedSalaryFrom: string;
-	grandPaidAmount: number;
-
-	paidUpto: string;
-	advanceFromSalary: number;
-	advanceFromSalaryOn: string;
-	paidAmount: number;
-	balanceSalaryAmount: number;
-	lastPaidDate: string;
-	voucherNumber: string;
+	worker_name: string;
+	salary_for: string | null;
+	advance_salary: number | null;
+	now_salary: number | null;
+	total_paid: number | null;
+	advance_total_paid: number | null;
+	balance_salary: number | null;
+	advance_on: string | null;
+	date: string | null;
+	receipt_no: string | null;
+	working_as_content: string;
+	worker_id: string;
+	mobile_no: string;
+	salary: number | string;
+	salary_from: string;
 }
 
 export interface DioceseClosedRTB {
@@ -1229,26 +1274,27 @@ export interface PriestReligiousProps {
 }
 
 export type SubscriptionProps = {
-	familyStatus: string;
-	familyName: string;
-	uniqueFamilyNumber: string;
-	oldFamilyNumber: string;
-	familyHeadName: string;
-	familyHeadMobileNumber: string;
-	mainStation: string;
-	subStationId: string;
-	anbiam: string;
-	anbiamId: string;
-	familyMonthlyIncome: string;
-	fixedAmount: string;
-	fixedFrom: string;
-	grandPaidAmount: string;
-	paidUpto: string;
-	priorDueAmount: string;
-	unpaidAmount: string;
-	paidAmount: string;
-	date: string;
-	voucherNumber: string;
+	family_name: string;
+	sub_station_name: string;
+	anbiam_name: string;
+	family_income: number;
+	mobile_no: string;
+	balance_amount: number | null;
+	month: string | null;
+	now_amount: number | null;
+	date: string | null;
+	grand_amount: number | null;
+	prior_total_amount: number | null;
+	receipt_no: string | null;
+	unique_family_id: string;
+	old_family_id: string;
+	family_head: string;
+	sub_station_id: string;
+	anbiam_id: string;
+	subscription_from: string;
+	monthly_subscription: string;
+	activeness: string;
+	activeness_content: string;
 };
 
 export interface PaymentDetailsProps {

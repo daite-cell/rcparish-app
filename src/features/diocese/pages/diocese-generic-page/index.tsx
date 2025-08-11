@@ -8,6 +8,7 @@ import { FormsContainer, RenderDioceseOverviewContainer, RenderDioceseTablesCont
 import { useStore } from '@/store/store';
 import { useRouteName } from '@/utils/getRouteName';
 import { getPriestsSectionData } from '../../columns-section';
+import { BishopForm } from '../../forms';
 
 const priestData = {
 	id: 'VDP0001',
@@ -65,6 +66,10 @@ const DioceseGenericPage = () => {
 				);
 			case 'add':
 				return <FormsContainer />;
+			case 'edit':
+				return type === 'bishop' && <BishopForm />;
+			case 'retired / emeritus bishops':
+				return <PriorDignitariesContainer />;
 			default:
 				return null;
 		}
@@ -72,7 +77,9 @@ const DioceseGenericPage = () => {
 
 	return (
 		<TabsLayout
-			hasPageHeading={activeIndex === 0}
+			hasPageHeading={
+				activeIndex === 0 || tabsData?.[activeIndex]?.label.toLowerCase() === 'retired / emeritus bishops'
+			}
 			tabs={tabsData || [{ label: 'view' }, { label: 'add' }]}
 			onTabChange={setActiveIndex}
 			activeTabId={activeIndex}

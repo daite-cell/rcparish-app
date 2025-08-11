@@ -1,0 +1,27 @@
+{
+    "workers_list": [
+        {
+            "id": 8,
+            "parish": "V05P10",
+            "parish_content": "Perumanam Parish",
+            "vicariate": "V05",
+            "vicariate_content": "Thiruvannamalai",
+            "working_as": "0",
+            "working_as_content": "Cook",
+            "worker_name": "Josephine Priya Rani",
+            "worker_id": "PW001",
+            "joining_date": "2022-10-01",
+            "salary": "3500",
+            "salary_from": "2024-01",
+            "religion": "0",
+            "religion_content": "RC Christian",
+            "mobile_no": "9361050395",
+            "adhaar_no": "0000000000",
+            "temporary_address": "Madha Koil Stree, Perumanam",
+            "check_address": "true",
+            "permanent_address": "Madha Koil Stree, Perumanam",
+            "registered_date": "2024-08-17",
+            "updated_date": ""
+        }
+    ]
+}

@@ -22,33 +22,33 @@ const useHolyCommunionMemberColumns = (): ColumnDef<HolyCommunionMemberType>[] =
 		...getCommonActionColumns<HolyCommunionMemberType>(handleSelectRow, handleEditRow),
 		{
 			header: 'Member Name',
-			accessorKey: 'memberName',
+			accessorKey: 'member_name',
 			cell: ({ row }) => (
 				<Link to="" className="underline text-[#0d73c4]">
-					{row.original.memberName}
+					{row.original.member_name}
 				</Link>
 			),
 		},
-		{ accessorKey: 'memberId', header: 'Unique Member ID' },
-		{ accessorKey: 'familyName', header: 'Family Name' },
-		{ accessorKey: 'familyId', header: 'Unique Family ID' },
-		{ accessorKey: 'mainStation', header: 'Main-Station / Sub-Station' },
-		{ accessorKey: 'subStationId', header: 'Sub-Station ID' },
-		{ accessorKey: 'anbiam', header: 'Anbiam' },
-		{ accessorKey: 'anbiamId', header: 'Anbiam ID' },
+		{ accessorKey: 'unique_member_id', header: 'Unique Member ID' },
+		{ accessorKey: 'family_name', header: 'Family Name' },
+		{ accessorKey: 'unique_family_id', header: 'Unique Family ID' },
+		{ accessorKey: 'sub_station_name', header: 'Main-Station / Sub-Station' },
+		{ accessorKey: 'sub_station_id', header: 'Sub-Station ID' },
+		{ accessorKey: 'anbiam_name', header: 'Anbiam' },
+		{ accessorKey: 'anbiam_id', header: 'Anbiam ID' },
 		{ accessorKey: 'gender', header: 'Gender' },
-		{ accessorKey: 'familyHead', header: 'Family Head' },
-		{ accessorKey: 'fatherName', header: 'Father Name' },
-		{ accessorKey: 'motherName', header: 'Mother Name' },
-		{ accessorKey: 'godFatherName', header: 'God Father Name' },
-		{ accessorKey: 'godMotherName', header: 'God Mother Name' },
-		{ accessorKey: 'baptismDate', header: 'Date of Baptism' },
-		{ accessorKey: 'fhcDate', header: 'FHC Date' },
-		{ accessorKey: 'fhcReceived', header: 'FHC Received' },
-		{ accessorKey: 'fhcAt', header: 'FHC At' },
-		{ accessorKey: 'fhcIn', header: 'FHC In' },
+		{ accessorKey: 'family_head', header: 'Family Head' },
+		{ accessorKey: 'father_name', header: 'Father Name' },
+		{ accessorKey: 'mother_name', header: 'Mother Name' },
+		{ accessorKey: 'god_father_name', header: 'God Father Name' },
+		{ accessorKey: 'god_mother_name', header: 'God Mother Name' },
+		{ accessorKey: 'baptism_date', header: 'Date of Baptism' },
+		{ accessorKey: 'holy_communion_date', header: 'FHC Date' },
+		{ accessorKey: 'holy_communion_received', header: 'FHC Received' },
+		{ accessorKey: 'holy_communion_at', header: 'FHC At' },
+		{ accessorKey: 'holy_communion_in', header: 'FHC In' },
 		{ accessorKey: 'minister', header: 'Minister' },
-		{ accessorKey: 'registrationNumber', header: 'Registration Number' },
+		{ accessorKey: 'record_no', header: 'Registration Number' },
 		{ accessorKey: 'remarks', header: 'Remarks' },
 	];
 };
@@ -70,37 +70,38 @@ const useChronicleMemberColumns = (): ColumnDef<ChronicleMemberProps>[] => {
 
 const useBaptismMemberColumns = (): ColumnDef<BaptismMemberType>[] => {
 	const { handleSelectRow, handleEditRow } = useStore();
+
 	return [
 		...getCommonActionColumns<BaptismMemberType>(handleSelectRow, handleEditRow),
 
 		{
 			header: 'Member Name (Baptism Name)',
-			accessorKey: 'memberName',
+			accessorKey: 'member_name',
 			cell: ({ row }) => (
 				<Link to="" className="underline text-[#0d73c4]">
-					{row.original.memberName}
+					{row.original.member_name}
 				</Link>
 			),
 		},
-		{ accessorKey: 'memberId', header: 'Unique Member Id' },
-		{ accessorKey: 'familyName', header: 'Family Name' },
-		{ accessorKey: 'familyId', header: 'Unique Family Id' },
-		{ accessorKey: 'mainStation', header: 'Main-Station / Sub-Station' },
-		{ accessorKey: 'subStationId', header: 'Sub-Station Id' },
-		{ accessorKey: 'anbiam', header: 'Anbiam' },
-		{ accessorKey: 'anbiamId', header: 'Anbiam Id' },
+		{ accessorKey: 'unique_member_id', header: 'Unique Member Id' },
+		{ accessorKey: 'family_name', header: 'Family Name' },
+		{ accessorKey: 'unique_family_id', header: 'Unique Family Id' },
+		{ accessorKey: 'sub_station_name', header: 'Main-Station / Sub-Station' },
+		{ accessorKey: 'sub_station_id', header: 'Sub-Station Id' },
+		{ accessorKey: 'anbiam_name', header: 'Anbiam' },
+		{ accessorKey: 'anbiam_id', header: 'Anbiam Id' },
 		{ accessorKey: 'gender', header: 'Gender' },
-		{ accessorKey: 'familyHead', header: 'Family Head' },
-		{ accessorKey: 'fatherName', header: 'Father Name' },
-		{ accessorKey: 'motherName', header: 'Mother Name' },
-		{ accessorKey: 'godFatherName', header: 'God Father Name' },
-		{ accessorKey: 'godMotherName', header: 'God Mother Name' },
-		{ accessorKey: 'dateOfBirth', header: 'Date of Birth' },
-		{ accessorKey: 'baptistDate', header: 'Baptist Date' },
-		{ accessorKey: 'baptistAt', header: 'Baptist at' },
-		{ accessorKey: 'baptistIn', header: 'Baptist in' },
+		{ accessorKey: 'family_head', header: 'Family Head' },
+		{ accessorKey: 'father_name', header: 'Father Name' },
+		{ accessorKey: 'mother_name', header: 'Mother Name' },
+		{ accessorKey: 'god_father_name', header: 'God Father Name' },
+		{ accessorKey: 'god_mother_name', header: 'God Mother Name' },
+		{ accessorKey: 'birth_date', header: 'Date of Birth' },
+		{ accessorKey: 'baptism_date', header: 'Baptist Date' },
+		{ accessorKey: 'baptism_at', header: 'Baptist at' },
+		{ accessorKey: 'baptism_in', header: 'Baptist in' },
 		{ accessorKey: 'minister', header: 'Minister' },
-		{ accessorKey: 'registrationNumber', header: 'Registration Number' },
+		{ accessorKey: 'record_no', header: 'Registration Number' },
 		{ accessorKey: 'remarks', header: 'Remarks' },
 	];
 };
@@ -112,34 +113,34 @@ const useMemberFromFamiliesColumns = (): ColumnDef<ConfirmationFromFamilyMemberT
 		...getCommonActionColumns<ConfirmationFromFamilyMemberType>(handleSelectRow, handleEditRow),
 
 		{
-			header: 'Member Name ',
-			accessorKey: 'memberName',
+			header: 'Member Name',
+			accessorKey: 'member_name',
 			cell: ({ row }) => (
 				<Link to="" className="underline text-[#0d73c4]">
-					{row.original.memberName}
+					{row.original.member_name}
 				</Link>
 			),
 		},
-		{ accessorKey: 'memberId', header: 'Unique Member Id' },
-		{ accessorKey: 'familyName', header: 'Family Name' },
-		{ accessorKey: 'familyId', header: 'Unique Family Id' },
-		{ accessorKey: 'mainStation', header: 'Main-Station / Sub-Station' },
-		{ accessorKey: 'subStationId', header: 'Sub-Station Id' },
-		{ accessorKey: 'anbiam', header: 'Anbiam' },
-		{ accessorKey: 'anbiamId', header: 'Anbiam Id' },
+		{ accessorKey: 'unique_member_id', header: 'Unique Member Id' },
+		{ accessorKey: 'family_name', header: 'Family Name' },
+		{ accessorKey: 'unique_family_id', header: 'Unique Family Id' },
+		{ accessorKey: 'sub_station_name', header: 'Main-Station / Sub-Station' },
+		{ accessorKey: 'sub_station_id', header: 'Sub-Station Id' },
+		{ accessorKey: 'anbiam_name', header: 'Anbiam' },
+		{ accessorKey: 'anbiam_id', header: 'Anbiam Id' },
 		{ accessorKey: 'gender', header: 'Gender' },
-		{ accessorKey: 'familyHead', header: 'Family Head' },
-		{ accessorKey: 'fatherName', header: 'Father Name' },
-		{ accessorKey: 'motherName', header: 'Mother Name' },
-		{ accessorKey: 'godFatherName', header: 'God Father Name' },
-		{ accessorKey: 'godMotherName', header: 'God Mother Name' },
-		{ accessorKey: 'baptismDate', header: 'Date of Baptism' },
-		{ accessorKey: 'confirmationDate', header: 'Confirmation Date' },
-		{ accessorKey: 'confirmationReceived', header: 'Confirmation Received' },
-		{ accessorKey: 'confirmationAt', header: 'Confirmation at' },
-		{ accessorKey: 'confirmationIn', header: 'Confirmation in' },
+		{ accessorKey: 'family_head', header: 'Family Head' },
+		{ accessorKey: 'father_name', header: 'Father Name' },
+		{ accessorKey: 'mother_name', header: 'Mother Name' },
+		{ accessorKey: 'god_father_name', header: 'God Father Name' },
+		{ accessorKey: 'god_mother_name', header: 'God Mother Name' },
+		{ accessorKey: 'baptism_date', header: 'Date of Baptism' },
+		{ accessorKey: 'holy_communion_date', header: 'Confirmation Date' },
+		{ accessorKey: 'holy_communion_received', header: 'Confirmation Received' },
+		{ accessorKey: 'holy_communion_at', header: 'Confirmation at' },
+		{ accessorKey: 'holy_communion_in', header: 'Confirmation in' },
 		{ accessorKey: 'minister', header: 'Minister' },
-		{ accessorKey: 'registrationNumber', header: 'Registration Number' },
+		{ accessorKey: 'record_no', header: 'Registration Number' },
 		{ accessorKey: 'remarks', header: 'Remarks' },
 	];
 };
@@ -152,30 +153,26 @@ const useConfirmationRegisterColumns = (): ColumnDef<ConfirmationRegisteredMembe
 
 		{
 			header: 'Member Name',
-			accessorKey: 'memberName',
-			cell: ({ row }) => (
-				<Link to="" className="underline text-[#0d73c4]">
-					{row.original.memberName}
-				</Link>
-			),
+			accessorKey: 'member_name',
 		},
-		{ accessorKey: 'memberId', header: 'Unique Member Id' },
-		{ accessorKey: 'isMemberInParish', header: 'If Member in Parish' },
+		{ accessorKey: 'unique_member_id', header: 'Unique Member Id' },
+		{ accessorKey: 'holy_communion_received', header: 'If Member in Parish' },
 		{ accessorKey: 'gender', header: 'Gender' },
-		{ accessorKey: 'fatherName', header: 'Father Name' },
-		{ accessorKey: 'motherName', header: 'Mother Name' },
-		{ accessorKey: 'domicileName', header: 'Domicile Name' },
-		{ accessorKey: 'godFatherName', header: 'God Father Name' },
-		{ accessorKey: 'godMotherName', header: 'God Mother Name' },
-		{ accessorKey: 'baptismDate', header: 'Date of Baptism' },
-		{ accessorKey: 'confirmationDate', header: 'Confirmation Date' },
-		{ accessorKey: 'confirmationAt', header: 'Confirmation at' },
-		{ accessorKey: 'confirmationIn', header: 'Confirmation in' },
+		{ accessorKey: 'father_name', header: 'Father Name' },
+		{ accessorKey: 'mother_name', header: 'Mother Name' },
+		{ accessorKey: 'domicile_name', header: 'Domicile Name' },
+		{ accessorKey: 'god_father_name', header: 'God Father Name' },
+		{ accessorKey: 'god_mother_name', header: 'God Mother Name' },
+		{ accessorKey: 'baptism_date', header: 'Date of Baptism' },
+		{ accessorKey: 'confirmation_date', header: 'Confirmation Date' },
+		{ accessorKey: 'confirmation_at', header: 'Confirmation At' },
+		{ accessorKey: 'confirmation_in', header: 'Confirmation In' },
 		{ accessorKey: 'minister', header: 'Minister' },
-		{ accessorKey: 'registrationNumber', header: 'Registration Number' },
+		{ accessorKey: 'registration_number', header: 'Registration Number' },
 		{ accessorKey: 'remarks', header: 'Remarks' },
 	];
 };
+
 const useMarriageRegisterAsParishColumns = (): ColumnDef<MarriageRegisterMemberAsParishType>[] => {
 	const { handleSelectRow, handleEditRow } = useStore();
 

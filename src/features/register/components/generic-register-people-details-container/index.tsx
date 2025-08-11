@@ -2,9 +2,9 @@ import { GenericCouncilMemberDetails } from '@/components';
 import { useRouteName } from '@/utils/getRouteName';
 import { useStore } from '@/store/store';
 import { useMemo } from 'react';
-import { getRegisterSectionData } from '../../columns-section';
+import { getBaptismSectionData, getConfirmationsData, getHolyCommunionData } from '../../columns-section';
 import { member_overview_pages_with_tables } from '@/features/register/data';
-import type { RegisterSectionOverviewProps } from '@/types';
+import type { BaptismMemberType, ConfirmationRegisteredMemberType, HolyCommunionMemberType } from '@/types';
 import { extractUserName } from '@/utils/extractUserName';
 
 const GenericRegisterPeopleDetailsContainer = () => {
@@ -14,8 +14,17 @@ const GenericRegisterPeopleDetailsContainer = () => {
 
 	const sectionData = useMemo(() => {
 		if (member_overview_pages_with_tables.includes(type as string)) {
-			return getRegisterSectionData(selectRow as RegisterSectionOverviewProps);
+			return getBaptismSectionData(selectRow as BaptismMemberType);
 		}
+
+		if (type === 'holy_communion') {
+			return getHolyCommunionData(selectRow as HolyCommunionMemberType);
+		}
+
+		if (type === 'confirmations') {
+			return getConfirmationsData(selectRow as ConfirmationRegisteredMemberType);
+		}
+
 		return [];
 	}, [selectRow, type]);
 

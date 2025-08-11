@@ -16,7 +16,8 @@ import type { ColumnDef } from '@tanstack/react-table';
 
 const useColumnsMap = (): Record<string, Record<string, ColumnDef<object>[]>> => ({
 	holy_communion: {
-		main: useHolyCommunionMemberColumns() as ColumnDef<object>[],
+		table_1: useHolyCommunionMemberColumns() as ColumnDef<object>[],
+		table_2: useConfirmationRegisterColumns() as ColumnDef<object>[],
 	},
 	chronicles: {
 		main: useChronicleMemberColumns() as ColumnDef<object>[],

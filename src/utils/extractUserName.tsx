@@ -4,6 +4,7 @@ const extractUserName = (row: Record<string, unknown>): string => {
 	if (typeof row.anbiam_name === 'string') return row.anbiam_name;
 	if (typeof row.association_content === 'string') return row.association_content;
 	if (typeof row.person_name === 'string') return row.person_name;
+	if (typeof row.worker_name === 'string') return row.worker_name;
 	if (typeof row.name === 'string') return row.name;
 	if (typeof row.memberName === 'string') return row.memberName;
 	if (typeof row.userName === 'string') return row.userName;

@@ -1,0 +1,26 @@
+{
+	"school_list": [
+		{
+			"category_content": "Schools",
+			"religious_content": "RCM Schools",
+			"type_content": "RCM Elementary",
+			"name": "RCM Primary School - Perumanam",
+			"institute_id": "SI0040",
+			"place": "Perumanam",
+			"parish": "V05P10",
+			"land_ownership_content": "Diocese",
+			"established_year_content": "-",
+			"recognition_date": "",
+			"recognition_no": "",
+			"class_from": "1st",
+			"class_to": "5th",
+			"gender_content": "Co-Ed",
+			"run_by_content": "Diocese",
+			"medium_content": "Tamil",
+			"management_content": "Fully Aided",
+			"mobile_no": "",
+			"mail_id": "",
+			"address": ""
+		}
+	]
+}
