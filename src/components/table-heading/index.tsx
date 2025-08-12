@@ -5,7 +5,7 @@ interface TableHeadingProps {
 	className?: string;
 }
 
-const TableHeading = memo<TableHeadingProps>(({ text, className }) => {
+const TableHeading = memo<TableHeadingProps>(({ text, className = '' }) => {
 	return <h2 className={`text-xs font-semibold my-2 uppercase  ml-8 ${className}`}>{text}</h2>;
 });
 

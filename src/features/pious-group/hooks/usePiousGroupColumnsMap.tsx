@@ -8,6 +8,8 @@ import {
 	useAnbiamsInchargeColumns,
 	useAssociationCouncilMemberPropsColumns,
 	useAssociationClubColumns,
+	useSchoolStudentsColumns,
+	useCollegeStudentsColumns,
 } from '../columns';
 import type { ColumnDef } from '@tanstack/react-table';
 
@@ -21,6 +23,8 @@ const usePiousGroupColumnsMap = (): Record<string, ColumnDef<object>[]> => ({
 	anbiam_incharge: useAnbiamsInchargeColumns() as ColumnDef<object>[],
 	associations_incharge: useAssociationCouncilMemberPropsColumns() as ColumnDef<object>[],
 	associations_club: useAssociationClubColumns() as ColumnDef<object>[],
+	college_students: useCollegeStudentsColumns() as ColumnDef<object>[],
+	school_students: useSchoolStudentsColumns() as ColumnDef<object>[],
 });
 
 export default usePiousGroupColumnsMap;

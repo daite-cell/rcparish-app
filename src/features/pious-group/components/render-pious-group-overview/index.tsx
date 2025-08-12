@@ -1,21 +1,17 @@
-import { GenericFamilesDetailsOverview, GenericPeopleDetailsOverview } from '@/components';
+import { GenericFamilesDetailsOverview } from '@/components';
 import { parish_council_pages } from '@/features/pious-group/data';
 import OverviewTabsLayout from '@/layouts/overview-tabs-layout';
 import CouncilMemberDetailsContainer from '../generic-religious-people-details-container';
 import GenericMembersInFamilesOverviewContainer from '../generic-members-in-familes-overview-container';
 import { memo } from 'react';
 import { useStore } from '@/store/store';
-import type { ReligiousPersonProps } from '@/types';
-import { getReligiousPeopleSectionData } from '../../columns-sections';
 import { ParishCouncilMembersForm, ReligiousParishCouncilMembersForm } from '../../forms';
-import { extractUserName } from '@/utils/extractUserName';
+import GenericPeopleDetailOverviewContainer from '../generic-people-detail-overview-container';
 
 const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string | number | undefined }) => {
-	const { selectRow, editRow } = useStore();
+	const { editRow } = useStore();
 
 	const tabs = [{ label: 'profile' }, { label: 'edit' }, { label: 'back' }];
-
-	const userName = extractUserName(selectRow as Record<string, unknown>);
 
 	const componentMap = {
 		families: {
@@ -31,12 +27,7 @@ const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string
 			form: <h1>Priest Nun Form</h1>,
 		},
 		religious_people_parish: {
-			view: (
-				<GenericPeopleDetailsOverview
-					userName={userName}
-					sectionData={getReligiousPeopleSectionData(selectRow as ReligiousPersonProps)}
-				/>
-			),
+			view: <GenericPeopleDetailOverviewContainer />,
 			form: <ReligiousParishCouncilMembersForm />,
 		},
 		parish_council_members: {

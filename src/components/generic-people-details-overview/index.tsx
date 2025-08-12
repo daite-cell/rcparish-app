@@ -26,13 +26,14 @@ const GenericPeopleDetailsOverview = ({ userName, sectionData }: GenericPeoplePr
 				<div className="flex-[2] ">
 					<DisplayUserName userName={userName} />
 					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-						{sectionData.map((column, colIndex) => (
-							<div key={colIndex}>
-								{column.sections.map((section, i) => (
-									<DisplayInfoRowContainer key={i} data={section.data} />
-								))}
-							</div>
-						))}
+						{sectionData &&
+							sectionData.map((column, colIndex) => (
+								<div key={colIndex}>
+									{column.sections.map((section, i) => (
+										<DisplayInfoRowContainer key={i} data={section.data} />
+									))}
+								</div>
+							))}
 					</div>
 				</div>
 			</div>

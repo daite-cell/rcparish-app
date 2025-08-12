@@ -353,7 +353,7 @@ const side_nav_links = [
 				path_url: '/pious_group/anbiam_incharge',
 				label: 'Anbiam Incharge',
 				icon: 'BookText',
-				tabs: [{ label: 'ANBIAM FAMILY CARD' }, { label: 'view' }, { label: 'add' }],
+				tabs: [{ label: 'anbiam details' }, { label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/pious_group/associations_incharge',

@@ -1351,3 +1351,88 @@ export interface AssociationInchargeProps {
 	elected_date: string;
 	period_end_on: string;
 }
+
+export interface MemberDetailsType {
+	unique_member_id: string;
+	activeness: string;
+	activeness_content: string;
+	member_name: string;
+	member_in_active_reason: string;
+	member_blood_group: string;
+	member_mobile_no: string;
+	member_occupation_sector: string;
+	member_qualification: string;
+	member_marriage_status: string;
+	member_marriage_date: string;
+	member_vocation_status: string;
+	member_adhaar_no: string;
+	member_birth_date: string;
+	member_baptism_date: string;
+	member_holy_communion_date: string;
+	member_confirmation_date: string;
+	relation: string;
+	gender: string;
+}
+
+export interface FamilyMemberDetailsProps {
+	activeness: string;
+	activeness_content: string;
+	member_name: string;
+	unique_member_id: string;
+	relation: string;
+	gender: string;
+	mobile_no: string;
+	image: string;
+}
+
+export interface StudentDataProps {
+	student_name: string;
+	class: string;
+	gender: string;
+	father_name: string;
+	mother_name: string;
+	mobile_number: string;
+	family_number: string;
+	school_name: string;
+	place_of_school: string;
+	board_of_school: string;
+	management: string;
+	family_type: string;
+	family_income: string;
+	membership_number: string;
+	sub_station_name: string;
+	sub_station_id: string;
+	anbiam_name: string;
+	anbiam_id: string;
+}
+
+export interface CollegeStudentDataProps {
+	student_name: string;
+	course_type: string;
+	course_name: string;
+	year: string;
+	college_name: string;
+	place_of_college: string;
+	management: string;
+	gender: string;
+	father_name: string;
+	mother_name: string;
+	mobile_number: string;
+	family_number: string;
+	family_type: string;
+	family_income: string;
+	membership_number: string;
+	sub_station_name: string;
+	sub_station_id: string;
+	anbiam_name: string;
+	anbiam_id: string;
+}
+
+export interface AnbiamDetailsProps {
+	sub_station_id: string;
+	sub_station_name: string;
+	anbiam_name: string;
+	anbiam_id: string;
+	total_families: number;
+	total_members: number;
+}

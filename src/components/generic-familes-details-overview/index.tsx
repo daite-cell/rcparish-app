@@ -10,7 +10,7 @@ import PDFExporter from '../pdf-exporter';
 import type { FamilyDataProps } from '@/types';
 import { generateColumnsFromData } from '@/utils/generateColumnsFromData';
 
-const FamilyCard = lazy(() => import('../family-card'));
+const FamilyCard = lazy(() => import('../../features/pious-group/components/family-card'));
 
 const GenericFamilesDetailsOverview = () => {
 	const [yearType, setYearType] = useState<string>('current_year');

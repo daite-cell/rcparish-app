@@ -4,12 +4,13 @@ import { useLocation } from 'react-router-dom';
 
 const ClearRowSelectionOnRouteChange = () => {
 	const location = useLocation();
-	const { handleCloseRow, handleCloseEditRow } = useStore();
+	const { handleCloseRow, handleCloseEditRow, handleCloseFamilyMembersRow } = useStore();
 
 	useEffect(() => {
 		handleCloseRow();
 		handleCloseEditRow();
-	}, [location.pathname, handleCloseRow, handleCloseEditRow]);
+		handleCloseFamilyMembersRow();
+	}, [location.pathname, handleCloseRow, handleCloseEditRow, handleCloseFamilyMembersRow]);
 
 	return null;
 };

@@ -1,0 +1,84 @@
+{
+	"anbiam_details": [
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Arulanandar Anbiam",
+			"anbiam_id": "S01A01",
+			"total_families": 16,
+			"total_members": 73
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Thomaiyar Anbiam",
+			"anbiam_id": "S01A02",
+			"total_families": 57,
+			"total_members": 222
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Susaiyappar Anbiam",
+			"anbiam_id": "S01A03",
+			"total_families": 41,
+			"total_members": 154
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Anthoniyar Anbiam",
+			"anbiam_id": "S01A04",
+			"total_families": 29,
+			"total_members": 114
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Annai Theresa Anbiam",
+			"anbiam_id": "S01A05",
+			"total_families": 24,
+			"total_members": 77
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Sagaya Madha Anbiam",
+			"anbiam_id": "S01A06",
+			"total_families": 36,
+			"total_members": 133
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Saveriyar Anbiam",
+			"anbiam_id": "S01A07",
+			"total_families": 21,
+			"total_members": 97
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Rayappar Anbiam",
+			"anbiam_id": "S01A08",
+			"total_families": 29,
+			"total_members": 98
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Vanathu Chinappar Anbiam",
+			"anbiam_id": "S01A09",
+			"total_families": 31,
+			"total_members": 120
+		},
+		{
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Velankanni Madha Anbiam",
+			"anbiam_id": "S01A10",
+			"total_families": 19,
+			"total_members": 74
+		}
+	]
+}

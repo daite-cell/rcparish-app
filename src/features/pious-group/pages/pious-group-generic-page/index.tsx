@@ -6,8 +6,10 @@ import { getSectionByPathName } from '@/utils/getSectionByPathName';
 import { useRouteName } from '@/utils/getRouteName';
 import { useStore } from '@/store/store';
 import {
+	AnbiamInChargeDetails,
 	AssociationDetailsTable,
 	AssociationInchargeDetails,
+	FamilyMembersInfoWithTable,
 	FormsContainer,
 	RenderPiousGroupOverviewContainer,
 } from '../../components';
@@ -19,7 +21,8 @@ const RenderPiousGroupTables = lazy(() => import('../../components/render-pious-
 const PiousGroupGenericPage = () => {
 	const type = useRouteName('type');
 	const pathName = usePathName();
-	const { selectRow, selectFamilyCardRow, selectPriorRow, editRow, selectAssociationRow } = useStore();
+	const { selectRow, selectFamilyCardRow, selectPriorRow, editRow, selectAssociationRow, selectFamilyMembersRow } =
+		useStore();
 
 	const [activeIndex, setActiveIndex] = useState(0);
 
@@ -35,14 +38,21 @@ const PiousGroupGenericPage = () => {
 	if (selectPriorRow) {
 		return <PriorDignitariesContainer />;
 	}
+	if (selectAssociationRow && type == 'anbiam_incharge') {
+		return <AnbiamInChargeDetails />;
+	}
 
 	if (selectAssociationRow) {
 		return <AssociationInchargeDetails />;
 	}
-	if (selectRow || selectFamilyCardRow || editRow) {
+
+	if (selectRow || editRow || selectFamilyCardRow) {
 		return <RenderPiousGroupOverviewContainer pathName={type} />;
 	}
 
+	if (selectFamilyMembersRow) {
+		return <FamilyMembersInfoWithTable />;
+	}
 	const renderTabContent = (label: string | undefined) => {
 		switch (label?.toLowerCase()) {
 			case 'view':
@@ -57,13 +67,20 @@ const PiousGroupGenericPage = () => {
 				return <CouncilDetailsForm />;
 			case 'association details':
 				return <AssociationDetailsTable />;
+			case 'anbiam details':
+				return <AssociationDetailsTable />;
 			default:
 				return null;
 		}
 	};
 
 	return (
-		<TabsLayout tabs={tabsData || []} onTabChange={setActiveIndex} activeTabId={activeIndex}>
+		<TabsLayout
+			hasPageHeading={tabsData?.[activeIndex]?.label.toLowerCase() === 'anbiam details' ? false : true}
+			tabs={tabsData || []}
+			onTabChange={setActiveIndex}
+			activeTabId={activeIndex}
+		>
 			{renderTabContent(tabsData?.[activeIndex]?.label)}
 		</TabsLayout>
 	);

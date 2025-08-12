@@ -10,11 +10,16 @@ import type {
 	ParishAssociationClubProps,
 	AssociationDetailsProps,
 	AssociationInchargeProps,
+	MemberDetailsType,
+	FamilyMemberDetailsProps,
+	StudentDataProps,
+	CollegeStudentDataProps,
+	AnbiamDetailsProps,
 } from '@/types';
 import type { CellContext, ColumnDef } from '@tanstack/react-table';
-import { Trash, IdCard } from 'lucide-react';
+import { Trash, IdCard, SquarePen } from 'lucide-react';
 import { useStore } from '@/store/store';
-import { AdminDefaultImage, TableDetailsViewButton, TablePriorDignitariesButton } from '@/components';
+import { AdminDefaultImage, TableDetailsViewButton, TablePriorDignitariesButton, TextLink } from '@/components';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
 
 const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[] => {
@@ -59,7 +64,7 @@ const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[]
 };
 
 const useFamilyOverviewColumns = (): ColumnDef<FamilyDataProps>[] => {
-	const { handleSelectRow, handleSelectFamilyCardRow, handleEditRow } = useStore();
+	const { handleSelectRow, handleSelectFamilyCardRow, handleEditRow, handleSelectFamilyMembersRow } = useStore();
 
 	return [
 		...getCommonActionColumns<FamilyDataProps>(handleSelectRow, handleEditRow),
@@ -95,7 +100,20 @@ const useFamilyOverviewColumns = (): ColumnDef<FamilyDataProps>[] => {
 		{ accessorKey: 'marriage_date', header: 'Marriage Date' },
 		{ accessorKey: 'old_family_id', header: 'Old Family Number' },
 		{ accessorKey: 'family_head', header: 'Family Head' },
-		{ accessorKey: 'total_members', header: 'Members in Family' },
+		{
+			accessorKey: 'total_members',
+			header: 'Members in Family',
+			cell: ({ row }) => (
+				<TextLink
+					onClick={() => {
+						handleSelectFamilyMembersRow(row.original);
+					}}
+					to=""
+				>
+					{row.original.total_members ?? ''}
+				</TextLink>
+			),
+		},
 		{ accessorKey: 'family_type', header: 'Family Type' },
 		{ accessorKey: 'monthly_subscription', header: 'Monthly Subscription' },
 		{ accessorKey: 'subscription_from', header: 'Subscription From' },
@@ -529,9 +547,21 @@ const useAssociationDetailsColumns = (): ColumnDef<AssociationDetailsProps>[] =>
 			accessorKey: 'association_id',
 			header: 'Association',
 		},
+
 		{
 			accessorKey: 'total_members',
-			header: 'Total Members',
+			header: 'Total Members Amount',
+			cell: ({ getValue }) => {
+				const value = getValue<number>();
+				return value;
+			},
+			footer: (info) => {
+				const total = info.table
+					.getFilteredRowModel()
+					.rows.reduce((sum, row) => sum + ((row.getValue('total_members') as number) || 0), 0);
+
+				return `Total: ${total}`;
+			},
 		},
 		{
 			id: 'view',
@@ -545,6 +575,71 @@ const useAssociationDetailsColumns = (): ColumnDef<AssociationDetailsProps>[] =>
 		},
 	];
 };
+
+const useAnbiamDetailsColumns = (): ColumnDef<AnbiamDetailsProps>[] => {
+	const { handleSelectAssociationRow } = useStore();
+
+	return [
+		{
+			accessorKey: 'sub_station_id',
+			header: 'Sub Station Id',
+		},
+		{
+			accessorKey: 'sub_station_name',
+			header: 'Main-Station / Sub-Station',
+		},
+		{
+			accessorKey: 'anbiam_id',
+			header: 'Anbiam Id',
+		},
+		{
+			accessorKey: 'anbiam_name',
+			header: 'Anbiam',
+		},
+		{
+			accessorKey: 'total_families',
+			header: 'Total Families (Active)',
+			cell: ({ getValue }) => {
+				const value = getValue<number>();
+				return value;
+			},
+			footer: (info) => {
+				const total = info.table
+					.getFilteredRowModel()
+					.rows.reduce((sum, row) => sum + ((row.getValue('total_families') as number) || 0), 0);
+
+				return `Total: ${total}`;
+			},
+		},
+
+		{
+			accessorKey: 'total_members',
+			header: 'Total Members (Active)',
+			cell: ({ getValue }) => {
+				const value = getValue<number>();
+				return value;
+			},
+			footer: (info) => {
+				const total = info.table
+					.getFilteredRowModel()
+					.rows.reduce((sum, row) => sum + ((row.getValue('total_members') as number) || 0), 0);
+
+				return `Total: ${total}`;
+			},
+		},
+		{
+			id: 'details_members',
+			header: 'Details',
+			cell: ({ row }: CellContext<AnbiamDetailsProps, unknown>) => (
+				<TableDetailsViewButton onClick={() => handleSelectAssociationRow(row.original)} />
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+	];
+};
+
 const useAssociationInchargeDetailsColumns = (): ColumnDef<AssociationInchargeProps>[] => {
 	return [
 		{
@@ -579,6 +674,181 @@ const useAssociationInchargeDetailsColumns = (): ColumnDef<AssociationInchargePr
 	];
 };
 
+const familyMemberDetailsTableOneColumns: ColumnDef<MemberDetailsType>[] = [
+	{
+		accessorKey: 'member_name',
+		header: 'Member Name',
+	},
+	{
+		accessorKey: 'unique_member_id',
+		header: 'Member Id',
+	},
+	{
+		accessorKey: 'member_birth_date',
+		header: 'Birth Date',
+	},
+	{
+		accessorKey: 'member_baptism_date',
+		header: 'Baptism Date',
+	},
+	{
+		accessorKey: 'member_holy_communion_date',
+		header: 'FHC Date',
+	},
+	{
+		accessorKey: 'member_confirmation_date',
+		header: 'Confirmation Date',
+	},
+	{
+		accessorKey: 'member_vocation_status',
+		header: 'Vocation',
+	},
+	{
+		accessorKey: 'member_adhaar_no',
+		header: 'Adhaar No',
+	},
+];
+
+const familyMemberDetailsTableTwoColumns: ColumnDef<MemberDetailsType>[] = [
+	{
+		accessorKey: 'member_name',
+		header: 'Member Name',
+	},
+	{
+		accessorKey: 'relation',
+		header: 'Relation',
+	},
+	{
+		accessorKey: 'marriage',
+		header: 'Marriage',
+	},
+	{
+		accessorKey: 'member_mobile_no',
+		header: 'Mobile No',
+	},
+	{
+		accessorKey: 'education',
+		header: 'Education',
+	},
+	{
+		accessorKey: 'occupation',
+		header: 'Occupation',
+	},
+	{
+		accessorKey: 'member_blood_group',
+		header: 'Blood Type',
+	},
+	{
+		accessorKey: 'activeness_content',
+		header: 'Activeness',
+	},
+];
+
+const familyMembersColumns: ColumnDef<FamilyMemberDetailsProps>[] = [
+	{
+		accessorKey: 'activeness_content',
+		header: 'Activeness',
+	},
+
+	{
+		accessorKey: 'image',
+		header: 'Member Image',
+		cell: () => <AdminDefaultImage height={40} width={40} className="rounded-full" />,
+	},
+	{
+		accessorKey: 'relation',
+		header: 'Relation to Family',
+	},
+	{
+		accessorKey: 'gender',
+		header: 'Gender',
+	},
+	{
+		accessorKey: 'mobile_no',
+		header: 'Mobile No',
+	},
+	{
+		accessorKey: 'unique_member_id',
+		header: 'Member Id',
+	},
+];
+
+const useSchoolStudentsColumns = (): ColumnDef<StudentDataProps>[] => {
+	return [
+		{
+			id: 'select',
+			header: () => <SquarePen className="w-4 h-4 text-center" />,
+			cell: ({ row }) => (
+				<input
+					title="select"
+					type="checkbox"
+					onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
+				/>
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+
+		{ accessorKey: 'student_name', header: 'Student Name' },
+		{ accessorKey: 'class', header: 'Class' },
+		{ accessorKey: 'gender', header: 'Gender' },
+		{ accessorKey: 'father_name', header: 'Father Name' },
+		{ accessorKey: 'mother_name', header: 'Mother Name' },
+		{ accessorKey: 'mobile_number', header: 'Mobile Number' },
+		{ accessorKey: 'family_number', header: 'Family Number' },
+		{ accessorKey: 'school_name', header: 'School Name' },
+		{ accessorKey: 'place_of_school', header: 'Place Of School' },
+		{ accessorKey: 'board_of_school', header: 'Board of School' },
+		{ accessorKey: 'management', header: 'Management' },
+		{ accessorKey: 'family_type', header: 'Family Type' },
+		{ accessorKey: 'family_income', header: 'Family Income' },
+		{ accessorKey: 'membership_number', header: 'Membership Number' },
+		{ accessorKey: 'sub_station_name', header: 'Main-Station / Sub-Station' },
+		{ accessorKey: 'sub_station_id', header: 'Sub-Station Id' },
+		{ accessorKey: 'anbiam_name', header: 'Anbiam' },
+		{ accessorKey: 'anbiam_id', header: 'Anbiam Id' },
+	];
+};
+
+const useCollegeStudentsColumns = (): ColumnDef<CollegeStudentDataProps>[] => {
+	return [
+		{
+			id: 'select',
+			header: () => <SquarePen className="w-4 h-4 text-center" />,
+			cell: ({ row }) => (
+				<input
+					title="select"
+					type="checkbox"
+					onChange={(e) => console.warn('Selected:', row.original, e.target.checked)}
+				/>
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
+		{ accessorKey: 'student_name', header: 'Student Name' },
+		{ accessorKey: 'course_type', header: 'Course Type' },
+		{ accessorKey: 'course_name', header: 'Course Name' },
+		{ accessorKey: 'year', header: 'Year' },
+		{ accessorKey: 'college_name', header: 'College Name' },
+		{ accessorKey: 'place_of_college', header: 'Place Of College' },
+		{ accessorKey: 'management', header: 'Management' },
+		{ accessorKey: 'gender', header: 'Gender' },
+		{ accessorKey: 'father_name', header: 'Father Name' },
+		{ accessorKey: 'mother_name', header: 'Mother Name' },
+		{ accessorKey: 'mobile_number', header: 'Mobile Number' },
+		{ accessorKey: 'family_number', header: 'Family Number' },
+		{ accessorKey: 'family_type', header: 'Family Type' },
+		{ accessorKey: 'family_income', header: 'Family Income' },
+		{ accessorKey: 'membership_number', header: 'Membership Number' },
+		{ accessorKey: 'sub_station_name', header: 'Main-Station / Sub-Station' },
+		{ accessorKey: 'sub_station_id', header: 'Sub-Station Id' },
+		{ accessorKey: 'anbiam_name', header: 'Anbiam' },
+		{ accessorKey: 'anbiam_id', header: 'Anbiam Id' },
+	];
+};
+
 export {
 	useParishCouncilColumns,
 	useFamilyOverviewColumns,
@@ -591,4 +861,10 @@ export {
 	useAssociationClubColumns,
 	useAssociationDetailsColumns,
 	useAssociationInchargeDetailsColumns,
+	familyMemberDetailsTableTwoColumns,
+	familyMemberDetailsTableOneColumns,
+	familyMembersColumns,
+	useSchoolStudentsColumns,
+	useCollegeStudentsColumns,
+	useAnbiamDetailsColumns,
 };

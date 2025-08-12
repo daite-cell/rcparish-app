@@ -5,3 +5,7 @@ export { default as GenericMembersInFamilesOverviewContainer } from './generic-m
 export { default as FormsContainer } from './forms-container';
 export { default as AssociationDetailsTable } from './association-details-table';
 export { default as AssociationInchargeDetails } from './association-Incharge-details';
+export { default as GenericPeopleDetailOverviewContainer } from './generic-people-detail-overview-container';
+export { default as FamilyCard } from './family-card';
+export { default as FamilyMembersInfoWithTable } from './family-members-info-with-table';
+export { default as AnbiamInChargeDetails } from './anbiam-incharge-details';
