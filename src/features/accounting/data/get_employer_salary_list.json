@@ -1,0 +1,21 @@
+{
+	"employer_salary_list": [
+		{
+			"worker_name": "Josephine Priya Rani",
+			"salary_for": null,
+			"advance_salary": null,
+			"now_salary": null,
+			"total_paid": null,
+			"advance_total_paid": null,
+			"balance_salary": null,
+			"advance_on": null,
+			"date": null,
+			"receipt_no": null,
+			"working_as_content": "Cook",
+			"worker_id": "PW001",
+			"mobile_no": "9361050395",
+			"salary": "3500",
+			"salary_from": "2024-01"
+		}
+	]
+}

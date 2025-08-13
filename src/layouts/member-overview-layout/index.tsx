@@ -1,7 +1,19 @@
 import { AppNavHeader, FormButton } from '@/components';
 import React, { useRef } from 'react';
 
-const MemberOverviewLayout = ({ children, heading }: { children: React.ReactNode; heading?: string }) => {
+const MemberOverviewLayout = ({
+	children,
+	heading,
+	sectionHeading,
+	enableClose = false,
+	handleClose,
+}: {
+	children: React.ReactNode;
+	heading?: string;
+	sectionHeading?: string;
+	enableClose?: boolean;
+	handleClose?: () => void;
+}) => {
 	const printRef = useRef<HTMLDivElement>(null);
 	const handlePrint = () => {
 		window.print();
@@ -10,6 +22,7 @@ const MemberOverviewLayout = ({ children, heading }: { children: React.ReactNode
 		<div className="w-full">
 			<div className="w-full flex justify-end ">
 				<FormButton label="print" onClick={handlePrint} className="no-print " />
+				{enableClose && <FormButton onClick={handleClose} label="close" className="no-print " />}
 			</div>
 			{heading && <h1 className="hidden print:block  font-bold">{heading}</h1>}
 			<div ref={printRef} id="parish-info" className="border border-gray-300  overflow-hidden mt-5 print-area">
@@ -17,7 +30,7 @@ const MemberOverviewLayout = ({ children, heading }: { children: React.ReactNode
 					<AppNavHeader />
 				</div>
 				<div className="border-b border-gray-300 bg-gray-50 px-4 py-3">
-					<h1 className="font-bold text-xs uppercase text-black">Profile</h1>
+					<h1 className="font-bold text-xs uppercase text-black">{sectionHeading ?? 'Profile'}</h1>
 				</div>
 				{children}
 			</div>

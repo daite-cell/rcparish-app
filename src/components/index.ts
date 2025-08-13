@@ -55,7 +55,6 @@ export { default as GenericMemberOverview } from './generic-member-overview';
 export { default as GenericPeopleDetailsOverview } from './generic-people-details-overview';
 export { default as TableDetailsViewButton } from './table-details-view-button';
 export { default as TableDetailsEditButton } from './table-details-edit-button';
-export { default as FamilyCard } from './family-card';
 export { default as HeadingWithUnderline } from './heading-with-underline';
 export { default as PriorDignitariesContainer } from './prior-dignitaries-container';
 export { default as TableHeading } from './table-heading';

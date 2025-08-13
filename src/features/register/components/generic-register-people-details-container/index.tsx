@@ -1,25 +1,35 @@
 import { GenericCouncilMemberDetails } from '@/components';
 import { useRouteName } from '@/utils/getRouteName';
 import { useStore } from '@/store/store';
-import { useCallback } from 'react';
-import { getRegisterSectionData } from '../../columns-section';
-import { member_overview_pages_with_tables } from '@/features/register/data';
-import type { RegisterSectionOverviewProps } from '@/types';
+import { useMemo } from 'react';
+import { getBaptismSectionData, getConfirmationsData, getHolyCommunionData } from '../../columns-section';
+import type { BaptismMemberType, ConfirmationRegisteredMemberType, HolyCommunionMemberType } from '@/types';
 import { extractUserName } from '@/utils/extractUserName';
 
 const GenericRegisterPeopleDetailsContainer = () => {
 	const type = useRouteName('type');
 	const { selectRow } = useStore();
-	const userName = extractUserName(selectRow as Record<string, unknown>);
+	const userName = selectRow ? extractUserName(selectRow as Record<string, unknown>) : '';
 
-	const getSectionData = useCallback(() => {
-		if (member_overview_pages_with_tables.includes(type as string)) {
-			return getRegisterSectionData(selectRow as RegisterSectionOverviewProps);
+	const sectionData = useMemo(() => {
+		switch (type) {
+			case 'baptism':
+			case 'chronicles':
+			case 'marriage_registration':
+			case 'marriage_proposal':
+			case 'death_register':
+				return getBaptismSectionData(selectRow as BaptismMemberType);
+			case 'holy_communion':
+				return getHolyCommunionData(selectRow as HolyCommunionMemberType);
+			case 'confirmations':
+				return getConfirmationsData(selectRow as ConfirmationRegisteredMemberType);
+
+			default:
+				return [];
 		}
-		return [];
 	}, [selectRow, type]);
 
-	return <GenericCouncilMemberDetails userName={userName} sectionData={getSectionData()} />;
+	return <GenericCouncilMemberDetails userName={userName} sectionData={sectionData} />;
 };
 
 export default GenericRegisterPeopleDetailsContainer;

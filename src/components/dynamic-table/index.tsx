@@ -40,6 +40,8 @@ interface DynamicDataTableProps<T extends object, U> {
 	enableLetterSorting?: boolean;
 	enableExport?: boolean;
 	showFooter?: boolean;
+	enablePagination?: boolean;
+	enableSearch?: boolean;
 }
 
 const DynamicDataTable = <T extends object, U>({
@@ -60,6 +62,8 @@ const DynamicDataTable = <T extends object, U>({
 	onDelete,
 	onView,
 	showFooter = false,
+	enablePagination = true,
+	enableSearch = true,
 }: DynamicDataTableProps<T, U>) => {
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [pageSize, setPageSize] = useState(defaultPageSize);
@@ -244,7 +248,7 @@ const DynamicDataTable = <T extends object, U>({
 						enableLetterSorting={enableLetterSorting}
 					/>
 
-					{isDynamic && (
+					{
 						<TableHeaderControls<T>
 							isDynamic={isDynamic}
 							globalFilter={globalFilter}
@@ -256,8 +260,9 @@ const DynamicDataTable = <T extends object, U>({
 							tableId={generatedTableId}
 							data={data}
 							enableExport={enableExport}
+							enableSearch={enableSearch}
 						/>
-					)}
+					}
 
 					<TableDisplay
 						table={table}
@@ -269,7 +274,7 @@ const DynamicDataTable = <T extends object, U>({
 						showFooter={showFooter}
 					/>
 
-					{isDynamic && data.length > 0 && <PaginationControls table={table as unknown as ReactTableType<unknown>} />}
+					{enablePagination && <PaginationControls table={table as unknown as ReactTableType<unknown>} />}
 				</div>
 			</div>
 		</div>

@@ -1,18 +1,28 @@
-import { useMemo, useState } from 'react';
+import { lazy, Suspense, useMemo, useState } from 'react';
 import { PriorDignitariesContainer, TabsLayout } from '@/components';
 import { side_nav_links } from '@/data/side-navbar-content';
 import type { NavLinkProps } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
 import { useRouteName } from '@/utils/getRouteName';
 import { useStore } from '@/store/store';
-import { FormsContainer, RenderPiousGroupOverviewContainer, RenderPiousGroupTables } from '../../components';
+import {
+	AnbiamInChargeDetails,
+	AssociationDetailsTable,
+	AssociationInchargeDetails,
+	FamilyMembersInfoWithTable,
+	FormsContainer,
+	RenderPiousGroupOverviewContainer,
+} from '../../components';
 import { usePathName } from '@/utils/getPathName';
 import { CouncilDetailsForm } from '../../forms';
+
+const RenderPiousGroupTables = lazy(() => import('../../components/render-pious-group-tables'));
 
 const PiousGroupGenericPage = () => {
 	const type = useRouteName('type');
 	const pathName = usePathName();
-	const { selectRow, selectFamilyCardRow, selectPriorRow, editRow } = useStore();
+	const { selectRow, selectFamilyCardRow, selectPriorRow, editRow, selectAssociationRow, selectFamilyMembersRow } =
+		useStore();
 
 	const [activeIndex, setActiveIndex] = useState(0);
 
@@ -28,26 +38,49 @@ const PiousGroupGenericPage = () => {
 	if (selectPriorRow) {
 		return <PriorDignitariesContainer />;
 	}
+	if (selectAssociationRow && type == 'anbiam_incharge') {
+		return <AnbiamInChargeDetails />;
+	}
 
-	if (selectRow || selectFamilyCardRow || editRow) {
+	if (selectAssociationRow) {
+		return <AssociationInchargeDetails />;
+	}
+
+	if (selectRow || editRow || selectFamilyCardRow) {
 		return <RenderPiousGroupOverviewContainer pathName={type} />;
 	}
 
+	if (selectFamilyMembersRow) {
+		return <FamilyMembersInfoWithTable />;
+	}
 	const renderTabContent = (label: string | undefined) => {
 		switch (label?.toLowerCase()) {
 			case 'view':
-				return <RenderPiousGroupTables />;
+				return (
+					<Suspense fallback={<div>Loading...</div>}>
+						<RenderPiousGroupTables />
+					</Suspense>
+				);
 			case 'add':
 				return <FormsContainer />;
 			case 'council details':
 				return <CouncilDetailsForm />;
+			case 'association details':
+				return <AssociationDetailsTable />;
+			case 'anbiam details':
+				return <AssociationDetailsTable />;
 			default:
 				return null;
 		}
 	};
 
 	return (
-		<TabsLayout tabs={tabsData || []} onTabChange={setActiveIndex} activeTabId={activeIndex}>
+		<TabsLayout
+			hasPageHeading={tabsData?.[activeIndex]?.label.toLowerCase() === 'anbiam details' ? false : true}
+			tabs={tabsData || []}
+			onTabChange={setActiveIndex}
+			activeTabId={activeIndex}
+		>
 			{renderTabContent(tabsData?.[activeIndex]?.label)}
 		</TabsLayout>
 	);

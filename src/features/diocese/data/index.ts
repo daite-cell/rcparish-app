@@ -1018,6 +1018,7 @@ const curia_members_dummy_data = [
 		to: 'Till Now',
 		mobile: '9486424008',
 		image: '/images/admin.png',
+		id: 'VDP0001',
 	},
 	{
 		position: 'Chancellor',
@@ -1027,6 +1028,7 @@ const curia_members_dummy_data = [
 		to: 'Till Now',
 		mobile: '9894891490',
 		image: '/images/admin.png',
+		id: 'VDP0002',
 	},
 	{
 		position: 'Financial Administrator',
@@ -1036,6 +1038,7 @@ const curia_members_dummy_data = [
 		to: 'Till Now',
 		mobile: '9442671433',
 		image: '/images/admin.png',
+		id: 'VDP0003',
 	},
 	{
 		position: 'Director, Social Service Society',
@@ -1045,6 +1048,7 @@ const curia_members_dummy_data = [
 		to: 'Till Now',
 		mobile: '9443636055',
 		image: '/images/admin.png',
+		id: 'VDP0004',
 	},
 	{
 		position: 'Director, Pastoral Centre',
@@ -1055,6 +1059,7 @@ const curia_members_dummy_data = [
 		to: 'Till Now',
 		mobile: '9751122773',
 		image: '/images/admin.png',
+		id: 'VDP0005',
 	},
 	{
 		position: 'Manager, Roman Catholic Schools',
@@ -1065,6 +1070,7 @@ const curia_members_dummy_data = [
 		to: 'Till Now',
 		mobile: '9751523417',
 		image: '/images/admin.png',
+		id: 'VDP0006',
 	},
 ];
 

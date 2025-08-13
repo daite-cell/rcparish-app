@@ -608,6 +608,144 @@ const landTypeOptions = [
 	{ label: 'Manai', value: 'Manai' },
 ];
 
+const familyNameOptions = [
+	{
+		label: 'Anthonydass as Savarimuthu-Amala(S01,S01A03)',
+		value: 'SU001',
+	},
+	{
+		label: 'Velankanni Alias Dass-Arockia Devi(S01,S01A03)',
+		value: 'SU002',
+	},
+	{
+		label: 'Christuraj -Christha(S01,S01A03)',
+		value: 'SU003',
+	},
+	{
+		label: 'Pushparaj-Annamary(S01,S01A03)',
+		value: 'SU004',
+	},
+	{
+		label: 'Albert-Manohari(S01,S01A03)',
+		value: 'SU005',
+	},
+	{
+		label: 'John Peter-Yesumary(S01,S01A03)',
+		value: 'SU006',
+	},
+	{
+		label: 'Arulandu-Mariyal(S01,S01A03)',
+		value: 'SU007',
+	},
+	{
+		label: 'Charles Antony-Retnamary(S01,S01A03)',
+		value: 'SU008',
+	},
+	{
+		label: 'Michaeal-Roselin(S01,S01A03)',
+		value: 'SU009',
+	},
+	{
+		label: 'Sagayaraj-Sagaya Mary(S01,S01A03)',
+		value: 'SU010',
+	},
+	{
+		label: 'Rajendran-Jeyanthy(S01,S01A03)',
+		value: 'SU011',
+	},
+	{
+		label: 'Benedict-Dhanamary(S01,S01A03)',
+		value: 'SU012',
+	},
+	{
+		label: 'Arockiaraj-Alphonza Mary(S01,S01A03)',
+		value: 'SU013',
+	},
+	{
+		label: 'Joseph-Rose Mary(S01,S01A03)',
+		value: 'SU014',
+	},
+	{
+		label: 'Julias-Roselin Mary(S01,S01A03)',
+		value: 'SU015',
+	},
+	{
+		label: 'Singarayan-Victoria Mary(S01,S01A03)',
+		value: 'SU016',
+	},
+	{
+		label: 'Savarimuthu-Rajamary(S01,S01A03)',
+		value: 'SU017',
+	},
+	{
+		label: 'Durairaj-Rajakani(S01,S01A03)',
+		value: 'SU018',
+	},
+	{
+		label: 'Antonysamy-Jeyamary(S01,S01A03)',
+		value: 'SU019',
+	},
+	{
+		label: 'Paul Raj-Annamary(S01,S01A03)',
+		value: 'SU020',
+	},
+	{
+		label: 'Chinnappan-Jeyamary(S01,S01A03)',
+		value: 'SU021',
+	},
+	{
+		label: 'Maria Packiam-Jeyamary(S01,S01A03)',
+		value: 'SU022',
+	},
+	{
+		label: 'Sebastian-Sagaya Mary(S01,S01A03)',
+		value: 'SU023',
+	},
+	{
+		label: 'Savarimuthu-Philomina(S01,S01A03)',
+		value: 'SU024',
+	},
+	{
+		label: 'Xavier Sundaram-Dhanamary(S01,S01A03)',
+		value: 'SU025',
+	},
+	{
+		label: 'Irudayaraj-Christu Mary(S01,S01A03)',
+		value: 'SU026',
+	},
+	{
+		label: 'Anthonysamy-Arockia Mary(S01,S01A03)',
+		value: 'SU027',
+	},
+	{
+		label: 'Michael-Rani(S01,S01A03)',
+		value: 'SU028',
+	},
+	{
+		label: 'Arockiaraj-Vincila Mary(S01,S01A03)',
+		value: 'SU029',
+	},
+	{
+		label: 'Paul-Sagaya Mary(S01,S01A03)',
+		value: 'SU030',
+	},
+];
+const groomMaritalStatusOptions = [
+	{ label: 'Spinster(Bachelor)', value: '0' },
+	{ label: 'Married', value: '1' },
+	{ label: 'Divorce', value: '2' },
+];
+
+const groomMarriagePreparationOptions = [
+	{ label: 'Attended', value: '0' },
+	{ label: 'Not Attended', value: '1' },
+];
+
+const marriageTypeOptions = [
+	{ label: 'Regular', value: 'Regular' },
+	{ label: 'Rectify Marriage', value: 'Rectify Marriage' },
+];
+
 export {
 	categoryOptions,
 	schoolTypeOptions,
@@ -661,4 +799,8 @@ export {
 	vicariateOptions,
 	parishNameOptions,
 	landTypeOptions,
+	familyNameOptions,
+	groomMaritalStatusOptions,
+	groomMarriagePreparationOptions,
+	marriageTypeOptions,
 };

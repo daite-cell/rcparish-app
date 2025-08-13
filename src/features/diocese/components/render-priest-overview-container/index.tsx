@@ -16,7 +16,7 @@ const RenderPriestOverviewContainer = memo(() => {
 
 	const priestsSectionData = getPriestsSectionData(selectRow as PriestDetailsProps);
 	const priestsReligiousSectionData = getPriestsReligiousSectionData(selectPriestsRow as PriestReligiousProps);
-
+	console.warn(selectPriestsRow);
 	const componentMap = {
 		priests: {
 			view: (

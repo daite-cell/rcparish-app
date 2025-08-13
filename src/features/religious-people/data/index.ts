@@ -1,5 +1,3 @@
-import type { PriestPersonalDetailsProps } from '@/types';
-
 type PriestProps = {
 	name: string;
 	present_position: string;
@@ -128,53 +126,4 @@ const userData: User[] = [
 	},
 ];
 
-const priestPersonalDummyData: PriestPersonalDetailsProps[] = [
-	{
-		nameOfThePriests: 'Fr. Albin Justus P',
-		image: '/images/admin.png',
-		presentPosition: 'Parish Priest ( Veppur Parish )',
-		ordinationDate: '1982-05-05',
-		birthDate: '1953-10-14',
-		livingStatus: 'Alive',
-		mobileNumber: '9943244643',
-		optionalMobileNumber: '',
-		mailId: '',
-		nativePlace: '',
-		adhaarNumber: '',
-		presentResidential: '',
-		id: 'VDP0016',
-	},
-	{
-		nameOfThePriests: 'Fr. Anandaraj A',
-		image: '/images/admin.png',
-		presentPosition: 'Parish Priest ( Melpudupakkam Parish )',
-		ordinationDate: '2015-04-24',
-		birthDate: '1984-08-27',
-		livingStatus: 'Alive',
-		mobileNumber: '9677570954',
-		optionalMobileNumber: '',
-		mailId: 'anandamvlr@gmail.com',
-		nativePlace: 'BOOTHAMANGALAM',
-		adhaarNumber: '540681715693',
-		presentResidential:
-			'S/O ABRAHAM, 381, PILLAIYAR KOIL STREET, BOOTHAMANGALAM POST, DEVIGAPURAM VIA, TIRUVANNAMALAI DT.,M - 606902',
-		id: 'VDP0016',
-	},
-	{
-		nameOfThePriests: 'Fr. Anandaraj S M',
-		image: '/images/admin.png',
-		presentPosition: 'Parish Priest ( Arakkonam Parish ), VF ( ARAKONAM VICARIATE )',
-		ordinationDate: '1997-02-16',
-		birthDate: '1965-02-07',
-		livingStatus: 'Alive',
-		mobileNumber: '9445334335',
-		optionalMobileNumber: '',
-		mailId: 'smari_anandaraj@yahoo.co.uk',
-		nativePlace: '',
-		adhaarNumber: '',
-		presentResidential: '',
-		id: 'VDP0016',
-	},
-];
-
-export { religious_people_pages, priests, type PriestProps, userData, type User, priestPersonalDummyData };
+export { religious_people_pages, priests, type PriestProps, userData, type User };

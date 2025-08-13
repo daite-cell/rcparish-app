@@ -192,6 +192,38 @@ const propertiesSchema = z.object({
 	remarks: requiredString('Remarks'),
 });
 
+const bishopSchema = z.object({
+	belongsTo: z.enum(['diocese', 'congregation'], {
+		required_error: 'This field is required',
+	}),
+
+	bishopName: requiredString('Name of the Bishop is required'),
+
+	dateOfBirth: requiredString('Date of Birth is required'),
+	placeOfBirth: requiredString('Place of Birth is required'),
+	nativePlace: requiredString('Native Place is required'),
+	nativeParish: requiredString('Native Parish is required'),
+
+	dateOfFirstProfession: requiredString('Date of First Profession is required'),
+	placeOfFirstProfession: requiredString('Place of First Profession is required'),
+
+	dateOfDiaconate: requiredString('Date of Diaconate is required'),
+	placeOfDiaconate: requiredString('Place of Diaconate is required'),
+
+	dateOfPriestlyOrdination: requiredString('Date of Priestly Ordination is required'),
+	placeOfPriestlyOrdination: requiredString('Place of Priestly Ordination is required'),
+
+	dateOfNominationAsBishop: requiredString('Date of Nomination as Bishop is required'),
+	dateOfEpiscopalOrdination: requiredString('Date of Episcopal Ordination is required'),
+	placeOfEpiscopalOrdination: requiredString('Place of Episcopal Ordination is required'),
+
+	address: requiredString('Address is required'),
+	contactNumber: mobileValidation(),
+	alternateContactNumber: optionalMobileValidation(),
+
+	image: fileValidation('Image file is required'),
+});
+
 type PriestsType = z.infer<typeof priestsSchema>;
 type CommissionsType = z.infer<typeof commissionsSchema>;
 type CommitteeType = z.infer<typeof committeeSchema>;
@@ -201,6 +233,7 @@ type InstitutionsType = z.infer<typeof institutionsFormSchema>;
 type VocationalListType = z.infer<typeof vocationalListSchema>;
 type UploadSchemaType = z.infer<typeof uploadSchema>;
 type PropertiesType = z.infer<typeof propertiesSchema>;
+type BishopType = z.infer<typeof bishopSchema>;
 
 export {
 	commissionsSchema,
@@ -212,6 +245,7 @@ export {
 	uploadSchema,
 	priestsSchema,
 	propertiesSchema,
+	bishopSchema,
 };
 
 export type {
@@ -224,4 +258,5 @@ export type {
 	UploadSchemaType,
 	PriestsType,
 	PropertiesType,
+	BishopType,
 };

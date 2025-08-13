@@ -1,16 +1,16 @@
-import { useStore } from '@/store/store';
-import type { FamilyDataProps } from '@/types';
 import { toTitleCaseFromSnake } from '@/utils/toTitleCaseFromSnake';
-import InfoRow from '../info-row';
-import HeadingWithUnderline from '../heading-with-underline';
-import DynamicDataTable from '../dynamic-table';
-import { familyMemberDetailsTableOneColumns, familyMemberDetailsTableTwoColumns } from '@/table-columns';
-import FormButton from '../form-button';
-
+import InfoRow from '../../../../components/info-row';
+import HeadingWithUnderline from '../../../../components/heading-with-underline';
+import DynamicDataTable from '../../../../components/dynamic-table';
+import FormButton from '../../../../components/form-button';
+import get_families_details from '../../data/get_families_details.json';
+import { familyMemberDetailsTableOneColumns, familyMemberDetailsTableTwoColumns } from '../../columns';
 const FamilyCard = () => {
-	const selectFamilyCardRow = useStore((state) => state.selectFamilyCardRow) as FamilyDataProps;
-
-	if (!selectFamilyCardRow) return null;
+	const familyDetails = get_families_details.families;
+	const familyIncome = get_families_details.family_income ?? 0;
+	const permanentAddress = familyDetails.permanent_address ?? '';
+	const temporaryAddress = familyDetails.temporary_address ?? '';
+	const family_members = get_families_details.family_members;
 
 	const sectionData = [
 		{
@@ -18,11 +18,11 @@ const FamilyCard = () => {
 			sections: [
 				{
 					data: {
-						family_no: selectFamilyCardRow.familyNumber,
-						family_name: selectFamilyCardRow.familyName,
-						family_head: selectFamilyCardRow.familyHead,
-						family_mobile_no: selectFamilyCardRow.mobile,
-						marriage_date: 'unknown',
+						family_no: familyDetails.unique_family_id ?? '',
+						family_name: familyDetails.family_name ?? '',
+						family_head: familyDetails.family_head ?? '',
+						family_mobile_no: familyDetails.family_mobile_no ?? '',
+						marriage_date: familyDetails.marriage_date ?? '',
 					},
 				},
 			],
@@ -32,11 +32,11 @@ const FamilyCard = () => {
 			sections: [
 				{
 					data: {
-						activeness: 'Active',
+						activeness: familyDetails.activeness_content,
 						old_mobile_no: '',
-						main_station: selectFamilyCardRow.mainStation,
-						anbiam: selectFamilyCardRow.anbiam,
-						house_type: selectFamilyCardRow.houseType,
+						main_station: familyDetails.parish_content ?? '',
+						anbiam: '',
+						house_type: familyDetails.social_status ?? '',
 					},
 				},
 			],
@@ -46,10 +46,10 @@ const FamilyCard = () => {
 			sections: [
 				{
 					data: {
-						house_ownership: selectFamilyCardRow.ownership,
-						monthly_subscription: selectFamilyCardRow.monthlySubscription,
-						subscription_fixed_from: selectFamilyCardRow.subscriptionFrom,
-						family_monthly_income: selectFamilyCardRow.familyMonthlyIncome,
+						house_ownership: familyDetails.house_ownership ?? '',
+						monthly_subscription: familyDetails.monthly_subscription ?? '',
+						subscription_fixed_from: familyDetails.subscription_from ?? '',
+						family_monthly_income: familyIncome,
 						cemetery_no: '',
 					},
 				},
@@ -90,12 +90,21 @@ const FamilyCard = () => {
 
 				<div>
 					<HeadingWithUnderline text="Family Members Details" className="text-xs" />
-					<DynamicDataTable data={[]} customColumns={familyMemberDetailsTableOneColumns} isDynamic={false} />
-					<DynamicDataTable data={[]} customColumns={familyMemberDetailsTableTwoColumns} isDynamic={false} />
+					<DynamicDataTable
+						data={family_members}
+						customColumns={familyMemberDetailsTableOneColumns}
+						isDynamic={false}
+					/>
+					<DynamicDataTable
+						data={family_members}
+						customColumns={familyMemberDetailsTableTwoColumns}
+						isDynamic={false}
+					/>
 				</div>
 
 				<div className="flex flex-col md:flex-row justify-between mt-6">
-					<InfoRow label="Permanent :" value={selectFamilyCardRow.permanentAddress} />
+					<InfoRow label="Permanent Address :" value={permanentAddress} />
+					<InfoRow label="Temporary Address:" value={temporaryAddress} />
 					<div className="flex flex-col items-center mt-7">
 						<div className="w-40 border-t border-black mb-1"></div>
 						<span className="text-xs">Authorised Signature</span>

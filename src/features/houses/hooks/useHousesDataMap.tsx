@@ -1,9 +1,11 @@
-import { congregation_institution_dummy_data, convent_details_dummy_data } from '../data';
+import get_school_list from '../data/get_school_list.json';
+import get_convert_list from '../data/get_convent_list.json';
+import get_vocational_list from '../data/get_vocational_list.json';
 
 const useHousesDataMap = (): Record<string, object[]> => ({
-	institutions: congregation_institution_dummy_data,
-	vocational_institutions: [],
-	communities: convent_details_dummy_data,
+	institutions: get_school_list.school_list,
+	vocational_institutions: get_vocational_list.vocational_list,
+	communities: get_convert_list.convent_list,
 });
 
 export default useHousesDataMap;

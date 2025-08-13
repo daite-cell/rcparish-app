@@ -1,5 +1,6 @@
 import { useRouteName } from '@/utils/getRouteName';
 import {
+	BishopForm,
 	CommissionsForm,
 	CommitteesForm,
 	HousesListForm,
@@ -45,6 +46,10 @@ const RenderFormsContainer = () => {
 		{
 			pageName: 'properties',
 			component: <PropertiesForm />,
+		},
+		{
+			pageName: 'bishop',
+			component: <BishopForm />,
 		},
 	];
 	return renderForms.find((form) => form.pageName === type)?.component || <h1>forms will be added</h1>;

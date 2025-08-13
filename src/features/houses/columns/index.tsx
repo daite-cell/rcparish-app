@@ -9,35 +9,23 @@ const useInstitutionColumns = (): ColumnDef<CongregationInstitutionType>[] => {
 	return [
 		...getCommonActionColumns<CongregationInstitutionType>(handleSelectRow, handleEditRow),
 
-		{
-			accessorKey: 'category',
-			header: 'Category',
-		},
-		{
-			accessorKey: 'institutionCategory',
-			header: 'Institution Category',
-		},
-		{
-			accessorKey: 'institutionType',
-			header: 'Institution Type',
-		},
-		{
-			accessorKey: 'name',
-			header: 'Name',
-		},
+		{ accessorKey: 'category_content', header: 'Category' },
+		{ accessorKey: 'religious_content', header: 'Institution Category' },
+		{ accessorKey: 'type_content', header: 'Institution Type' },
+		{ accessorKey: 'name', header: 'Name' },
 		{ accessorKey: 'place', header: 'Place' },
-		{ accessorKey: 'landOwnership', header: 'Land Ownership' },
-		{ accessorKey: 'establishedYear', header: 'Established year' },
-		{ accessorKey: 'recognitionDate', header: 'Recognition Date' },
-		{ accessorKey: 'recognitionNumber', header: 'Recognition Number' },
-		{ accessorKey: 'classesFrom', header: 'Classes from' },
-		{ accessorKey: 'classesUpto', header: 'Classes upto' },
-		{ accessorKey: 'gender', header: 'Gender' },
-		{ accessorKey: 'runBy', header: 'Run by' },
-		{ accessorKey: 'medium', header: 'Medium' },
-		{ accessorKey: 'management', header: 'Management' },
-		{ accessorKey: 'contactNumberLL', header: 'Contact Number (LL)' },
-		{ accessorKey: 'mailId', header: 'Mail ID' },
+		{ accessorKey: 'land_ownership_content', header: 'Land Ownership' },
+		{ accessorKey: 'established_year_content', header: 'Established Year' },
+		{ accessorKey: 'recognition_date', header: 'Recognition Date' },
+		{ accessorKey: 'recognition_no', header: 'Recognition Number' },
+		{ accessorKey: 'class_from', header: 'Classes From' },
+		{ accessorKey: 'class_to', header: 'Classes Upto' },
+		{ accessorKey: 'gender_content', header: 'Gender' },
+		{ accessorKey: 'run_by_content', header: 'Run By' },
+		{ accessorKey: 'medium_content', header: 'Medium' },
+		{ accessorKey: 'management_content', header: 'Management' },
+		{ accessorKey: 'mobile_no', header: 'Contact Number (LL)' },
+		{ accessorKey: 'mail_id', header: 'Mail ID' },
 		{ accessorKey: 'address', header: 'Address' },
 	];
 };
@@ -69,25 +57,25 @@ const useCommunitiesDetailsColumns = (): ColumnDef<ConventDetailsTypeProps>[] =>
 		...getCommonActionColumns<ConventDetailsTypeProps>(handleSelectRow, handleEditRow),
 
 		{
-			accessorKey: 'stationType',
+			accessorKey: 'sub_station_name',
 			header: 'Main-Station / Sub-Station',
 		},
 		{
-			accessorKey: 'conventType',
+			accessorKey: 'type_content',
 			header: 'Type of Convent',
 		},
 		{
-			accessorKey: 'conventName',
+			accessorKey: 'name',
 			header: 'Name of the Convent',
 		},
-		{ accessorKey: 'conventPlace', header: 'Place of the Convent' },
-		{ accessorKey: 'belongsTo', header: 'Belongs To' },
-		{ accessorKey: 'establishedYear', header: 'Established Year' },
-		{ accessorKey: 'establishedBy', header: 'Established by' },
-		{ accessorKey: 'landOwnership', header: 'Land Ownership' },
-		{ accessorKey: 'contactAddress', header: 'Contact Address' },
-		{ accessorKey: 'mobileNumber', header: 'Mobile No' },
-		{ accessorKey: 'email', header: 'Email' },
+		{ accessorKey: 'place', header: 'Place of the Convent' },
+		{ accessorKey: 'belongs_to', header: 'Belongs To' },
+		{ accessorKey: 'established_year_content', header: 'Established Year' },
+		{ accessorKey: 'established_by', header: 'Established by' },
+		{ accessorKey: 'land_ownership_content', header: 'Land Ownership' },
+		{ accessorKey: 'address', header: 'Contact Address' },
+		{ accessorKey: 'mobile_no', header: 'Mobile No' },
+		{ accessorKey: 'mail_id', header: 'Email' },
 	];
 };
 

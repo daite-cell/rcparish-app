@@ -7,10 +7,10 @@ export const getWorkersSectionData = (row: WorkerProps) => [
 			{
 				heading: 'WORKER STATUS',
 				data: {
-					worker_id: row.workerId || '',
-					working_as: row.workingAs || '',
-					salary: row.salaryPerMonth || '',
-					salary_from_on: row.salaryFixedFromOn || '',
+					worker_id: row.worker_id || '',
+					working_as: row.working_as || '',
+					salary: row.salary || '',
+					salary_from_on: row.salary_from || '',
 				},
 			},
 		],
@@ -22,9 +22,9 @@ export const getWorkersSectionData = (row: WorkerProps) => [
 			{
 				heading: 'WORKER DETAILS',
 				data: {
-					joining_date: row.dateOfJoining || '',
-					mobile_number: row.mobileNumber || '',
-					adhaar_number: row.aadhaarNumber || '',
+					joining_date: row.joining_date || '',
+					mobile_number: row.mobile_no || '',
+					adhaar_number: row.adhaar_no || '',
 				},
 			},
 		],
@@ -36,8 +36,8 @@ export const getWorkersSectionData = (row: WorkerProps) => [
 				heading: '',
 				data: {
 					religion: row.religion || '',
-					temporary_address: row.temporaryAddress || '',
-					permanent_address: row.permanentAddress || '',
+					temporary_address: row.temporary_address || '',
+					permanent_address: row.permanent_address || '',
 				},
 			},
 		],
@@ -51,9 +51,9 @@ export const getSubscriptionSectionData = (row: SubscriptionProps) => [
 			{
 				heading: '',
 				data: {
-					family_number: row.uniqueFamilyNumber || '',
-					family_head_name: row.familyHeadName || '',
-					mobile_number_of_head: row.familyHeadMobileNumber || '',
+					family_number: row.unique_family_id || '',
+					family_head_name: row.family_name || '',
+					mobile_number_of_head: row.mobile_no || '',
 				},
 			},
 		],
@@ -64,9 +64,9 @@ export const getSubscriptionSectionData = (row: SubscriptionProps) => [
 			{
 				heading: '',
 				data: {
-					main_station: row.mainStation || '',
-					anbiam: row.anbiam || '',
-					family_monthly_income: row.familyMonthlyIncome || '',
+					main_station: row.sub_station_name || '',
+					anbiam: row.anbiam_name || '',
+					family_monthly_income: row.family_income || '',
 				},
 			},
 		],
@@ -77,8 +77,8 @@ export const getSubscriptionSectionData = (row: SubscriptionProps) => [
 			{
 				heading: '',
 				data: {
-					subscribed_amount: row.fixedAmount || '',
-					subscribed_from: row.fixedFrom || '',
+					subscribed_amount: row.monthly_subscription || '',
+					subscribed_from: row.subscription_from || '',
 				},
 			},
 		],
@@ -92,8 +92,8 @@ export const getEmployersSalarySectionData = (row: EmployersSalaryProps) => [
 			{
 				heading: '',
 				data: {
-					working_as: row.workingStatus || '',
-					worker_id: row.workerId || '',
+					working_as: row.working_as_content || '',
+					worker_id: row.worker_id || '',
 				},
 			},
 		],
@@ -104,9 +104,9 @@ export const getEmployersSalarySectionData = (row: EmployersSalaryProps) => [
 			{
 				heading: '',
 				data: {
-					mobile_number: row.mobileNumber || '',
-					fixed_salary_amount: row.fixedSalaryAmount || '',
-					fixed_salary_from: row.fixedSalaryFrom || '',
+					mobile_number: row.mobile_no || '',
+					fixed_salary_amount: row.salary || '',
+					fixed_salary_from: row.salary_from || '',
 				},
 			},
 		],
@@ -117,9 +117,9 @@ export const getEmployersSalarySectionData = (row: EmployersSalaryProps) => [
 			{
 				heading: '',
 				data: {
-					last_paid_amount: row.grandPaidAmount || '',
-					last_paid_date: row.lastPaidDate || '',
-					last_paid_receipt_no: row.voucherNumber || '',
+					last_paid_amount: '-',
+					last_paid_date: '-',
+					last_paid_receipt_no: '-',
 				},
 			},
 		],
