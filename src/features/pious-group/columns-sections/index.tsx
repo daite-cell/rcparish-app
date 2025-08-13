@@ -18,7 +18,7 @@ export const getParishCouncilSectionData = (row: ParishCouncilMemberDetailsProps
 				data: {
 					main_station: row.sub_station_name,
 					general_election_conducted_on: row.election_conducted,
-					periods_ends_on: row.period_end_on,
+					period_ends_on: row.period_end_on,
 				},
 			},
 		],

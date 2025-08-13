@@ -379,7 +379,7 @@ export const marriageProposalSchema = z.object({
 export type MarriageProposalType = z.infer<typeof marriageProposalSchema>;
 
 export const marriageRegistrationSchema = z.object({
-	activeness: enumFromArray(['active', 'inactive'], 'Activeness is required'),
+	activeness: enumFromArray(['Active', 'InActive'], 'Activeness is required'),
 	familyName: requiredString('Family name is required'),
 	stationType: requiredString('Station type is required'),
 	anbiam: requiredString('Anbiam is required'),

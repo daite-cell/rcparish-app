@@ -230,7 +230,7 @@ const useParishSonsAndDaughtersColumns = (): ColumnDef<ParishSonsAndDaughtersPro
 		},
 		{
 			accessorKey: 'father_name',
-			header: 'Family Head',
+			header: 'Family Name',
 		},
 		{
 			accessorKey: 'relation',
