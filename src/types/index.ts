@@ -1436,3 +1436,14 @@ export interface AnbiamDetailsProps {
 	total_families: number;
 	total_members: number;
 }
+
+export interface TotalFamilyMembersDetails {
+	activeness: string;
+	total_members: number;
+	activeness_content: string;
+	family_name: string;
+	unique_family_id: string;
+	old_family_id: string;
+	family_head: string;
+	monthly_subscription: string;
+}

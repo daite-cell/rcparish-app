@@ -388,7 +388,7 @@ const useEmployersSalaryColumns = (): ColumnDef<EmployersSalaryProps>[] => {
 };
 
 const useSubscriptionColumns = (): ColumnDef<SubscriptionProps>[] => {
-	const { handleSelectRow, handleEditRow } = useStore();
+	const { handleSelectRow, handleEditRow, handleSelectAccountingNameRow, handleEditAccountingName } = useStore();
 
 	return [
 		...getCommonActionColumns<SubscriptionProps>(handleSelectRow, handleEditRow),
@@ -400,7 +400,17 @@ const useSubscriptionColumns = (): ColumnDef<SubscriptionProps>[] => {
 				{
 					accessorKey: 'family_name',
 					header: 'Family Name',
-					cell: ({ row }) => <TextLink to="">{row.original.family_name}</TextLink>,
+					cell: ({ row }) => (
+						<TextLink
+							onClick={() => {
+								handleSelectAccountingNameRow(row.original);
+								handleEditAccountingName(row.original);
+							}}
+							to={`/pious_group/families/${row.original.sub_station_id}/${row.original.anbiam_id}/${row.original.unique_family_id}`}
+						>
+							{row.original.family_name}
+						</TextLink>
+					),
 				},
 				{ accessorKey: 'unique_family_id', header: 'Unique Family Number' },
 				{ accessorKey: 'old_family_id', header: 'Old Family Number' },

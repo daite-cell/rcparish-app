@@ -20,6 +20,7 @@ const DashboardGenericPage = lazy(() => import('../features/dashboard/pages/dash
 const HistoryPage = lazy(() => import('../features/diocese/pages/history-page'));
 const Profile = lazy(() => import('../features/profile/index'));
 const PriestsGenericPage = lazy(() => import('../features/diocese/pages/priests-generic-page'));
+const AccountingPiousGroupPage = lazy(() => import('../features/pious-group/pages/accounting-pious-group-page'));
 
 export const appRoutes: AppRoute[] = [
 	{ path: '/dashboard', name: 'Dashboard', element: <DashBoardPage />, layout: true },
@@ -56,6 +57,7 @@ export const appRoutes: AppRoute[] = [
 		element: <AccountingGenericPage />,
 		layout: true,
 	},
+
 	{
 		path: '/parish/:type',
 		name: 'ParishGeneric',
@@ -74,6 +76,13 @@ export const appRoutes: AppRoute[] = [
 		element: <CommonPoolGenericPage />,
 		layout: true,
 	},
+	{
+		path: '/pious_group/families/:subStationId/:anbiamId/:uniqueFamilyId',
+		name: 'AccountingPiousGroupGeneric',
+		element: <AccountingPiousGroupPage />,
+		layout: true,
+	},
+
 	{
 		path: '/pious_group/:type',
 		name: 'PiousGroupGeneric',
