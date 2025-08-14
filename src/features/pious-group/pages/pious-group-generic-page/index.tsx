@@ -9,6 +9,7 @@ import {
 	AnbiamInChargeDetails,
 	AssociationDetailsTable,
 	AssociationInchargeDetails,
+	FamilyCardDownloadContainer,
 	FamilyMembersInfoWithTable,
 	FormsContainer,
 	RenderPiousGroupOverviewContainer,
@@ -54,7 +55,7 @@ const PiousGroupGenericPage = () => {
 		return <FamilyMembersInfoWithTable />;
 	}
 	const renderTabContent = (label: string | undefined) => {
-		switch (label?.toLowerCase()) {
+		switch (label?.toLowerCase().trim()) {
 			case 'view':
 				return (
 					<Suspense fallback={<div>Loading...</div>}>
@@ -69,6 +70,10 @@ const PiousGroupGenericPage = () => {
 				return <AssociationDetailsTable />;
 			case 'anbiam details':
 				return <AssociationDetailsTable />;
+
+			case 'anbiam family card':
+				return <FamilyCardDownloadContainer />;
+
 			default:
 				return null;
 		}
@@ -76,7 +81,12 @@ const PiousGroupGenericPage = () => {
 
 	return (
 		<TabsLayout
-			hasPageHeading={tabsData?.[activeIndex]?.label.toLowerCase() === 'anbiam details' ? false : true}
+			hasPageHeading={
+				tabsData?.[activeIndex]?.label.toLowerCase() === 'anbiam details' ||
+				tabsData?.[activeIndex]?.label.toLowerCase() === 'anbiam family card'
+					? false
+					: true
+			}
 			tabs={tabsData || []}
 			onTabChange={setActiveIndex}
 			activeTabId={activeIndex}

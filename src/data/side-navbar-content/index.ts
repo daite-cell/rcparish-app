@@ -323,7 +323,7 @@ const side_nav_links = [
 				path_url: '/pious_group/families',
 				label: 'Families',
 				icon: 'BookText',
-				tabs: [{ label: 'ANBIAM FAMILY CARD' }, { label: 'view' }, { label: 'add' }],
+				tabs: [{ label: 'anbiam family card' }, { label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/pious_group/school_students',

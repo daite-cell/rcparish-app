@@ -168,6 +168,14 @@ const associationsInchargeSchema = z.object({
 
 type AssociationsInchargeType = z.infer<typeof associationsInchargeSchema>;
 
+const familyCardSchema = z.object({
+	subStationName: requiredString('Sub Station is required'),
+	selectedAnbiam: requiredString('Anbiam selection is required'),
+	hasPriorBalance: enumFromArray(['current_year', 'next_year'], 'Please choose Yes or No'),
+});
+
+type FamilyCardType = z.infer<typeof familyCardSchema>;
+
 export {
 	parishCouncilMemberSchema,
 	religiousPeopleParishSchema,
@@ -178,6 +186,7 @@ export {
 	familesTypeSchema,
 	associationsClubSchema,
 	associationsInchargeSchema,
+	familyCardSchema,
 };
 
 export type {
@@ -190,4 +199,5 @@ export type {
 	FamilesType,
 	AssociationsClubFormType,
 	AssociationsInchargeType,
+	FamilyCardType,
 };
