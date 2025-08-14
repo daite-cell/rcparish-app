@@ -15,15 +15,20 @@ const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string
 	const { selectRow, editRow } = useStore();
 
 	const tabs = [{ label: 'profile' }, { label: 'edit' }, { label: 'back' }];
-	const userName = extractUserName(selectRow as Record<string, unknown>);
 	const componentMap = {
 		families: {
-			view: (
-				<GenericFamilesDetailsOverview
-					userName={userName}
-					sectionData={getFamilesMembersSectionData(selectRow as FamilyDataProps)}
-				/>
-			),
+			view: (() => {
+				const family = selectRow as FamilyDataProps | undefined;
+				if (!family) {
+					return <h1 className="text-gray-500">Select a family to view details</h1>;
+				}
+				return (
+					<GenericFamilesDetailsOverview
+						userName={extractUserName(family as unknown as Record<string, unknown>)}
+						sectionData={getFamilesMembersSectionData(family)}
+					/>
+				);
+			})(),
 			form: <FamiliesForm />,
 		},
 		family_members: {
