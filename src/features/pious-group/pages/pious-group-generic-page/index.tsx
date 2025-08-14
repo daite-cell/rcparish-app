@@ -82,8 +82,7 @@ const PiousGroupGenericPage = () => {
 	return (
 		<TabsLayout
 			hasPageHeading={
-				tabsData?.[activeIndex]?.label.toLowerCase() === 'anbiam details' ||
-				tabsData?.[activeIndex]?.label.toLowerCase() === 'anbiam family card'
+				['anbiam details', 'anbiam family card'].includes(tabsData?.[activeIndex]?.label?.toLowerCase().trim() ?? '')
 					? false
 					: true
 			}

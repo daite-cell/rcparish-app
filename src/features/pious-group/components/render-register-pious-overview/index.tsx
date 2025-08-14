@@ -9,7 +9,8 @@ import { FamiliesForm } from '../../forms';
 
 const RenderRegisterPiousOverView = () => {
 	const { selectAccountingNameRow, editAccountingNameRow, editRow, selectRow } = useStore();
-	const userName = extractUserName(selectRow as Record<string, unknown>);
+	const baseRow = (selectAccountingNameRow as Record<string, unknown>) || (selectRow as Record<string, unknown>) || {};
+	const userName = extractUserName(baseRow);
 
 	const componentMap = {
 		family_members: {

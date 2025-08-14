@@ -85,7 +85,7 @@ export const appRoutes: AppRoute[] = [
 	},
 	{
 		path: '/pious_group/family_members/:subStationId/:anbiamId/:uniqueFamilyId/:uniqueMemberId',
-		name: 'AccountingPiousGroupGeneric',
+		name: 'RegisterPiousGroupGeneric',
 		element: <RegisterPiousGroupPage />,
 		layout: true,
 	},
