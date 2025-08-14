@@ -15,6 +15,7 @@ import type {
 	StudentDataProps,
 	CollegeStudentDataProps,
 	AnbiamDetailsProps,
+	TotalFamilyMembersDetails,
 } from '@/types';
 import type { CellContext, ColumnDef } from '@tanstack/react-table';
 import { Trash, IdCard, SquarePen } from 'lucide-react';
@@ -848,6 +849,20 @@ const useCollegeStudentsColumns = (): ColumnDef<CollegeStudentDataProps>[] => {
 		{ accessorKey: 'anbiam_id', header: 'Anbiam Id' },
 	];
 };
+const useTotalFamilyMembersColumns = (): ColumnDef<TotalFamilyMembersDetails>[] => {
+	return [
+		{
+			accessorKey: 'family_name',
+			header: 'Family Name',
+			cell: ({ row }) => <TextLink to="">{row.original.family_name ?? ''}</TextLink>,
+		},
+		{ accessorKey: 'unique_family_id', header: 'Unique Family Id' },
+		{ accessorKey: 'old_family_id', header: 'Old Family Id' },
+		{ accessorKey: 'family_head', header: 'Family Head' },
+		{ accessorKey: 'total_members', header: 'Total Members' },
+		{ accessorKey: 'monthly_subscription', header: 'Monthly Subscription' },
+	];
+};
 
 export {
 	useParishCouncilColumns,
@@ -867,4 +882,5 @@ export {
 	useSchoolStudentsColumns,
 	useCollegeStudentsColumns,
 	useAnbiamDetailsColumns,
+	useTotalFamilyMembersColumns,
 };

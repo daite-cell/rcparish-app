@@ -1,11 +1,16 @@
-import { DisplayInfoRowContainer, TableHeading } from '@/components';
+import { DisplayInfoRowContainer, DynamicDataTable, TableHeading } from '@/components';
 import { MemberOverviewLayout, TabsLayout } from '@/layouts';
 import { useStore } from '@/store/store';
 import get_anbiams_list from '../../data/get_anbiams_list.json';
 import type { AnbiamDetailsProps } from '@/types';
+import { useTotalFamilyMembersColumns } from '../../columns';
+import get_total_families from '../../data/get_total_families.json';
 
 const AnbiamInChargeDetails = () => {
-	const { selectAssociationRow } = useStore() as { selectAssociationRow: AnbiamDetailsProps };
+	const { selectAssociationRow, handleCloseAssociationRow } = useStore() as {
+		selectAssociationRow: AnbiamDetailsProps;
+		handleCloseAssociationRow: () => void;
+	};
 
 	const getAnbiamInchargeDetails = get_anbiams_list.anbiams_list.find(
 		(item) => item.anbiam_id === selectAssociationRow.anbiam_id
@@ -56,7 +61,11 @@ const AnbiamInChargeDetails = () => {
 	return (
 		<TabsLayout hasPageHeading={false} tabs={[]}>
 			<TableHeading className="!ml-0 !text-sm !font-bold underline" text="MEMBERS IN ANBIAM" />
-			<MemberOverviewLayout enableClose={true} handleClose={() => {}} sectionHeading="ANBIAM MEMBER DETAILS">
+			<MemberOverviewLayout
+				enableClose={true}
+				handleClose={() => handleCloseAssociationRow()}
+				sectionHeading="ANBIAM MEMBER DETAILS"
+			>
 				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 my-6 p-5">
 					{sectionData &&
 						sectionData.map((column, colIndex) => (
@@ -68,6 +77,13 @@ const AnbiamInChargeDetails = () => {
 						))}
 				</div>
 			</MemberOverviewLayout>
+			<DynamicDataTable
+				data={get_total_families.total_families}
+				wrapText={false}
+				customColumns={useTotalFamilyMembersColumns()}
+				enableSearch={false}
+				enableExport={false}
+			/>
 		</TabsLayout>
 	);
 };

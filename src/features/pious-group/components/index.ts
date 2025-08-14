@@ -9,3 +9,4 @@ export { default as GenericPeopleDetailOverviewContainer } from './generic-peopl
 export { default as FamilyCard } from './family-card';
 export { default as FamilyMembersInfoWithTable } from './family-members-info-with-table';
 export { default as AnbiamInChargeDetails } from './anbiam-incharge-details';
+export { default as RenderAccountingPiousOverView } from './render-accounting-pious-overview';

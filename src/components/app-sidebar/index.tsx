@@ -11,7 +11,7 @@ import { usePathName } from '@/utils/getPathName';
 import { ProfileContainer } from '@/features/profile/components';
 
 export default function AppSideBar() {
-	const pathName = usePathName();
+	const pathName = usePathName().split('/').slice(0, 3).join('/');
 
 	const filter_nav_links = useMemo(
 		() => [getSectionByPathName(side_nav_links, pathName)].filter(Boolean).filter((item) => item !== null),

@@ -5,18 +5,31 @@ import CouncilMemberDetailsContainer from '../generic-religious-people-details-c
 import GenericMembersInFamilesOverviewContainer from '../generic-members-in-familes-overview-container';
 import { memo } from 'react';
 import { useStore } from '@/store/store';
-import { ParishCouncilMembersForm, ReligiousParishCouncilMembersForm } from '../../forms';
+import { FamiliesForm, ParishCouncilMembersForm, ReligiousParishCouncilMembersForm } from '../../forms';
 import GenericPeopleDetailOverviewContainer from '../generic-people-detail-overview-container';
+import { getFamilesMembersSectionData } from '../../columns-sections';
+import type { FamilyDataProps } from '@/types';
+import { extractUserName } from '@/utils/extractUserName';
 
 const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string | number | undefined }) => {
-	const { editRow } = useStore();
+	const { selectRow, editRow } = useStore();
 
 	const tabs = [{ label: 'profile' }, { label: 'edit' }, { label: 'back' }];
-
 	const componentMap = {
 		families: {
-			view: <GenericFamilesDetailsOverview />,
-			form: <h1>Families Form</h1>,
+			view: (() => {
+				const family = selectRow as FamilyDataProps | undefined;
+				if (!family) {
+					return <h1 className="text-gray-500">Select a family to view details</h1>;
+				}
+				return (
+					<GenericFamilesDetailsOverview
+						userName={extractUserName(family as unknown as Record<string, unknown>)}
+						sectionData={getFamilesMembersSectionData(family)}
+					/>
+				);
+			})(),
+			form: <FamiliesForm />,
 		},
 		family_members: {
 			view: <GenericMembersInFamilesOverviewContainer />,

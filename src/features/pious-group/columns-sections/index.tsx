@@ -2,13 +2,14 @@ import type {
 	AnbiamCouncilDataProps,
 	AnbiamInchargeDataProps,
 	AssociationCouncilMemberProps,
+	FamilyDataProps,
 	MembersInParishFamilyProps,
 	ParishAssociationClubProps,
 	ParishCouncilMemberDetailsProps,
 	ParishSonsAndDaughtersProps,
 	ReligiousPersonProps,
 } from '@/types';
-
+import get_families_details from '../data/get_families_details.json';
 export const getParishCouncilSectionData = (row: ParishCouncilMemberDetailsProps) => [
 	{
 		col: 1,
@@ -382,6 +383,130 @@ export const getReligiousPeopleSectionData = (row: ReligiousPersonProps) => [
 					'institution_/_convert': row.name,
 					in_charge_for: row.in_charge,
 					mobile_number: row.mobile_no,
+				},
+			},
+		],
+	},
+];
+
+export const getFamilesMembersSectionData = (row: FamilyDataProps) => [
+	{
+		col: 1,
+		sections: [
+			{ heading: '', data: { active: 'Active' } },
+			{
+				heading: 'FAMILY DETAILS',
+				data: {
+					family_head_name: row.family_head,
+					unique_anbiam_family_number: row.unique_family_id,
+					old_family_number: '',
+					'main_station_/_sub_station': row.sub_station_name,
+					anbiam: row.anbiam_name,
+					father_or_husband_name: row.family_head,
+					mother_or_wife_name: '',
+					marriage_date: 'unknown',
+				},
+			},
+		],
+	},
+	{
+		col: 2,
+		sections: [
+			{
+				heading: 'SOCIAL STATUS DETAILS',
+				data: {
+					house_type: row.social_status,
+					house_ownership: row.house_ownership,
+				},
+			},
+			{
+				heading: 'INCOME & SUBSCRIPTION DETAILS',
+				data: {
+					family_monthly_income: 0,
+					subscription_from: row.subscription_from,
+					family_card_valid_upto: row.subscription_period || '--',
+					monthly_subscription: row.monthly_subscription || '',
+					cemetery_number: '',
+					community: row.community,
+				},
+			},
+		],
+	},
+	{
+		col: 3,
+		sections: [
+			{ heading: '', data: { sub_caste: 'Adi Dravidar' } },
+			{
+				heading: 'FAMILY CONTACT DETAILS',
+				data: {
+					living_status: row.living_status,
+					settled_as: row.settled_as,
+					mobile_number: row.family_mobile_no,
+					email_id: '',
+					temporary_address: row.temporary_address,
+					permanent_address: row.permanent_address,
+				},
+			},
+		],
+	},
+];
+
+export const getAccountingFamilesMembersSectionData = (row = get_families_details.families) => [
+	{
+		col: 1,
+		sections: [
+			{ heading: '', data: { active: 'Active' } },
+			{
+				heading: 'FAMILY DETAILS',
+				data: {
+					family_head_name: row?.family_head || '',
+					unique_anbiam_family_number: row?.unique_family_id || '',
+					old_family_number: '',
+					'main_station_/_sub_station': row?.sub_station_id || '',
+					anbiam: row?.anbiam_id || '',
+					father_or_husband_name: row?.family_head || '',
+					mother_or_wife_name: '',
+					marriage_date: 'unknown',
+				},
+			},
+		],
+	},
+	{
+		col: 2,
+		sections: [
+			{
+				heading: 'SOCIAL STATUS DETAILS',
+				data: {
+					house_type: row?.social_status || '',
+					house_ownership: row?.house_ownership || '',
+				},
+			},
+			{
+				heading: 'INCOME & SUBSCRIPTION DETAILS',
+				data: {
+					family_monthly_income: 0,
+					subscription_from: row?.subscription_from || '',
+					family_card_valid_upto: row?.subscription_period || '--',
+					monthly_subscription: row?.monthly_subscription || '',
+					cemetery_number: '',
+					community: row?.community || '',
+				},
+			},
+		],
+	},
+	{
+		col: 3,
+		sections: [
+			{ heading: '', data: { sub_caste: 'Adi Dravidar' } },
+			{
+				heading: 'FAMILY CONTACT DETAILS',
+				data: {
+					living_status: row?.living_status || '',
+					settled_as: row?.settled_as || '',
+					mobile_number: row?.family_mobile_no || '',
+					email_id: '',
+					temporary_address: row?.temporary_address || '',
+					permanent_address: row?.permanent_address || '',
 				},
 			},
 		],
