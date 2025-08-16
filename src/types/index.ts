@@ -15,6 +15,14 @@ export interface NavLinkSectionProps {
 	page_nav_links: NavLinkProps[];
 }
 
+export interface ProfileCardProps {
+	step: string;
+	title: string;
+	subtitle: string;
+	stepNumber: string;
+	pathUrl: string;
+}
+
 export interface TabsProps {
 	label: string;
 }
