@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import FormButton from '../form-button';
 
 interface ButtonActionsProps {
@@ -6,10 +7,10 @@ interface ButtonActionsProps {
 	enableClose?: boolean;
 }
 
-const ButtonActions = ({ onPrint, onClose, enableClose = true }: ButtonActionsProps) => (
+const ButtonActions = memo(({ onPrint, onClose, enableClose = true }: ButtonActionsProps) => (
 	<div className="flex justify-end w-[98%] my-3.5 no-print">
 		<FormButton label="print" onClick={onPrint} />
 		{enableClose && <FormButton label="close" onClick={onClose} />}
 	</div>
-);
+));
 export default ButtonActions;
