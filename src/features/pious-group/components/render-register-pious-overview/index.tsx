@@ -1,7 +1,8 @@
 import { GenericMembersInFamilesOverview } from '@/components';
 import { OverviewTabsLayout } from '@/layouts';
 import { useStore } from '@/store/store';
-import get_families_details from '../../data/get_families_details.json';
+import get_members_link_details from '../../data/get_members_link_details.json';
+
 import { getAccountingFamilesMembersSectionData, getFamilesSectionData } from '../../columns-sections';
 import type { MembersInParishFamilyProps } from '@/types';
 import { extractUserName } from '@/utils/extractUserName';
@@ -17,7 +18,7 @@ const RenderRegisterPiousOverView = () => {
 			view: selectAccountingNameRow ? (
 				<GenericMembersInFamilesOverview
 					userName={userName}
-					sectionData={getAccountingFamilesMembersSectionData(get_families_details.families)}
+					sectionData={getAccountingFamilesMembersSectionData(get_members_link_details)}
 				/>
 			) : (
 				<GenericMembersInFamilesOverview
@@ -25,6 +26,7 @@ const RenderRegisterPiousOverView = () => {
 					sectionData={getFamilesSectionData(selectRow as MembersInParishFamilyProps)}
 				/>
 			),
+
 			form: <FamiliesForm />,
 		},
 	};

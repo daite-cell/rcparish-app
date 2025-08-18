@@ -92,5 +92,6 @@ export const createDynamicTableSlice: StateCreator<Partial<AppState> & TableSlic
 	handleCloseEditPriestsRow: () => set({ editPriestsRow: null }),
 	handleCloseAssociationRow: () => set({ selectAssociationRow: null }),
 	handleCloseFamilyMembersRow: () => set({ selectFamilyMembersRow: null }),
-	handleCloseAccountingNameRow: () => set({ selectAccountingNameRow: null, editAccountingNameRow: null }),
+	handleCloseAccountingNameRow: () =>
+		set({ selectAccountingNameRow: null, editAccountingNameRow: null, selectRow: null }),
 });

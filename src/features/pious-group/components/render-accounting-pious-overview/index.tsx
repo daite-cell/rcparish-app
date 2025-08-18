@@ -1,22 +1,25 @@
 import { GenericFamilesDetailsOverview } from '@/components';
 import { OverviewTabsLayout } from '@/layouts';
 import { useStore } from '@/store/store';
-import get_families_details from '../../data/get_families_details.json';
 import { getAccountingFamilesMembersSectionData, getFamilesMembersSectionData } from '../../columns-sections';
 import type { FamilyDataProps } from '@/types';
 import { extractUserName } from '@/utils/extractUserName';
 import { FamiliesForm } from '../../forms';
+import get_members_link_details from '../../data/get_members_link_details.json';
 
 const RenderAccountingPiousOverView = () => {
 	const { selectAccountingNameRow, editAccountingNameRow, editRow, selectRow } = useStore();
 	console.warn(selectAccountingNameRow);
-	const userName = extractUserName(selectRow as Record<string, unknown>);
+	const baseRow = (selectAccountingNameRow as Record<string, unknown>) || (selectRow as Record<string, unknown>) || {};
+	const userName = extractUserName(baseRow);
+	console.warn(selectRow, 'ahdvgewhfewy');
 
 	const componentMap = {
 		families: {
 			view: selectAccountingNameRow ? (
 				<GenericFamilesDetailsOverview
-					sectionData={getAccountingFamilesMembersSectionData(get_families_details.families)}
+					userName={userName}
+					sectionData={getAccountingFamilesMembersSectionData(get_members_link_details)}
 				/>
 			) : (
 				<GenericFamilesDetailsOverview

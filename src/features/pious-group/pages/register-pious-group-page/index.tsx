@@ -5,7 +5,6 @@ import { useMembersInParishFamilyColumns } from '../../columns';
 import { RenderRegisterPiousOverView } from '../../components';
 import { useStore } from '@/store/store';
 import parish_council_family_members from '../../data/parish_council_family_members.json';
-
 const RegisterPiousGroupPage = () => {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const { selectRow, editRow, selectAccountingNameRow } = useStore();
