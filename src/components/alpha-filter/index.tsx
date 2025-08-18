@@ -5,17 +5,25 @@ interface AlphaFilterProps {
 	onChange: (char: string) => void;
 }
 
-const AlphaFilter: React.FC<AlphaFilterProps> = ({ selected, onChange }) => {
-	const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const AlphaFilter: React.FC<AlphaFilterProps> = React.memo(({ selected, onChange }) => {
+	const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+	const handleClick = React.useCallback(
+		(char: string) => {
+			onChange(char);
+		},
+		[onChange]
+	);
 
 	return (
 		<div className="flex items-center my-4 overflow-x-auto border border-black hide-scrollbar">
-			{['All', ...alphabet].map((char) => (
+			{['All', ...alphabet].map((char, index) => (
 				<button
-					key={char}
-					onClick={() => onChange(char)}
+					type="button"
+					key={index}
+					onClick={() => handleClick(char)}
 					className={`px-3 py-[6px] flex-1 text-xs ${
-						selected === char ? 'bg-[#343148ff] text-white' : 'bg-[#d7c49e] text-black'
+						char === selected ? 'bg-[#343148ff] text-white' : 'bg-[#d7c49e] text-black'
 					}`}
 				>
 					{char}
@@ -23,6 +31,6 @@ const AlphaFilter: React.FC<AlphaFilterProps> = ({ selected, onChange }) => {
 			))}
 		</div>
 	);
-};
+});
 
 export default AlphaFilter;
