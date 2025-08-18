@@ -1,5 +1,5 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
-import React from 'react';
 
 interface TextLinkProps {
 	to: string;
@@ -8,12 +8,12 @@ interface TextLinkProps {
 	onClick?: () => void;
 }
 
-const TextLink: React.FC<TextLinkProps> = ({ to, children, className, onClick }) => {
+const TextLink = memo(({ to, children, className, onClick }: TextLinkProps) => {
 	return (
-		<Link onClick={onClick} to={to} className={`hover:underline text-[#0d73c4] hover:text-blue-800 ${className ?? ''}`}>
+		<Link onClick={onClick} to={to} className={`${className ?? ''} hover:underline text-[#0d73c4] hover:text-blue-800`}>
 			{children}
 		</Link>
 	);
-};
+});
 
 export default TextLink;

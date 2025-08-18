@@ -7,7 +7,7 @@ interface LogoutButtonProps {
 	className?: string;
 }
 
-const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout, isLoading = false, className = '' }) => {
+const LogoutButton = React.memo(({ onLogout, isLoading = false, className = '' }: LogoutButtonProps) => {
 	const handleClick = React.useCallback(() => onLogout?.(), [onLogout]);
 
 	return (
@@ -21,6 +21,6 @@ const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout, isLoading = false
 			{isLoading ? 'Logging out...' : 'Logout'}
 		</Button>
 	);
-};
+});
 
 export default LogoutButton;
