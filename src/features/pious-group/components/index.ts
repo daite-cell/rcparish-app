@@ -10,3 +10,5 @@ export { default as FamilyCard } from './family-card';
 export { default as FamilyMembersInfoWithTable } from './family-members-info-with-table';
 export { default as AnbiamInChargeDetails } from './anbiam-incharge-details';
 export { default as RenderAccountingPiousOverView } from './render-accounting-pious-overview';
+export { default as RenderRegisterPiousOverView } from './render-register-pious-overview';
+export { default as FamilyCardDownloadContainer } from './family-card-download-container';

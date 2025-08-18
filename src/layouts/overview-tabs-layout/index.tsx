@@ -43,6 +43,7 @@ const OverviewTabsLayout = ({
 		const label = tabs[index].label.toLowerCase();
 
 		if (label === 'back') {
+			console.warn('Back button clicked');
 			handleCloseRow();
 			handleCloseFamilyCardRow();
 			handleCloseEditRow();

@@ -15,18 +15,26 @@ import type {
 import { Link } from 'react-router-dom';
 import { useStore } from '@/store/store';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
+import { TextLink } from '@/components';
 
 const useHolyCommunionMemberColumns = (): ColumnDef<HolyCommunionMemberType>[] => {
-	const { handleSelectRow, handleEditRow } = useStore();
+	const { handleSelectRow, handleEditRow, handleSelectAccountingNameRow, handleEditAccountingName } = useStore();
 	return [
 		...getCommonActionColumns<HolyCommunionMemberType>(handleSelectRow, handleEditRow),
 		{
 			header: 'Member Name',
 			accessorKey: 'member_name',
 			cell: ({ row }) => (
-				<Link to="" className="underline text-[#0d73c4]">
+				<TextLink
+					onClick={() => {
+						handleSelectAccountingNameRow(row.original);
+						handleEditAccountingName(row.original);
+					}}
+					to={`/pious_group/family_members/${row.original.sub_station_id}/${row.original.anbiam_id}/${row.original.unique_family_id}/${row.original.unique_member_id}`}
+					className="underline text-[#0d73c4]"
+				>
 					{row.original.member_name}
-				</Link>
+				</TextLink>
 			),
 		},
 		{ accessorKey: 'unique_member_id', header: 'Unique Member ID' },
@@ -69,7 +77,7 @@ const useChronicleMemberColumns = (): ColumnDef<ChronicleMemberProps>[] => {
 };
 
 const useBaptismMemberColumns = (): ColumnDef<BaptismMemberType>[] => {
-	const { handleSelectRow, handleEditRow } = useStore();
+	const { handleSelectRow, handleEditRow, handleSelectAccountingNameRow, handleEditAccountingName } = useStore();
 
 	return [
 		...getCommonActionColumns<BaptismMemberType>(handleSelectRow, handleEditRow),
@@ -78,9 +86,16 @@ const useBaptismMemberColumns = (): ColumnDef<BaptismMemberType>[] => {
 			header: 'Member Name (Baptism Name)',
 			accessorKey: 'member_name',
 			cell: ({ row }) => (
-				<Link to="" className="underline text-[#0d73c4]">
+				<TextLink
+					onClick={() => {
+						handleSelectAccountingNameRow(row.original);
+						handleEditAccountingName(row.original);
+					}}
+					to={`/pious_group/family_members/${row.original.sub_station_id}/${row.original.anbiam_id}/${row.original.unique_family_id}/${row.original.unique_member_id}`}
+					className="underline text-[#0d73c4]"
+				>
 					{row.original.member_name}
-				</Link>
+				</TextLink>
 			),
 		},
 		{ accessorKey: 'unique_member_id', header: 'Unique Member Id' },
@@ -107,7 +122,7 @@ const useBaptismMemberColumns = (): ColumnDef<BaptismMemberType>[] => {
 };
 
 const useMemberFromFamiliesColumns = (): ColumnDef<ConfirmationFromFamilyMemberType>[] => {
-	const { handleSelectRow, handleEditRow } = useStore();
+	const { handleSelectRow, handleEditRow, handleSelectAccountingNameRow, handleEditAccountingName } = useStore();
 
 	return [
 		...getCommonActionColumns<ConfirmationFromFamilyMemberType>(handleSelectRow, handleEditRow),
@@ -116,9 +131,16 @@ const useMemberFromFamiliesColumns = (): ColumnDef<ConfirmationFromFamilyMemberT
 			header: 'Member Name',
 			accessorKey: 'member_name',
 			cell: ({ row }) => (
-				<Link to="" className="underline text-[#0d73c4]">
+				<TextLink
+					onClick={() => {
+						handleSelectAccountingNameRow(row.original);
+						handleEditAccountingName(row.original);
+					}}
+					to={`/pious_group/family_members/${row.original.sub_station_id}/${row.original.anbiam_id}/${row.original.unique_family_id}/${row.original.unique_member_id}`}
+					className="underline text-[#0d73c4]"
+				>
 					{row.original.member_name}
-				</Link>
+				</TextLink>
 			),
 		},
 		{ accessorKey: 'unique_member_id', header: 'Unique Member Id' },

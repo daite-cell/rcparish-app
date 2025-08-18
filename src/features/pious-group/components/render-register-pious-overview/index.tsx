@@ -1,43 +1,43 @@
-import { GenericFamilesDetailsOverview } from '@/components';
+import { GenericMembersInFamilesOverview } from '@/components';
 import { OverviewTabsLayout } from '@/layouts';
 import { useStore } from '@/store/store';
-import { getAccountingFamilesMembersSectionData, getFamilesMembersSectionData } from '../../columns-sections';
-import type { FamilyDataProps } from '@/types';
-import { extractUserName } from '@/utils/extractUserName';
-import { FamiliesForm } from '../../forms';
 import get_members_link_details from '../../data/get_members_link_details.json';
 
-const RenderAccountingPiousOverView = () => {
+import { getAccountingFamilesMembersSectionData, getFamilesSectionData } from '../../columns-sections';
+import type { MembersInParishFamilyProps } from '@/types';
+import { extractUserName } from '@/utils/extractUserName';
+import { FamiliesForm } from '../../forms';
+
+const RenderRegisterPiousOverView = () => {
 	const { selectAccountingNameRow, editAccountingNameRow, editRow, selectRow } = useStore();
-	console.warn(selectAccountingNameRow);
 	const baseRow = (selectAccountingNameRow as Record<string, unknown>) || (selectRow as Record<string, unknown>) || {};
 	const userName = extractUserName(baseRow);
-	console.warn(selectRow, 'ahdvgewhfewy');
 
 	const componentMap = {
-		families: {
+		family_members: {
 			view: selectAccountingNameRow ? (
-				<GenericFamilesDetailsOverview
+				<GenericMembersInFamilesOverview
 					userName={userName}
 					sectionData={getAccountingFamilesMembersSectionData(get_members_link_details)}
 				/>
 			) : (
-				<GenericFamilesDetailsOverview
+				<GenericMembersInFamilesOverview
 					userName={userName}
-					sectionData={getFamilesMembersSectionData(selectRow as FamilyDataProps)}
+					sectionData={getFamilesSectionData(selectRow as MembersInParishFamilyProps)}
 				/>
 			),
+
 			form: <FamiliesForm />,
 		},
 	};
 
 	return (
 		<OverviewTabsLayout
-			pathName={'families'}
+			pathName={'family_members'}
 			componentMap={componentMap}
 			defaultTabLabel={editAccountingNameRow || editRow ? 'edit' : 'profile'}
 		/>
 	);
 };
 
-export default RenderAccountingPiousOverView;
+export default RenderRegisterPiousOverView;
