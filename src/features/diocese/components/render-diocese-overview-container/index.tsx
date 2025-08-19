@@ -9,6 +9,7 @@ import { people_over_view_pages } from '../../data';
 import GenericDiocesePeopleDetailsContainer from '../generic-diocese-people-details-container';
 import RenderDiocesePeopleDetailsContainer from '../render-people-overview-container';
 import { InstitutionsListForm, PriestsForm, PropertiesForm, VocationalListForm } from '../../forms';
+import get_priest_list from '../../data/get_priest_list.json';
 
 const RenderDioceseOverviewContainer = memo(() => {
 	const type = useRouteName('type');
@@ -24,6 +25,8 @@ const RenderDioceseOverviewContainer = memo(() => {
 					showImage={true}
 					userName={(selectRow as { name?: string })?.name || ''}
 					sectionData={priestsSectionData}
+					enableRecordTable={true}
+					recordsData={get_priest_list}
 				/>
 			),
 			form: <PriestsForm />,
