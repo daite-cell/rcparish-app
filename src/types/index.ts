@@ -1455,3 +1455,79 @@ export interface TotalFamilyMembersDetails {
 	family_head: string;
 	monthly_subscription: string;
 }
+
+export interface PriestServiceDetails {
+	id: number;
+	priest_id: string;
+	service_as: string;
+	service_as_content: string;
+	details: string;
+	status: string;
+	status_content: string;
+	category: string;
+	parish_place_name: string;
+	church_name: string;
+	from_date: string;
+	to_date: string;
+	remark: string;
+	brief_history: string;
+	registered_date: string;
+	updated_date: string;
+}
+
+export interface PriestFamilyDetails {
+	father_name: string;
+	mother_name: string;
+	no_of_siblings: number;
+	birth_order: number;
+	elder_brothers: number;
+	younger_brothers: number;
+	elder_sisters: number;
+	younger_sisters: number;
+	remark: string;
+}
+
+export interface PriestEducationDetails {
+	category: string;
+	details: string;
+	course_name: string;
+	institution_name: string;
+	place: string;
+	course_started: string;
+	course_completed: string;
+	remark: string;
+}
+
+export interface PriestHigherEducation {
+	category: string;
+	course_name: string;
+	college_name: string;
+	place: string;
+	course_started: string;
+	course_completed: string;
+	remark: string;
+}
+
+export type SectionDataType = {
+	col: number;
+	sections: {
+		heading?: string;
+		data: Record<string, string | number | null | undefined>;
+	}[];
+};
+
+type RecordsData = {
+	service_record?: object[];
+	family_record?: object[];
+	secular_studies?: object[];
+	sacred_studies?: object[];
+};
+
+export interface GenericOverviewProps<T = unknown> {
+	userName?: string;
+	sectionData?: SectionDataType[];
+	isFamilyType?: boolean;
+	showImage?: boolean;
+	enableRecordTable?: boolean;
+	recordsData?: RecordsData & T;
+}

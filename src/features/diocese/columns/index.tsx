@@ -16,6 +16,10 @@ import type {
 	BishopPositionTableProps,
 	CuriaMembersProps,
 	CommitteesProps,
+	PriestServiceDetails,
+	PriestFamilyDetails,
+	PriestEducationDetails,
+	PriestHigherEducation,
 } from '@/types';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
 import type { CellContext, ColumnDef } from '@tanstack/react-table';
@@ -218,7 +222,7 @@ const useCuriaMembersColumns = (): ColumnDef<CuriaMembersProps>[] => {
 };
 
 const useCommitteesColumns = (): ColumnDef<CommitteesProps>[] => {
-	const { handleEditRow, handleSelectPriorRow } = useStore();
+	const { handleEditRow, handleSelectPriorRow, handleSelectPriestsRow, handleEditPriestsRow } = useStore();
 
 	return [
 		{
@@ -237,7 +241,17 @@ const useCommitteesColumns = (): ColumnDef<CommitteesProps>[] => {
 		{
 			accessorKey: 'name',
 			header: 'Name',
-			cell: ({ row }) => <TextLink to="">{row.original.name ?? ''}</TextLink>,
+			cell: ({ row }) => (
+				<TextLink
+					onClick={() => {
+						handleSelectPriestsRow(row.original);
+						handleEditPriestsRow(row.original);
+					}}
+					to={`/diocese/priests/${row.original.id}`}
+				>
+					{row.original.name ?? ''}
+				</TextLink>
+			),
 		},
 
 		{
@@ -845,6 +859,150 @@ const useBishopPositionColumns = (): ColumnDef<BishopPositionTableProps>[] => {
 	];
 };
 
+const priestServiceColumns: ColumnDef<PriestServiceDetails>[] = [
+	{
+		header: 'Service as',
+		accessorKey: 'service_as_content',
+	},
+	{
+		header: 'Details',
+		accessorKey: 'details',
+	},
+	{
+		header: 'Status',
+		accessorKey: 'status_content',
+	},
+	{
+		header: 'Category',
+		accessorKey: 'category',
+	},
+	{
+		header: 'Place / Parish Name',
+		accessorKey: 'parish_place_name',
+	},
+	{
+		header: 'Church / Institution Name',
+		accessorKey: 'church_name',
+	},
+	{
+		header: 'From',
+		accessorKey: 'from_date',
+	},
+	{
+		header: 'Till',
+		accessorKey: 'to_date',
+	},
+	{
+		header: 'Remark',
+		accessorKey: 'remark',
+	},
+];
+
+const priestFamilyColumns: ColumnDef<PriestFamilyDetails>[] = [
+	{
+		header: 'Father Name',
+		accessorKey: 'father_name',
+	},
+	{
+		header: 'Mother Name',
+		accessorKey: 'mother_name',
+	},
+	{
+		header: 'No of Siblings',
+		accessorKey: 'no_of_siblings',
+	},
+	{
+		header: 'Birth Order',
+		accessorKey: 'birth_order',
+	},
+	{
+		header: 'No of Elder Brother',
+		accessorKey: 'elder_brothers',
+	},
+	{
+		header: 'No of Younger Brother',
+		accessorKey: 'younger_brothers',
+	},
+	{
+		header: 'No of Elder Sister',
+		accessorKey: 'elder_sisters',
+	},
+	{
+		header: 'No of Younger Sister',
+		accessorKey: 'younger_sisters',
+	},
+	{
+		header: 'Remark',
+		accessorKey: 'remark',
+	},
+];
+
+const priestEducationColumns: ColumnDef<PriestEducationDetails>[] = [
+	{
+		header: 'Category',
+		accessorKey: 'category',
+	},
+	{
+		header: 'Details',
+		accessorKey: 'details',
+	},
+	{
+		header: 'Course Name',
+		accessorKey: 'course_name',
+	},
+	{
+		header: 'School / Institution',
+		accessorKey: 'institution_name',
+	},
+	{
+		header: 'Place',
+		accessorKey: 'place',
+	},
+	{
+		header: 'Course Started',
+		accessorKey: 'course_started',
+	},
+	{
+		header: 'Course Completed',
+		accessorKey: 'course_completed',
+	},
+	{
+		header: 'Remark',
+		accessorKey: 'remark',
+	},
+];
+
+const priestHigherEducationColumns: ColumnDef<PriestHigherEducation>[] = [
+	{
+		header: 'Category',
+		accessorKey: 'category',
+	},
+	{
+		header: 'Course Name',
+		accessorKey: 'course_name',
+	},
+	{
+		header: 'College / Institution',
+		accessorKey: 'college_name',
+	},
+	{
+		header: 'Place',
+		accessorKey: 'place',
+	},
+	{
+		header: 'Course Started',
+		accessorKey: 'course_started',
+	},
+	{
+		header: 'Course Completed',
+		accessorKey: 'course_completed',
+	},
+	{
+		header: 'Remark',
+		accessorKey: 'remark',
+	},
+];
+
 export {
 	usePriestColumns,
 	usePriestCalendarColumns,
@@ -861,4 +1019,8 @@ export {
 	useNoviciateInstitutionColumns,
 	useBishopPositionColumns,
 	useCommitteesColumns,
+	priestServiceColumns,
+	priestFamilyColumns,
+	priestEducationColumns,
+	priestHigherEducationColumns,
 };
