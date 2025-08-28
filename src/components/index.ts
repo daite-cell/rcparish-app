@@ -65,3 +65,6 @@ export { default as ControlledDateInputField } from './controlled-date-input-fie
 export { default as ControlledRadioGroup } from './controlled-radio-group';
 export { default as ControlledFileUpload } from './controlled-file-upload';
 export { default as InputWithCheckbox } from './input-with-checkbox';
+export { default as InputWithLabel } from './input-with-label';
+export { default as DisplayTotalAmount } from './display-total-amount';
+export { default as AccountingFieldsSection } from './accounting-fields-section';
