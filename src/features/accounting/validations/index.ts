@@ -1,4 +1,12 @@
-import { aadhaarValidation, enumFromArray, mobileValidation, requiredDate, requiredString } from '@/validations';
+import {
+	aadhaarValidation,
+	enumFromArray,
+	mobileValidation,
+	optionalNonEmptyString,
+	optionalNumber,
+	requiredDate,
+	requiredString,
+} from '@/validations';
 import { z } from 'zod';
 
 export const donationSchema = z.object({
@@ -107,142 +115,189 @@ export const dayBookSchema = z.object({
 export type DayBookType = z.infer<typeof dayBookSchema>;
 
 export const auditingIncomeSchema = z.object({
-	fromDate: z.string().optional(),
-	toDate: z.string().optional(),
+	fromDate: optionalNonEmptyString(),
+	toDate: optionalNonEmptyString(),
 	monthly: z.object({
-		toOpeningBalance: z.string().optional(),
-		cash: z.string().optional(),
-		bank: z.string().optional(),
-		cheque: z.string().optional(),
-		monthlySubscriptions: z.string().optional(),
-		sundayCollections: z.string().optional(),
-		dumbBoxCollections: z.string().optional(),
-		firstSundayCollections: z.string().optional(),
-		subTotal: z.number().optional(),
+		toOpeningBalance: optionalNonEmptyString(),
+		cash: optionalNonEmptyString(),
+		bank: optionalNonEmptyString(),
+		cheque: optionalNonEmptyString(),
+		monthlySubscriptions: optionalNonEmptyString(),
+		sundayCollections: optionalNonEmptyString(),
+		dumbBoxCollections: optionalNonEmptyString(),
+		firstSundayCollections: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
 	}),
 	special: z.object({
-		goodFridayCollection: z.string().optional(),
-		holyChildHood: z.string().optional(),
-		hungerAndDisease: z.string().optional(),
-		grottoShrines: z.string().optional(),
-		communioIndia: z.string().optional(),
-		subTotal: z.number().optional(),
+		goodFridayCollection: optionalNonEmptyString(),
+		holyChildHood: optionalNonEmptyString(),
+		hungerAndDisease: optionalNonEmptyString(),
+		grottoShrines: optionalNonEmptyString(),
+		communioIndia: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
 	}),
 	diocese: z.object({
-		churchHall: z.string().optional(),
-		building: z.string().optional(),
-		others: z.string().optional(),
-		subTotal: z.number().optional(),
+		churchHall: optionalNonEmptyString(),
+		building: optionalNonEmptyString(),
+		others: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
 	}),
 	rental: z.object({
-		rentFromShop: z.string().optional(),
-		rentFromHall: z.string().optional(),
+		rentFromShop: optionalNonEmptyString(),
+		rentFromHall: optionalNonEmptyString(),
 
-		subTotal: z.number().optional(),
+		subTotal: optionalNumber(),
 	}),
 	other: z.object({
-		agriculturalIncome: z.string().optional(),
-		marriageMass: z.string().optional(),
-		funeralCollections: z.string().optional(),
-		burialCemetery: z.string().optional(),
-		priestContribution: z.string().optional(),
-		fixedDepositInterest: z.string().optional(),
-		bankInterest: z.string().optional(),
-		sacramentCollections: z.string().optional(),
-		loan: z.string().optional(),
-		subTotal: z.number().optional(),
+		agriculturalIncome: optionalNonEmptyString(),
+		marriageMass: optionalNonEmptyString(),
+		funeralCollections: optionalNonEmptyString(),
+		burialCemetery: optionalNonEmptyString(),
+		priestContribution: optionalNonEmptyString(),
+		fixedDepositInterest: optionalNonEmptyString(),
+		bankInterest: optionalNonEmptyString(),
+		sacramentCollections: optionalNonEmptyString(),
+		loan: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
 	}),
 	advance: z.object({
-		fixedDeposit: z.string().optional(),
-		shopHouseAdvances: z.string().optional(),
-		cautionDeposit: z.string().optional(),
-		subTotal: z.number().optional(),
+		fixedDeposit: optionalNonEmptyString(),
+		shopHouseAdvances: optionalNonEmptyString(),
+		cautionDeposit: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
 	}),
-	grandTotal: z.number().optional(),
+	dynamicIncome: z
+		.array(
+			z.object({
+				title: optionalNonEmptyString(),
+				details: optionalNumber(),
+			})
+		)
+		.optional(),
+
+	grandTotal: optionalNumber(),
 });
 
 export type AuditingIncomeType = z.infer<typeof auditingIncomeSchema>;
 
 export const auditingExpenseSchema = z.object({
-	fromDate: z.string().optional(),
-	toDate: z.string().optional(),
+	fromDate: optionalNonEmptyString(),
+	toDate: optionalNonEmptyString(),
 
 	administrativeExpenses: z.object({
-		bankCharges: z.string().optional(),
-		parishPriestAllowance: z.string().optional(),
-		parishHouseRent: z.string().optional(),
-		catechistsAllowance: z.string().optional(),
-		regentDeaconAllowance: z.string().optional(),
-		booksAndPeriodicals: z.string().optional(),
-		electricityExpenses: z.string().optional(),
-		houseAndWaterTax: z.string().optional(),
-		printingAndStationery: z.string().optional(),
-		staffSalary: z.string().optional(),
-		telephoneExpenses: z.string().optional(),
-		travellingAndConveyance: z.string().optional(),
-		priestMedicalExpenses: z.string().optional(),
-		subTotal: z.number().optional(),
+		bankCharges: optionalNonEmptyString(),
+		parishPriestAllowance: optionalNonEmptyString(),
+		parishHouseRent: optionalNonEmptyString(),
+		catechistsAllowance: optionalNonEmptyString(),
+		regentDeaconAllowance: optionalNonEmptyString(),
+		booksAndPeriodicals: optionalNonEmptyString(),
+		electricityExpenses: optionalNonEmptyString(),
+		houseAndWaterTax: optionalNonEmptyString(),
+		printingAndStationery: optionalNonEmptyString(),
+		staffSalary: optionalNonEmptyString(),
+		telephoneExpenses: optionalNonEmptyString(),
+		travellingAndConveyance: optionalNonEmptyString(),
+		priestMedicalExpenses: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
 	}),
 
 	maintenance: z.object({
-		churchRepairs: z.string().optional(),
-		houseRepairs: z.string().optional(),
-		equipmentMaintenance: z.string().optional(),
-		furnitureMaintenance: z.string().optional(),
-		gardenMaintenance: z.string().optional(),
-		subTotal: z.number().optional(),
+		churchRepairs: optionalNonEmptyString(),
+		houseRepairs: optionalNonEmptyString(),
+		equipmentMaintenance: optionalNonEmptyString(),
+		furnitureMaintenance: optionalNonEmptyString(),
+		gardenMaintenance: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
 	}),
 
 	contribution: z.object({
-		diocesanFund: z.string().optional(),
-		educationFund: z.string().optional(),
-		medicalFund: z.string().optional(),
-		missionFund: z.string().optional(),
-		subTotal: z.number().optional(),
+		diocesanFund: optionalNonEmptyString(),
+		educationFund: optionalNonEmptyString(),
+		medicalFund: optionalNonEmptyString(),
+		missionFund: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
 	}),
 
 	hallMaintenance: z.object({
-		hallRepairs: z.string().optional(),
-		stallRepairs: z.string().optional(),
-		subTotal: z.number().optional(),
+		hallRepairs: optionalNonEmptyString(),
+		stallRepairs: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
 	}),
 
 	otherExpenses: z.object({
-		charity: z.string().optional(),
-		hospitality: z.string().optional(),
-		transport: z.string().optional(),
-		legalExpenses: z.string().optional(),
-		insurancePremium: z.string().optional(),
-		miscellaneous: z.string().optional(),
-		festiveExpenses: z.string().optional(),
-		youthMinistry: z.string().optional(),
-		loanRepayment: z.string().optional(),
-		subTotal: z.number().optional(),
+		charity: optionalNonEmptyString(),
+		hospitality: optionalNonEmptyString(),
+		transport: optionalNonEmptyString(),
+		legalExpenses: optionalNonEmptyString(),
+		insurancePremium: optionalNonEmptyString(),
+		miscellaneous: optionalNonEmptyString(),
+		festiveExpenses: optionalNonEmptyString(),
+		youthMinistry: optionalNonEmptyString(),
+		loanRepayment: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
 	}),
 
 	advance: z.object({
-		fixedDeposit: z.string().optional(),
-		shopHouseAdvance: z.string().optional(),
-		cautionDepositCollected: z.string().optional(),
-		subTotal: z.number().optional(),
+		fixedDeposit: optionalNonEmptyString(),
+		shopHouseAdvance: optionalNonEmptyString(),
+		cautionDepositCollected: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
 	}),
 
 	closing: z.object({
-		closingCashBalance: z.string().optional(),
-		closingBankBalance: z.string().optional(),
-		closingFixedDeposit: z.string().optional(),
-		subTotal: z.number().optional(),
+		closingCashBalance: optionalNonEmptyString(),
+		closingBankBalance: optionalNonEmptyString(),
+		closingFixedDeposit: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
 	}),
 	dynamicExpenses: z
 		.array(
 			z.object({
-				title: z.string().optional(),
-				amount: z.number().optional(),
+				title: optionalNonEmptyString(),
+				amount: optionalNumber(),
 			})
 		)
 		.optional(),
 
-	grandTotal: z.number().optional(),
+	grandTotal: optionalNumber(),
 });
 
 export type AuditingExpenseType = z.infer<typeof auditingExpenseSchema>;
+
+export const churchCollectionSchema = z.object({
+	memberName: enumFromArray([''], 'Please select a Member'),
+	month: requiredDate('Date is required'),
+	collection: enumFromArray(['monthly', 'special', 'others'], 'Please select an option'),
+	monthlyValues: z
+		.array(
+			z.object({
+				id: optionalNonEmptyString(),
+				name: optionalNonEmptyString(),
+				occasion: optionalNonEmptyString(),
+				details: optionalNonEmptyString(),
+				sundayCollection: optionalNumber(),
+				massIndention: optionalNumber(),
+				boxCollection: optionalNumber(),
+				total: optionalNumber(),
+			})
+		)
+		.optional(),
+	specialValues: z
+		.array(
+			z.object({
+				title: optionalNonEmptyString(),
+				amount: optionalNumber(),
+			})
+		)
+		.optional(),
+	otherValues: z
+		.array(
+			z.object({
+				title: optionalNonEmptyString(),
+				amount: optionalNumber(),
+			})
+		)
+		.optional(),
+});
+
+export type ChurchCollectionSchema = z.infer<typeof churchCollectionSchema>;

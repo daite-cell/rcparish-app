@@ -745,6 +745,14 @@ const marriageTypeOptions = [
 	{ label: 'Regular', value: 'Regular' },
 	{ label: 'Rectify Marriage', value: 'Rectify Marriage' },
 ];
+const weekOptions = [
+	{ label: '1st Week', value: '0' },
+	{ label: '2nd Week', value: '1' },
+	{ label: '3rd Week', value: '2' },
+	{ label: '4th Week', value: '3' },
+	{ label: '5th Week', value: '4' },
+	{ label: 'Others', value: '5' },
+];
 
 export {
 	categoryOptions,
@@ -803,4 +811,5 @@ export {
 	groomMaritalStatusOptions,
 	groomMarriagePreparationOptions,
 	marriageTypeOptions,
+	weekOptions,
 };

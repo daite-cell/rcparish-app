@@ -28,6 +28,17 @@ export const institutionsFormSchema = z.object({
 	management: requiredString('Please select management'),
 	optionalContactNumber: optionalMobileValidation(),
 	optionalContactMail: optionalEmail(),
+	dynamicWorkingMembers: z
+		.array(
+			z.object({
+				id: optionalString(),
+				name: optionalString(),
+				designation: optionalString(),
+				jobType: optionalString(),
+				mobile: optionalString(),
+			})
+		)
+		.optional(),
 });
 
 export type InstitutionsFormData = z.infer<typeof institutionsFormSchema>;
@@ -42,6 +53,17 @@ export const noviciateFormSchema = z.object({
 	mobile_no: optionalMobileValidation(),
 	mail_id: optionalEmail(),
 	address: optionalString(),
+	dynamicWorkingMembers: z
+		.array(
+			z.object({
+				id: optionalString(),
+				name: optionalString(),
+				designation: optionalString(),
+				jobType: optionalString(),
+				mobile: optionalString(),
+			})
+		)
+		.optional(),
 });
 
 export type NoviciateFormData = z.infer<typeof noviciateFormSchema>;
@@ -64,6 +86,17 @@ export const communitiesFormSchema = z.object({
 
 	mobile_no: optionalMobileValidation(),
 	mail_id: optionalEmail(),
+	dynamicWorkingMembers: z
+		.array(
+			z.object({
+				id: optionalString(),
+				name: optionalString(),
+				designation: optionalString(),
+				jobType: optionalString(),
+				mobile: optionalString(),
+			})
+		)
+		.optional(),
 });
 
 export type CommunitiesFormData = z.infer<typeof communitiesFormSchema>;

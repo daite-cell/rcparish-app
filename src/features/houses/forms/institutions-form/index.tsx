@@ -1,6 +1,12 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { SingleSelectDropdown, FormButton, CustomFormInput, ControlledDateInputField } from '@/components';
+import {
+	SingleSelectDropdown,
+	FormButton,
+	CustomFormInput,
+	ControlledDateInputField,
+	DynamicTableFieldArraysForm,
+} from '@/components';
 import {
 	categoryOptions,
 	classOptions,
@@ -14,6 +20,8 @@ import {
 	schoolTypeOptions,
 } from '../../../../forms-options-data';
 import { institutionsFormSchema, type InstitutionsFormData } from '../../validations';
+import { useMemo } from 'react';
+import { getWorkingMemberColumns } from '../../columns';
 
 const InstitutionsForm = () => {
 	const {
@@ -24,8 +32,12 @@ const InstitutionsForm = () => {
 		resolver: zodResolver(institutionsFormSchema),
 		defaultValues: {
 			category: '',
+			dynamicWorkingMembers: [{ id: '', name: '', designation: '', jobType: '', mobile: '' }],
 		},
 	});
+
+	const columns = useMemo(() => getWorkingMemberColumns(control), [control]);
+
 	const onSubmit = (data: InstitutionsFormData) => {
 		console.warn('Selected Category:', data);
 		alert(JSON.stringify(data, null, 2));
@@ -248,6 +260,12 @@ const InstitutionsForm = () => {
 					/>
 				</div>
 			</div>
+			<DynamicTableFieldArraysForm
+				control={control}
+				fieldName="dynamicWorkingMembers"
+				title="Working Members"
+				columns={columns}
+			/>
 			<div className="flex justify-center w-full">
 				<FormButton type="submit" label="Submit" />
 			</div>
