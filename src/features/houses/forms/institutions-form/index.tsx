@@ -134,11 +134,11 @@ const InstitutionsForm = () => {
 				<div className="flex-1 w-full p-5 space-y-5 border border-gray-300 rounded-md">
 					<SingleSelectDropdown
 						label="Classes From"
-						name="class_from"
+						name="classFrom1"
 						control={control}
 						options={classOptions}
 						placeholder="Select a class"
-						error={errors.class_from?.message}
+						error={errors.classFrom1?.message}
 					/>
 					<SingleSelectDropdown
 						label="Classes Upto"
@@ -161,11 +161,11 @@ const InstitutionsForm = () => {
 
 					<SingleSelectDropdown
 						label="Classes From"
-						name="class_from"
+						name="classFrom2"
 						control={control}
 						options={classOptions}
 						placeholder="Select a class"
-						error={errors.class_from?.message}
+						error={errors.classFrom2?.message}
 					/>
 					<SingleSelectDropdown
 						label="Classes Upto"
@@ -202,11 +202,11 @@ const InstitutionsForm = () => {
 
 					<SingleSelectDropdown
 						label="Classes From"
-						name="class_from"
+						name="classFrom3"
 						control={control}
 						options={classOptions}
 						placeholder="Select a class"
-						error={errors.class_from?.message}
+						error={errors.classFrom3?.message}
 					/>
 					<SingleSelectDropdown
 						label="Classes Upto"
@@ -230,11 +230,11 @@ const InstitutionsForm = () => {
 					<label className="text-[13px] font-bold  my-5">Fully Aided:</label>
 					<SingleSelectDropdown
 						label="Classes From"
-						name="class_from"
+						name="classFrom4"
 						control={control}
 						options={classOptions}
 						placeholder="Select a class"
-						error={errors.class_from?.message}
+						error={errors.classFrom4?.message}
 					/>
 					<SingleSelectDropdown
 						label="Classes Upto"
@@ -246,16 +246,16 @@ const InstitutionsForm = () => {
 					/>
 					<CustomFormInput
 						label="Contact Number (Optional)"
-						name="optionalContactMail"
+						name="optionalContactNumber"
 						control={control}
 						placeholder="Enter the Contact Number"
-						error={errors.optionalContactMail?.message}
+						error={errors.optionalContactNumber?.message}
 					/>
 					<CustomFormInput
 						label="Contact Mail (Optional)"
 						name="optionalContactMail"
 						control={control}
-						placeholder="Enter the Recognition Number"
+						placeholder="Enter the Contact Mail"
 						error={errors.optionalContactMail?.message}
 					/>
 				</div>

@@ -3,9 +3,9 @@ import {
 	useFieldArray,
 	type ArrayPath,
 	type Control,
+	type FieldArray,
 	type FieldArrayWithId,
 	type FieldValues,
-	type FieldArray,
 } from 'react-hook-form';
 import { DynamicDataTable, FormButton, InfoHeadingTitle } from '@/components';
 import type { ColumnDef } from '@tanstack/react-table';

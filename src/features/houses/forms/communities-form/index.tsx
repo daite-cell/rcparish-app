@@ -97,7 +97,7 @@ const CommunitiesForm = () => {
 						label="Abbreviation"
 						options={abbreviationOptions}
 						placeholder="Choose abbreviation"
-						error={errors.congregation?.message}
+						error={errors.abbreviation?.message}
 					/>
 					<ControlledDateInputField
 						control={control}

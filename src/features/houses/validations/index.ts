@@ -19,7 +19,11 @@ export const institutionsFormSchema = z.object({
 	establishedYear: optionalYear('Established Year must be a 4-digit year'),
 	s_recognition_date: optionalDateWithFormat('Recognition Date must be in YYYY-MM-DD format'),
 	s_recognition_no: optionalString(),
-	class_from: requiredString('Please select a class'),
+	classFrom1: requiredString('Please select a class'),
+	classFrom2: requiredString('Please select a class'),
+	classFrom3: requiredString('Please select a class'),
+	classFrom4: requiredString('Please select a class'),
+
 	gender: requiredString('Please select gender'),
 	classUpto: requiredString('Please select a class'),
 	runBy: requiredString('Please specify who runs the institution'),
