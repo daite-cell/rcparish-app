@@ -5,7 +5,12 @@ import CouncilMemberDetailsContainer from '../generic-religious-people-details-c
 import GenericMembersInFamilesOverviewContainer from '../generic-members-in-familes-overview-container';
 import { memo } from 'react';
 import { useStore } from '@/store/store';
-import { FamiliesForm, ParishCouncilMembersForm, ReligiousParishCouncilMembersForm } from '../../forms';
+import {
+	FamiliesForm,
+	FamilyMembersForm,
+	ParishCouncilMembersForm,
+	ReligiousParishCouncilMembersForm,
+} from '../../forms';
 import GenericPeopleDetailOverviewContainer from '../generic-people-detail-overview-container';
 import { getFamilesMembersSectionData } from '../../columns-sections';
 import type { FamilyDataProps } from '@/types';
@@ -33,7 +38,7 @@ const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string
 		},
 		family_members: {
 			view: <GenericMembersInFamilesOverviewContainer />,
-			form: <h1>Family Members Form</h1>,
+			form: <FamilyMembersForm />,
 		},
 		priest_nun_parish: {
 			view: <GenericMembersInFamilesOverviewContainer />,

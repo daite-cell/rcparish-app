@@ -7,3 +7,4 @@ export { default as CouncilDetailsForm } from './council-details-form';
 export { default as FamiliesForm } from './families-form';
 export { default as AssociationsClubForm } from './associations-club-form';
 export { default as AssociationsInchargeForm } from './associations-incharge-form';
+export { default as FamilyMembersForm } from './family-members-form';
