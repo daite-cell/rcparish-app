@@ -39,7 +39,7 @@ const FamilyMembersForm = () => {
 			physicallyChallengedStatus: 'no',
 			marriageStatus: 'yes',
 			familyType: 'couple',
-			permanentAddressStatus: 'same_as_temporary',
+			permanentAddressStatus: 'same_as_family',
 			communityStatus: 'same',
 			vocationStatus: 'yes',
 			dateOfBirth: 'known',

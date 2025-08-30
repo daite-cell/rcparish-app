@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import {
+	aadhaarValidation,
 	emailValidation,
 	longText,
 	mobileValidation,
@@ -112,14 +113,17 @@ const familesMembersTypeSchema = z
 	.object({
 		subStationName: requiredString('Sub-Station is required'),
 		selectedAnbiam: z.string().min(1, 'Anbiam is required'),
+
 		marriageStatus: enumFromArray(['yes', 'no'], 'Please select marriage status'),
 		communityStatus: enumFromArray(['same', 'different'], 'Please select community status'),
 		physicallyChallengedStatus: enumFromArray(['yes', 'no'], 'Please select physically challenged status'),
 		vocationStatus: enumFromArray(['yes', 'no'], 'Please select vocation status'),
+
 		dateOfBirth: enumFromArray(['known', 'unknown'], 'Please select date of birth'),
 		baptismDate: enumFromArray(['known', 'unknown'], 'Please select baptism status'),
 		holyCommunionDate: enumFromArray(['received', 'not_yet', 'unknown'], 'Please select holy communion status'),
 		confirmationDate: enumFromArray(['received', 'not_yet', 'unknown'], 'Please select confirmation status'),
+
 		communication: enumFromArray(['same_as_family', 'individual'], 'Please select communication status'),
 		qualificationCategory: enumFromArray(['completed', 'studying'], 'Please select qualification status'),
 		profQualificationCategory: enumFromArray(
@@ -127,76 +131,94 @@ const familesMembersTypeSchema = z
 			'Please select professional qualification status'
 		),
 		education: enumFromArray(['school', 'college'], 'Please select education status'),
-		marriageDate: requiredString('Marriage date is required'),
+
+		marriageDate: optionalString(),
+		marriageRemarks: optionalString(),
+
 		image: requiredImageSchema,
 		familyName: requiredString('Family Name is required'),
 		familyType: enumFromArray(['couple', 'single'], 'Please select Family Type'),
 		community: requiredString('Community is required'),
 		subCaste: requiredString('Sub-Caste is required'),
 		livingStatus: requiredString('Living Status is required'),
+
 		permanentAddressStatus: enumFromArray(
 			['same_as_family', 'different_from_family', 'same_as_temporary'],
 			'Please choose permanent address status'
 		),
-		mobileNumber: mobileValidation(),
-		email: emailValidation('Enter a valid email address'),
-		remarks: requiredString('Remarks is required'),
+
+		mobileNumber: optionalMobileValidation(),
+		email: optionalEmail(),
+		remarks: optionalString(),
 		activeness: requiredString('Activeness is required'),
+
 		anbiam: requiredString('Anbiam is required'),
 		personName: requiredString('Name is required'),
 		gender: enumFromArray(['male', 'female'], 'Gender is required'),
 		relationshipToFamily: enumFromArray(['father-husband', 'mother-wife'], 'Relationship to Family is required'),
+
 		fatherName: requiredString('Father Name is required'),
 		motherName: requiredString('Mother Name is required'),
 		livingWith: requiredString('Living With is required'),
-		challengedType: requiredString(),
-		challengedPercentage: requiredString(),
+
+		challengedType: optionalString(),
+		challengedPercentage: optionalString(),
+
 		bloodGroup: requiredString('Blood Group is required'),
 		religion: requiredString('Religion is required'),
 		parishStatus: requiredString('Parish Status is required'),
-		marriageRemarks: requiredString('Marriage Remarks is required'),
-		vocationType: requiredString('Vocation Type is required'),
-		congregationName: requiredString('Congregation Name is required'),
-		vocationOrder: requiredString("Vocation's Order is required"),
-		firstJoiningDate: requiredString('First Joining Date is required'),
-		currentStatus: requiredString('Current Status is required'),
-		placeName: requiredString("Place's Name is required"),
-		vocationRemarks: requiredString("Vocation's Remarks is required"),
-		godFatherName: requiredString("God Father's Name is required"),
-		godMotherName: requiredString("God Mother's Name is required"),
-		dob: requiredString('Date of Birth is required'),
-		dobRemarks: requiredString("Date of Birth's Remarks is required"),
-		baptismDateKnown: requiredString("Baptism's Date is required"),
-		baptismRemarks: requiredString("Baptism's Remarks is required"),
-		holyCommunionDateKnown: requiredString("Holy Communion's Date is required"),
-		holyCommunionRemarks: requiredString("Holy Communion's Remarks is required"),
-		confirmationDateKnown: requiredString("Confirmation's Date is required"),
-		confirmationRemarks: requiredString("Confirmation's Remarks is required"),
-		sameMobile: requiredString('Same Mobile is required'),
-		aadhaar: requiredString('Aadhaar is required'),
-		qualification: requiredString('Qualification is required'),
-		profQualification: requiredString('Professional Qualification is required'),
-		educationStatus: requiredString('Education Status is required'),
-		profEducationStatus: requiredString('Professional Education Status is required'),
-		educationRemarks: requiredString("Education's Remarks is required"),
-		completedQualification: requiredString('Completed Qualification is required'),
-		schoolClass: requiredString('School Class is required'),
-		schoolBoard: requiredString('School Board is required'),
-		schoolName: requiredString('School Name is required'),
-		schoolLocation: requiredString('School Location is required'),
-		courseType: requiredString('Course Type is required'),
-		courseName: requiredString('Course Name is required'),
-		courseYear: requiredString('Course Year is required'),
-		collegeName: requiredString('College Name is required'),
-		collegeLocation: requiredString('College Location is required'),
-		schoolManagement: requiredString('School Management is required'),
-		profCourseName: requiredString("Profession's Course Name is required"),
-		profCollegeName: requiredString("Profession's College Name is required"),
-		profCollegeLocation: requiredString("Profession's College Location is required"),
+
+		vocationType: optionalString(),
+		congregationName: optionalString(),
+		vocationOrder: optionalString(),
+		firstJoiningDate: optionalString(),
+		currentStatus: optionalString(),
+		placeName: optionalString(),
+		vocationRemarks: optionalString(),
+
+		godFatherName: optionalString(),
+		godMotherName: optionalString(),
+
+		dob: optionalString(),
+		dobRemarks: optionalString(),
+		baptismDateKnown: optionalString(),
+		baptismRemarks: optionalString(),
+		holyCommunionDateKnown: optionalString(),
+		holyCommunionRemarks: optionalString(),
+		confirmationDateKnown: optionalString(),
+		confirmationRemarks: optionalString(),
+
+		sameMobile: optionalString(),
+		aadhaar: aadhaarValidation(),
+
+		qualification: optionalString(),
+		profQualification: optionalString(),
+		educationStatus: optionalString(),
+		profEducationStatus: optionalString(),
+		educationRemarks: optionalString(),
+
+		completedQualification: optionalString(),
+		schoolClass: optionalString(),
+		schoolBoard: optionalString(),
+		schoolName: optionalString(),
+		schoolLocation: optionalString(),
+		schoolManagement: optionalString(),
+
+		courseType: optionalString(),
+		courseName: optionalString(),
+		courseYear: optionalString(),
+		collegeName: optionalString(),
+		collegeLocation: optionalString(),
+
+		profCourseName: optionalString(),
+		profCollegeName: optionalString(),
+		profCollegeLocation: optionalString(),
+
 		occupationSector: requiredString("Occupation's Sector is required"),
 		occupation: requiredString('Occupation is required'),
 		monthlyIncome: requiredString('Monthly Income is required'),
-		permanentAddress: requiredString('Permanent Address is required'),
+
+		permanentAddress: optionalString(),
 		residentialAddressStatus: requiredString('Residential Address Status is required'),
 		residentialAddress: requiredString('Residential Address is required'),
 	})
@@ -237,6 +259,7 @@ const familesMembersTypeSchema = z
 				'firstJoiningDate',
 				'currentStatus',
 				'placeName',
+				'vocationRemarks',
 			];
 			requiredWhenVocation.forEach((f) => {
 				if (!data[f as keyof typeof data]) {
@@ -308,19 +331,15 @@ const familesMembersTypeSchema = z
 					message: 'Completed Qualification is required',
 				});
 		} else if (data.qualificationCategory === 'studying') {
-			if (!data.education) {
-				ctx.addIssue({ code: ZodIssueCode.custom, path: ['education'], message: 'Education type is required' });
-			} else if (data.education === 'school') {
+			if (data.education === 'school') {
 				['schoolClass', 'schoolBoard', 'schoolName', 'schoolLocation', 'schoolManagement'].forEach((f) => {
-					if (!data[f as keyof typeof data]) {
+					if (!data[f as keyof typeof data])
 						ctx.addIssue({ code: ZodIssueCode.custom, path: [f], message: `${f} is required for school` });
-					}
 				});
 			} else if (data.education === 'college') {
 				['courseType', 'courseName', 'courseYear', 'collegeName', 'collegeLocation'].forEach((f) => {
-					if (!data[f as keyof typeof data]) {
+					if (!data[f as keyof typeof data])
 						ctx.addIssue({ code: ZodIssueCode.custom, path: [f], message: `${f} is required for college` });
-					}
 				});
 			}
 		}
@@ -334,9 +353,16 @@ const familesMembersTypeSchema = z
 				});
 		} else if (data.profQualificationCategory === 'studying') {
 			['profCourseName', 'profCollegeName', 'profCollegeLocation'].forEach((f) => {
-				if (!data[f as keyof typeof data]) {
+				if (!data[f as keyof typeof data])
 					ctx.addIssue({ code: ZodIssueCode.custom, path: [f], message: `${f} is required for professional studying` });
-				}
+			});
+		}
+
+		if (data.permanentAddressStatus === 'different_from_family' && !data.permanentAddress) {
+			ctx.addIssue({
+				code: ZodIssueCode.custom,
+				path: ['permanentAddress'],
+				message: 'Permanent Address is required when it differs from family address',
 			});
 		}
 	});

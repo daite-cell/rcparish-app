@@ -758,7 +758,7 @@ const livingWithOptions = [
 	{ value: 'Son', label: 'Son' },
 	{ value: 'Daughter', label: 'Daughter' },
 	{ value: 'Relative', label: 'Relative' },
-	{ value: 'Seperate', label: 'Seperate' },
+	{ value: 'Separate', label: 'Separate' },
 ];
 
 const bloodGroupOptions = [
@@ -774,17 +774,17 @@ const bloodGroupOptions = [
 	{ value: '8', label: 'Other' },
 ];
 const qualificationOptions = [
-	{ value: 'entry_didnt_make', label: "Entry didn't make" },
+	{ value: 'entry_didnt_make', label: 'No entry made' },
 	{ value: 'illiterate', label: 'Illiterate' },
 	{ value: 'primary', label: 'Primary' },
 	{ value: 'middle', label: 'Middle' },
 	{ value: 'secondary', label: 'Secondary' },
-	{ value: 'high', label: 'High' },
-	{ value: 'hr_sec', label: 'Hr Sec' },
-	{ value: 'under_graduate', label: 'Under Graduate' },
-	{ value: 'post_graduate', label: 'Post Graduate' },
-	{ value: 'mphil', label: 'Mphil' },
-	{ value: 'phd', label: 'Phd' },
+	{ value: 'high', label: 'High School' },
+	{ value: 'hr_sec', label: 'Higher Secondary' },
+	{ value: 'under_graduate', label: 'Undergraduate' },
+	{ value: 'post_graduate', label: 'Postgraduate' },
+	{ value: 'mphil', label: 'MPhil' },
+	{ value: 'phd', label: 'PhD' },
 ];
 
 const studyingClassOptions = [
@@ -809,7 +809,7 @@ const studyingBoardOptions = [
 	{ value: 'State Board (Matric)', label: 'State Board (Matric)' },
 	{ value: 'CBSE', label: 'CBSE' },
 	{ value: 'ICSE', label: 'ICSE' },
-	{ value: 'Angelo Indian', label: 'Angelo Indian' },
+	{ value: 'Anglo-Indian', label: 'Anglo-Indian' },
 	{ value: 'Others', label: 'Others' },
 ];
 const courseYearOptions = [

@@ -36,10 +36,6 @@ const RenderFormsContainer = () => {
 			component: <FamiliesForm />,
 		},
 		{
-			pageName: 'family_members',
-			component: <h1>Family Members Form will be added</h1>,
-		},
-		{
 			pageName: 'anbiams',
 			component: <AnbiamsForm />,
 		},
