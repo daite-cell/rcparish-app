@@ -16,6 +16,7 @@ import type {
 	CollegeStudentDataProps,
 	AnbiamDetailsProps,
 	TotalFamilyMembersDetails,
+	ParishSonsAndDaughtersOtherMemberProps,
 } from '@/types';
 import type { CellContext, ColumnDef } from '@tanstack/react-table';
 import { Trash, IdCard, SquarePen } from 'lucide-react';
@@ -187,7 +188,7 @@ const useMembersInParishFamilyColumns = (): ColumnDef<MembersInParishFamilyProps
 	];
 };
 
-const useParishSonsAndDaughtersColumns = (): ColumnDef<ParishSonsAndDaughtersProps>[] => {
+const useParishSonsAndDaughtersFamilyMembersColumns = (): ColumnDef<ParishSonsAndDaughtersProps>[] => {
 	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
@@ -196,7 +197,9 @@ const useParishSonsAndDaughtersColumns = (): ColumnDef<ParishSonsAndDaughtersPro
 		{
 			accessorKey: 'member_name',
 			header: 'Member Name',
+			cell: ({ row }) => <TextLink to="">{row.original.member_name ?? ''}</TextLink>,
 		},
+
 		{
 			accessorKey: 'unique_member_id',
 			header: 'Unique Member Id',
@@ -281,6 +284,34 @@ const useParishSonsAndDaughtersColumns = (): ColumnDef<ParishSonsAndDaughtersPro
 			accessorKey: 'temporary_address',
 			header: 'Temporary Address',
 		},
+	];
+};
+const useParishSonsAndDaughtersOtherMembersColumns = (): ColumnDef<ParishSonsAndDaughtersOtherMemberProps>[] => {
+	const { handleSelectRow, handleEditRow } = useStore();
+
+	return [
+		...getCommonActionColumns<ParishSonsAndDaughtersOtherMemberProps>(handleSelectRow, handleEditRow),
+
+		{
+			accessorKey: 'member_name',
+			header: 'Member Name',
+			cell: ({ row }) => <TextLink to="">{row.original.member_name ?? ''}</TextLink>,
+		},
+
+		{ accessorKey: 'father_name', header: 'Father Name' },
+		{ accessorKey: 'mother_name', header: 'Mother Name' },
+		{ accessorKey: 'gender', header: 'Gender' },
+		{ accessorKey: 'category', header: 'Category' },
+		{ accessorKey: 'name_of_respective', header: 'Name of Respective' },
+		{ accessorKey: 'present_status', header: 'Present Status' },
+		{ accessorKey: 'studying_or_position', header: 'Studying/Position' },
+		{ accessorKey: 'place', header: 'Place' },
+		{ accessorKey: 'mobile', header: 'Mobile' },
+		{ accessorKey: 'email', header: 'Email' },
+		{ accessorKey: 'permanent_address', header: 'Permanent Address' },
+		{ accessorKey: 'temporary_address', header: 'Temporary Address' },
+		{ accessorKey: 'member_id', header: 'Member Id' },
+		{ accessorKey: 'if_member_in_parish', header: 'If Member in Parish' },
 	];
 };
 
@@ -868,7 +899,8 @@ export {
 	useParishCouncilColumns,
 	useFamilyOverviewColumns,
 	useMembersInParishFamilyColumns,
-	useParishSonsAndDaughtersColumns,
+	useParishSonsAndDaughtersFamilyMembersColumns,
+	useParishSonsAndDaughtersOtherMembersColumns,
 	useReligiousPeopleColumns,
 	useAnbiamsColumns,
 	useAnbiamsInchargeColumns,

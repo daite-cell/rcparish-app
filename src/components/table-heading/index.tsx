@@ -6,7 +6,7 @@ interface TableHeadingProps {
 }
 
 const TableHeading = memo<TableHeadingProps>(({ text, className = '' }) => {
-	return <h2 className={`text-xs font-semibold my-2 uppercase  ml-8 ${className}`}>{text}</h2>;
+	return <h2 className={`text-xs font-semibold my-2 uppercase   ${className}`}>{text}</h2>;
 });
 
 export default TableHeading;
