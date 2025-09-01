@@ -754,7 +754,7 @@ const familyMembersColumns: ColumnDef<FamilyMemberDetailsProps>[] = [
 	{
 		accessorKey: 'image',
 		header: 'Member Image',
-		cell: () => <AdminDefaultImage height={40} width={40} className="rounded-full" />,
+		cell: ({ row }) => <AdminDefaultImage src={row.original.image} height={50} width={50} className="rounded-full" />,
 	},
 	{
 		accessorKey: 'relation',

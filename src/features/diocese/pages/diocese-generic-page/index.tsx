@@ -9,6 +9,9 @@ import { useStore } from '@/store/store';
 import { useRouteName } from '@/utils/getRouteName';
 import { getPriestsSectionData } from '../../columns-section';
 import { BishopForm } from '../../forms';
+import { diocesePriorColumns } from '../../columns';
+import get_college_consulters_total_dignitaries from '../../data/get_college_consulters_total_dignitaries.json';
+import get_committees_dignitaries from '../../data/get_committees_dignitaries.json';
 
 const priestData = {
 	id: 'VDP0001',
@@ -45,7 +48,14 @@ const DioceseGenericPage = () => {
 		setActiveIndex(viewIndex !== -1 ? viewIndex : 0);
 	}, [tabsData]);
 
-	if (selectPriorRow) return <PriorDignitariesContainer />;
+	if (selectPriorRow)
+		return (
+			<PriorDignitariesContainer
+				customColumns={diocesePriorColumns}
+				enableHeading={true}
+				data={get_committees_dignitaries.committees_dignitaries}
+			/>
+		);
 	if (selectRow || editRow) return <RenderDioceseOverviewContainer />;
 
 	const priestsSectionData = getPriestsSectionData(priestData as PriestDetailsProps);
@@ -69,7 +79,25 @@ const DioceseGenericPage = () => {
 			case 'edit':
 				return type === 'bishop' && <BishopForm />;
 			case 'retired / emeritus bishops':
-				return <PriorDignitariesContainer />;
+				return (
+					<PriorDignitariesContainer
+						enableCloseButton={false}
+						useTabsLayout={false}
+						customColumns={diocesePriorColumns}
+						enableHeading={true}
+						data={get_college_consulters_total_dignitaries.college_consulters_dignitaries}
+					/>
+				);
+			case 'prior dignitaries':
+				return (
+					<PriorDignitariesContainer
+						enableCloseButton={false}
+						useTabsLayout={false}
+						customColumns={diocesePriorColumns}
+						enableHeading={true}
+						data={get_college_consulters_total_dignitaries.college_consulters_dignitaries}
+					/>
+				);
 			default:
 				return null;
 		}
@@ -77,9 +105,7 @@ const DioceseGenericPage = () => {
 
 	return (
 		<TabsLayout
-			hasPageHeading={
-				activeIndex === 0 || tabsData?.[activeIndex]?.label.toLowerCase() === 'retired / emeritus bishops'
-			}
+			hasPageHeading={tabsData?.[activeIndex]?.label.toLowerCase() === 'view'}
 			tabs={tabsData || [{ label: 'view' }, { label: 'add' }]}
 			onTabChange={setActiveIndex}
 			activeTabId={activeIndex}
