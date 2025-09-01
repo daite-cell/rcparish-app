@@ -12,23 +12,24 @@ import type { FamilyDataProps } from '@/types';
 import { extractUserName } from '@/utils/extractUserName';
 
 const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string | number | undefined }) => {
-	const { selectRow, editRow } = useStore();
+	const { selectRow, selectFamilyCardRow, editRow } = useStore();
 
 	const tabs = [{ label: 'profile' }, { label: 'edit' }, { label: 'back' }];
 	const componentMap = {
 		families: {
-			view: (() => {
-				const family = selectRow as FamilyDataProps | undefined;
-				if (!family) {
-					return <h1 className="text-gray-500">Select a family to view details</h1>;
-				}
-				return (
-					<GenericFamilesDetailsOverview
-						userName={extractUserName(family as unknown as Record<string, unknown>)}
-						sectionData={getFamilesMembersSectionData(family)}
-					/>
-				);
-			})(),
+			view: (
+				<GenericFamilesDetailsOverview
+					userName={
+						selectFamilyCardRow
+							? extractUserName(selectFamilyCardRow as Record<string, unknown>)
+							: extractUserName(selectRow as Record<string, unknown>)
+					}
+					sectionData={getFamilesMembersSectionData(
+						(selectFamilyCardRow as FamilyDataProps) || (selectFamilyCardRow as FamilyDataProps)
+					)}
+				/>
+			),
+
 			form: <FamiliesForm />,
 		},
 		family_members: {
