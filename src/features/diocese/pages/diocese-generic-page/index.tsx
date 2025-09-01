@@ -16,7 +16,7 @@ import get_committees_dignitaries from '../../data/get_committees_dignitaries.js
 const priestData = {
 	id: 'VDP0001',
 	type: 'Diocese',
-	image: '/images/admin.png',
+	imageUrl: '/images/admin.png',
 	name: 'Most Rev Fr. Ambrose Picharmuthu',
 	position: "Bishop ( Bishop's House )",
 	ordinationDate: '1993-03-25',
@@ -105,7 +105,7 @@ const DioceseGenericPage = () => {
 
 	return (
 		<TabsLayout
-			hasPageHeading={tabsData?.[activeIndex]?.label.toLowerCase() === 'view'}
+			hasPageHeading={tabsData?.[activeIndex]?.label?.toLowerCase() === 'view'}
 			tabs={tabsData || [{ label: 'view' }, { label: 'add' }]}
 			onTabChange={setActiveIndex}
 			activeTabId={activeIndex}
