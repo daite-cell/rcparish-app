@@ -14,22 +14,21 @@ import { extractUserName } from '@/utils/extractUserName';
 const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string | number | undefined }) => {
 	const { selectRow, selectFamilyCardRow, editRow } = useStore();
 
+	const familyRow: FamilyDataProps | undefined =
+		(selectFamilyCardRow as FamilyDataProps | undefined) ?? (selectRow as FamilyDataProps | undefined);
+
 	const tabs = [{ label: 'profile' }, { label: 'edit' }, { label: 'back' }];
+	const rowData = selectFamilyCardRow || selectRow;
 	const componentMap = {
 		families: {
-			view: (
+			view: familyRow ? (
 				<GenericFamilesDetailsOverview
-					userName={
-						selectFamilyCardRow
-							? extractUserName(selectFamilyCardRow as Record<string, unknown>)
-							: extractUserName(selectRow as Record<string, unknown>)
-					}
-					sectionData={getFamilesMembersSectionData(
-						(selectFamilyCardRow as FamilyDataProps) || (selectFamilyCardRow as FamilyDataProps)
-					)}
+					userName={extractUserName(rowData as Record<string, unknown>)}
+					sectionData={getFamilesMembersSectionData(familyRow)}
 				/>
+			) : (
+				<div className="p-4 text-gray-500">Select a family to view details</div>
 			),
-
 			form: <FamiliesForm />,
 		},
 		family_members: {
