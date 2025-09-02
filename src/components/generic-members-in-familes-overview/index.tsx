@@ -14,6 +14,16 @@ import TableHeading from '../table-heading';
 import type { GenericOverviewProps } from '@/types';
 import { useMemo } from 'react';
 
+interface RecordSection {
+	section_heading: string;
+	columns: ColumnDef<object>[];
+	data: object[];
+}
+
+interface ExtendedGenericOverviewProps<T> extends GenericOverviewProps<T> {
+	visibleSections?: string[];
+}
+
 const GenericMembersInFamilesOverview = <T,>({
 	userName = 'Unknown User',
 	sectionData = [],
@@ -21,8 +31,9 @@ const GenericMembersInFamilesOverview = <T,>({
 	showImage = true,
 	enableRecordTable = false,
 	recordsData,
-}: GenericOverviewProps<T>) => {
-	const recordsSections = useMemo(() => {
+	visibleSections = [],
+}: ExtendedGenericOverviewProps<T>) => {
+	const recordsSections = useMemo<RecordSection[]>(() => {
 		if (!recordsData) return [];
 
 		return [
@@ -46,8 +57,8 @@ const GenericMembersInFamilesOverview = <T,>({
 				columns: priestHigherEducationColumns as ColumnDef<object>[],
 				data: recordsData.sacred_studies ?? [],
 			},
-		];
-	}, [recordsData]);
+		].filter((section) => (visibleSections.length === 0 ? true : visibleSections.includes(section.section_heading)));
+	}, [recordsData, visibleSections]);
 
 	return (
 		<MemberOverviewLayout>
@@ -68,7 +79,7 @@ const GenericMembersInFamilesOverview = <T,>({
 
 			{enableRecordTable &&
 				recordsSections.map((section, index) => (
-					<div key={index} className="my-4">
+					<div key={index} className="my-4 px-3">
 						<TableHeading className="!font-bold" text={section.section_heading} />
 						<DynamicDataTable
 							enablePagination={false}
