@@ -12,6 +12,7 @@ import { BishopForm } from '../../forms';
 import { diocesePriorColumns } from '../../columns';
 import get_college_consulters_total_dignitaries from '../../data/get_college_consulters_total_dignitaries.json';
 import get_committees_dignitaries from '../../data/get_committees_dignitaries.json';
+import get_priest_list from '../../data/get_priest_list.json';
 
 const priestData = {
 	id: 'VDP0001',
@@ -65,12 +66,17 @@ const DioceseGenericPage = () => {
 			case 'view':
 			case 'print':
 				return type === 'bishop' ? (
-					<GenericMembersInFamilesOverview
-						isFamilyType={false}
-						showImage={true}
-						userName={(priestData as { name?: string })?.name || ''}
-						sectionData={priestsSectionData}
-					/>
+					<>
+						<GenericMembersInFamilesOverview
+							isFamilyType={false}
+							showImage={true}
+							userName={(priestData as { name?: string })?.name || ''}
+							sectionData={priestsSectionData}
+							enableRecordTable={true}
+							recordsData={get_priest_list}
+							visibleSections={['SERVICE RECORD', 'SACRED STUDIES']}
+						/>
+					</>
 				) : (
 					<RenderDioceseTablesContainer />
 				);
