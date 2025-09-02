@@ -7,6 +7,7 @@ import {
 	SingleSelectDropdown,
 	ControlledRadioGroup,
 	ControlledDateInputField,
+	DynamicTableFieldArraysForm,
 } from '@/components';
 import {
 	abbreviationOptions,
@@ -15,6 +16,8 @@ import {
 	landOwnershipOptions,
 	subStationOptions,
 } from '../../../../forms-options-data';
+import { useMemo } from 'react';
+import { getWorkingMemberColumns } from '../../columns';
 
 const CommunitiesForm = () => {
 	const {
@@ -25,8 +28,10 @@ const CommunitiesForm = () => {
 		resolver: zodResolver(communitiesFormSchema),
 		defaultValues: {
 			belongsTo: 'congregation',
+			dynamicWorkingMembers: [{ memberId: '', name: '', designation: '', jobType: '', mobile: '' }],
 		},
 	});
+	const columns = useMemo(() => getWorkingMemberColumns(control), [control]);
 
 	const onSubmit = (data: CommunitiesFormData) => {
 		alert(JSON.stringify(data, null, 2));
@@ -92,7 +97,7 @@ const CommunitiesForm = () => {
 						label="Abbreviation"
 						options={abbreviationOptions}
 						placeholder="Choose abbreviation"
-						error={errors.congregation?.message}
+						error={errors.abbreviation?.message}
 					/>
 					<ControlledDateInputField
 						control={control}
@@ -144,6 +149,12 @@ const CommunitiesForm = () => {
 					/>
 				</div>
 			</div>
+			<DynamicTableFieldArraysForm
+				control={control}
+				fieldName="dynamicWorkingMembers"
+				title="Working Members"
+				columns={columns}
+			/>
 			<div className="flex justify-center w-full">
 				<FormButton type="submit" label="Submit" />
 			</div>

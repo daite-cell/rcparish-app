@@ -13,11 +13,14 @@ import type {
 	RentPropertyPaymentProps,
 	DayBookEntry,
 	AuditingProps,
+	MonthlyCollectionProps,
 } from '@/types';
 import { SquarePen, Trash2 } from 'lucide-react';
 import type { CellContext } from '@tanstack/react-table';
-import { TableDetailsViewButton, TextLink } from '@/components';
+import { CustomFormInput, SingleSelectDropdown, TableDetailsViewButton, TextLink } from '@/components';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
+import type { Control, FieldValues, Path } from 'react-hook-form';
+import { weekOptions } from '@/forms-options-data';
 
 const useActiveDonationColumns = (): ColumnDef<ActiveDonationTableProps>[] => {
 	const { handleSelectRow } = useStore();
@@ -650,6 +653,54 @@ const useAuditingColumns = (): ColumnDef<AuditingProps>[] => {
 		},
 	];
 };
+
+const getMonthlyCollectionsColumns = <TForm extends FieldValues>(
+	control: Control<TForm>
+): ColumnDef<MonthlyCollectionProps>[] => [
+	{
+		accessorKey: 'name',
+		header: 'Name',
+		cell: ({ row }) => (
+			<SingleSelectDropdown
+				control={control}
+				name={`monthlyValues.${row.index}.name` as Path<TForm>}
+				options={weekOptions}
+			/>
+		),
+	},
+	{
+		header: 'Details',
+		cell: () => null,
+	},
+
+	{
+		accessorKey: 'sundayCollection',
+		header: 'Sunday Collection',
+		cell: ({ row }) => (
+			<CustomFormInput control={control} name={`monthlyValues.${row.index}.sundayCollection` as Path<TForm>} />
+		),
+	},
+	{
+		accessorKey: 'massIndention',
+		header: 'Mass Indention',
+		cell: ({ row }) => (
+			<CustomFormInput control={control} name={`monthlyValues.${row.index}.massIndention` as Path<TForm>} />
+		),
+	},
+	{
+		accessorKey: 'boxCollection',
+		header: 'Box Collection',
+		cell: ({ row }) => (
+			<CustomFormInput control={control} name={`monthlyValues.${row.index}.boxCollection` as Path<TForm>} />
+		),
+	},
+	{
+		accessorKey: 'total',
+		header: 'Total',
+		cell: ({ row }) => <CustomFormInput control={control} name={`monthlyValues.${row.index}.total` as Path<TForm>} />,
+	},
+];
+
 export {
 	useActiveDonationColumns,
 	useInActiveDonationColumns,
@@ -663,4 +714,5 @@ export {
 	useRentPaymentColumns,
 	useDayBookColumns,
 	useAuditingColumns,
+	getMonthlyCollectionsColumns,
 };

@@ -23,4 +23,10 @@ const admittedMemberListData = [
 	},
 ];
 
-export { admittedFamilyListData, admittedMemberListData };
+const collections_data = [
+	{ label: 'Monthly', value: 'monthly' },
+	{ label: 'Special', value: 'special' },
+	{ label: 'Others', value: 'others' },
+];
+
+export { admittedFamilyListData, admittedMemberListData, collections_data };

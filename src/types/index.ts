@@ -1531,3 +1531,21 @@ export interface GenericOverviewProps<T = unknown> {
 	enableRecordTable?: boolean;
 	recordsData?: RecordsData & T;
 }
+export type WorkingMember = {
+	id: string;
+	name?: string;
+	designation?: string;
+	jobType?: string;
+	mobile?: string;
+};
+
+export interface MonthlyCollectionProps {
+	id: string;
+	name?: string;
+	occasion?: string;
+	details?: string;
+	sundayCollection?: number;
+	massIndention?: number;
+	boxCollection?: number;
+	total?: number;
+}

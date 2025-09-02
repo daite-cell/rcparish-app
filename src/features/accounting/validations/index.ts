@@ -1,4 +1,12 @@
-import { aadhaarValidation, enumFromArray, mobileValidation, requiredDate, requiredString } from '@/validations';
+import {
+	aadhaarValidation,
+	enumFromArray,
+	mobileValidation,
+	optionalNonEmptyString,
+	optionalNumber,
+	requiredDate,
+	requiredString,
+} from '@/validations';
 import { z } from 'zod';
 
 export const donationSchema = z.object({
@@ -105,3 +113,191 @@ export const dayBookSchema = z.object({
 });
 
 export type DayBookType = z.infer<typeof dayBookSchema>;
+
+export const auditingIncomeSchema = z.object({
+	fromDate: optionalNonEmptyString(),
+	toDate: optionalNonEmptyString(),
+	monthly: z.object({
+		toOpeningBalance: optionalNonEmptyString(),
+		cash: optionalNonEmptyString(),
+		bank: optionalNonEmptyString(),
+		cheque: optionalNonEmptyString(),
+		monthlySubscriptions: optionalNonEmptyString(),
+		sundayCollections: optionalNonEmptyString(),
+		dumbBoxCollections: optionalNonEmptyString(),
+		firstSundayCollections: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
+	}),
+	special: z.object({
+		goodFridayCollection: optionalNonEmptyString(),
+		holyChildHood: optionalNonEmptyString(),
+		hungerAndDisease: optionalNonEmptyString(),
+		grottoShrines: optionalNonEmptyString(),
+		communioIndia: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
+	}),
+	diocese: z.object({
+		churchHall: optionalNonEmptyString(),
+		building: optionalNonEmptyString(),
+		others: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
+	}),
+	rental: z.object({
+		rentFromShop: optionalNonEmptyString(),
+		rentFromHall: optionalNonEmptyString(),
+
+		subTotal: optionalNumber(),
+	}),
+	other: z.object({
+		agriculturalIncome: optionalNonEmptyString(),
+		marriageMass: optionalNonEmptyString(),
+		funeralCollections: optionalNonEmptyString(),
+		burialCemetery: optionalNonEmptyString(),
+		priestContribution: optionalNonEmptyString(),
+		fixedDepositInterest: optionalNonEmptyString(),
+		bankInterest: optionalNonEmptyString(),
+		sacramentCollections: optionalNonEmptyString(),
+		loan: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
+	}),
+	advance: z.object({
+		fixedDeposit: optionalNonEmptyString(),
+		shopHouseAdvances: optionalNonEmptyString(),
+		cautionDeposit: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
+	}),
+	dynamicIncome: z
+		.array(
+			z.object({
+				title: optionalNonEmptyString(),
+				details: optionalNumber(),
+			})
+		)
+		.optional(),
+
+	grandTotal: z.number().min(0, { message: 'Value must be non-negative' }).optional(),
+});
+
+export type AuditingIncomeType = z.infer<typeof auditingIncomeSchema>;
+
+export const auditingExpenseSchema = z.object({
+	fromDate: optionalNonEmptyString(),
+	toDate: optionalNonEmptyString(),
+
+	administrativeExpenses: z.object({
+		bankCharges: optionalNonEmptyString(),
+		parishPriestAllowance: optionalNonEmptyString(),
+		parishHouseRent: optionalNonEmptyString(),
+		catechistsAllowance: optionalNonEmptyString(),
+		regentDeaconAllowance: optionalNonEmptyString(),
+		booksAndPeriodicals: optionalNonEmptyString(),
+		electricityExpenses: optionalNonEmptyString(),
+		houseAndWaterTax: optionalNonEmptyString(),
+		printingAndStationery: optionalNonEmptyString(),
+		staffSalary: optionalNonEmptyString(),
+		telephoneExpenses: optionalNonEmptyString(),
+		travellingAndConveyance: optionalNonEmptyString(),
+		priestMedicalExpenses: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
+	}),
+
+	maintenance: z.object({
+		churchRepairs: optionalNonEmptyString(),
+		houseRepairs: optionalNonEmptyString(),
+		equipmentMaintenance: optionalNonEmptyString(),
+		furnitureMaintenance: optionalNonEmptyString(),
+		gardenMaintenance: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
+	}),
+
+	contribution: z.object({
+		diocesanFund: optionalNonEmptyString(),
+		educationFund: optionalNonEmptyString(),
+		medicalFund: optionalNonEmptyString(),
+		missionFund: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
+	}),
+
+	hallMaintenance: z.object({
+		hallRepairs: optionalNonEmptyString(),
+		stallRepairs: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
+	}),
+
+	otherExpenses: z.object({
+		charity: optionalNonEmptyString(),
+		hospitality: optionalNonEmptyString(),
+		transport: optionalNonEmptyString(),
+		legalExpenses: optionalNonEmptyString(),
+		insurancePremium: optionalNonEmptyString(),
+		miscellaneous: optionalNonEmptyString(),
+		festiveExpenses: optionalNonEmptyString(),
+		youthMinistry: optionalNonEmptyString(),
+		loanRepayment: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
+	}),
+
+	advance: z.object({
+		fixedDeposit: optionalNonEmptyString(),
+		shopHouseAdvance: optionalNonEmptyString(),
+		cautionDepositCollected: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
+	}),
+
+	closing: z.object({
+		closingCashBalance: optionalNonEmptyString(),
+		closingBankBalance: optionalNonEmptyString(),
+		closingFixedDeposit: optionalNonEmptyString(),
+		subTotal: optionalNumber(),
+	}),
+	dynamicExpenses: z
+		.array(
+			z.object({
+				title: optionalNonEmptyString(),
+				amount: optionalNumber(),
+			})
+		)
+		.optional(),
+
+	grandTotal: z.number().min(0, { message: 'Value must be non-negative' }).optional(),
+});
+
+export type AuditingExpenseType = z.infer<typeof auditingExpenseSchema>;
+
+export const churchCollectionSchema = z.object({
+	memberName: enumFromArray([''], 'Please select a Member'),
+	month: requiredDate('Date is required'),
+	collection: enumFromArray(['monthly', 'special', 'others'], 'Please select an option'),
+	monthlyValues: z
+		.array(
+			z.object({
+				id: optionalNonEmptyString(),
+				name: optionalNonEmptyString(),
+				occasion: optionalNonEmptyString(),
+				details: optionalNonEmptyString(),
+				sundayCollection: optionalNumber(),
+				massIndention: optionalNumber(),
+				boxCollection: optionalNumber(),
+				total: optionalNumber(),
+			})
+		)
+		.optional(),
+	specialValues: z
+		.array(
+			z.object({
+				title: optionalNonEmptyString(),
+				amount: optionalNumber(),
+			})
+		)
+		.optional(),
+	otherValues: z
+		.array(
+			z.object({
+				title: optionalNonEmptyString(),
+				amount: optionalNumber(),
+			})
+		)
+		.optional(),
+});
+
+export type ChurchCollectionSchema = z.infer<typeof churchCollectionSchema>;

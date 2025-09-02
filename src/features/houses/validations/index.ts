@@ -19,7 +19,11 @@ export const institutionsFormSchema = z.object({
 	establishedYear: optionalYear('Established Year must be a 4-digit year'),
 	s_recognition_date: optionalDateWithFormat('Recognition Date must be in YYYY-MM-DD format'),
 	s_recognition_no: optionalString(),
-	class_from: requiredString('Please select a class'),
+	classFrom1: requiredString('Please select a class'),
+	classFrom2: requiredString('Please select a class'),
+	classFrom3: requiredString('Please select a class'),
+	classFrom4: requiredString('Please select a class'),
+
 	gender: requiredString('Please select gender'),
 	classUpto: requiredString('Please select a class'),
 	runBy: requiredString('Please specify who runs the institution'),
@@ -28,6 +32,17 @@ export const institutionsFormSchema = z.object({
 	management: requiredString('Please select management'),
 	optionalContactNumber: optionalMobileValidation(),
 	optionalContactMail: optionalEmail(),
+	dynamicWorkingMembers: z
+		.array(
+			z.object({
+				memberId: optionalString(),
+				name: optionalString(),
+				designation: optionalString(),
+				jobType: optionalString(),
+				mobile: optionalMobileValidation(),
+			})
+		)
+		.optional(),
 });
 
 export type InstitutionsFormData = z.infer<typeof institutionsFormSchema>;
@@ -42,6 +57,17 @@ export const noviciateFormSchema = z.object({
 	mobile_no: optionalMobileValidation(),
 	mail_id: optionalEmail(),
 	address: optionalString(),
+	dynamicWorkingMembers: z
+		.array(
+			z.object({
+				memberId: optionalString(),
+				name: optionalString(),
+				designation: optionalString(),
+				jobType: optionalString(),
+				mobile: optionalMobileValidation(),
+			})
+		)
+		.optional(),
 });
 
 export type NoviciateFormData = z.infer<typeof noviciateFormSchema>;
@@ -64,6 +90,17 @@ export const communitiesFormSchema = z.object({
 
 	mobile_no: optionalMobileValidation(),
 	mail_id: optionalEmail(),
+	dynamicWorkingMembers: z
+		.array(
+			z.object({
+				memberId: optionalString(),
+				name: optionalString(),
+				designation: optionalString(),
+				jobType: optionalString(),
+				mobile: optionalMobileValidation(),
+			})
+		)
+		.optional(),
 });
 
 export type CommunitiesFormData = z.infer<typeof communitiesFormSchema>;

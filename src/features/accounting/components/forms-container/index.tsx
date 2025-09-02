@@ -1,5 +1,12 @@
 import { useRouteName } from '@/utils/getRouteName';
-import { DayBookForm, DonationsForm, WorkersForm } from '../../forms';
+import {
+	AuditingExpenseForm,
+	AuditingIncomeForm,
+	ChurchCollectionForm,
+	DayBookForm,
+	DonationsForm,
+	WorkersForm,
+} from '../../forms';
 
 const RenderFormsContainer = () => {
 	const type = useRouteName('type');
@@ -17,6 +24,18 @@ const RenderFormsContainer = () => {
 		{
 			pageName: 'day_book',
 			component: <DayBookForm />,
+		},
+		{
+			pageName: 'auditing_income',
+			component: <AuditingIncomeForm />,
+		},
+		{
+			pageName: 'auditing_expense',
+			component: <AuditingExpenseForm />,
+		},
+		{
+			pageName: 'church_collections',
+			component: <ChurchCollectionForm />,
 		},
 	];
 	return renderForms.find((form) => form.pageName === type)?.component || <h1>forms will be added</h1>;

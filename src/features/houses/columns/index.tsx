@@ -1,7 +1,14 @@
 import type { ColumnDef } from '@tanstack/react-table';
 import { useStore } from '@/store/store';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
-import type { CongregationInstitutionType, ConventDetailsTypeProps, VocationalInstitutionType } from '@/types';
+import type {
+	CongregationInstitutionType,
+	ConventDetailsTypeProps,
+	VocationalInstitutionType,
+	WorkingMember,
+} from '@/types';
+import type { Control, FieldValues, Path } from 'react-hook-form';
+import { CustomFormInput, SingleSelectDropdown } from '@/components';
 
 const useInstitutionColumns = (): ColumnDef<CongregationInstitutionType>[] => {
 	const { handleSelectRow, handleEditRow } = useStore();
@@ -78,5 +85,59 @@ const useCommunitiesDetailsColumns = (): ColumnDef<ConventDetailsTypeProps>[] =>
 		{ accessorKey: 'mail_id', header: 'Email' },
 	];
 };
-
-export { useInstitutionColumns, useVocationalInstitutionColumns, useCommunitiesDetailsColumns };
+const getWorkingMemberColumns = <TForm extends FieldValues>(control: Control<TForm>): ColumnDef<WorkingMember>[] => [
+	{ header: 'ID' },
+	{
+		accessorKey: 'name',
+		header: 'Name',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`dynamicWorkingMembers.${row.index}.name` as Path<TForm>}
+				placeholder="Enter name"
+			/>
+		),
+	},
+	{
+		accessorKey: 'designation',
+		header: 'Designation',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`dynamicWorkingMembers.${row.index}.designation` as Path<TForm>}
+				placeholder="Enter designation"
+			/>
+		),
+	},
+	{
+		accessorKey: 'jobType',
+		header: 'Job Type',
+		cell: ({ row }) => (
+			<SingleSelectDropdown
+				control={control}
+				name={`dynamicWorkingMembers.${row.index}.jobType` as Path<TForm>}
+				options={[
+					{ label: 'Temporary', value: 'temporary' },
+					{ label: 'Permanent', value: 'permanent' },
+				]}
+			/>
+		),
+	},
+	{
+		accessorKey: 'mobile',
+		header: 'Mobile',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`dynamicWorkingMembers.${row.index}.mobile` as Path<TForm>}
+				placeholder="Enter mobile number"
+			/>
+		),
+	},
+];
+export {
+	useInstitutionColumns,
+	useVocationalInstitutionColumns,
+	useCommunitiesDetailsColumns,
+	getWorkingMemberColumns,
+};
