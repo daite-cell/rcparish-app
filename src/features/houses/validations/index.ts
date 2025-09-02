@@ -93,7 +93,6 @@ export const communitiesFormSchema = z.object({
 	dynamicWorkingMembers: z
 		.array(
 			z.object({
-				memberId: optionalString(),
 				name: optionalString(),
 				designation: optionalString(),
 				jobType: optionalString(),

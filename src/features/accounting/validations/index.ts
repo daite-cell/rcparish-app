@@ -271,7 +271,6 @@ export const churchCollectionSchema = z.object({
 	monthlyValues: z
 		.array(
 			z.object({
-				id: optionalNonEmptyString(),
 				name: optionalNonEmptyString(),
 				occasion: optionalNonEmptyString(),
 				details: optionalNonEmptyString(),
@@ -285,7 +284,9 @@ export const churchCollectionSchema = z.object({
 	specialValues: z
 		.array(
 			z.object({
-				title: optionalNonEmptyString(),
+				occasion: optionalNonEmptyString(),
+				details: optionalNonEmptyString(),
+				collection: optionalNonEmptyString(),
 				amount: optionalNumber(),
 			})
 		)
@@ -293,7 +294,8 @@ export const churchCollectionSchema = z.object({
 	otherValues: z
 		.array(
 			z.object({
-				title: optionalNonEmptyString(),
+				occasion: optionalNumber(),
+				collection: optionalNumber(),
 				amount: optionalNumber(),
 			})
 		)

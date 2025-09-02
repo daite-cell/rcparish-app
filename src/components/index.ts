@@ -69,3 +69,4 @@ export { default as InputWithLabel } from './input-with-label';
 export { default as DisplayTotalAmount } from './display-total-amount';
 export { default as AccountingFieldsSection } from './accounting-fields-section';
 export { default as DynamicTableFieldArraysForm } from './dynamic-table-fields-array-form';
+export { default as DisplayDynamicFieldsTotal } from './display-dynamic-felids-total';
