@@ -1,8 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { noviciateFormSchema, type NoviciateFormData } from '../../validations';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CustomFormInput, FormButton, SingleSelectDropdown } from '@/components';
+import { CustomFormInput, DynamicTableFieldArraysForm, FormButton, SingleSelectDropdown } from '@/components';
 import { belongsToOptions, landOwnershipOptions, seminaryOptions } from '../../../../forms-options-data';
+import { getWorkingMemberColumns } from '../../columns';
+import { useMemo } from 'react';
 
 const VocationalInstitutionsForm = () => {
 	const {
@@ -11,7 +13,11 @@ const VocationalInstitutionsForm = () => {
 		formState: { errors },
 	} = useForm<NoviciateFormData>({
 		resolver: zodResolver(noviciateFormSchema),
+		defaultValues: {
+			dynamicWorkingMembers: [{ memberId: '', name: '', designation: '', jobType: '', mobile: '' }],
+		},
 	});
+	const columns = useMemo(() => getWorkingMemberColumns(control), [control]);
 
 	const onSubmit = (data: NoviciateFormData) => {
 		alert(JSON.stringify(data, null, 2));
@@ -97,6 +103,12 @@ const VocationalInstitutionsForm = () => {
 					/>
 				</div>
 			</div>
+			<DynamicTableFieldArraysForm
+				control={control}
+				fieldName="dynamicWorkingMembers"
+				title="Working Members"
+				columns={columns}
+			/>
 			<div className="flex justify-center w-full">
 				<FormButton type="submit" label="Submit" />
 			</div>
