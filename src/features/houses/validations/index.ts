@@ -35,11 +35,11 @@ export const institutionsFormSchema = z.object({
 	dynamicWorkingMembers: z
 		.array(
 			z.object({
-				id: optionalString(),
+				memberId: optionalString(),
 				name: optionalString(),
 				designation: optionalString(),
 				jobType: optionalString(),
-				mobile: optionalString(),
+				mobile: optionalMobileValidation(),
 			})
 		)
 		.optional(),
@@ -60,11 +60,11 @@ export const noviciateFormSchema = z.object({
 	dynamicWorkingMembers: z
 		.array(
 			z.object({
-				id: optionalString(),
+				memberId: optionalString(),
 				name: optionalString(),
 				designation: optionalString(),
 				jobType: optionalString(),
-				mobile: optionalString(),
+				mobile: optionalMobileValidation(),
 			})
 		)
 		.optional(),
@@ -93,11 +93,11 @@ export const communitiesFormSchema = z.object({
 	dynamicWorkingMembers: z
 		.array(
 			z.object({
-				id: optionalString(),
+				memberId: optionalString(),
 				name: optionalString(),
 				designation: optionalString(),
 				jobType: optionalString(),
-				mobile: optionalString(),
+				mobile: optionalMobileValidation(),
 			})
 		)
 		.optional(),

@@ -175,7 +175,7 @@ export const auditingIncomeSchema = z.object({
 		)
 		.optional(),
 
-	grandTotal: optionalNumber(),
+	grandTotal: z.number().min(0, { message: 'Value must be non-negative' }).optional(),
 });
 
 export type AuditingIncomeType = z.infer<typeof auditingIncomeSchema>;
@@ -259,7 +259,7 @@ export const auditingExpenseSchema = z.object({
 		)
 		.optional(),
 
-	grandTotal: optionalNumber(),
+	grandTotal: z.number().min(0, { message: 'Value must be non-negative' }).optional(),
 });
 
 export type AuditingExpenseType = z.infer<typeof auditingExpenseSchema>;

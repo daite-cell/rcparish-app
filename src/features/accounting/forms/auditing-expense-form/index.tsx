@@ -95,17 +95,37 @@ export default function AuditingExpenseForm() {
 			closing: calcSubTotal(closing),
 		};
 
-		setValue('administrativeExpenses.subTotal', totals.administrativeExpenses);
-		setValue('maintenance.subTotal', totals.maintenance);
-		setValue('contribution.subTotal', totals.contribution);
-		setValue('hallMaintenance.subTotal', totals.hallMaintenance);
-		setValue('otherExpenses.subTotal', totals.otherExpenses);
-		setValue('advance.subTotal', totals.advance);
-		setValue('closing.subTotal', totals.closing);
+		const opts = { shouldDirty: false, shouldTouch: false, shouldValidate: false } as const;
+
+		if (control._formValues.administrativeExpenses?.subTotal !== totals.administrativeExpenses) {
+			setValue('administrativeExpenses.subTotal', totals.administrativeExpenses, opts);
+		}
+		if (control._formValues.maintenance?.subTotal !== totals.maintenance) {
+			setValue('maintenance.subTotal', totals.maintenance, opts);
+		}
+		if (control._formValues.contribution?.subTotal !== totals.contribution) {
+			setValue('contribution.subTotal', totals.contribution, opts);
+		}
+		if (control._formValues.hallMaintenance?.subTotal !== totals.hallMaintenance) {
+			setValue('hallMaintenance.subTotal', totals.hallMaintenance, opts);
+		}
+		if (control._formValues.otherExpenses?.subTotal !== totals.otherExpenses) {
+			setValue('otherExpenses.subTotal', totals.otherExpenses, opts);
+		}
+		if (control._formValues.advance?.subTotal !== totals.advance) {
+			setValue('advance.subTotal', totals.advance, opts);
+		}
+		if (control._formValues.closing?.subTotal !== totals.closing) {
+			setValue('closing.subTotal', totals.closing, opts);
+		}
 
 		const dynamicTotal = dynamicExpenses?.reduce((sum, item) => sum + Number(item.amount || 0), 0) || 0;
 
-		setValue('grandTotal', Object.values(totals).reduce((acc, val) => acc + val, 0) + dynamicTotal);
+		const newGrand = Object.values(totals).reduce((acc, val) => acc + val, 0) + dynamicTotal;
+
+		if (control._formValues.grandTotal !== newGrand) {
+			setValue('grandTotal', newGrand, opts);
+		}
 	}, [
 		administrativeExpenses,
 		maintenance,
@@ -116,6 +136,7 @@ export default function AuditingExpenseForm() {
 		closing,
 		dynamicExpenses,
 		setValue,
+		control,
 	]);
 
 	const onSubmit = (data: AuditingExpenseType) => {

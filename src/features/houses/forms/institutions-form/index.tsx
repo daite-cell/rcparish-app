@@ -32,7 +32,7 @@ const InstitutionsForm = () => {
 		resolver: zodResolver(institutionsFormSchema),
 		defaultValues: {
 			category: '',
-			dynamicWorkingMembers: [{ id: '', name: '', designation: '', jobType: '', mobile: '' }],
+			dynamicWorkingMembers: [{ memberId: '', name: '', designation: '', jobType: '', mobile: '' }],
 		},
 	});
 
@@ -109,7 +109,7 @@ const InstitutionsForm = () => {
 						control={control}
 						name="establishedYear"
 						label="Established Year (Optional)"
-						placeholder="Select Year & Month"
+						placeholder="YYYY"
 						error={errors.establishedYear?.message}
 					/>
 

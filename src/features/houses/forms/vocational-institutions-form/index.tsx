@@ -14,7 +14,7 @@ const VocationalInstitutionsForm = () => {
 	} = useForm<NoviciateFormData>({
 		resolver: zodResolver(noviciateFormSchema),
 		defaultValues: {
-			dynamicWorkingMembers: [{ id: '', name: '', designation: '', jobType: '', mobile: '' }],
+			dynamicWorkingMembers: [{ memberId: '', name: '', designation: '', jobType: '', mobile: '' }],
 		},
 	});
 	const columns = useMemo(() => getWorkingMemberColumns(control), [control]);

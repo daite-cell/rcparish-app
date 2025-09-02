@@ -28,7 +28,7 @@ const CommunitiesForm = () => {
 		resolver: zodResolver(communitiesFormSchema),
 		defaultValues: {
 			belongsTo: 'congregation',
-			dynamicWorkingMembers: [{ id: '', name: '', designation: '', jobType: '', mobile: '' }],
+			dynamicWorkingMembers: [{ memberId: '', name: '', designation: '', jobType: '', mobile: '' }],
 		},
 	});
 	const columns = useMemo(() => getWorkingMemberColumns(control), [control]);

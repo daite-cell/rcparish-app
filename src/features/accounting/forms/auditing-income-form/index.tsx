@@ -1,6 +1,6 @@
 import { useFieldArray, useForm, useWatch, type Control, type FieldArrayWithId } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
 	ControlledDateInputField,
 	DisplayTotalAmount,
@@ -82,7 +82,7 @@ export default function AuditingIncomeForm() {
 			}, 0);
 	};
 
-	React.useEffect(() => {
+	useEffect(() => {
 		const totals = {
 			monthlyTotal: calcSubTotal(monthly),
 			specialTotal: calcSubTotal(special),
@@ -92,17 +92,24 @@ export default function AuditingIncomeForm() {
 			advanceTotal: calcSubTotal(advance),
 		};
 
-		setValue('monthly.subTotal', totals.monthlyTotal);
-		setValue('special.subTotal', totals.specialTotal);
-		setValue('diocese.subTotal', totals.dioceseTotal);
-		setValue('rental.subTotal', totals.rentalTotal);
-		setValue('other.subTotal', totals.otherTotal);
-		setValue('advance.subTotal', totals.advanceTotal);
+		const opts = { shouldDirty: false, shouldTouch: false, shouldValidate: false } as const;
+		if (control._formValues.monthly?.subTotal !== totals.monthlyTotal)
+			setValue('monthly.subTotal', totals.monthlyTotal, opts);
+		if (control._formValues.special?.subTotal !== totals.specialTotal)
+			setValue('special.subTotal', totals.specialTotal, opts);
+		if (control._formValues.diocese?.subTotal !== totals.dioceseTotal)
+			setValue('diocese.subTotal', totals.dioceseTotal, opts);
+		if (control._formValues.rental?.subTotal !== totals.rentalTotal)
+			setValue('rental.subTotal', totals.rentalTotal, opts);
+		if (control._formValues.other?.subTotal !== totals.otherTotal) setValue('other.subTotal', totals.otherTotal, opts);
+		if (control._formValues.advance?.subTotal !== totals.advanceTotal)
+			setValue('advance.subTotal', totals.advanceTotal, opts);
 
 		const dynamicTotal = dynamicIncome?.reduce((sum, item) => sum + Number(item.details || 0), 0) || 0;
 
-		setValue('grandTotal', Object.values(totals).reduce((acc, val) => acc + val, 0) + dynamicTotal);
-	}, [monthly, special, diocese, rental, other, advance, dynamicIncome, setValue]);
+		const newGrand = Object.values(totals).reduce((acc, val) => acc + val, 0) + dynamicTotal;
+		if (control._formValues.grandTotal !== newGrand) setValue('grandTotal', newGrand, opts);
+	}, [monthly, special, diocese, rental, other, advance, dynamicIncome, setValue, control]);
 
 	const onSubmit = (data: AuditingIncomeType) => {
 		alert(JSON.stringify(data, null, 2));
