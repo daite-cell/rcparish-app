@@ -34,7 +34,7 @@ const PriorDignitariesContainer = <TData extends object>({
 			{enableHeading && <HeadingWithUnderline className="text-start !text-sm" text={headingText} />}
 			<ButtonActions onPrint={handlePrint} onClose={handleClosePriorRow} enableClose={enableCloseButton} />
 			<div className="print-area" ref={printRef}>
-				<h1 className="hidden font-bold print:block">Pious Group - Parish Council Members</h1>
+				<h1 className="hidden font-bold print:block">{headingText}</h1>
 				<DynamicDataTable
 					data={data}
 					tableId="prior-dignitaries"

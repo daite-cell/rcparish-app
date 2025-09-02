@@ -85,7 +85,7 @@ const DioceseGenericPage = () => {
 						useTabsLayout={false}
 						customColumns={diocesePriorColumns}
 						enableHeading={true}
-						data={get_college_consulters_total_dignitaries.college_consulters_dignitaries}
+						data={get_college_consulters_total_dignitaries.college_consultors_dignitaries}
 					/>
 				);
 			case 'prior dignitaries':
@@ -95,7 +95,7 @@ const DioceseGenericPage = () => {
 						useTabsLayout={false}
 						customColumns={diocesePriorColumns}
 						enableHeading={true}
-						data={get_college_consulters_total_dignitaries.college_consulters_dignitaries}
+						data={get_college_consulters_total_dignitaries.college_consultors_dignitaries}
 					/>
 				);
 			default:

@@ -306,7 +306,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: '',
 		mobileNumber: '9486424008',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		role: 'Ex-Officio Member - Procurator',
@@ -317,7 +317,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: 'Viruduvilanginan, Kadagaman Post, Thandarai Via, T V Malai Dt - 606804',
 		mobileNumber: '9442671433',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		role: 'Ex-Officio Member - Chancellor',
@@ -328,7 +328,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: '',
 		mobileNumber: '9894891490',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		role: 'Ex-Officio Member - RCM Manager',
@@ -340,7 +340,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: '9A I S STREEET, UDAYENDIRAM, TIRUPATTUR DT 635754',
 		mobileNumber: '9751523417',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		role: 'Ex-Officio Member - VSSS Director',
@@ -351,7 +351,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: '',
 		mobileNumber: '9443636055',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		role: 'Ex-Officio Member - Judicial Vicar',
@@ -362,7 +362,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: 'PAVITHRAM VILL AND POST, TIRUVANNAMALAI DT 606806',
 		mobileNumber: '8220994878',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		role: 'Ex-Officio Member - VF (Thiruvannamalai Vicariate)',
@@ -373,7 +373,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: '',
 		mobileNumber: '9944515799',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		role: 'Ex-Officio Member - VF (Vellore Cathedral Vicariate)',
@@ -384,7 +384,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: "98, AT ANTONY'S STREET, VETTAVALAM, TIRUVANNAMALAI 606754",
 		mobileNumber: '9443129557',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		role: 'Ex-Officio Member - VF (Chetpet Vicariate)',
@@ -395,7 +395,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: 'ADHICHANUR, VEERAPONDI, TIRUKOVILUR, VILLUPURAM 605758',
 		mobileNumber: '6383508082',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 ];
 
@@ -484,7 +484,7 @@ const parish_members_dummy_data = [
 		address: 'Rev Fr. Parish Priest, Our Lady of Perpetual Succour Church, Alappakkam, Ranipet Dt - 632 508',
 		mobile2: '8220994878',
 		email2: 'jagadishaj30@gmail.com',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '2',
@@ -500,7 +500,7 @@ const parish_members_dummy_data = [
 		address: 'Rev Fr. Parish Priest, Sacred Heart Church, Arakkonam, Ranipet Dt - 631 001',
 		mobile2: '9445334335',
 		email2: 'smari_anandaraj@yahoo.co.uk',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '3',
@@ -516,7 +516,7 @@ const parish_members_dummy_data = [
 		address: 'Rev Fr. Parish Priest, St. Antony of Padua Church, Arni Road, Arcot, Vellore Dt - 632 503',
 		mobile2: '',
 		email2: '',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '4',
@@ -533,7 +533,7 @@ const parish_members_dummy_data = [
 			'Rev Fr. Parish Priest, St. Theresa Church, Haffieldspet, 91, Mosur High Road, Arakkonam, Ranipet Dt - 631 001',
 		mobile2: '9442786057',
 		email2: 'Jayaseelansantiago01@gmail.com',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '5',
@@ -549,7 +549,7 @@ const parish_members_dummy_data = [
 		address: 'Rev Fr. Parish Priest, Our Lady of Good Health Church, Near E.I.D. Parry, Ranipet Dt - 632 401',
 		mobile2: '8778913203',
 		email2: 'velloreleo@gmail.com',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '6',
@@ -565,7 +565,7 @@ const parish_members_dummy_data = [
 		address: 'Rev Fr. Parish Priest, St. Thomas Church, Sipcot, Ranipet Dt - 632 403',
 		mobile2: '8825830422',
 		email2: 'daya22465@gmail.com',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '7',
@@ -581,7 +581,7 @@ const parish_members_dummy_data = [
 		address: 'Rev Fr. Parish Priest, St. Francis Xavier Church, Soganur, Guruvarajapettai, Vellore Dt - 631 101',
 		mobile2: '9344429993',
 		email2: 'bernardvela0@gmail.com',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '8',
@@ -598,7 +598,7 @@ const parish_members_dummy_data = [
 			'Rev Fr. Parish Priest, Mary Help of Christians Church, Uriurkuppam, Uriur, Via. Thakkolam, Vellore Dt - 631 151',
 		mobile2: '7094241137',
 		email2: 'piouslawrence77@gmail.com',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '9',
@@ -614,7 +614,7 @@ const parish_members_dummy_data = [
 		address: 'Rev Fr. Parish Priest, Lady of Presentation Church, Karthikeyan Road, Arni, Tiruvannamalai Dt - 632 301',
 		mobile2: '9444333027',
 		email2: 'roylazar@hotmail.com',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '10',
@@ -630,7 +630,7 @@ const parish_members_dummy_data = [
 		address: 'Rev Fr. Parish Priest, Our Lady of Lourdes Shrine, Chetpet, Tiruvannamalai Dt - 606 801',
 		mobile2: '6383508082',
 		email2: 'victorinbam@gmail.com',
-		imageUrlUrl: '/imageUrls/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 ];
 const land_properties_dummy_data = [
