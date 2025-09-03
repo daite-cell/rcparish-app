@@ -27,20 +27,20 @@ const ChurchCollectionForm = () => {
 			collection: 'monthly',
 			monthlyValues: [
 				{
-					name: '',
-					occasion: '',
-					details: '',
+					name: undefined,
+					occasion: undefined,
+					details: undefined,
 					sundayCollection: undefined,
 					massIndention: undefined,
 					boxCollection: undefined,
-					total: 0,
+					total: undefined,
 				},
 			],
 			specialValues: [
 				{
-					occasion: '',
-					details: '',
-					collection: '',
+					occasion: undefined,
+					details: undefined,
+					collection: undefined,
 					amount: undefined,
 				},
 			],

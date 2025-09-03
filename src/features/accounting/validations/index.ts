@@ -287,16 +287,16 @@ export const churchCollectionSchema = z.object({
 				occasion: optionalNonEmptyString(),
 				details: optionalNonEmptyString(),
 				collection: optionalNonEmptyString(),
-				amount: optionalNumber(),
+				amount: optionalNonEmptyString(),
 			})
 		)
 		.optional(),
 	otherValues: z
 		.array(
 			z.object({
-				occasion: optionalNumber(),
-				collection: optionalNumber(),
-				amount: optionalNumber(),
+				occasion: optionalNonEmptyString(),
+				collection: optionalNonEmptyString(),
+				amount: optionalNonEmptyString(),
 			})
 		)
 		.optional(),

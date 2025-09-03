@@ -729,7 +729,7 @@ const getSpecialCollectionsColumns = <TForm extends FieldValues>(
 		cell: ({ row }) => (
 			<SingleSelectDropdown
 				control={control}
-				name={`specialValues.${row.index}.name` as Path<TForm>}
+				name={`specialValues.${row.index}.occasion` as Path<TForm>}
 				options={occasionOptions}
 			/>
 		),
@@ -745,7 +745,7 @@ const getSpecialCollectionsColumns = <TForm extends FieldValues>(
 		cell: ({ row }) => (
 			<SingleSelectDropdown
 				control={control}
-				name={`specialValues.${row.index}.name` as Path<TForm>}
+				name={`specialValues.${row.index}.collection` as Path<TForm>}
 				options={collectionTypeOptions}
 			/>
 		),

@@ -1573,7 +1573,7 @@ export interface SpecialCollectionProps {
 	amount?: number;
 }
 export interface OtherCollectionProps {
-	occasion?: string;
-	collection?: string;
+	occasion?: number;
+	collection?: number;
 	amount?: number;
 }
