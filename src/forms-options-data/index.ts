@@ -777,6 +777,107 @@ const collectionTypeOptions = [
 	{ label: 'Diocesan Collection', value: 'diocesan' },
 ];
 
+const members = [
+	{ value: 'SU001M01', label: 'Anthonydass as Savarimuthu' },
+	{ value: 'SU001M02', label: 'Amala' },
+	{ value: 'SU001M03', label: 'Anthoniammal Alias Viji' },
+	{ value: 'SU001M04', label: 'Velanganny Alias Doss' },
+];
+
+const livingWithOptions = [
+	{ value: 'Family', label: 'Family' },
+	{ value: 'Son', label: 'Son' },
+	{ value: 'Daughter', label: 'Daughter' },
+	{ value: 'Relative', label: 'Relative' },
+	{ value: 'Separate', label: 'Separate' },
+];
+
+const bloodGroupOptions = [
+	{ value: 'unknown', label: 'Unknown' },
+	{ value: '0', label: 'A+' },
+	{ value: '1', label: 'A-' },
+	{ value: '2', label: 'B+' },
+	{ value: '3', label: 'B-' },
+	{ value: '4', label: 'AB+' },
+	{ value: '5', label: 'AB-' },
+	{ value: '6', label: 'O+' },
+	{ value: '7', label: 'O-' },
+	{ value: '8', label: 'Other' },
+];
+const qualificationOptions = [
+	{ value: 'entry_didnt_make', label: 'No entry made' },
+	{ value: 'illiterate', label: 'Illiterate' },
+	{ value: 'primary', label: 'Primary' },
+	{ value: 'middle', label: 'Middle' },
+	{ value: 'secondary', label: 'Secondary' },
+	{ value: 'high', label: 'High School' },
+	{ value: 'hr_sec', label: 'Higher Secondary' },
+	{ value: 'under_graduate', label: 'Undergraduate' },
+	{ value: 'post_graduate', label: 'Postgraduate' },
+	{ value: 'mphil', label: 'MPhil' },
+	{ value: 'phd', label: 'PhD' },
+];
+
+const studyingClassOptions = [
+	{ value: 'LKG', label: 'LKG' },
+	{ value: 'UKG', label: 'UKG' },
+	{ value: '1st', label: '1st' },
+	{ value: '2nd', label: '2nd' },
+	{ value: '3rd', label: '3rd' },
+	{ value: '4th', label: '4th' },
+	{ value: '5th', label: '5th' },
+	{ value: '6th', label: '6th' },
+	{ value: '7th', label: '7th' },
+	{ value: '8th', label: '8th' },
+	{ value: '9th', label: '9th' },
+	{ value: '10th', label: '10th' },
+	{ value: '11th', label: '11th' },
+	{ value: '12th', label: '12th' },
+];
+
+const studyingBoardOptions = [
+	{ value: 'State Board (Tamil)', label: 'State Board (Tamil)' },
+	{ value: 'State Board (Matric)', label: 'State Board (Matric)' },
+	{ value: 'CBSE', label: 'CBSE' },
+	{ value: 'ICSE', label: 'ICSE' },
+	{ value: 'Anglo-Indian', label: 'Anglo-Indian' },
+	{ value: 'Others', label: 'Others' },
+];
+const courseYearOptions = [
+	{ value: '1st Year', label: '1st Year' },
+	{ value: '2nd Year', label: '2nd Year' },
+	{ value: '3rd Year', label: '3rd Year' },
+	{ value: '4th Year', label: '4th Year' },
+	{ value: '5th Year', label: '5th Year' },
+];
+
+const courseTypeOptions = [
+	{ value: 'UG', label: 'UG' },
+	{ value: 'PG', label: 'PG' },
+	{ value: 'PhD', label: 'PhD' },
+	{ value: 'Diploma', label: 'Diploma' },
+	{ value: 'ITI', label: 'ITI' },
+	{ value: 'Certificate Course', label: 'Certificate Course' },
+	{ value: 'MBBS', label: 'MBBS' },
+	{ value: 'Others', label: 'Others' },
+];
+const schoolManagementOptions = [
+	{ value: 'Government Aided', label: 'Government Aided' },
+	{ value: 'Government', label: 'Government' },
+	{ value: 'Christian Management', label: 'Christian Management' },
+	{ value: 'Private Management', label: 'Private Management' },
+];
+const occupationSectorOptions = [
+	{ value: 'None', label: 'None' },
+	{ value: 'Government', label: 'Government' },
+	{ value: 'Government Aided', label: 'Government Aided' },
+	{ value: 'Private', label: 'Private' },
+	{ value: 'Own Business', label: 'Own Business' },
+	{ value: 'Daily wagers', label: 'Daily wagers' },
+	{ value: 'Spiritual Service', label: 'Spiritual Service' },
+	{ value: 'Social Service', label: 'Social Service' },
+	{ value: 'Others', label: 'Others' },
+];
 export {
 	categoryOptions,
 	schoolTypeOptions,
@@ -834,6 +935,16 @@ export {
 	groomMaritalStatusOptions,
 	groomMarriagePreparationOptions,
 	marriageTypeOptions,
+	members,
+	livingWithOptions,
+	bloodGroupOptions,
+	qualificationOptions,
+	studyingClassOptions,
+	studyingBoardOptions,
+	courseYearOptions,
+	courseTypeOptions,
+	schoolManagementOptions,
+	occupationSectorOptions,
 	weekOptions,
 	occasionOptions,
 	collectionTypeOptions,

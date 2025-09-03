@@ -1,0 +1,22 @@
+{
+	"college_consultors_dignitaries": [
+		{
+			"priest_id": "VDP0068",
+			"priest_name": "Fr. Jagadish A J",
+			"service_as": "8",
+			"service_as_content": "College of Consulters Member",
+			"from_date": "2015-01-01",
+			"to_date": "2015-12-31",
+			"mobile_no_1": "8220994878"
+		},
+		{
+			"priest_id": "VDP0063",
+			"priest_name": "Fr. Arockiasamy A",
+			"service_as": "8",
+			"service_as_content": "College of Consulters Member",
+			"from_date": "2012-06-01",
+			"to_date": "2019-05-31",
+			"mobile_no_1": "9962812866"
+		}
+	]
+}

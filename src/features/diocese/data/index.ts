@@ -84,7 +84,7 @@ const priests_dummy_data = [
 	{
 		id: 'VDP0001',
 		type: 'Diocese',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		name: 'Most Rev Fr. Ambrose Picharmuthu',
 		position: "Bishop ( Bishop's House )",
 		ordinationDate: '1993-03-25',
@@ -102,7 +102,7 @@ const priests_dummy_data = [
 	{
 		id: 'VDP0002',
 		type: 'Diocese',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		name: 'Fr. Xavier P J',
 		position: 'Retired Priest ( Sathuvarchary )',
 		ordinationDate: '1965-04-09',
@@ -120,7 +120,7 @@ const priests_dummy_data = [
 	{
 		id: 'VDP0003',
 		type: 'Diocese',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		name: 'Fr. Mathias G',
 		position: 'Retired Priest ( Soganur Parish )',
 		ordinationDate: '1966-12-16',
@@ -138,7 +138,7 @@ const priests_dummy_data = [
 	{
 		id: 'VDP0004',
 		type: 'Diocese',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		name: 'Fr. Savarimuthu A C',
 		position: 'Retired Priest ( Tiruvannamalai Parish )',
 		ordinationDate: '1976-05-20',
@@ -156,7 +156,7 @@ const priests_dummy_data = [
 	{
 		id: 'VDP0005',
 		type: 'Diocese',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		name: 'Fr. Johnson M',
 		position: 'Retired Priest ( - )',
 		ordinationDate: '1977-04-25',
@@ -174,7 +174,7 @@ const priests_dummy_data = [
 	{
 		id: 'VDP0006',
 		type: 'Diocese',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		name: 'Fr. John Bosco S',
 		position: 'Spiritual Ministry ( Dhusi Mamandur )',
 		ordinationDate: '1977-05-05',
@@ -192,7 +192,7 @@ const priests_dummy_data = [
 	{
 		id: 'VDP0007',
 		type: 'Diocese',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		name: 'Fr. Amalraj D',
 		position: 'Retired Priest ( Pallikonda Parish )',
 		ordinationDate: '1978-02-02',
@@ -210,7 +210,7 @@ const priests_dummy_data = [
 	{
 		id: 'VDP0008',
 		type: 'Diocese',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		name: 'Fr. Octavius A',
 		position: 'Retired Priest ( Pallikonda Parish )',
 		ordinationDate: '1978-02-02',
@@ -228,7 +228,7 @@ const priests_dummy_data = [
 	{
 		id: 'VDP0009',
 		type: 'Diocese',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		name: 'Fr. Johnny Edakkara T',
 		position: 'Spiritual Ministry ( Sathuvarchary )',
 		ordinationDate: '1978-05-24',
@@ -246,7 +246,7 @@ const priests_dummy_data = [
 	{
 		id: 'VDP0010',
 		type: 'Diocese',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		name: 'Fr. Lazar Savarimuthu S',
 		position: 'Retired Priest ( Vannakottai )',
 		ordinationDate: '1979-05-01',
@@ -292,7 +292,7 @@ const diocese_vsss_dummy_data = [
 		toYear: 'Till Now',
 		residentAt: '',
 		mobileNumber: '9443636055',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 ];
 
@@ -306,7 +306,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: '',
 		mobileNumber: '9486424008',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		role: 'Ex-Officio Member - Procurator',
@@ -317,7 +317,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: 'Viruduvilanginan, Kadagaman Post, Thandarai Via, T V Malai Dt - 606804',
 		mobileNumber: '9442671433',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		role: 'Ex-Officio Member - Chancellor',
@@ -328,7 +328,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: '',
 		mobileNumber: '9894891490',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		role: 'Ex-Officio Member - RCM Manager',
@@ -340,7 +340,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: '9A I S STREEET, UDAYENDIRAM, TIRUPATTUR DT 635754',
 		mobileNumber: '9751523417',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		role: 'Ex-Officio Member - VSSS Director',
@@ -351,7 +351,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: '',
 		mobileNumber: '9443636055',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		role: 'Ex-Officio Member - Judicial Vicar',
@@ -362,7 +362,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: 'PAVITHRAM VILL AND POST, TIRUVANNAMALAI DT 606806',
 		mobileNumber: '8220994878',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		role: 'Ex-Officio Member - VF (Thiruvannamalai Vicariate)',
@@ -373,7 +373,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: '',
 		mobileNumber: '9944515799',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		role: 'Ex-Officio Member - VF (Vellore Cathedral Vicariate)',
@@ -384,7 +384,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: "98, AT ANTONY'S STREET, VETTAVALAM, TIRUVANNAMALAI 606754",
 		mobileNumber: '9443129557',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		role: 'Ex-Officio Member - VF (Chetpet Vicariate)',
@@ -395,7 +395,7 @@ const priest_senate_members_dummy_data = [
 		toYear: 'Till Now',
 		address: 'ADHICHANUR, VEERAPONDI, TIRUKOVILUR, VILLUPURAM 605758',
 		mobileNumber: '6383508082',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 ];
 
@@ -409,7 +409,7 @@ const vicariate_forane_dummy_data = [
 		toYear: 'Till Now',
 		residentAt: '',
 		mobileNumber: '9445334335',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		vicariateName: 'CHETPET VICARIATE',
@@ -420,7 +420,7 @@ const vicariate_forane_dummy_data = [
 		toYear: 'Till Now',
 		residentAt: 'ADHICHANUR, VEERAPONDI, TIRUKOVILUR, VILLUPURAM 605758',
 		mobileNumber: '6383508082',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		vicariateName: 'THIRUVANNMALAI VICARIATE',
@@ -431,7 +431,7 @@ const vicariate_forane_dummy_data = [
 		toYear: 'Till Now',
 		residentAt: '',
 		mobileNumber: '9944515799',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		vicariateName: 'VANDAVASI VICARIATE',
@@ -443,7 +443,7 @@ const vicariate_forane_dummy_data = [
 		toYear: 'Till Now',
 		residentAt: '',
 		mobileNumber: '9443087698',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		vicariateName: 'VELLORE CATHEDRAL VICARIATE',
@@ -454,7 +454,7 @@ const vicariate_forane_dummy_data = [
 		toYear: 'Till Now',
 		residentAt: "98, AT ANTONY'S STREET, VETTAVALAM, TIRUVANNAMALAI 606754",
 		mobileNumber: '9443129557',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		vicariateName: 'VETTAVALAM VICARIATE',
@@ -465,7 +465,7 @@ const vicariate_forane_dummy_data = [
 		toYear: 'Till Now',
 		residentAt: 'Mr. LAWRENCE, MAZHAVANKARUNAI, MICHALPURAM, KIZHVILLIVANAM POST, VANDAVASI - 604408',
 		mobileNumber: '9962812866',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 ];
 
@@ -484,7 +484,7 @@ const parish_members_dummy_data = [
 		address: 'Rev Fr. Parish Priest, Our Lady of Perpetual Succour Church, Alappakkam, Ranipet Dt - 632 508',
 		mobile2: '8220994878',
 		email2: 'jagadishaj30@gmail.com',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '2',
@@ -500,7 +500,7 @@ const parish_members_dummy_data = [
 		address: 'Rev Fr. Parish Priest, Sacred Heart Church, Arakkonam, Ranipet Dt - 631 001',
 		mobile2: '9445334335',
 		email2: 'smari_anandaraj@yahoo.co.uk',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '3',
@@ -516,7 +516,7 @@ const parish_members_dummy_data = [
 		address: 'Rev Fr. Parish Priest, St. Antony of Padua Church, Arni Road, Arcot, Vellore Dt - 632 503',
 		mobile2: '',
 		email2: '',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '4',
@@ -533,7 +533,7 @@ const parish_members_dummy_data = [
 			'Rev Fr. Parish Priest, St. Theresa Church, Haffieldspet, 91, Mosur High Road, Arakkonam, Ranipet Dt - 631 001',
 		mobile2: '9442786057',
 		email2: 'Jayaseelansantiago01@gmail.com',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '5',
@@ -549,7 +549,7 @@ const parish_members_dummy_data = [
 		address: 'Rev Fr. Parish Priest, Our Lady of Good Health Church, Near E.I.D. Parry, Ranipet Dt - 632 401',
 		mobile2: '8778913203',
 		email2: 'velloreleo@gmail.com',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '6',
@@ -565,7 +565,7 @@ const parish_members_dummy_data = [
 		address: 'Rev Fr. Parish Priest, St. Thomas Church, Sipcot, Ranipet Dt - 632 403',
 		mobile2: '8825830422',
 		email2: 'daya22465@gmail.com',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '7',
@@ -581,7 +581,7 @@ const parish_members_dummy_data = [
 		address: 'Rev Fr. Parish Priest, St. Francis Xavier Church, Soganur, Guruvarajapettai, Vellore Dt - 631 101',
 		mobile2: '9344429993',
 		email2: 'bernardvela0@gmail.com',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '8',
@@ -598,7 +598,7 @@ const parish_members_dummy_data = [
 			'Rev Fr. Parish Priest, Mary Help of Christians Church, Uriurkuppam, Uriur, Via. Thakkolam, Vellore Dt - 631 151',
 		mobile2: '7094241137',
 		email2: 'piouslawrence77@gmail.com',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '9',
@@ -614,7 +614,7 @@ const parish_members_dummy_data = [
 		address: 'Rev Fr. Parish Priest, Lady of Presentation Church, Karthikeyan Road, Arni, Tiruvannamalai Dt - 632 301',
 		mobile2: '9444333027',
 		email2: 'roylazar@hotmail.com',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: '10',
@@ -630,7 +630,7 @@ const parish_members_dummy_data = [
 		address: 'Rev Fr. Parish Priest, Our Lady of Lourdes Shrine, Chetpet, Tiruvannamalai Dt - 606 801',
 		mobile2: '6383508082',
 		email2: 'victorinbam@gmail.com',
-		imageUrl: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 ];
 const land_properties_dummy_data = [
@@ -914,7 +914,7 @@ const dummy_commission_data = [
 		from: '2024-12-09',
 		to: 'Till Now',
 		mobile: '9486424008',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		nameOfCommission: 'Catechism, Catechists & BCC',
@@ -924,7 +924,7 @@ const dummy_commission_data = [
 		from: '2019-12-02',
 		to: 'Till Now',
 		mobile: '9894891490',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		nameOfCommission: 'Evangelization',
@@ -934,7 +934,7 @@ const dummy_commission_data = [
 		from: '2022-07-02',
 		to: 'Till Now',
 		mobile: '9787638700',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		nameOfCommission: 'Bible',
@@ -944,7 +944,7 @@ const dummy_commission_data = [
 		from: '2017-06-30',
 		to: 'Till Now',
 		mobile: '9751567086',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		nameOfCommission: 'Liturgy',
@@ -954,7 +954,7 @@ const dummy_commission_data = [
 		from: '2018-06-02',
 		to: 'Till Now',
 		mobile: '9443087698',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		nameOfCommission: 'Family & Health',
@@ -964,7 +964,7 @@ const dummy_commission_data = [
 		from: '2023-06-02',
 		to: 'Till Now',
 		mobile: '9751122773',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		nameOfCommission: 'Youth',
@@ -974,7 +974,7 @@ const dummy_commission_data = [
 		from: '2024-06-02',
 		to: 'Till Now',
 		mobile: '9952193195',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		nameOfCommission: 'Dialogue & Ecumenism',
@@ -985,7 +985,7 @@ const dummy_commission_data = [
 		from: '2021-12-16',
 		to: 'Till Now',
 		mobile: '9566427264',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		nameOfCommission: 'Communication',
@@ -995,7 +995,7 @@ const dummy_commission_data = [
 		from: '2023-06-02',
 		to: 'Till Now',
 		mobile: '8148000704',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		nameOfCommission: 'Pious Associations',
@@ -1005,7 +1005,7 @@ const dummy_commission_data = [
 		from: '2018-06-02',
 		to: 'Till Now',
 		mobile: '9944199191',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 ];
 
@@ -1017,7 +1017,7 @@ const curia_members_dummy_data = [
 		from: '2024-12-09',
 		to: 'Till Now',
 		mobile: '9486424008',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		id: 'VDP0001',
 	},
 	{
@@ -1027,7 +1027,7 @@ const curia_members_dummy_data = [
 		from: '2019-12-02',
 		to: 'Till Now',
 		mobile: '9894891490',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		id: 'VDP0002',
 	},
 	{
@@ -1037,7 +1037,7 @@ const curia_members_dummy_data = [
 		from: '2018-06-01',
 		to: 'Till Now',
 		mobile: '9442671433',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		id: 'VDP0003',
 	},
 	{
@@ -1047,7 +1047,7 @@ const curia_members_dummy_data = [
 		from: '2018-07-01',
 		to: 'Till Now',
 		mobile: '9443636055',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		id: 'VDP0004',
 	},
 	{
@@ -1058,7 +1058,7 @@ const curia_members_dummy_data = [
 		from: '2023-06-01',
 		to: 'Till Now',
 		mobile: '9751122773',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		id: 'VDP0005',
 	},
 	{
@@ -1069,7 +1069,7 @@ const curia_members_dummy_data = [
 		from: '2024-06-01',
 		to: 'Till Now',
 		mobile: '9751523417',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		id: 'VDP0006',
 	},
 ];
@@ -1084,7 +1084,7 @@ const committees_dummy_data = [
 		from: '2024-12-09',
 		to: 'Till Now',
 		mobile: '9486424008',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 	{
 		id: 'VDP0032',
@@ -1095,7 +1095,7 @@ const committees_dummy_data = [
 		from: '2018-06-01',
 		to: 'Till Now',
 		mobile: '9442671433',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 	},
 ];
 
@@ -1108,7 +1108,7 @@ const college_consulters_dummy_data = [
 		from: '2024-12-09',
 		to: 'Till Now',
 		mobile: '9486424008',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		priorDignitaryId: '4',
 	},
 	{
@@ -1119,7 +1119,7 @@ const college_consulters_dummy_data = [
 		from: '2018-06-01',
 		to: 'Till Now',
 		mobile: '9442671433',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		priorDignitaryId: '48',
 	},
 	{
@@ -1130,7 +1130,7 @@ const college_consulters_dummy_data = [
 		from: '2019-12-02',
 		to: 'Till Now',
 		mobile: '9894891490',
-		image: '/images/admin.png',
+		imageUrl: '/imageUrls/admin.png',
 		priorDignitaryId: '6',
 	},
 ];
