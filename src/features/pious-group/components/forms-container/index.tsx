@@ -5,6 +5,7 @@ import {
 	AssociationsClubForm,
 	AssociationsInchargeForm,
 	FamiliesForm,
+	FamilyMembersForm,
 	ParishCouncilMembersForm,
 	PriestNunParishForm,
 	ReligiousParishCouncilMembersForm,
@@ -28,7 +29,7 @@ const RenderFormsContainer = () => {
 		},
 		{
 			pageName: 'family_members',
-			component: <h1>Family Members Form will be added</h1>,
+			component: <FamilyMembersForm />,
 		},
 		{
 			pageName: 'families',
