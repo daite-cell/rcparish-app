@@ -14,7 +14,7 @@ const DashBoard = () => {
 			<div className="grid grid-cols-1 gap-4 p-3 lg:p-7 lg:grid-cols-2 ">
 				{statistics_cards_content.map((section, index) => (
 					<React.Fragment key={index}>
-						<div className="">
+						<div>
 							{section.section.map((child_section, sectionIndex) => (
 								<div key={sectionIndex}>
 									<div>

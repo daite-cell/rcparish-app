@@ -15,10 +15,10 @@ export type WishesCardProps = {
 
 const WishesCard = ({ parentName, childName, age, parish, phone, isBirthday = true, coupleNames }: WishesCardProps) => (
 	<div className="flex flex-col p-2 md:flex-row text-xs">
-		<div className="mb-3  text-left md:w-1/4 md:mb-0">{parentName}</div>
+		<div className="mb-3 text-xs text-left md:w-1/4 md:mb-0">{parentName}</div>
 
 		<div className="space-y-2 text-left md:w-3/4">
-			<p className="text-xs font-semibold text-gray-800">
+			<p className="text-xs  font-semibold text-gray-800">
 				{isBirthday ? (
 					<>
 						{childName}

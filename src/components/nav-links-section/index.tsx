@@ -28,7 +28,8 @@ const NavLinksSection = ({ navData, pathName }: { navData: NavLinkSectionProps[]
 	}
 
 	const haveDashboardNavigation = useMemo(
-		() => ['/dashboard', '/query_from_bishop', '/query_from_people', '/request_to_bishop'].includes(pathName),
+		() =>
+			['/dashboard', '/query_from_bishop', '/query_from_people', '/request_to_bishop', '/sermon'].includes(pathName),
 		[pathName]
 	);
 

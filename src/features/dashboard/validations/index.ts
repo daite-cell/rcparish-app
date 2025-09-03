@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { requiredString } from '@/validations/stringValidations';
 import { enumFromArray } from '@/validations/enumValidations';
-import { optionalFileValidation } from '@/validations/fileValidations';
+import { fileValidation, optionalFileValidation } from '@/validations/fileValidations';
 import { requiredDate } from '@/validations';
 
 export const sermonSchema = z.object({
@@ -13,6 +13,7 @@ export const sermonSchema = z.object({
 	day: requiredString('Day is required'),
 	document: optionalFileValidation('Please upload a valid file'),
 	description: requiredString('Description is required'),
+	image: fileValidation('Image file is required'),
 });
 
 export type SermonFormValues = z.infer<typeof sermonSchema>;

@@ -15,7 +15,7 @@ const LogoutButton = React.memo(({ onLogout, isLoading = false, className = '' }
 			variant="outline"
 			onClick={handleClick}
 			disabled={isLoading}
-			className={`h-8 text-sm bg-transparent rounded-none text-primary border-primary hover:bg-primary hover:text-white ${className}`}
+			className={`h-7 text-xs font-normal bg-transparent rounded-none text-primary border-primary hover:bg-primary hover:text-white ${className}`}
 			aria-label="Logout"
 		>
 			{isLoading ? 'Logging out...' : 'Logout'}
