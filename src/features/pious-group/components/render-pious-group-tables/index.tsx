@@ -21,7 +21,12 @@ const RenderPiousGroupTables = () => {
 					<div key={tableKey}>
 						{tableData.heading && <TableHeading text={tableData.heading} className="!font-bold" />}
 
-						<DynamicDataTable wrapText={false} data={tableData.data || []} customColumns={columns} />
+						<DynamicDataTable
+							wrapText={false}
+							data={tableData.data || []}
+							customColumns={columns}
+							tableId={`${type}-${tableKey}`}
+						/>
 					</div>
 				);
 			})}

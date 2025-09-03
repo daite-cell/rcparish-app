@@ -80,13 +80,19 @@ const DynamicDataTable = <T extends object, U>({
 		let result = [...data];
 
 		if (alphaFilter !== 'All') {
-			const key = filterKey ?? Object.keys(data[0] || {}).find((k) => typeof (data[0] as Record<string, unknown>)[k]);
+			const hasFilterKey = !!(filterKey && data.length && filterKey in (data[0] as Record<string, unknown>));
+			const key = hasFilterKey
+				? (filterKey as string)
+				: (Object.keys(data[0] || {}).find((k) => typeof (data[0] as Record<string, unknown>)[k] === 'string') as
+						| string
+						| undefined);
 			if (key) {
-				result = result.filter((item) =>
-					String((item as Record<string, unknown>)[key])
-						.toLowerCase()
-						.startsWith(alphaFilter.toLowerCase())
-				);
+				result = result.filter((item) => {
+					const v = (item as Record<string, unknown>)[key];
+					return typeof v === 'string'
+						? v.toLowerCase().startsWith(alphaFilter.toLowerCase())
+						: String(v).toLowerCase().startsWith(alphaFilter.toLowerCase());
+				});
 			}
 		}
 

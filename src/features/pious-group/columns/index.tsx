@@ -234,7 +234,7 @@ const useParishSonsAndDaughtersFamilyMembersColumns = (): ColumnDef<ParishSonsAn
 		},
 		{
 			accessorKey: 'father_name',
-			header: 'Family Name',
+			header: 'Father Name',
 		},
 		{
 			accessorKey: 'relation',
