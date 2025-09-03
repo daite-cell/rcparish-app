@@ -3,7 +3,7 @@ import FormButton from '../form-button';
 
 interface ButtonActionsProps {
 	onPrint: () => void;
-	onClose: () => void;
+	onClose?: () => void;
 	enableClose?: boolean;
 }
 

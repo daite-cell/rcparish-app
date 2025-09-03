@@ -170,6 +170,7 @@ const useCuriaMembersColumns = (): ColumnDef<CuriaMembersProps>[] => {
 		{
 			accessorKey: 'position',
 			header: 'Position',
+			cell: ({ row }) => <h1 className="font-bold">{row.original.position ?? ''}</h1>,
 		},
 		{
 			accessorKey: 'name',
@@ -189,6 +190,7 @@ const useCuriaMembersColumns = (): ColumnDef<CuriaMembersProps>[] => {
 		{
 			accessorKey: 'presentPosition',
 			header: 'Present Position',
+			cell: ({ row }) => <h1 className="font-bold">{row.original.presentPosition ?? ''}</h1>,
 		},
 		{
 			accessorKey: 'from',

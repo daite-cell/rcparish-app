@@ -34,8 +34,24 @@ const useDioceseDataMap = (): Record<
 		},
 	},
 	commissions: {
-		main: {
+		table_1: {
+			heading: 'PASTORAL COMMISSIONS',
 			data: dummy_commission_data,
+			enable_date_sorting: false,
+		},
+		table_2: {
+			heading: 'SOCIAL COMMISSIONS',
+			data: [],
+			enable_date_sorting: false,
+		},
+		table_3: {
+			heading: 'FORMATIVE COMMISSIONS',
+			data: [],
+			enable_date_sorting: false,
+		},
+		table_4: {
+			heading: 'MARRIAGE TRIBUNAL',
+			data: [],
 			enable_date_sorting: false,
 		},
 	},
@@ -100,9 +116,16 @@ const useDioceseDataMap = (): Record<
 			enable_date_sorting: false,
 		},
 	},
+
 	curia_members: {
-		main: {
+		table_1: {
+			heading: '',
 			data: curia_members_dummy_data,
+			enable_date_sorting: false,
+		},
+		table_2: {
+			heading: 'MEMBERS OF THE DIOCESE OF VELLORE SOCIETY (REGISTERED)',
+			data: [],
 			enable_date_sorting: false,
 		},
 	},

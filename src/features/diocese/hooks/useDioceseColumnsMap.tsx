@@ -24,7 +24,10 @@ const useDioceseColumnsMap = (): Record<string, Record<string, ColumnDef<object>
 		main: usePriestCalendarColumns() as ColumnDef<object>[],
 	},
 	commissions: {
-		main: useCommissionColumns() as ColumnDef<object>[],
+		table_1: useCommissionColumns() as ColumnDef<object>[],
+		table_2: useCommissionColumns() as ColumnDef<object>[],
+		table_3: useCommissionColumns() as ColumnDef<object>[],
+		table_4: useCommissionColumns() as ColumnDef<object>[],
 	},
 	vsss: {
 		table_1: useDioceseVSSSColumns() as ColumnDef<object>[],
@@ -55,7 +58,8 @@ const useDioceseColumnsMap = (): Record<string, Record<string, ColumnDef<object>
 		main: useNoviciateInstitutionColumns() as ColumnDef<object>[],
 	},
 	curia_members: {
-		main: useCuriaMembersColumns() as ColumnDef<object>[],
+		table_1: useCuriaMembersColumns() as ColumnDef<object>[],
+		table_2: useCuriaMembersColumns() as ColumnDef<object>[],
 	},
 	committees: {
 		table_1: useCommitteesColumns() as ColumnDef<object>[],
