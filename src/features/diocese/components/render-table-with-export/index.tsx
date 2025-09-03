@@ -55,9 +55,7 @@ const RenderTableWithExport = () => {
 						)}
 						<h1 className="hidden  print:block text-5xl">Pious Group - Families</h1>
 
-						{tableData.heading && (
-							<h2 className="text-xs font-semibold my-2 uppercase underline ml-8">{tableData.heading}</h2>
-						)}
+						{tableData.heading && <h2 className="text-sm font-bold my-2 uppercase  ">{tableData.heading}</h2>}
 						<div className="print-area" ref={printRef}>
 							<h1 className="hidden print:block text-4xl">Diocese {toTitleCaseFromSnake(type as string)}</h1>
 
