@@ -87,6 +87,7 @@ const useCommunitiesDetailsColumns = (): ColumnDef<ConventDetailsTypeProps>[] =>
 };
 const getWorkingMemberColumns = <TForm extends FieldValues>(control: Control<TForm>): ColumnDef<WorkingMember>[] => [
 	{ header: 'ID' },
+
 	{
 		accessorKey: 'name',
 		header: 'Name',

@@ -18,6 +18,7 @@ import {
 } from '../../../../forms-options-data';
 import { useMemo } from 'react';
 import { getWorkingMemberColumns } from '../../columns';
+import type { ColumnDef } from '@tanstack/react-table';
 
 const CommunitiesForm = () => {
 	const {
@@ -28,7 +29,7 @@ const CommunitiesForm = () => {
 		resolver: zodResolver(communitiesFormSchema),
 		defaultValues: {
 			belongsTo: 'congregation',
-			dynamicWorkingMembers: [{ memberId: '', name: '', designation: '', jobType: '', mobile: '' }],
+			dynamicWorkingMembers: [{ name: '', designation: '', jobType: '', mobile: '' }],
 		},
 	});
 	const columns = useMemo(() => getWorkingMemberColumns(control), [control]);
@@ -153,7 +154,7 @@ const CommunitiesForm = () => {
 				control={control}
 				fieldName="dynamicWorkingMembers"
 				title="Working Members"
-				columns={columns}
+				columns={columns as ColumnDef<Record<'id', string>, unknown>[]}
 			/>
 			<div className="flex justify-center w-full">
 				<FormButton type="submit" label="Submit" />

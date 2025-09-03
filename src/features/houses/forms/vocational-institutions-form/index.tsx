@@ -5,6 +5,7 @@ import { CustomFormInput, DynamicTableFieldArraysForm, FormButton, SingleSelectD
 import { belongsToOptions, landOwnershipOptions, seminaryOptions } from '../../../../forms-options-data';
 import { getWorkingMemberColumns } from '../../columns';
 import { useMemo } from 'react';
+import type { ColumnDef } from '@tanstack/react-table';
 
 const VocationalInstitutionsForm = () => {
 	const {
@@ -107,7 +108,7 @@ const VocationalInstitutionsForm = () => {
 				control={control}
 				fieldName="dynamicWorkingMembers"
 				title="Working Members"
-				columns={columns}
+				columns={columns as ColumnDef<Record<'id', string>, unknown>[]}
 			/>
 			<div className="flex justify-center w-full">
 				<FormButton type="submit" label="Submit" />

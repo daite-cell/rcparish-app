@@ -754,6 +754,29 @@ const weekOptions = [
 	{ label: 'Others', value: '5' },
 ];
 
+const occasionOptions = [
+	{ value: 'holy_childhood', label: 'Holy Childhood (2nd Sunday of February)' },
+	{ value: 'holy_see_maintenance', label: 'Maintenance of the Holy See (4th Sunday of Lent)' },
+	{ value: 'holy_land', label: 'Holy Land (Good Friday Collection)' },
+	{ value: 'peters_pence', label: 'Peter’s Pence (Sunday after St. Peter and St. Paul’s Solemnity)' },
+	{ value: 'mission_sunday', label: 'Mission Sunday Collection (Second-last Sunday of October)' },
+	{ value: 'st_peter_apostle', label: 'St. Peter the Apostle (Solemnity of Christ the King)' },
+	{ value: 'communio_india', label: 'Communio India Sunday (1st Sunday of Advent)' },
+	{ value: 'vocational_sunday', label: 'Vocational Sunday (4th Sunday of Easter Season)' },
+	{ value: 'bible_sunday', label: 'Bible Sunday' },
+	{ value: 'communication_sunday', label: 'Communication Sunday' },
+	{ value: 'maundy_thursday', label: 'Maundy Thursday' },
+	{ value: 'prison_ministry', label: 'Prison Ministry' },
+	{ value: 'others', label: 'Others' },
+];
+
+const collectionTypeOptions = [
+	{ label: 'International Collection', value: 'international' },
+	{ label: 'National Collection', value: 'national' },
+	{ label: 'Regional Collection', value: 'regional' },
+	{ label: 'Diocesan Collection', value: 'diocesan' },
+];
+
 const members = [
 	{ value: 'SU001M01', label: 'Anthonydass as Savarimuthu' },
 	{ value: 'SU001M02', label: 'Amala' },
@@ -923,4 +946,6 @@ export {
 	schoolManagementOptions,
 	occupationSectorOptions,
 	weekOptions,
+	occasionOptions,
+	collectionTypeOptions,
 };
