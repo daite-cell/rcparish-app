@@ -36,9 +36,11 @@ const usePriestColumns = (): ColumnDef<PriestDetailsProps>[] => {
 			header: 'Type',
 		},
 		{
-			accessorKey: 'image',
+			accessorKey: 'imageUrl',
 			header: 'Image',
-			cell: () => <AdminDefaultImage height={50} width={50} className="rounded-full" />,
+			cell: ({ row }) => (
+				<AdminDefaultImage src={row.original.imageUrl} height={50} width={50} className="rounded-full" />
+			),
 		},
 		{
 			accessorKey: 'name',
@@ -155,9 +157,12 @@ const useCommissionColumns = (): ColumnDef<CommissionMemberProps>[] => {
 			header: 'Mobile',
 		},
 		{
-			accessorKey: 'image',
+			accessorKey: 'imageUrl',
 			header: 'Image',
-			cell: () => <AdminDefaultImage height={40} width={40} className="rounded-full" />,
+			cell: ({ row }) => (
+				<AdminDefaultImage src={row.original.imageUrl} height={50} width={50} className="rounded-full" />
+			),
+
 			meta: { isExportable: false },
 		},
 	];
@@ -205,9 +210,11 @@ const useCuriaMembersColumns = (): ColumnDef<CuriaMembersProps>[] => {
 			header: 'Mobile',
 		},
 		{
-			accessorKey: 'image',
+			accessorKey: 'imageUrl',
 			header: 'Image',
-			cell: () => <AdminDefaultImage height={40} width={40} className="rounded-full" />,
+			cell: ({ row }) => (
+				<AdminDefaultImage src={row.original.imageUrl} height={50} width={50} className="rounded-full" />
+			),
 			meta: { isExportable: false },
 		},
 		{
@@ -273,9 +280,12 @@ const useCommitteesColumns = (): ColumnDef<CommitteesProps>[] => {
 			header: 'Mobile',
 		},
 		{
-			accessorKey: 'image',
+			accessorKey: 'imageUrl',
 			header: 'Image',
-			cell: () => <AdminDefaultImage height={40} width={40} className="rounded-full" />,
+			cell: ({ row }) => (
+				<AdminDefaultImage src={row.original.imageUrl} height={50} width={50} className="rounded-full" />
+			),
+
 			meta: { isExportable: false },
 		},
 	];
@@ -325,9 +335,11 @@ const useDioceseVSSSColumns = (): ColumnDef<DioceseVSSSMemberProps>[] => {
 			header: 'Mobile Number',
 		},
 		{
-			accessorKey: 'image',
+			accessorKey: 'imageUrl',
 			header: 'Image',
-			cell: () => <AdminDefaultImage height={40} width={40} className="rounded-full" />,
+			cell: ({ row }) => (
+				<AdminDefaultImage src={row.original.imageUrl} height={50} width={50} className="rounded-full" />
+			),
 		},
 	];
 };
@@ -379,7 +391,9 @@ const useDioceseSenateColumns = (): ColumnDef<DioceseSenateMemberProps>[] => {
 		{
 			accessorKey: 'imageUrl',
 			header: 'Image',
-			cell: () => <AdminDefaultImage height={40} width={40} className="rounded-full" />,
+			cell: ({ row }) => (
+				<AdminDefaultImage src={row.original.imageUrl} height={50} width={50} className="rounded-full" />
+			),
 		},
 	];
 };
@@ -504,7 +518,7 @@ const useParishColumns = (): ColumnDef<ParishTableDataProps>[] => {
 		{
 			accessorKey: 'imageUrl',
 			header: 'Image',
-			cell: () => <AdminDefaultImage height={40} width={40} className="rounded-full" />,
+			cell: () => <AdminDefaultImage height={50} width={50} className="rounded-full" />,
 		},
 	];
 };
@@ -1004,6 +1018,29 @@ const priestHigherEducationColumns: ColumnDef<PriestHigherEducation>[] = [
 		accessorKey: 'remark',
 	},
 ];
+const diocesePriorColumns = [
+	{
+		header: 'Position',
+		accessorKey: 'service_as_content',
+	},
+	{
+		header: 'Name',
+		accessorKey: 'priest_name',
+	},
+	{
+		header: 'From',
+		accessorKey: 'from_date',
+	},
+	{
+		header: 'To',
+		accessorKey: 'to_date',
+	},
+
+	{
+		header: 'Mobile',
+		accessorKey: 'mobile_no_1',
+	},
+];
 
 export {
 	usePriestColumns,
@@ -1025,4 +1062,5 @@ export {
 	priestFamilyColumns,
 	priestEducationColumns,
 	priestHigherEducationColumns,
+	diocesePriorColumns,
 };

@@ -1,0 +1,67 @@
+{
+	"committees_dignitaries": [
+		{
+			"priest_id": "VDP0001",
+			"priest_name": "Most Rev Dr. Ambrose DD",
+			"service_as": "4",
+			"service_as_content": "Bishop",
+			"from_date": "2024-12-09",
+			"to_date": null,
+			"mobile_no_1": "9486424008"
+		},
+		{
+			"priest_id": "VDP0171",
+			"priest_name": "Most Rev Fr. Dr Soundararaju SDB",
+			"service_as": "4",
+			"service_as_content": "Bishop",
+			"from_date": "2006-08-24",
+			"to_date": "2020-03-21",
+			"mobile_no_1": ""
+		},
+		{
+			"priest_id": "VDP0170",
+			"priest_name": "Most Rev Fr. Dr Chinnappa A M SDB",
+			"service_as": "4",
+			"service_as_content": "Bishop",
+			"from_date": "1995-01-25",
+			"to_date": "2005-03-31",
+			"mobile_no_1": ""
+		},
+		{
+			"priest_id": "VDP0169",
+			"priest_name": "Most Rev. Fr. Dr Michael Augustine S SDB",
+			"service_as": "4",
+			"service_as_content": "Bishop",
+			"from_date": "1981-07-24",
+			"to_date": "2017-11-04",
+			"mobile_no_1": ""
+		},
+		{
+			"priest_id": "VDP0168",
+			"priest_name": "Most Rev Fr. Rayappan Antony Muthu SDB",
+			"service_as": "4",
+			"service_as_content": "Bishop",
+			"from_date": "1971-04-21",
+			"to_date": "1980-12-19",
+			"mobile_no_1": ""
+		},
+		{
+			"priest_id": "VDP0167",
+			"priest_name": "Most Rev Fr. David Marianayagam S SDB",
+			"service_as": "4",
+			"service_as_content": "Bishop",
+			"from_date": "1959-09-09",
+			"to_date": "1980-07-16",
+			"mobile_no_1": ""
+		},
+		{
+			"priest_id": "VDP0166",
+			"priest_name": "Most Rev Fr. Dr Paul Mariaselvam SDB",
+			"service_as": "4",
+			"service_as_content": "Bishop",
+			"from_date": "1953-03-19",
+			"to_date": "1954-06-25",
+			"mobile_no_1": ""
+		}
+	]
+}
