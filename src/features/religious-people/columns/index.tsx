@@ -52,7 +52,7 @@ const usePriestColumns = (): ColumnDef<PriestDetails>[] => {
 		{
 			accessorKey: 'image',
 			header: 'Image',
-			cell: () => <AdminDefaultImage />,
+			cell: ({ row }) => <AdminDefaultImage src={row.original.image} height={50} width={50} className="rounded-full" />,
 			meta: { isExportable: false },
 		},
 		{ accessorKey: 'present_position', header: 'Present Position' },

@@ -1045,7 +1045,7 @@ export interface QueryFromPeopleOpenedProps {
 
 export interface PriestDetailsProps {
 	type: string;
-	image: string;
+	imageUrl: string;
 	name: string;
 	position: string;
 	ordinationDate: string;
@@ -1082,7 +1082,7 @@ export interface CommissionMemberProps {
 	from: string;
 	to: string;
 	mobile: string;
-	image?: string;
+	imageUrl?: string;
 	id?: string;
 }
 
@@ -1096,7 +1096,7 @@ export interface DioceseVSSSMemberProps {
 	toYear: string;
 	residentAt: string;
 	mobileNumber: string;
-	image?: string;
+	imageUrl?: string;
 }
 
 export interface DioceseSenateMemberProps {
@@ -1109,7 +1109,7 @@ export interface DioceseSenateMemberProps {
 	toYear: string;
 	residentAt: string;
 	mobileNumber: string;
-	image: string;
+	imageUrl: string;
 	memberName: string;
 }
 
@@ -1245,7 +1245,7 @@ export interface CuriaMembersProps {
 	from: string;
 	to: string;
 	mobile: string;
-	image?: string;
+	imageUrl?: string;
 	id?: string;
 }
 
@@ -1257,7 +1257,7 @@ export interface CommitteesProps {
 	from: string;
 	to: string;
 	mobile: string;
-	image?: string;
+	imageUrl?: string;
 }
 
 export interface DioceseSermonProps {

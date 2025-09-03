@@ -127,13 +127,13 @@ const side_nav_links = [
 				path_url: '/diocese/college_consulters',
 				label: 'College of Consultors',
 				icon: 'Folder',
-				tabs: [{ label: 'PRIOR DIGNITARIES' }, { label: 'view' }, { label: 'edit' }],
+				tabs: [{ label: 'prior dignitaries' }, { label: 'view' }, { label: 'edit' }],
 			},
 			{
 				path_url: '/diocese/senate_members',
 				label: 'Senate Members',
 				icon: 'Folder',
-				tabs: [{ label: 'PRIOR DIGNITARIES' }, { label: 'view' }],
+				tabs: [{ label: 'prior dignitaries' }, { label: 'view' }],
 			},
 
 			{
@@ -814,7 +814,7 @@ const dynamic_navLinks_data = [
 				path_url: '/diocese/bishop',
 				label: 'Bishop',
 				icon: 'CalendarDays',
-				tabs: [{ label: 'RETIRED / EMERITUS BISHOPS' }, { label: 'view' }, { label: 'edit' }],
+				tabs: [{ label: 'retired / emeritus bishops' }, { label: 'view' }, { label: 'edit' }],
 			},
 			{
 				path_url: '/diocese/retired_bishops',
