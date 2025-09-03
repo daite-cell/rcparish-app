@@ -11,8 +11,6 @@ const RenderDioceseTablesContainer = () => {
 	const columnsMap = useDioceseColumnsMap();
 	const dataMap = useDioceseDataMap();
 
-	const haveDynamicTableFunctionality = ['commissions', 'committees', 'curia_members'].includes(type as string);
-
 	if (type === 'retired_bishops') {
 		return <TableWithFileUpload />;
 	}
@@ -50,7 +48,6 @@ const RenderDioceseTablesContainer = () => {
 							data={tableData.data}
 							customColumns={columns}
 							tableId={`${type}-${tableKey}`}
-							enableSearch={!haveDynamicTableFunctionality}
 						/>
 					</div>
 				);
