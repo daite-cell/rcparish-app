@@ -80,13 +80,19 @@ const DynamicDataTable = <T extends object, U>({
 		let result = [...data];
 
 		if (alphaFilter !== 'All') {
-			const key = filterKey ?? Object.keys(data[0] || {}).find((k) => typeof (data[0] as Record<string, unknown>)[k]);
+			const hasFilterKey = !!(filterKey && data.length && filterKey in (data[0] as Record<string, unknown>));
+			const key = hasFilterKey
+				? (filterKey as string)
+				: (Object.keys(data[0] || {}).find((k) => typeof (data[0] as Record<string, unknown>)[k] === 'string') as
+						| string
+						| undefined);
 			if (key) {
-				result = result.filter((item) =>
-					String((item as Record<string, unknown>)[key])
-						.toLowerCase()
-						.startsWith(alphaFilter.toLowerCase())
-				);
+				result = result.filter((item) => {
+					const v = (item as Record<string, unknown>)[key];
+					return typeof v === 'string'
+						? v.toLowerCase().startsWith(alphaFilter.toLowerCase())
+						: String(v).toLowerCase().startsWith(alphaFilter.toLowerCase());
+				});
 			}
 		}
 
@@ -234,7 +240,7 @@ const DynamicDataTable = <T extends object, U>({
 	return (
 		<div className="flex flex-col items-center justify-center">
 			<div className="w-full">
-				<div className="min-w-full py-2 sm:px-6 lg:px-8">
+				<div className="min-w-full py-2">
 					{title && <h1 className="mb-8 font-bold underline uppercase text-start">{title}</h1>}
 
 					<TableFilters

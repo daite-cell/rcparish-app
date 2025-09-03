@@ -475,6 +475,24 @@ export interface ParishSonsAndDaughtersProps {
 	image: string;
 }
 
+export interface ParishSonsAndDaughtersOtherMemberProps {
+	member_name: string;
+	father_name: string;
+	mother_name: string;
+	gender: string;
+	category: string;
+	name_of_respective: string;
+	present_status: string;
+	studying_or_position: string;
+	place: string;
+	mobile: string;
+	email: string;
+	permanent_address: string;
+	temporary_address: string;
+	member_id: string;
+	if_member_in_parish: string;
+}
+
 export interface ReligiousPersonProps {
 	convent_id: string;
 	name: string;

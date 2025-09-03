@@ -1,4 +1,4 @@
-import { DynamicDataTable } from '@/components';
+import { DynamicDataTable, TableHeading } from '@/components';
 import { useRouteName } from '@/utils/getRouteName';
 import { usePiousGroupColumnsMap, usePiousGroupDataMap } from '../../hooks';
 
@@ -11,7 +11,27 @@ const RenderPiousGroupTables = () => {
 		return <h1 className="text-center mt-10 text-gray-500">No data available</h1>;
 	}
 
-	return <DynamicDataTable wrapText={false} data={dataMap[type]} customColumns={columnsMap[type]} />;
+	return (
+		<div className="space-y-10">
+			{Object.entries(columnsMap[type]).map(([tableKey, columns]) => {
+				const tableData = dataMap[type][tableKey];
+				if (!tableData) return null;
+
+				return (
+					<div key={tableKey}>
+						{tableData.heading && <TableHeading text={tableData.heading} className="!font-bold" />}
+
+						<DynamicDataTable
+							wrapText={false}
+							data={tableData.data || []}
+							customColumns={columns}
+							tableId={`${type}-${tableKey}`}
+						/>
+					</div>
+				);
+			})}
+		</div>
+	);
 };
 
 export default RenderPiousGroupTables;

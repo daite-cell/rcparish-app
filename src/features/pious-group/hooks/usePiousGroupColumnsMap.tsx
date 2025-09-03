@@ -2,7 +2,7 @@ import {
 	useFamilyOverviewColumns,
 	useParishCouncilColumns,
 	useMembersInParishFamilyColumns,
-	useParishSonsAndDaughtersColumns,
+	useParishSonsAndDaughtersFamilyMembersColumns,
 	useReligiousPeopleColumns,
 	useAnbiamsColumns,
 	useAnbiamsInchargeColumns,
@@ -10,21 +10,39 @@ import {
 	useAssociationClubColumns,
 	useSchoolStudentsColumns,
 	useCollegeStudentsColumns,
+	useParishSonsAndDaughtersOtherMembersColumns,
 } from '../columns';
 import type { ColumnDef } from '@tanstack/react-table';
 
-const usePiousGroupColumnsMap = (): Record<string, ColumnDef<object>[]> => ({
-	families: useFamilyOverviewColumns() as ColumnDef<object>[],
-	parish_council_members: useParishCouncilColumns() as ColumnDef<object>[],
-	family_members: useMembersInParishFamilyColumns() as ColumnDef<object>[],
-	priest_nun_parish: useParishSonsAndDaughtersColumns() as ColumnDef<object>[],
-	religious_people_parish: useReligiousPeopleColumns() as ColumnDef<object>[],
-	anbiams: useAnbiamsColumns() as ColumnDef<object>[],
-	anbiam_incharge: useAnbiamsInchargeColumns() as ColumnDef<object>[],
-	associations_incharge: useAssociationCouncilMemberPropsColumns() as ColumnDef<object>[],
-	associations_club: useAssociationClubColumns() as ColumnDef<object>[],
-	college_students: useCollegeStudentsColumns() as ColumnDef<object>[],
-	school_students: useSchoolStudentsColumns() as ColumnDef<object>[],
+const usePiousGroupColumnsMap = (): Record<string, Record<string, ColumnDef<object>[]>> => ({
+	parish_council_members: { main: useParishCouncilColumns() as ColumnDef<object>[] },
+	religious_people_parish: { main: useReligiousPeopleColumns() as ColumnDef<object>[] },
+	school_students: { main: useSchoolStudentsColumns() as ColumnDef<object>[] },
+	college_students: { main: useCollegeStudentsColumns() as ColumnDef<object>[] },
+	priest_nun_parish: {
+		table_1: useParishSonsAndDaughtersFamilyMembersColumns() as ColumnDef<object>[],
+		table_2: useParishSonsAndDaughtersOtherMembersColumns() as ColumnDef<object>[],
+	},
+	family_members: {
+		table_1: useMembersInParishFamilyColumns() as ColumnDef<object>[],
+		table_2: useMembersInParishFamilyColumns() as ColumnDef<object>[],
+	},
+	families: {
+		table_1: useFamilyOverviewColumns() as ColumnDef<object>[],
+		table_2: useFamilyOverviewColumns() as ColumnDef<object>[],
+	},
+	anbiams: {
+		main: useAnbiamsColumns() as ColumnDef<object>[],
+	},
+	associations_club: {
+		main: useAssociationClubColumns() as ColumnDef<object>[],
+	},
+	anbiam_incharge: {
+		main: useAnbiamsInchargeColumns() as ColumnDef<object>[],
+	},
+	associations_incharge: {
+		main: useAssociationCouncilMemberPropsColumns() as ColumnDef<object>[],
+	},
 });
 
 export default usePiousGroupColumnsMap;
