@@ -64,3 +64,4 @@ export const numericString = (requiredMsg: string, numberMsg: string) =>
 		.refine((val) => /^[0-9]+$/.test(val), { message: numberMsg });
 
 export const maxLengthString = (len: number, msg: string) => z.string().max(len, msg);
+export const requiredAmount = requiredString('Amount is required').regex(/^[0-9]+$/, 'Amount must be a number');
