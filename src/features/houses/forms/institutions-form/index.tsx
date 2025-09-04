@@ -22,6 +22,7 @@ import {
 import { institutionsFormSchema, type InstitutionsFormData } from '../../validations';
 import { useMemo } from 'react';
 import { getWorkingMemberColumns } from '../../columns';
+import type { ColumnDef } from '@tanstack/react-table';
 
 const InstitutionsForm = () => {
 	const {
@@ -264,7 +265,7 @@ const InstitutionsForm = () => {
 				control={control}
 				fieldName="dynamicWorkingMembers"
 				title="Working Members"
-				columns={columns}
+				columns={columns as ColumnDef<Record<'id', string>, unknown>[]}
 			/>
 			<div className="flex justify-center w-full">
 				<FormButton type="submit" label="Submit" />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Controller, type Control, type FieldValues, type Path } from 'react-hook-form';
+import { Controller, type Control, type FieldValues, type Path, type PathValue } from 'react-hook-form';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import { CustomInput, CustomTextarea } from '../index';
@@ -17,7 +17,9 @@ interface CustomFormInputProps<T extends FieldValues> {
 	error?: string;
 	placeholder?: string;
 	onBlur?: () => void;
+	defaultValue?: string | number; // ✅ new field
 }
+
 function CustomFormInputInner<T extends FieldValues>({
 	control,
 	name,
@@ -29,6 +31,7 @@ function CustomFormInputInner<T extends FieldValues>({
 	error,
 	placeholder,
 	onBlur,
+	defaultValue = '', // ✅ default fallback
 }: CustomFormInputProps<T>) {
 	const isTextarea = type === 'textarea';
 
@@ -41,6 +44,7 @@ function CustomFormInputInner<T extends FieldValues>({
 			<Controller
 				control={control}
 				name={name}
+				defaultValue={defaultValue as PathValue<T, Path<T>>} // ✅ hook-form needs explicit default
 				render={({ field }) => {
 					const commonProps = {
 						id: name,
