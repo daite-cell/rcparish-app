@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import { Sidebar, SidebarContent, SidebarTrigger } from '@/components/ui/sidebar';
 import { Input } from '../ui/input';
-import { side_nav_links } from '@/data/side-navbar-content';
+import { dashboard_roots, side_nav_links } from '@/data/side-navbar-content';
 import NavLinksSection from '../nav-links-section';
 import { UserInfo } from '@/components';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
@@ -19,8 +19,7 @@ export default function AppSideBar() {
 	);
 
 	const haveDashboardNavigation = useMemo(
-		() =>
-			['/dashboard', '/query_from_bishop', '/query_from_people', '/request_to_bishop', '/sermon'].includes(pathName),
+		() => dashboard_roots.some((root) => pathName === root || pathName.startsWith(`${root}/`)),
 		[pathName]
 	);
 
