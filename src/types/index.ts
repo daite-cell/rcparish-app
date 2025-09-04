@@ -1550,7 +1550,6 @@ export interface GenericOverviewProps<T = unknown> {
 	recordsData?: RecordsData & T;
 }
 export type WorkingMember = {
-	id: string;
 	name?: string;
 	designation?: string;
 	jobType?: string;
@@ -1558,7 +1557,6 @@ export type WorkingMember = {
 };
 
 export interface MonthlyCollectionProps {
-	id: string;
 	name?: string;
 	occasion?: string;
 	details?: string;
@@ -1566,4 +1564,16 @@ export interface MonthlyCollectionProps {
 	massIndention?: number;
 	boxCollection?: number;
 	total?: number;
+}
+
+export interface SpecialCollectionProps {
+	occasion?: string;
+	details?: string;
+	collection?: string;
+	amount?: number;
+}
+export interface OtherCollectionProps {
+	occasion?: number;
+	collection?: number;
+	amount?: number;
 }

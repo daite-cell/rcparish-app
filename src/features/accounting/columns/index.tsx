@@ -14,13 +14,15 @@ import type {
 	DayBookEntry,
 	AuditingProps,
 	MonthlyCollectionProps,
+	SpecialCollectionProps,
+	OtherCollectionProps,
 } from '@/types';
 import { SquarePen, Trash2 } from 'lucide-react';
 import type { CellContext } from '@tanstack/react-table';
 import { CustomFormInput, SingleSelectDropdown, TableDetailsViewButton, TextLink } from '@/components';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
 import type { Control, FieldValues, Path } from 'react-hook-form';
-import { weekOptions } from '@/forms-options-data';
+import { collectionTypeOptions, occasionOptions, weekOptions } from '@/forms-options-data';
 
 const useActiveDonationColumns = (): ColumnDef<ActiveDonationTableProps>[] => {
 	const { handleSelectRow } = useStore();
@@ -697,7 +699,84 @@ const getMonthlyCollectionsColumns = <TForm extends FieldValues>(
 	{
 		accessorKey: 'total',
 		header: 'Total',
-		cell: ({ row }) => <CustomFormInput control={control} name={`monthlyValues.${row.index}.total` as Path<TForm>} />,
+		cell: ({ row }) => {
+			const values = row.original;
+
+			const rowTotal =
+				(Number(values.sundayCollection) || 0) +
+				(Number(values.massIndention) || 0) +
+				(Number(values.boxCollection) || 0);
+
+			return (
+				<CustomFormInput
+					control={control}
+					name={`monthlyValues.${row.index}.total` as Path<TForm>}
+					defaultValue={rowTotal}
+					disabled
+					className="font-semibold text-right bg-gray-100"
+				/>
+			);
+		},
+	},
+];
+
+const getSpecialCollectionsColumns = <TForm extends FieldValues>(
+	control: Control<TForm>
+): ColumnDef<SpecialCollectionProps>[] => [
+	{
+		accessorKey: 'occasion',
+		header: 'Occasion',
+		cell: ({ row }) => (
+			<SingleSelectDropdown
+				control={control}
+				name={`specialValues.${row.index}.occasion` as Path<TForm>}
+				options={occasionOptions}
+			/>
+		),
+	},
+	{
+		header: 'Details',
+		cell: () => null,
+	},
+
+	{
+		accessorKey: 'collection',
+		header: 'Collection',
+		cell: ({ row }) => (
+			<SingleSelectDropdown
+				control={control}
+				name={`specialValues.${row.index}.collection` as Path<TForm>}
+				options={collectionTypeOptions}
+			/>
+		),
+	},
+
+	{
+		accessorKey: 'amount',
+		header: 'Amount',
+		cell: ({ row }) => <CustomFormInput control={control} name={`specialValues.${row.index}.amount` as Path<TForm>} />,
+	},
+];
+
+const getOtherCollectionColumns = <TForm extends FieldValues>(
+	control: Control<TForm>
+): ColumnDef<OtherCollectionProps>[] => [
+	{
+		accessorKey: 'occasion',
+		header: 'Occasion',
+		cell: ({ row }) => <CustomFormInput control={control} name={`otherValues.${row.index}.occasion` as Path<TForm>} />,
+	},
+	{
+		accessorKey: 'collection',
+		header: 'Collection',
+		cell: ({ row }) => (
+			<CustomFormInput control={control} name={`otherValues.${row.index}.collection` as Path<TForm>} />
+		),
+	},
+	{
+		accessorKey: 'amount',
+		header: 'Amount',
+		cell: ({ row }) => <CustomFormInput control={control} name={`otherValues.${row.index}.amount` as Path<TForm>} />,
 	},
 ];
 
@@ -715,4 +794,6 @@ export {
 	useDayBookColumns,
 	useAuditingColumns,
 	getMonthlyCollectionsColumns,
+	getSpecialCollectionsColumns,
+	getOtherCollectionColumns,
 };
