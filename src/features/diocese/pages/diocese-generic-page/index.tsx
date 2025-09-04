@@ -4,11 +4,15 @@ import { GenericMembersInFamilesOverview, PriorDignitariesContainer, TabsLayout 
 import { side_nav_links } from '@/data/side-navbar-content';
 import type { NavLinkProps, PriestDetailsProps } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
-import { FormsContainer, RenderDioceseOverviewContainer, RenderDioceseTablesContainer } from '../../components';
+import {
+	FormsContainer,
+	RenderDioceseOverviewContainer,
+	RenderDioceseTablesContainer,
+	RenderMainFormContainer,
+} from '../../components';
 import { useStore } from '@/store/store';
 import { useRouteName } from '@/utils/getRouteName';
 import { getPriestsSectionData } from '../../columns-section';
-import { BishopForm } from '../../forms';
 import { diocesePriorColumns } from '../../columns';
 import get_college_consulters_total_dignitaries from '../../data/get_college_consulters_total_dignitaries.json';
 import get_committees_dignitaries from '../../data/get_committees_dignitaries.json';
@@ -83,7 +87,7 @@ const DioceseGenericPage = () => {
 			case 'add':
 				return <FormsContainer />;
 			case 'edit':
-				return type === 'bishop' && <BishopForm />;
+				return <RenderMainFormContainer />;
 			case 'retired / emeritus bishops':
 				return (
 					<PriorDignitariesContainer

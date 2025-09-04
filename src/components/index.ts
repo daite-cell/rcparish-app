@@ -70,3 +70,5 @@ export { default as DisplayTotalAmount } from './display-total-amount';
 export { default as AccountingFieldsSection } from './accounting-fields-section';
 export { default as DynamicTableFieldArraysForm } from './dynamic-table-fields-array-form';
 export { default as DisplayDynamicFieldsTotal } from './display-dynamic-felids-total';
+export { default as ToDateCell } from './date-cell';
+export { default as StatusDropdown } from './status-dropdown';

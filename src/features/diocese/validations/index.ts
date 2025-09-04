@@ -224,6 +224,32 @@ const bishopSchema = z.object({
 	image: fileValidation('Image file is required'),
 });
 
+const curiaMembersFormSchema = z.object({
+	members: z.array(
+		z
+			.object({
+				name_of_member: requiredString('Name is required'),
+				status: enumFromArray(['present', 'past'], 'Status is required'),
+				mobile: optionalMobileValidation('Invalid mobile number'),
+				from_date: requiredString('Date is required'),
+				to_date: z.string().optional(),
+				position: optionalString(),
+				image: optionalString(),
+				priest_id: optionalString(),
+				prior_dignitaries: optionalString(),
+			})
+			.superRefine((member, ctx) => {
+				if (member.status === 'past' && !member.to_date) {
+					ctx.addIssue({
+						code: z.ZodIssueCode.custom,
+						path: ['to_date'],
+						message: 'To Date is required when status is Past',
+					});
+				}
+			})
+	),
+});
+
 type PriestsType = z.infer<typeof priestsSchema>;
 type CommissionsType = z.infer<typeof commissionsSchema>;
 type CommitteeType = z.infer<typeof committeeSchema>;
@@ -234,6 +260,7 @@ type VocationalListType = z.infer<typeof vocationalListSchema>;
 type UploadSchemaType = z.infer<typeof uploadSchema>;
 type PropertiesType = z.infer<typeof propertiesSchema>;
 type BishopType = z.infer<typeof bishopSchema>;
+type CuriaMembersFormType = z.infer<typeof curiaMembersFormSchema>;
 
 export {
 	commissionsSchema,
@@ -246,6 +273,7 @@ export {
 	priestsSchema,
 	propertiesSchema,
 	bishopSchema,
+	curiaMembersFormSchema,
 };
 
 export type {
@@ -259,4 +287,5 @@ export type {
 	PriestsType,
 	PropertiesType,
 	BishopType,
+	CuriaMembersFormType,
 };

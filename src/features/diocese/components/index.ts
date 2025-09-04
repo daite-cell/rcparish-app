@@ -6,3 +6,4 @@ export { default as GenericDiocesePeopleDetailsContainer } from './generic-dioce
 export { default as RenderDiocesePeopleDetailsContainer } from './render-people-overview-container';
 export { default as FormsContainer } from './forms-container';
 export { default as RenderPriestOverviewContainer } from './render-priest-overview-container';
+export { default as RenderMainFormContainer } from './render-main-form-container';

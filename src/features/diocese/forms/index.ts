@@ -7,3 +7,4 @@ export { default as VocationalListForm } from './vocational-list-form';
 export { default as PriestsForm } from './priests-form';
 export { default as PropertiesForm } from './properties-form';
 export { default as BishopForm } from './bishop-form';
+export { default as CuriaMembersForm } from './curia-members-form';

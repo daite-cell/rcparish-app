@@ -14,7 +14,7 @@ const CustomInput = ({
 		id={id}
 		name={name}
 		type={type}
-		className={cn('w-full !h-8 justify-between text-[12px] font-sm placeholder:text-xs ', className)}
+		className={cn('w-full !h-8 justify-between text-xs font-sm placeholder:text-xs rounded-xs ', className)}
 		{...props}
 	/>
 );

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandEmpty, CommandGroup, CommandItem } from '@/components/ui/command';
 import { Button } from '@/components/ui/button';
@@ -31,9 +32,11 @@ function SingleSelectDropdown<TFieldValues extends FieldValues>({
 	disabled = false,
 	error,
 }: SingleSelectDropdownProps<TFieldValues>) {
+	const [open, setOpen] = useState(false);
+
 	return (
 		<div className="grid w-full gap-2">
-			<label className="text-[12px] font-sm">{label}</label>
+			{label && <label className="text-[12px]">{label}</label>}
 			<Controller
 				name={name}
 				control={control}
@@ -42,12 +45,12 @@ function SingleSelectDropdown<TFieldValues extends FieldValues>({
 
 					return (
 						<>
-							<Popover>
+							<Popover open={open} onOpenChange={setOpen}>
 								<PopoverTrigger asChild>
 									<Button
 										variant="outline"
 										role="combobox"
-										className={`w-full h-8 justify-between rounded-[2px] text-[12px] font-sm ${className} ${
+										className={`w-full h-8 justify-between rounded-[2px] text-[12px] ${className} ${
 											error ? 'border-red-500' : ''
 										}`}
 										disabled={disabled}
@@ -56,7 +59,10 @@ function SingleSelectDropdown<TFieldValues extends FieldValues>({
 										<ChevronDown className="w-4 h-4 ml-2 opacity-50 shrink-0" />
 									</Button>
 								</PopoverTrigger>
-								<PopoverContent className="w-[350px] max-h-[300px] overflow-y-auto p-2">
+								<PopoverContent
+									className="w-[var(--radix-popover-trigger-width)] max-h-[300px] overflow-y-auto p-2"
+									align="start"
+								>
 									<Command>
 										<CommandEmpty>No results found.</CommandEmpty>
 										<CommandGroup>
@@ -64,15 +70,18 @@ function SingleSelectDropdown<TFieldValues extends FieldValues>({
 												<CommandItem
 													key={option.value}
 													value={option.value}
-													onSelect={() => field.onChange(option.value)}
+													onSelect={() => {
+														field.onChange(option.value);
+														setOpen(false);
+													}}
 													className="flex items-center gap-2 cursor-pointer"
 												>
 													<input
+														title="select"
 														type="checkbox"
-														title="option"
 														checked={field.value === option.value}
 														readOnly
-														className="w-4 h-4"
+														className="w-3 h-3"
 													/>
 													<span className="text-[12px]">{option.label}</span>
 												</CommandItem>
