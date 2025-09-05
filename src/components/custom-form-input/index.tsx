@@ -17,7 +17,7 @@ interface CustomFormInputProps<T extends FieldValues> {
 	error?: string;
 	placeholder?: string;
 	onBlur?: () => void;
-	defaultValue?: string | number; // ✅ new field
+	defaultValue?: string | number;
 }
 
 function CustomFormInputInner<T extends FieldValues>({
@@ -31,7 +31,7 @@ function CustomFormInputInner<T extends FieldValues>({
 	error,
 	placeholder,
 	onBlur,
-	defaultValue = '', // ✅ default fallback
+	defaultValue = '',
 }: CustomFormInputProps<T>) {
 	const isTextarea = type === 'textarea';
 
@@ -44,13 +44,17 @@ function CustomFormInputInner<T extends FieldValues>({
 			<Controller
 				control={control}
 				name={name}
-				defaultValue={defaultValue as PathValue<T, Path<T>>} // ✅ hook-form needs explicit default
+				defaultValue={defaultValue as PathValue<T, Path<T>>}
 				render={({ field }) => {
 					const commonProps = {
 						id: name,
 						placeholder,
 						disabled,
-						className: cn(className, error && 'border-red-500'),
+						className: cn(
+							className,
+							error && 'border-red-500',
+							disabled && 'bg-[#e9ecef] opacity-100 cursor-not-allowed'
+						),
 						...field,
 						onBlur: () => {
 							field.onBlur();

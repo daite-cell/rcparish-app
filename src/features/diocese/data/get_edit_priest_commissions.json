@@ -1,0 +1,16 @@
+{
+	"commissions_list": [
+		{
+			"priest_id": "VDP0001",
+			"priest_name": "Most Rev Dr. Ambrose DD",
+			"service_as": "4",
+			"service_as_content": "Bishop",
+			"status": "0",
+			"status_content": "Present",
+			"from_date": "2024-12-09",
+			"to_date": "Till Now",
+			"mobile_no_1": "9486424008",
+			"image": "/admin.png"
+		}
+	]
+}

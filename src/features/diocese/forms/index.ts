@@ -7,3 +7,8 @@ export { default as VocationalListForm } from './vocational-list-form';
 export { default as PriestsForm } from './priests-form';
 export { default as PropertiesForm } from './properties-form';
 export { default as BishopForm } from './bishop-form';
+export { default as CuriaMembersForm } from './curia-members-form';
+export { default as CommissionsEditForm } from './commissions-edit-form';
+export { default as CommitteesEditForm } from './committees-edit-form';
+export { default as VsssEditForm } from './vsss-edit-form';
+export { default as CollegeConsulterForm } from './college-consulter-form';

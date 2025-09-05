@@ -5,7 +5,7 @@ import { TabsLayout } from '@/components';
 type Tab = { label: string };
 
 type OverviewEntry = {
-	view: JSX.Element;
+	view?: JSX.Element;
 	form?: JSX.Element;
 };
 
@@ -60,7 +60,7 @@ const OverviewTabsLayout = ({
 
 	const content: JSX.Element = componentEntry ? (
 		activeTabIndex === getTabIndexByLabel('profile') ? (
-			componentEntry.view
+			(componentEntry.view ?? <div />)
 		) : (
 			(componentEntry.form ?? <h1 className="text-gray-500">Form not implemented</h1>)
 		)

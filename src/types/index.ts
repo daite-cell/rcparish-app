@@ -1577,3 +1577,28 @@ export interface OtherCollectionProps {
 	collection?: number;
 	amount?: number;
 }
+
+export interface MemberType {
+	status: string;
+	name_of_member: string;
+	from_date: string;
+	mobile?: string;
+	to_date?: string;
+	position?: string;
+	image?: string;
+	priest_id?: string;
+	prior_dignitaries?: string;
+}
+
+export interface CuriaMembersFormType {
+	members: MemberType[];
+}
+
+export interface RegisterMemberType {
+	position: string;
+	name: string;
+	from_date: string;
+	to_date?: string;
+	mobile?: string;
+	image?: string;
+}
