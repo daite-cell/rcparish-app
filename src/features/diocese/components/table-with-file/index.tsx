@@ -16,7 +16,13 @@ const TableWithFileUpload = () => {
 				<UploadFileComponent />
 			) : (
 				<PriorityDignitariesTableLayout heading="Diocese - Emeritus / Retired Bishops" enableClose={false}>
-					<DynamicDataTable isDynamic={false} data={bishopPositionData} customColumns={bishopPositionColumns} />
+					<DynamicDataTable
+						data={bishopPositionData}
+						customColumns={bishopPositionColumns}
+						enableSearch={false}
+						enablePagination={false}
+						enableExport={false}
+					/>
 				</PriorityDignitariesTableLayout>
 			)}
 		</>

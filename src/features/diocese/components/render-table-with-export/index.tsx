@@ -1,7 +1,7 @@
 import { useRouteName } from '@/utils/getRouteName';
 import { useDioceseColumnsMap, useDioceseDataMap } from '../../hooks';
-import { DynamicDataTable } from '@/components';
-import { lazy, Suspense } from 'react';
+import { DynamicDataTable, FormButton } from '@/components';
+import { lazy, Suspense, useRef } from 'react';
 import type { ColumnDef } from '@tanstack/react-table';
 import { toTitleCaseFromSnake } from '@/utils/toTitleCaseFromSnake';
 
@@ -14,19 +14,21 @@ const RenderTableWithExport = () => {
 	const type = useRouteName('type');
 	const columnsMap = useDioceseColumnsMap();
 	const dataMap = useDioceseDataMap();
+	const printRef = useRef<HTMLDivElement>(null);
 
 	if (!type) {
-		return <h1 className="text-center mt-10 text-gray-500">Missing type in route.</h1>;
+		return <h1 className="mt-10 text-center text-gray-500">Missing type in route.</h1>;
 	}
 
 	if (!columnsMap[type]) {
-		return <h1 className="text-center mt-10 text-gray-500">No column configuration found for "{type}".</h1>;
+		return <h1 className="mt-10 text-center text-gray-500">No column configuration found for "{type}".</h1>;
 	}
 
 	if (!dataMap[type]) {
-		return <h1 className="text-center mt-10 text-gray-500">No data available for "{type}".</h1>;
+		return <h1 className="mt-10 text-center text-gray-500">No data available for "{type}".</h1>;
 	}
 	const tableTitle = `Diocese ${toTitleCaseFromSnake(type as string)}`;
+	const handlePrint = () => window.print();
 
 	return (
 		<div className="space-y-10">
@@ -43,23 +45,31 @@ const RenderTableWithExport = () => {
 					}));
 
 				return (
-					<div key={tableKey}>
-						<Suspense fallback={<div>Loading export options...</div>}>
-							<ExportButton data={tableData.data} columns={exportableColumns} tableId={tableTitle} />
-						</Suspense>
-
-						{tableData.heading && (
-							<h2 className="text-xs font-semibold my-2 uppercase underline ml-8">{tableData.heading}</h2>
+					<div className="flex flex-col" key={tableKey}>
+						{type === 'college_consulters' || type === 'curia_members' ? (
+							<FormButton label="print" onClick={handlePrint} className="self-end no-print" />
+						) : (
+							<Suspense fallback={<div>Loading export options...</div>}>
+								<ExportButton data={tableData.data} columns={exportableColumns} tableId={tableTitle} />
+							</Suspense>
 						)}
+						<h1 className="hidden text-5xl print:block">{tableTitle}</h1>
 
-						<DynamicDataTable
-							tableId={tableKey}
-							enableDateSorting={tableData.enable_date_sorting ?? false}
-							wrapText={false}
-							data={tableData.data}
-							isDynamic={false}
-							customColumns={columns}
-						/>
+						{tableData.heading && <h2 className="my-2 text-sm font-bold uppercase ">{tableData.heading}</h2>}
+						<div className="print-area" ref={printRef}>
+							<h1 className="hidden text-4xl print:block">Diocese {toTitleCaseFromSnake(type as string)}</h1>
+
+							<DynamicDataTable
+								tableId={`${type}-${tableKey}`}
+								enableDateSorting={tableData.enable_date_sorting ?? false}
+								wrapText={false}
+								data={tableData.data}
+								isDynamic={false}
+								customColumns={columns}
+								enableSearch={false}
+								enablePagination={false}
+							/>
+						</div>
 					</div>
 				);
 			})}
