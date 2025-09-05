@@ -13,6 +13,7 @@ export const sermonSchema = z.object({
 	day: requiredString('Day is required'),
 	document: optionalFileValidation('Please upload a valid file'),
 	description: requiredString('Description is required'),
+	image: optionalFileValidation('Invalid image file'),
 });
 
 export type SermonFormValues = z.infer<typeof sermonSchema>;

@@ -909,5 +909,12 @@ const dynamic_navLinks_data = [
 		],
 	},
 ];
+const dashboard_roots = [
+	'/dashboard',
+	'/query_from_bishop',
+	'/query_from_people',
+	'/request_to_bishop',
+	'/sermon',
+] as const;
 
-export { side_nav_links, rules_sub_links, rules, dynamic_navLinks_data };
+export { side_nav_links, rules_sub_links, rules, dynamic_navLinks_data, dashboard_roots };

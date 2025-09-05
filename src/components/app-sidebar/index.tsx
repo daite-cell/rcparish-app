@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import { Sidebar, SidebarContent, SidebarTrigger } from '@/components/ui/sidebar';
 import { Input } from '../ui/input';
-import { side_nav_links } from '@/data/side-navbar-content';
+import { dashboard_roots, side_nav_links } from '@/data/side-navbar-content';
 import NavLinksSection from '../nav-links-section';
 import { UserInfo } from '@/components';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
@@ -19,19 +19,19 @@ export default function AppSideBar() {
 	);
 
 	const haveDashboardNavigation = useMemo(
-		() => ['/dashboard', '/query_from_bishop', '/query_from_people', '/request_to_bishop'].includes(pathName),
+		() => dashboard_roots.some((root) => pathName === root || pathName.startsWith(`${root}/`)),
 		[pathName]
 	);
 
 	return (
-		<Sidebar className=" border-secondary">
+		<Sidebar className="border-secondary">
 			<div className="overflow-auto hide-scrollbar ">
 				<SidebarContent className={`border-0 bg-secondary text-primary ${pathName === '/profile' && 'h-screen'}`}>
 					<div className="flex items-center justify-between px-5 py-2.5">
-						<Link to="/dashboard" className="text-md font-semibold ">
+						<Link to="/dashboard" className="text-md text-[#a8926c] hover:text-primary font-semibold   ">
 							RCPARISH
 						</Link>
-						<SidebarTrigger className="hover:bg-transparent hover:text-primary " />
+						<SidebarTrigger className="hover:bg-transparent  text-primary hover:text-[#a8926c] " />
 					</div>
 
 					{pathName !== '/profile' ? (

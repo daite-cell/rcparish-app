@@ -4,8 +4,8 @@ import {
 	SingleSelectDropdown,
 	ControlledDateInputField,
 	ControlledRadioGroup,
+	ControlledFileUpload,
 } from '@/components';
-import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -18,26 +18,16 @@ const seasonOptions = [
 	{ label: 'Easter', value: 'easter' },
 ];
 
-const defaultValues: SermonFormValues = {
-	writtenBy: '',
-	year: 'A',
-	season: '',
-	week: '',
-	date: '',
-	day: '',
-	document: undefined,
-	description: '',
-};
-
 const SermonFormSection = () => {
 	const {
 		control,
 		handleSubmit,
 		formState: { errors },
-		register,
 	} = useForm<SermonFormValues>({
 		resolver: zodResolver(sermonSchema),
-		defaultValues,
+		defaultValues: {
+			year: 'A',
+		},
 	});
 
 	const onSubmit = (data: SermonFormValues) => {
@@ -95,17 +85,13 @@ const SermonFormSection = () => {
 						error={errors.day?.message}
 					/>
 
-					<div className="flex flex-col gap-1 text-sm mt-7">
-						<Label htmlFor="document-upload">
-							Upload Document <span className="text-xs text-muted-foreground">(If Any)</span>
-						</Label>
-						<Input
-							type="file"
-							id="document-upload"
-							{...register('document')}
-							className="block text-xs text-gray-900 border-none file:mr-4 file:py-1 file:px-2 file:rounded file:border file:border-gray-300 file:text-xs file:font-normal file:bg-gray-100 file:text-gray-700"
-						/>
-					</div>
+					<ControlledFileUpload
+						control={control}
+						name="image"
+						label="Upload Document ( If Any )"
+						error={errors.image?.message}
+						enableImagePreview={false}
+					/>
 				</div>
 
 				<div className="flex-1 w-full p-4 border border-gray-300 rounded-md">
