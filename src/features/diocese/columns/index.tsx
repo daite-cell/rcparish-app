@@ -36,7 +36,7 @@ import type { CellContext, ColumnDef } from '@tanstack/react-table';
 import { SquarePen, Upload } from 'lucide-react';
 import { useMemo } from 'react';
 import type { Control, FieldValues, Path } from 'react-hook-form';
-import type { CuriaMembersFormType } from '../validations';
+import type { CommissionsFormType, CommitteesFormType, CuriaMembersFormType, VSSSFormType } from '../validations';
 
 const usePriestColumns = (): ColumnDef<PriestDetailsProps>[] => {
 	const { handleSelectRow, handleEditRow } = useStore();
@@ -1122,6 +1122,301 @@ const useCuriaMembersFormColumns = <TForm extends CuriaMembersFormType>(
 		},
 	];
 };
+const useCommissionsFormColumns = <TForm extends CommissionsFormType>(
+	control: Control<TForm>
+): ColumnDef<MemberType>[] => {
+	const { handleSelectPriorRow } = useStore();
+
+	return [
+		{
+			accessorKey: 'service_as',
+			header: 'Service Id',
+		},
+		{
+			accessorKey: 'service_as_content',
+			header: 'Incharge for',
+		},
+		{
+			accessorKey: 'priest_name',
+			header: 'Name of the Person',
+			cell: ({ row }) => (
+				<CustomFormInput control={control} name={`members.${row.index}.priest_name` as Path<TForm>} disabled />
+			),
+		},
+		{
+			accessorKey: 'image',
+			header: 'Image',
+			cell: ({ row }) => <AdminDefaultImage src={row.original.image} height={50} width={50} className="rounded-full" />,
+		},
+		{
+			accessorKey: 'priest_id',
+			header: 'Priest ID',
+		},
+		{
+			accessorKey: 'status_content',
+			header: 'Status',
+			cell: ({ row }) => (
+				<StatusDropdown control={control as Control<FieldValues>} name={`members.${row.index}.status_content`} />
+			),
+		},
+		{
+			accessorKey: 'from_date',
+			header: 'Since from',
+			cell: ({ row }) => (
+				<CustomFormInput control={control} name={`members.${row.index}.from_date` as Path<TForm>} disabled />
+			),
+		},
+		{
+			accessorKey: 'to_date',
+			header: 'To',
+			cell: ({ row }) => (
+				<ToDateCell
+					control={control}
+					statusName={`members.${row.index}.status_content` as Path<TForm>}
+					toDateName={`members.${row.index}.to_date` as Path<TForm>}
+				/>
+			),
+		},
+		{
+			accessorKey: 'mobile_no_1',
+			header: 'Mobile Number',
+			cell: ({ row }) => (
+				<CustomFormInput control={control} name={`members.${row.index}.mobile_no_1` as Path<TForm>} disabled />
+			),
+		},
+		{
+			id: 'prior_dignitaries',
+			header: 'Prior Dignitaries',
+			cell: ({ row }: CellContext<MemberType, unknown>) => (
+				<TablePriorDignitariesButton onClick={() => handleSelectPriorRow(row.original)} />
+			),
+			meta: { isExportable: false },
+			enableSorting: false,
+			enableHiding: true,
+		},
+	];
+};
+
+const useCommitteesFormColumns = <TForm extends CommitteesFormType>(
+	control: Control<TForm>
+): ColumnDef<MemberType>[] => {
+	const { handleSelectPriorRow } = useStore();
+
+	return [
+		{
+			accessorKey: 'service_as',
+			header: 'Service Id',
+		},
+		{
+			accessorKey: 'position',
+			header: 'Name of position',
+		},
+		{
+			accessorKey: 'priest_name',
+			header: 'Name of the Person',
+			cell: ({ row }) => (
+				<CustomFormInput control={control} name={`members.${row.index}.priest_name` as Path<TForm>} disabled />
+			),
+		},
+		{
+			accessorKey: 'image',
+			header: 'Image',
+			cell: ({ row }) => <AdminDefaultImage src={row.original.image} height={50} width={50} className="rounded-full" />,
+		},
+		{
+			accessorKey: 'priest_id',
+			header: 'Priest ID',
+		},
+		{
+			accessorKey: 'status_content',
+			header: 'Status',
+			cell: ({ row }) => (
+				<StatusDropdown control={control as Control<FieldValues>} name={`members.${row.index}.status_content`} />
+			),
+		},
+		{
+			accessorKey: 'from_date',
+			header: 'Since from',
+			cell: ({ row }) => (
+				<CustomFormInput control={control} name={`members.${row.index}.from_date` as Path<TForm>} disabled />
+			),
+		},
+		{
+			accessorKey: 'to_date',
+			header: 'To',
+			cell: ({ row }) => (
+				<ToDateCell
+					control={control}
+					statusName={`members.${row.index}.status_content` as Path<TForm>}
+					toDateName={`members.${row.index}.to_date` as Path<TForm>}
+				/>
+			),
+		},
+		{
+			accessorKey: 'mobile_no_1',
+			header: 'Mobile Number',
+			cell: ({ row }) => (
+				<CustomFormInput control={control} name={`members.${row.index}.mobile_no_1` as Path<TForm>} disabled />
+			),
+		},
+		{
+			id: 'prior_dignitaries',
+			header: 'Prior Dignitaries',
+			cell: ({ row }: CellContext<MemberType, unknown>) => (
+				<TablePriorDignitariesButton onClick={() => handleSelectPriorRow(row.original)} />
+			),
+			meta: { isExportable: false },
+			enableSorting: false,
+			enableHiding: true,
+		},
+	];
+};
+
+const useVSSSFormColumns = <TForm extends VSSSFormType>(
+	control: Control<TForm>,
+	type?: string
+): ColumnDef<MemberType>[] => {
+	const { handleSelectPriorRow } = useStore();
+
+	if (type === 'vf') {
+		return [
+			{
+				accessorKey: 'service_as_content',
+				header: 'Name of the position',
+				cell: ({ row }) => (
+					<CustomFormInput control={control} name={`members.${row.index}.service_as_content` as Path<TForm>} disabled />
+				),
+			},
+			{
+				accessorKey: 'priest_name',
+				header: 'Name of the Person',
+				cell: ({ row }) => (
+					<CustomFormInput control={control} name={`members.${row.index}.priest_name` as Path<TForm>} disabled />
+				),
+			},
+			{
+				accessorKey: 'priest_id',
+				header: 'Priest ID',
+			},
+			{
+				accessorKey: 'status_content',
+				header: 'Status',
+				cell: ({ row }) => (
+					<StatusDropdown control={control as Control<FieldValues>} name={`members.${row.index}.status_content`} />
+				),
+			},
+			{
+				accessorKey: 'from_date',
+				header: 'Since from',
+				cell: ({ row }) => (
+					<CustomFormInput control={control} name={`members.${row.index}.from_date` as Path<TForm>} disabled />
+				),
+			},
+			{
+				accessorKey: 'to_date',
+				header: 'To',
+				cell: ({ row }) => (
+					<ToDateCell
+						control={control}
+						statusName={`members.${row.index}.status_content` as Path<TForm>}
+						toDateName={`members.${row.index}.to_date` as Path<TForm>}
+					/>
+				),
+			},
+			{ accessorKey: 'parish_place_name', header: 'Vicariate' },
+			{ accessorKey: 'address', header: 'Resident at' },
+			{
+				accessorKey: 'mobile_no_1',
+				header: 'Mobile Number',
+				cell: ({ row }) => (
+					<CustomFormInput control={control} name={`members.${row.index}.mobile_no_1` as Path<TForm>} disabled />
+				),
+			},
+			{
+				accessorKey: 'image',
+				header: 'Image',
+				cell: ({ row }) => (
+					<AdminDefaultImage src={row.original.image} height={50} width={50} className="rounded-full" />
+				),
+			},
+			{
+				id: 'prior_dignitaries',
+				header: 'Prior Dignitaries',
+				cell: ({ row }) => <TablePriorDignitariesButton onClick={() => handleSelectPriorRow(row.original)} />,
+				meta: { isExportable: false },
+				enableSorting: false,
+				enableHiding: true,
+			},
+		];
+	}
+
+	return [
+		{
+			accessorKey: 'service_as_content',
+			header: 'Name of the position',
+			cell: ({ row }) => (
+				<CustomFormInput control={control} name={`members.${row.index}.service_as_content` as Path<TForm>} disabled />
+			),
+		},
+		{
+			accessorKey: 'priest_name',
+			header: 'Name of the Person',
+			cell: ({ row }) => (
+				<CustomFormInput control={control} name={`members.${row.index}.priest_name` as Path<TForm>} disabled />
+			),
+		},
+		{
+			accessorKey: 'priest_id',
+			header: 'Priest ID',
+		},
+		{
+			accessorKey: 'status_content',
+			header: 'Status',
+			cell: ({ row }) => (
+				<StatusDropdown control={control as Control<FieldValues>} name={`members.${row.index}.status_content`} />
+			),
+		},
+		{
+			accessorKey: 'from_date',
+			header: 'Since from',
+			cell: ({ row }) => (
+				<CustomFormInput control={control} name={`members.${row.index}.from_date` as Path<TForm>} disabled />
+			),
+		},
+		{
+			accessorKey: 'to_date',
+			header: 'To',
+			cell: ({ row }) => (
+				<ToDateCell
+					control={control}
+					statusName={`members.${row.index}.status_content` as Path<TForm>}
+					toDateName={`members.${row.index}.to_date` as Path<TForm>}
+				/>
+			),
+		},
+		{ accessorKey: 'address', header: 'Resident at' },
+		{
+			accessorKey: 'mobile_no_1',
+			header: 'Mobile Number',
+			cell: ({ row }) => (
+				<CustomFormInput control={control} name={`members.${row.index}.mobile_no_1` as Path<TForm>} disabled />
+			),
+		},
+		{
+			accessorKey: 'image',
+			header: 'Image',
+			cell: ({ row }) => <AdminDefaultImage src={row.original.image} height={50} width={50} className="rounded-full" />,
+		},
+		{
+			id: 'prior_dignitaries',
+			header: 'Prior Dignitaries',
+			cell: ({ row }) => <TablePriorDignitariesButton onClick={() => handleSelectPriorRow(row.original)} />,
+			meta: { isExportable: false },
+			enableSorting: false,
+			enableHiding: true,
+		},
+	];
+};
 
 const registerMemberColumns: ColumnDef<RegisterMemberType>[] = [
 	{
@@ -1173,4 +1468,7 @@ export {
 	diocesePriorColumns,
 	registerMemberColumns,
 	useCuriaMembersFormColumns,
+	useCommissionsFormColumns,
+	useCommitteesFormColumns,
+	useVSSSFormColumns,
 };

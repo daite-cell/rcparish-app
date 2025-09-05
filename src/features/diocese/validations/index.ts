@@ -239,7 +239,117 @@ const curiaMembersFormSchema = z.object({
 				prior_dignitaries: optionalString(),
 			})
 			.superRefine((member, ctx) => {
-				if (member.status === 'past' && !member.to_date) {
+				if (member.status === 'Past' && !member.to_date) {
+					ctx.addIssue({
+						code: z.ZodIssueCode.custom,
+						path: ['to_date'],
+						message: 'To Date is required when status is Past',
+					});
+				}
+			})
+	),
+});
+
+const collegeConsultersFormSchema = z.object({
+	members: z.array(
+		z
+			.object({
+				name_of_member: requiredString('Name is required'),
+				status: enumFromArray(['present', 'past'], 'Status is required'),
+				mobile: optionalMobileValidation('Invalid mobile number'),
+				from_date: requiredString('Date is required'),
+				to_date: z.string().optional(),
+				position: optionalString(),
+				image: optionalString(),
+				priest_id: optionalString(),
+				prior_dignitaries: optionalString(),
+			})
+			.superRefine((member, ctx) => {
+				if (member.status === 'Past' && !member.to_date) {
+					ctx.addIssue({
+						code: z.ZodIssueCode.custom,
+						path: ['to_date'],
+						message: 'To Date is required when status is Past',
+					});
+				}
+			})
+	),
+});
+
+const commissionsFormSchema = z.object({
+	members: z.array(
+		z
+			.object({
+				service_as: requiredString('Service As is required'),
+				service_as_content: requiredString('Incharge for is required'),
+				priest_name: requiredString('Name is required'),
+				status_content: enumFromArray(['Present', 'Past'], 'Status is required'),
+				mobile_no_1: optionalMobileValidation('Invalid mobile number'),
+				from_date: requiredString('Date is required'),
+				to_date: z.string().optional(),
+				position: optionalString(),
+				image: optionalString(),
+				priest_id: optionalString(),
+				prior_dignitaries: optionalString(),
+			})
+			.superRefine((member, ctx) => {
+				if (member.status_content === 'Past' && !member.to_date) {
+					ctx.addIssue({
+						code: z.ZodIssueCode.custom,
+						path: ['to_date'],
+						message: 'To Date is required when status is Past',
+					});
+				}
+			})
+	),
+});
+
+const committeesFormSchema = z.object({
+	members: z.array(
+		z
+			.object({
+				service_as: requiredString('Service As is required'),
+				service_as_content: requiredString('Incharge for is required'),
+				priest_name: requiredString('Name is required'),
+				status_content: enumFromArray(['Present', 'Past'], 'Status is required'),
+				mobile_no_1: optionalMobileValidation('Invalid mobile number'),
+				from_date: requiredString('Date is required'),
+				to_date: z.string().optional(),
+				position: optionalString(),
+				image: optionalString(),
+				priest_id: optionalString(),
+				prior_dignitaries: optionalString(),
+			})
+			.superRefine((member, ctx) => {
+				if (member.status_content === 'Past' && !member.to_date) {
+					ctx.addIssue({
+						code: z.ZodIssueCode.custom,
+						path: ['to_date'],
+						message: 'To Date is required when status is Past',
+					});
+				}
+			})
+	),
+});
+
+const vsssFormSchema = z.object({
+	members: z.array(
+		z
+			.object({
+				position: requiredString('Position is required'),
+				service_as: requiredString('Service As is required'),
+				service_as_content: requiredString('Incharge for is required'),
+				priest_name: requiredString('Name is required'),
+				status_content: enumFromArray(['Present', 'Past'], 'Status is required'),
+				mobile_no_1: optionalMobileValidation('Invalid mobile number'),
+				from_date: requiredString('Date is required'),
+				to_date: z.string().optional(),
+				image: optionalString(),
+				priest_id: optionalString(),
+				prior_dignitaries: optionalString(),
+			})
+			.superRefine((member, ctx) => {
+				if (member.status_content === 'Past' && !member.to_date) {
 					ctx.addIssue({
 						code: z.ZodIssueCode.custom,
 						path: ['to_date'],
@@ -261,6 +371,10 @@ type UploadSchemaType = z.infer<typeof uploadSchema>;
 type PropertiesType = z.infer<typeof propertiesSchema>;
 type BishopType = z.infer<typeof bishopSchema>;
 type CuriaMembersFormType = z.infer<typeof curiaMembersFormSchema>;
+type CommissionsFormType = z.infer<typeof commissionsFormSchema>;
+type CommitteesFormType = z.infer<typeof committeesFormSchema>;
+type VSSSFormType = z.infer<typeof vsssFormSchema>;
+type CollegeConsultersFormType = z.infer<typeof collegeConsultersFormSchema>;
 
 export {
 	commissionsSchema,
@@ -274,6 +388,10 @@ export {
 	propertiesSchema,
 	bishopSchema,
 	curiaMembersFormSchema,
+	commissionsFormSchema,
+	committeesFormSchema,
+	vsssFormSchema,
+	collegeConsultersFormSchema,
 };
 
 export type {
@@ -288,4 +406,8 @@ export type {
 	PropertiesType,
 	BishopType,
 	CuriaMembersFormType,
+	CommissionsFormType,
+	CommitteesFormType,
+	VSSSFormType,
+	CollegeConsultersFormType,
 };

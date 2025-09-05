@@ -17,7 +17,7 @@ function ToDateCell<TFormValues extends FieldValues>({
 		name: statusName,
 	});
 
-	if (currentStatus === 'present') {
+	if (currentStatus === 'Present') {
 		return <span className="text-[12px]">till now</span>;
 	}
 

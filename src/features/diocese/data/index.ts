@@ -1136,13 +1136,13 @@ const college_consulters_dummy_data = [
 ];
 
 const member_over_view_pages = ['properties'];
-const people_over_view_pages = ['vsss', 'senate_members', 'vf', 'parishes'];
+const people_over_view_pages = ['parishes'];
 const table_with_export_pages = ['curia_members', 'commissions', 'committees', 'college_consulters'];
 
 const curiaMembersDummyData = [
 	{
 		name_of_member: 'Most Rev Dr. Ambrose DD',
-		status: 'present',
+		status: 'Present',
 		mobile: '9486424008',
 		from_date: '2024-12-09',
 		to_date: 'till now',
@@ -1152,7 +1152,7 @@ const curiaMembersDummyData = [
 	},
 	{
 		name_of_member: 'Fr. John Nicholas M',
-		status: 'present',
+		status: 'Present',
 		mobile: '9443596748',
 		from_date: '2025-06-01',
 		to_date: 'till now',
@@ -1162,7 +1162,7 @@ const curiaMembersDummyData = [
 	},
 	{
 		name_of_member: 'Fr. Edwin Savariyappa B',
-		status: 'present',
+		status: 'Present',
 		mobile: '9751165680',
 		from_date: '2025-06-01',
 		to_date: 'till now',
@@ -1172,7 +1172,7 @@ const curiaMembersDummyData = [
 	},
 	{
 		name_of_member: 'Fr. Richard Pereira S',
-		status: 'present',
+		status: 'Present',
 		mobile: '9751556471',
 		from_date: '2025-06-01',
 		to_date: 'till now',
@@ -1182,7 +1182,7 @@ const curiaMembersDummyData = [
 	},
 	{
 		name_of_member: 'Fr. Amalanathan M',
-		status: 'present',
+		status: 'Present',
 		mobile: '9486938921',
 		from_date: '2025-06-01',
 		to_date: 'till now',
@@ -1192,7 +1192,7 @@ const curiaMembersDummyData = [
 	},
 	{
 		name_of_member: 'Fr. Irudayaraj N T',
-		status: 'present',
+		status: 'Present',
 		mobile: '9751122773',
 		from_date: '2023-06-01',
 		to_date: 'till now',
@@ -1202,7 +1202,7 @@ const curiaMembersDummyData = [
 	},
 	{
 		name_of_member: 'Fr. Lourdu Xavier A',
-		status: 'present',
+		status: 'Present',
 		mobile: '9788662948',
 		from_date: '2025-06-01',
 		to_date: 'till now',
@@ -1270,6 +1270,60 @@ const registerMembersData = [
 		image: '/admin.png',
 	},
 ];
+const dummy_college_consulters = [
+	{
+		position: 'President',
+		service_as: 'President',
+		service_as_content: 'Head of the College Consulters',
+		priest_name: 'Most Rev Dr. Ambrose DD',
+		status_content: 'Present',
+		mobile_no_1: '9486424008',
+		from_date: '2024-12-09',
+		to_date: 'Till Now',
+		image: '/admin.png',
+		priest_id: 'VDP0001',
+		prior_dignitaries: '4',
+	},
+	{
+		position: 'Vice-President',
+		service_as: 'Vice-President',
+		service_as_content: 'Deputy Head of the College Consulters',
+		priest_name: 'Fr. John Nicholas M',
+		status_content: 'Present',
+		mobile_no_1: '9443596748',
+		from_date: '2025-06-01',
+		to_date: 'Till Now',
+		image: '/admin.png',
+		priest_id: 'VDP0031',
+		prior_dignitaries: '48',
+	},
+	{
+		position: 'Secretary',
+		service_as: 'Secretary',
+		service_as_content: 'Administrative Incharge',
+		priest_name: 'Fr. Edwin Savariyappa B',
+		status_content: 'Present',
+		mobile_no_1: '9751165680',
+		from_date: '2025-06-01',
+		to_date: 'Till Now',
+		image: '/admin.png',
+		priest_id: 'VDP0105',
+		prior_dignitaries: '6',
+	},
+	{
+		position: 'Member',
+		service_as: 'Member',
+		service_as_content: 'Consultative Member',
+		priest_name: 'Fr. Gnanasekar S A',
+		status_content: 'Present',
+		mobile_no_1: '8098034374',
+		from_date: '2025-06-01',
+		to_date: 'Till Now',
+		image: '/admin.png',
+		priest_id: 'VDP0107',
+		prior_dignitaries: '8',
+	},
+];
 
 export {
 	diocese_rules_heading,
@@ -1294,4 +1348,5 @@ export {
 	college_consulters_dummy_data,
 	curiaMembersDummyData,
 	registerMembersData,
+	dummy_college_consulters,
 };

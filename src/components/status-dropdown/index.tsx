@@ -12,8 +12,8 @@ function StatusDropdown<T extends FieldValues>({ control, name }: StatusDropdown
 			control={control}
 			name={name}
 			options={[
-				{ label: 'Present', value: 'present' },
-				{ label: 'Past', value: 'past' },
+				{ label: 'Present', value: 'Present' },
+				{ label: 'Past', value: 'Past' },
 			]}
 		/>
 	);

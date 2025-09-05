@@ -72,3 +72,4 @@ export { default as DynamicTableFieldArraysForm } from './dynamic-table-fields-a
 export { default as DisplayDynamicFieldsTotal } from './display-dynamic-felids-total';
 export { default as ToDateCell } from './date-cell';
 export { default as StatusDropdown } from './status-dropdown';
+export { default as PageSectionHeading } from './page-section-heading';

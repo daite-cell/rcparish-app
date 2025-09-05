@@ -1,15 +1,14 @@
 import { DynamicDataTable, FormButton, PageSectionHeading } from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { curiaMembersFormSchema, type CuriaMembersFormType } from '../../validations';
-import { curiaMembersDummyData, registerMembersData } from '../../data';
-import { registerMemberColumns, useCuriaMembersFormColumns } from '../../columns';
+import { collegeConsultersFormSchema, type CollegeConsultersFormType } from '../../validations';
+import { curiaMembersDummyData, dummy_college_consulters } from '../../data';
+import { useCuriaMembersFormColumns } from '../../columns';
 import type { ColumnDef } from '@tanstack/react-table';
-import type { RegisterMemberType } from '@/types';
 
-const CuriaMembersForm = () => {
-	const { control, handleSubmit } = useForm<CuriaMembersFormType>({
-		resolver: zodResolver(curiaMembersFormSchema),
+const CollegeConsulterForm = () => {
+	const { control, handleSubmit } = useForm<CollegeConsultersFormType>({
+		resolver: zodResolver(collegeConsultersFormSchema),
 		defaultValues: {
 			members: curiaMembersDummyData,
 		},
@@ -19,8 +18,7 @@ const CuriaMembersForm = () => {
 
 	const columns = useCuriaMembersFormColumns(control);
 
-	const registerColumns = registerMemberColumns as ColumnDef<RegisterMemberType>[];
-	const onSubmit = (data: CuriaMembersFormType) => {
+	const onSubmit = (data: CollegeConsultersFormType) => {
 		console.warn('Submitted Curia Members Data:', data);
 	};
 
@@ -31,7 +29,7 @@ const CuriaMembersForm = () => {
 				<DynamicDataTable
 					enableDateSorting={false}
 					wrapText={false}
-					data={curiaMembersDummyData}
+					data={dummy_college_consulters}
 					customColumns={columns as ColumnDef<object>[]}
 					showFooter={false}
 					enableExport={false}
@@ -42,16 +40,8 @@ const CuriaMembersForm = () => {
 					<FormButton type="submit" label="Submit" />
 				</div>
 			</form>
-			<DynamicDataTable
-				data={registerMembersData}
-				customColumns={registerColumns}
-				enableExport={false}
-				enableSearch={false}
-				enablePagination={false}
-				title="MEMBERS OF DIOCESE OF VELLORE SOCIETY (REGISTERED)"
-			/>
 		</>
 	);
 };
 
-export default CuriaMembersForm;
+export default CollegeConsulterForm;

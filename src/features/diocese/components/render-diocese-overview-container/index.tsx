@@ -8,13 +8,26 @@ import type { PriestDetailsProps } from '@/types';
 import { people_over_view_pages } from '../../data';
 import GenericDiocesePeopleDetailsContainer from '../generic-diocese-people-details-container';
 import RenderDiocesePeopleDetailsContainer from '../render-people-overview-container';
-import { InstitutionsListForm, PriestsForm, PropertiesForm, VocationalListForm } from '../../forms';
+import {
+	CommissionsEditForm,
+	CommitteesEditForm,
+	InstitutionsListForm,
+	PriestsForm,
+	PropertiesForm,
+	VocationalListForm,
+	VsssEditForm,
+} from '../../forms';
 import get_priest_list from '../../data/get_priest_list.json';
 
 const RenderDioceseOverviewContainer = memo(() => {
 	const type = useRouteName('type');
 	const selectRow = useStore((state) => state.selectRow);
 	const editRow = useStore((state) => state.editRow);
+
+	const havingProfileTab =
+		type === 'commissions' || type === 'committees'
+			? [{ label: 'edit' }, { label: 'back' }]
+			: [{ label: 'profile' }, { label: 'edit' }, { label: 'back' }];
 
 	const priestsSectionData = getPriestsSectionData(selectRow as PriestDetailsProps);
 	const componentMap = {
@@ -43,6 +56,24 @@ const RenderDioceseOverviewContainer = memo(() => {
 			view: <GenericDiocesePeopleDetailsContainer />,
 			form: <PropertiesForm />,
 		},
+		commissions: {
+			form: <CommissionsEditForm />,
+		},
+		committees: {
+			form: <CommitteesEditForm />,
+		},
+		vsss: {
+			view: <RenderDiocesePeopleDetailsContainer />,
+			form: <VsssEditForm />,
+		},
+		senate_members: {
+			view: <RenderDiocesePeopleDetailsContainer />,
+			form: <VsssEditForm />,
+		},
+		vf: {
+			view: <RenderDiocesePeopleDetailsContainer />,
+			form: <VsssEditForm />,
+		},
 
 		...Object.fromEntries(
 			people_over_view_pages.map((p) => [
@@ -56,7 +87,12 @@ const RenderDioceseOverviewContainer = memo(() => {
 	};
 
 	return (
-		<OverviewTabsLayout pathName={type} componentMap={componentMap} defaultTabLabel={editRow ? 'edit' : 'profile'} />
+		<OverviewTabsLayout
+			tabs={havingProfileTab}
+			pathName={type}
+			componentMap={componentMap}
+			defaultTabLabel={editRow ? 'edit' : 'profile'}
+		/>
 	);
 });
 
