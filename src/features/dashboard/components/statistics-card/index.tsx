@@ -1,4 +1,4 @@
-import { Users, User, Church, UsersRound } from 'lucide-react';
+import { Users, User, Church, UsersRound, Building } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { memo, useMemo } from 'react';
 
@@ -7,6 +7,7 @@ const Icons = {
 	User,
 	Church,
 	UsersRound,
+	Building,
 };
 
 const ICON_KEYS_SET = new Set(Object.keys(Icons) as (keyof typeof Icons)[]);
@@ -30,7 +31,7 @@ const StatisticsCard = memo<StatisticsCardProps>(({ link, label, value, id, icon
 	}, [icon]);
 
 	return (
-		<div className="px-5 py-2 text-gray-700 transition duration-300 bg-white rounded shadow-md hover:shadow-lg">
+		<div className="px-5 py-2 text-gray-700 transition duration-300 bg-white rounded shadow-[0_3px_10px_rgba(0,0,0,0.2)] hover:shadow-[0_3px_10px_rgba(0,0,0,0.4)]">
 			<Link to={link} className="block p-4 lg:p-0 xl:p-4">
 				<div className="flex items-center justify-between">
 					<div className="flex flex-col items-center gap-2">

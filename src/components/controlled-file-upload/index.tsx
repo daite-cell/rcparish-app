@@ -8,6 +8,7 @@ interface ControlledFileUploadProps<T extends FieldValues> {
 	label?: string;
 	accept?: string;
 	error?: FieldError | string;
+	enableImagePreview?: boolean;
 }
 
 const ControlledFileUpload = <T extends FieldValues>({
@@ -16,10 +17,11 @@ const ControlledFileUpload = <T extends FieldValues>({
 	label,
 	accept = '',
 	error,
+	enableImagePreview = true,
 }: ControlledFileUploadProps<T>) => {
 	return (
 		<div className="w-full text-xs">
-			<AdminDefaultImage height={50} width={50} className="my-3" />
+			{enableImagePreview && <AdminDefaultImage height={50} width={50} className="my-3" />}
 			{label && (
 				<label htmlFor={name} className="block mb-1">
 					{label}

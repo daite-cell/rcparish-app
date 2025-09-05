@@ -12,6 +12,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import { House, Newspaper, Folder, Link as LinkIcon, BookText, CalendarDays } from 'lucide-react';
 import type { NavLinkProps, NavLinkSectionProps } from '@/types';
 import GenericNavLinks from '@/components/generic-nav-links';
+import { dashboard_roots } from '@/data/side-navbar-content';
 
 const Icons = {
 	House,
@@ -28,7 +29,7 @@ const NavLinksSection = ({ navData, pathName }: { navData: NavLinkSectionProps[]
 	}
 
 	const haveDashboardNavigation = useMemo(
-		() => ['/dashboard', '/query_from_bishop', '/query_from_people', '/request_to_bishop'].includes(pathName),
+		() => dashboard_roots.some((root) => pathName === root || pathName.startsWith(`${root}/`)),
 		[pathName]
 	);
 
