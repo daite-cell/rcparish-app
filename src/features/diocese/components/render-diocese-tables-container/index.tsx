@@ -47,6 +47,7 @@ const RenderDioceseTablesContainer = () => {
 							wrapText={false}
 							data={tableData.data}
 							customColumns={columns}
+							tableId={`${type}-${tableKey}`}
 						/>
 					</div>
 				);
