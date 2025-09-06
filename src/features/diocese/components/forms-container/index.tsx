@@ -5,6 +5,7 @@ import {
 	CommitteesForm,
 	HousesListForm,
 	InstitutionsListForm,
+	ParishesForm,
 	PriestsForm,
 	PropertiesForm,
 	SocialServiceSocietyForm,
@@ -51,6 +52,7 @@ const RenderFormsContainer = () => {
 			pageName: 'bishop',
 			component: <BishopForm />,
 		},
+		{ pageName: 'parishes', component: <ParishesForm /> },
 	];
 	return renderForms.find((form) => form.pageName === type)?.component || <h1>forms will be added</h1>;
 };

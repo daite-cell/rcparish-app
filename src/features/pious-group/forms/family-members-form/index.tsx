@@ -117,7 +117,7 @@ const FamilyMembersForm = () => {
 						New Member
 					</Label>
 					<div className="flex items-center relative">
-						<span className="mx-2 h-7 mt-2 w-[4px]  bg-red-700 absolute -left-5"></span>
+						<span className="mx-2 h-7  w-[4px]  bg-red-700 absolute -left-5"></span>
 						<SingleSelectDropdown
 							control={control}
 							options={members}
