@@ -181,21 +181,21 @@ const PriestNunParishEditForm = () => {
 						]}
 						error={errors.addressStatus?.message}
 					/>
-					{addressStatus !== 'different' ? (
-						<CustomFormInput
-							control={control}
-							name="temporaryAddress"
-							type="textarea"
-							error={errors.temporaryAddress?.message}
-							placeholder="Enter the Temporary Address"
-						/>
-					) : (
+					{addressStatus === 'different' ? (
 						<CustomFormInput
 							control={control}
 							name="differentAddress"
 							type="textarea"
 							error={errors.differentAddress?.message}
 							placeholder="Enter the Different Address"
+						/>
+					) : (
+						<CustomFormInput
+							control={control}
+							name="temporaryAddress"
+							type="textarea"
+							error={errors.temporaryAddress?.message}
+							placeholder="Enter the Temporary Address"
 						/>
 					)}
 				</div>

@@ -58,8 +58,6 @@ const priestNunParishSchema = z.object({
 	mobileNumber: mobileValidation('Enter a valid 10-digit mobile number'),
 	email: emailValidation('Enter a valid email address'),
 	temporaryAddress: longText(10, 'Temporary address is required'),
-	permanentAddressStatus: enumFromArray(['same_as_temporary', 'different'], 'Please choose an address option'),
-	permanentAddress: longText(10, 'Temporary address is required').optional(),
 	image: requiredImageSchema,
 	relationshipToFamily: requiredString('Relationship to Family is required'),
 	familyHead: requiredString('Family Head is required'),
