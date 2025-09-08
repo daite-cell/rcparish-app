@@ -24,28 +24,28 @@ const statistics_cards_content = [
 				title: 'VELLORE DIOCESE DETAILS',
 				cards: [
 					{
-						link: '/diocese/priests',
+						link: '/diocese/parishes',
 						icon: 'Church',
 						label: 'Diocesan Parish',
 						value: 74,
 						id: 'd_priests_total',
 					},
 					{
-						link: '/diocese/priests',
+						link: '/diocese/parishes',
 						icon: 'Church',
 						label: 'Religious Parish',
 						value: 15,
 						id: 'c_priests_total',
 					},
 					{
-						link: '/diocese/priests',
+						link: '/pious_group/families',
 						icon: 'UsersRound',
 						label: 'Families',
 						value: 999,
 						id: 'd_priests_total_2',
 					},
 					{
-						link: '/diocese/priests',
+						link: '/pious_group/family_members',
 						icon: 'UsersRound',
 						label: 'Members',
 						value: 2940,
@@ -88,14 +88,14 @@ const statistics_cards_content = [
 				title: 'Perumanam Parish',
 				cards: [
 					{
-						link: '/diocese/priests',
+						link: '/pious_group/families',
 						icon: 'UsersRound',
 						label: 'Families',
 						value: 303,
 						id: 'd_priests_total',
 					},
 					{
-						link: '/diocese/priests',
+						link: '/pious_group/family_members',
 						icon: 'UsersRound',
 						label: 'Members',
 						value: 1162,
@@ -107,28 +107,28 @@ const statistics_cards_content = [
 				title: 'Perumanam Parish - DETAILS',
 				cards: [
 					{
-						link: '/diocese/priests',
+						link: '/parish/sub_stations',
 						icon: 'Church',
 						label: 'Sub Stations',
 						value: 5,
 						id: 'd_priests_total',
 					},
 					{
-						link: '/diocese/priests',
+						link: '/pious_group/anbiams',
 						icon: 'Building',
 						label: 'Anbiams',
 						value: 10,
 						id: 'c_priests_total',
 					},
 					{
-						link: '/diocese/priests',
+						link: '/pious_group/associations_club',
 						icon: 'Church',
 						label: 'Associations',
 						value: 13,
 						id: 'd_priests_total_2',
 					},
 					{
-						link: '/diocese/priests',
+						link: '/pious_group/priest_nun_parish',
 						icon: 'User',
 						label: 'Priests & Nun',
 						value: 1,
