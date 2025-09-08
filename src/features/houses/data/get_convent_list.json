@@ -1,0 +1,20 @@
+{
+	"convent_list": [
+		{
+			"parish": "V05P10",
+			"sub_station_name": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"type_content": "Convent For Nun",
+			"name": "SD Convent",
+			"convent_id": "CP0001",
+			"place": "Perumanam",
+			"belongs_to": "Congregation",
+			"established_year_content": "January, 1998",
+			"established_by": "Rev. Fr. Jeyaseelan",
+			"land_ownership_content": "Diocese",
+			"address": "",
+			"mobile_no": "9003833532",
+			"mail_id": ""
+		}
+	]
+}

@@ -1,49 +1,79 @@
+import React from 'react';
+import { Controller, type Control, type FieldValues, type Path, type PathValue } from 'react-hook-form';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
-import React from 'react';
-
 import { CustomInput, CustomTextarea } from '../index';
 
-interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-	label: string;
-	name?: string;
+type InputType = 'text' | 'number' | 'email' | 'textarea';
+
+interface CustomFormInputProps<T extends FieldValues> {
+	control: Control<T>;
+	name: Path<T>;
+	label?: string;
+	type?: InputType;
 	className?: string;
 	labelClassName?: string;
-	type?: string;
 	disabled?: boolean;
+	error?: string;
+	placeholder?: string;
+	onBlur?: () => void;
+	defaultValue?: string | number;
 }
 
-export const CustomFormInput = React.memo(
-	({ label, name, type = 'text', className, labelClassName, disabled = false, ...props }: FormInputProps) => {
-		const isTextarea = type === 'textarea';
+function CustomFormInputInner<T extends FieldValues>({
+	control,
+	name,
+	label,
+	type = 'text',
+	className,
+	labelClassName,
+	disabled = false,
+	error,
+	placeholder,
+	onBlur,
+	defaultValue = '',
+}: CustomFormInputProps<T>) {
+	const isTextarea = type === 'textarea';
 
-		return (
-			<div className="grid w-full items-center gap-2 font-[12px]">
-				<Label htmlFor={name} className={cn('text-[12px] font-normal ', labelClassName)}>
-					{label}
-				</Label>
+	return (
+		<div className="grid w-full items-center gap-2 text-[12px]">
+			<Label htmlFor={name} className={cn('text-[12px] font-normal', labelClassName)}>
+				{label}
+			</Label>
 
-				{isTextarea ? (
-					<CustomTextarea
-						id={name}
-						name={name}
-						className={className}
-						{...(props as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
-					/>
-				) : (
-					<CustomInput
-						disabled={disabled}
-						id={name}
-						name={name}
-						type={type}
-						aria-label={label}
-						className={className}
-						{...props}
-					/>
-				)}
-			</div>
-		);
-	}
-);
+			<Controller
+				control={control}
+				name={name}
+				defaultValue={defaultValue as PathValue<T, Path<T>>}
+				render={({ field }) => {
+					const commonProps = {
+						id: name,
+						placeholder,
+						disabled,
+						className: cn(
+							className,
+							error && 'border-red-500',
+							disabled && 'bg-[#e9ecef] opacity-100 cursor-not-allowed'
+						),
+						...field,
+						onBlur: () => {
+							field.onBlur();
+							onBlur?.();
+						},
+					};
 
+					return isTextarea ? (
+						<CustomTextarea {...commonProps} />
+					) : (
+						<CustomInput type={type} aria-label={label} {...commonProps} />
+					);
+				}}
+			/>
+
+			{error && <p className="text-xs text-red-500">{error}</p>}
+		</div>
+	);
+}
+
+const CustomFormInput = React.memo(CustomFormInputInner) as typeof CustomFormInputInner;
 export default CustomFormInput;

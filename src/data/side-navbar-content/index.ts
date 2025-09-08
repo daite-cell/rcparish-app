@@ -90,6 +90,7 @@ const side_nav_links = [
 				path_url: '/diocese/priests',
 				label: 'Priests',
 				icon: 'Folder',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/diocese/calender_dates',
@@ -107,29 +108,32 @@ const side_nav_links = [
 				path_url: '/diocese/commissions',
 				label: 'Commissions',
 				icon: 'Folder',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 
 			{
 				path_url: '/diocese/committees',
 				label: 'Committees',
 				icon: 'Folder',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/diocese/vsss',
 				label: 'Social Service Society',
 				icon: 'Folder',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/diocese/college_consulters',
 				label: 'College of Consultors',
 				icon: 'Folder',
-				tabs: [{ label: 'PRIOR DIGNITARIES' }, { label: 'view' }, { label: 'edit' }],
+				tabs: [{ label: 'prior dignitaries' }, { label: 'view' }, { label: 'edit' }],
 			},
 			{
 				path_url: '/diocese/senate_members',
 				label: 'Senate Members',
 				icon: 'Folder',
-				tabs: [{ label: 'PRIOR DIGNITARIES' }, { label: 'edit' }],
+				tabs: [{ label: 'prior dignitaries' }, { label: 'view' }],
 			},
 
 			{
@@ -148,27 +152,32 @@ const side_nav_links = [
 				path_url: '/diocese/parishes',
 				label: 'Parishes',
 				icon: 'Folder',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 
 			{
 				path_url: '/diocese/properties',
 				label: 'Land Properties',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/diocese/houses_list',
 				label: 'Houses',
 				icon: 'Folder',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/diocese/institutions_list',
 				label: 'Institutions List',
 				icon: 'Folder',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/diocese/vocational_list',
 				label: 'Vocational List',
 				icon: 'Folder',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 		],
 	},
@@ -290,28 +299,31 @@ const side_nav_links = [
 				path_url: '/pious_group/parish_council_members',
 				label: 'Parish Council Members',
 				icon: 'BookText',
-				tabs: [{ label: 'COUNCIL DETAILS' }, { label: 'View' }, { label: 'add/change' }],
+				tabs: [{ label: 'council details' }, { label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/pious_group/religious_people_parish',
 				label: 'Religious People in Parish',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/pious_group/priest_nun_parish',
 				label: 'Sons and Daughters of the Soil',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/pious_group/family_members',
 				label: 'Members in Families',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/pious_group/families',
 				label: 'Families',
 				icon: 'BookText',
-				tabs: [{ label: 'ANBIAM FAMILY CARD' }, { label: 'view' }, { label: 'add' }],
+				tabs: [{ label: 'anbiam family card' }, { label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/pious_group/school_students',
@@ -329,11 +341,13 @@ const side_nav_links = [
 				path_url: '/pious_group/anbiams',
 				label: 'Anbiam',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/pious_group/associations_club',
 				label: 'Associations & Club',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/pious_group/anbiam_incharge',
@@ -345,7 +359,7 @@ const side_nav_links = [
 				path_url: '/pious_group/associations_incharge',
 				label: 'Associations Incharge',
 				icon: 'BookText',
-				tabs: [{ label: 'ANBIAM FAMILY CARD' }, { label: 'view' }, { label: 'add' }],
+				tabs: [{ label: 'ASSOCIATION DETAILS' }, { label: 'view' }, { label: 'add' }],
 			},
 		],
 	},
@@ -361,6 +375,11 @@ const side_nav_links = [
 			{
 				path_url: '/sacraments/baptism',
 				label: 'Baptism Register',
+				icon: 'BookText',
+			},
+			{
+				path_url: '/sacraments/holy_communion',
+				label: 'First Holy Communion Register',
 				icon: 'BookText',
 			},
 			{
@@ -440,11 +459,13 @@ const side_nav_links = [
 				path_url: '/accounting/donations',
 				label: 'Donations',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/accounting/church_collections',
 				label: 'Church Collections',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/accounting/rent_shop',
@@ -456,6 +477,7 @@ const side_nav_links = [
 				path_url: '/accounting/workers',
 				label: 'Workers (Employers)',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/accounting/employers_salary',
@@ -468,6 +490,7 @@ const side_nav_links = [
 				path_url: '/accounting/day_book',
 				label: 'Day Book',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 
 			{
@@ -791,7 +814,7 @@ const dynamic_navLinks_data = [
 				path_url: '/diocese/bishop',
 				label: 'Bishop',
 				icon: 'CalendarDays',
-				tabs: [{ label: 'RETIRED / EMERITUS BISHOPS' }, { label: 'view' }, { label: 'edit' }],
+				tabs: [{ label: 'retired / emeritus bishops' }, { label: 'view' }, { label: 'edit' }],
 			},
 			{
 				path_url: '/diocese/retired_bishops',
@@ -886,5 +909,12 @@ const dynamic_navLinks_data = [
 		],
 	},
 ];
+const dashboard_roots = [
+	'/dashboard',
+	'/query_from_bishop',
+	'/query_from_people',
+	'/request_to_bishop',
+	'/sermon',
+] as const;
 
-export { side_nav_links, rules_sub_links, rules, dynamic_navLinks_data };
+export { side_nav_links, rules_sub_links, rules, dynamic_navLinks_data, dashboard_roots };

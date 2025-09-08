@@ -1,0 +1,124 @@
+{
+	"anbiams_list": [
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Arulanandar Anbiam",
+			"anbiam_id": "S01A01",
+			"anbiam_short_form": "AR",
+			"elected_on": "2023-08-13",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2026-08-13"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Thomaiyar Anbiam",
+			"anbiam_id": "S01A02",
+			"anbiam_short_form": "TH",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Susaiyappar Anbiam",
+			"anbiam_id": "S01A03",
+			"anbiam_short_form": "SU",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Anthoniyar Anbiam",
+			"anbiam_id": "S01A04",
+			"anbiam_short_form": "AN",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Annai Theresa Anbiam",
+			"anbiam_id": "S01A05",
+			"anbiam_short_form": "AT",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Sagaya Madha Anbiam",
+			"anbiam_id": "S01A06",
+			"anbiam_short_form": "SM",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Saveriyar Anbiam",
+			"anbiam_id": "S01A07",
+			"anbiam_short_form": "SA",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Rayappar Anbiam",
+			"anbiam_id": "S01A08",
+			"anbiam_short_form": "RA",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Vanathu Chinappar Anbiam",
+			"anbiam_id": "S01A09",
+			"anbiam_short_form": "VC",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"parish_content": "Perumanam Parish",
+			"sub_station_id": "S01",
+			"sub_station_name": "Perumanam Parish",
+			"anbiam_name": "St Velankanni Madha Anbiam",
+			"anbiam_id": "S01A10",
+			"anbiam_short_form": "VE",
+			"elected_on": "2024-01-01",
+			"period_of": "3",
+			"extend_period": "no",
+			"period_end_on": "2027-01-01"
+		}
+	]
+}

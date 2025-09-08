@@ -1,55 +1,96 @@
-import { DynamicDataTable, TabsLayout } from '@/components';
+import { lazy, Suspense, useMemo, useState } from 'react';
+import { PriorDignitariesContainer, TabsLayout } from '@/components';
 import { side_nav_links } from '@/data/side-navbar-content';
 import type { NavLinkProps } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
-import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useRouteName } from '@/utils/getRouteName';
+import { useStore } from '@/store/store';
+import {
+	AnbiamInChargeDetails,
+	AssociationDetailsTable,
+	AssociationInchargeDetails,
+	FamilyCardDownloadContainer,
+	FamilyMembersInfoWithTable,
+	FormsContainer,
+	RenderPiousGroupOverviewContainer,
+} from '../../components';
+import { usePathName } from '@/utils/getPathName';
+import { CouncilDetailsForm } from '../../forms';
+
+const RenderPiousGroupTables = lazy(() => import('../../components/render-pious-group-tables'));
 
 const PiousGroupGenericPage = () => {
-	const location = useLocation();
-	const [activeIndex, setActiveIndex] = useState(1);
-	const handleToggleTab = (index: number) => {
-		setActiveIndex(index);
-	};
-	const linksData = getSectionByPathName(side_nav_links, location.pathname);
-	const tabsData = linksData?.page_nav_links.find((link: NavLinkProps) => link.path_url === location.pathname)?.tabs;
-	type TableRowData = {
-		sub_station: string;
-		date: string;
-		timing: string;
-		title: string;
-		country: string;
-	};
-	const handleEdit = (row: TableRowData): void => {
-		console.warn('Edit clicked:', row);
-	};
+	const type = useRouteName('type');
+	const pathName = usePathName();
+	const { selectRow, selectFamilyCardRow, selectPriorRow, editRow, selectAssociationRow, selectFamilyMembersRow } =
+		useStore();
 
-	const handleDelete = (row: TableRowData): void => {
-		console.warn('Delete clicked:', row);
-	};
+	const [activeIndex, setActiveIndex] = useState(0);
 
-	const handleView = (row: TableRowData): void => {
-		console.warn('View clicked:', row);
+	const linksData = getSectionByPathName(side_nav_links, pathName);
+	const tabsData = linksData?.page_nav_links.find((link: NavLinkProps) => link.path_url === pathName)?.tabs;
+
+	useMemo(() => {
+		if (!tabsData) return;
+		const viewIndex = tabsData.findIndex((tab) => tab.label.toLowerCase() === 'view');
+		setActiveIndex(viewIndex !== -1 ? viewIndex : 0);
+	}, [tabsData]);
+
+	if (selectPriorRow) {
+		return <PriorDignitariesContainer />;
+	}
+	if (selectAssociationRow && type == 'anbiam_incharge') {
+		return <AnbiamInChargeDetails />;
+	}
+
+	if (selectAssociationRow) {
+		return <AssociationInchargeDetails />;
+	}
+
+	if (selectRow || editRow || selectFamilyCardRow) {
+		return <RenderPiousGroupOverviewContainer pathName={type} />;
+	}
+
+	if (selectFamilyMembersRow) {
+		return <FamilyMembersInfoWithTable />;
+	}
+	const renderTabContent = (label: string | undefined) => {
+		switch (label?.toLowerCase().trim()) {
+			case 'view':
+				return (
+					<Suspense fallback={<div>Loading...</div>}>
+						<RenderPiousGroupTables />
+					</Suspense>
+				);
+			case 'add':
+				return <FormsContainer />;
+			case 'council details':
+				return <CouncilDetailsForm />;
+			case 'association details':
+				return <AssociationDetailsTable />;
+			case 'anbiam details':
+				return <AssociationDetailsTable />;
+
+			case 'anbiam family card':
+				return <FamilyCardDownloadContainer />;
+
+			default:
+				return null;
+		}
 	};
 
 	return (
 		<TabsLayout
-			onTabChange={handleToggleTab}
+			hasPageHeading={
+				['anbiam details', 'anbiam family card'].includes(tabsData?.[activeIndex]?.label?.toLowerCase().trim() ?? '')
+					? false
+					: true
+			}
+			tabs={tabsData || []}
+			onTabChange={setActiveIndex}
 			activeTabId={activeIndex}
-			tabs={tabsData || [{ label: 'view' }, { label: 'add' }]}
 		>
-			{activeIndex === 1 && (
-				<DynamicDataTable
-					includeCheckbox
-					includePriorDignitaries
-					isDynamic
-					enableDateAndLetterSorting
-					onEdit={handleEdit}
-					onDelete={handleDelete}
-					onView={handleView}
-					tableId="pious_group"
-				/>
-			)}
+			{renderTabContent(tabsData?.[activeIndex]?.label)}
 		</TabsLayout>
 	);
 };

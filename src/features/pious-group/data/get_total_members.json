@@ -1,0 +1,31 @@
+{
+	"total_members": [
+		{
+			"member_from": "Member of Parish",
+			"member_name": "Arputham",
+			"mobile_no": "9843599547",
+			"elected_status": "Regular",
+			"position": "President",
+			"elected_date": "2024-01-01",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"member_from": "Member of Parish",
+			"member_name": "Maria Anthony alias Dass",
+			"mobile_no": "8838733451",
+			"elected_status": "Regular",
+			"position": "Secretary",
+			"elected_date": "2024-01-01",
+			"period_end_on": "2027-01-01"
+		},
+		{
+			"member_from": "Member of Parish",
+			"member_name": "Rayappan",
+			"mobile_no": "9655386747",
+			"elected_status": "Regular",
+			"position": "Treasurer",
+			"elected_date": "2024-01-01",
+			"period_end_on": "2027-01-01"
+		}
+	]
+}

@@ -3,7 +3,6 @@ import type { AppRoute } from '../types';
 
 const DashBoardPage = lazy(() => import('../features/dashboard/pages/dashboard-page'));
 const QueriesFormPage = lazy(() => import('../features/dashboard/pages/queries-form'));
-const RegisterPage = lazy(() => import('../features/register/pages/register-page'));
 const ReligiousPeopleGenericPage = lazy(
 	() => import('../features/religious-people/pages/religious-people-generic-page')
 );
@@ -19,8 +18,10 @@ const DioceseStatutesGenericPage = lazy(() => import('../features/diocese/pages/
 const RulesOfParishGenericPage = lazy(() => import('../features/parish/pages/rule-of-parish-page'));
 const DashboardGenericPage = lazy(() => import('../features/dashboard/pages/dashboard-generic-page'));
 const HistoryPage = lazy(() => import('../features/diocese/pages/history-page'));
-
 const Profile = lazy(() => import('../features/profile/index'));
+const PriestsGenericPage = lazy(() => import('../features/diocese/pages/priests-generic-page'));
+const AccountingPiousGroupPage = lazy(() => import('../features/pious-group/pages/accounting-pious-group-page'));
+const RegisterPiousGroupPage = lazy(() => import('../features/pious-group/pages/register-pious-group-page'));
 
 export const appRoutes: AppRoute[] = [
 	{ path: '/dashboard', name: 'Dashboard', element: <DashBoardPage />, layout: true },
@@ -38,13 +39,13 @@ export const appRoutes: AppRoute[] = [
 		element: <DashboardGenericPage />,
 		layout: true,
 	},
-	{ path: '/sacraments', name: 'Register', element: <RegisterPage />, layout: true },
 	{
 		path: '/religious_people/:type',
 		name: 'ReligiousPeopleGeneric',
 		element: <ReligiousPeopleGenericPage />,
 		layout: true,
 	},
+
 	{
 		path: '/sacraments/:type',
 		name: 'RegisterGeneric',
@@ -57,6 +58,7 @@ export const appRoutes: AppRoute[] = [
 		element: <AccountingGenericPage />,
 		layout: true,
 	},
+
 	{
 		path: '/parish/:type',
 		name: 'ParishGeneric',
@@ -75,6 +77,19 @@ export const appRoutes: AppRoute[] = [
 		element: <CommonPoolGenericPage />,
 		layout: true,
 	},
+	{
+		path: '/pious_group/families/:subStationId/:anbiamId/:uniqueFamilyId',
+		name: 'AccountingPiousGroupGeneric',
+		element: <AccountingPiousGroupPage />,
+		layout: true,
+	},
+	{
+		path: '/pious_group/family_members/:subStationId/:anbiamId/:uniqueFamilyId/:uniqueMemberId',
+		name: 'RegisterPiousGroupGeneric',
+		element: <RegisterPiousGroupPage />,
+		layout: true,
+	},
+
 	{
 		path: '/pious_group/:type',
 		name: 'PiousGroupGeneric',
@@ -100,6 +115,12 @@ export const appRoutes: AppRoute[] = [
 		element: <HistoryPage />,
 		layout: true,
 	},
+	{
+		path: '/diocese/priests/:id',
+		name: 'DioceseGeneric',
+		element: <PriestsGenericPage />,
+		layout: true,
+	},
 
 	{
 		path: '/diocese/:type',
@@ -107,6 +128,7 @@ export const appRoutes: AppRoute[] = [
 		element: <DioceseGenericPage />,
 		layout: true,
 	},
+
 	{
 		path: '/diocese/statutes/:rule',
 		name: 'DioceseStatutesGeneric',

@@ -121,14 +121,14 @@
 }
 
 @font-face {
-  font-family: TamilFont;
-  src: url("./assets/fonts/Bamini.ttf") format("truetype");
+	font-family: TamilFont;
+	src: url("./assets/fonts/Bamini.ttf") format("truetype");
 }
 
 .langu {
-  padding: 6px 0 0 0;
-  font-family: TamilFont, Helvetica, sans-serif;
-  font-size: 15px;
+	padding: 6px 0 0 0;
+	font-family: TamilFont, Helvetica, sans-serif;
+	font-size: 15px;
 }
 
 
@@ -144,4 +144,27 @@
 
 .text-shadow-beige {
 	text-shadow: 0px 0px 10px rgb(222, 212, 155);
+}
+
+
+@media print {
+	body * {
+		visibility: hidden;
+	}
+
+	.print-area, .print-area * {
+		visibility: visible;
+	}
+
+	.print-area {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+	}
+
+
+	.no-print {
+		display: none !important;
+	}
 }

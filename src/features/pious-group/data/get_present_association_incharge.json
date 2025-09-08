@@ -1,0 +1,88 @@
+{
+	"president_list": [
+		{
+			"sub_station_id": "S01",
+			"association_id": "S01C01",
+			"elected_status": "Regular",
+			"position": "President",
+			"member_from": "Member of Parish",
+			"unique_member_id": "SU007M03",
+			"sub_station_name": "Perumanam Parish",
+			"association_name": "St Vincent de Paul",
+			"member_name": "Arputham",
+			"mobile_no": "9843599547",
+			"elected_date": "2024-01-01",
+			"reason_content": "-"
+		},
+		{
+			"sub_station_id": "S01",
+			"association_id": "S01C02",
+			"elected_status": "Regular",
+			"position": "President",
+			"member_from": "Member of Parish",
+			"unique_member_id": "AN019M02",
+			"sub_station_name": "Perumanam Parish",
+			"association_name": "Jeeva Madha Kolping Club",
+			"member_name": "Carolin Mary",
+			"mobile_no": "8220706932",
+			"elected_date": "2024-01-01",
+			"reason_content": "-"
+		},
+		{
+			"sub_station_id": "S01",
+			"association_id": "S01C01",
+			"elected_status": "Regular",
+			"position": "Secretary",
+			"member_from": "Member of Parish",
+			"unique_member_id": "TH037M01",
+			"sub_station_name": "Perumanam Parish",
+			"association_name": "St Vincent de Paul",
+			"member_name": "Maria Anthony alias Dass",
+			"mobile_no": "8838733451",
+			"elected_date": "2024-01-01",
+			"reason_content": "-"
+		},
+		{
+			"sub_station_id": "S01",
+			"association_id": "S01C02",
+			"elected_status": "Regular",
+			"position": "Secretary",
+			"member_from": "Member of Parish",
+			"unique_member_id": "TH028M02",
+			"sub_station_name": "Perumanam Parish",
+			"association_name": "Jeeva Madha Kolping Club",
+			"member_name": "Arockia Anusha Shaibi",
+			"mobile_no": "8553632550",
+			"elected_date": "2024-01-01",
+			"reason_content": "-"
+		},
+		{
+			"sub_station_id": "S01",
+			"association_id": "S01C01",
+			"elected_status": "Regular",
+			"position": "Treasurer",
+			"member_from": "Member of Parish",
+			"unique_member_id": "TH011M04",
+			"sub_station_name": "Perumanam Parish",
+			"association_name": "St Vincent de Paul",
+			"member_name": "Rayappan",
+			"mobile_no": "9655386747",
+			"elected_date": "2024-01-01",
+			"reason_content": "-"
+		},
+		{
+			"sub_station_id": "S01",
+			"association_id": "S01C02",
+			"elected_status": "Regular",
+			"position": "Treasurer",
+			"member_from": "Member of Parish",
+			"unique_member_id": "SA005M02",
+			"sub_station_name": "Perumanam Parish",
+			"association_name": "Jeeva Madha Kolping Club",
+			"member_name": "Velankanni",
+			"mobile_no": "9597802769",
+			"elected_date": "2024-01-01",
+			"reason_content": "-"
+		}
+	]
+}

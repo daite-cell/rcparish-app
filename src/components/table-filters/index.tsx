@@ -1,5 +1,4 @@
-import { SingleSelectDropdown, DateInputFelid } from '@/components';
-import { Button } from '@/components/ui/button';
+import { DateInputField, FormButton } from '@/components';
 
 interface TableFiltersProps {
 	fromDate: Date | undefined;
@@ -8,41 +7,55 @@ interface TableFiltersProps {
 	setToDate: (date: Date | undefined) => void;
 	alphaFilter: string;
 	setAlphaFilter: (val: string) => void;
+	enableDateSorting?: boolean;
+	enableLetterSorting?: boolean;
 }
 
-const TableFilters = ({ fromDate, toDate, setFromDate, setToDate, alphaFilter, setAlphaFilter }: TableFiltersProps) => {
+const TableFilters = ({
+	fromDate,
+	toDate,
+	setFromDate,
+	setToDate,
+	alphaFilter,
+	setAlphaFilter,
+	enableDateSorting = false,
+	enableLetterSorting = false,
+}: TableFiltersProps) => {
 	const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
 	return (
-		<>
-			<div className="flex flex-col items-center gap-4 md:flex-row">
-				<SingleSelectDropdown label="select the date" />
-				<DateInputFelid label="From" date={fromDate} setDate={setFromDate} />
-				<DateInputFelid label="To" date={toDate} setDate={setToDate} />
-				<Button
-					className="text-[#d7c49e] bg-[#343148] text-[12px] border-none min-w-[90px] mt-6 h-7 px-4 py-1"
-					onClick={() => {
-						setFromDate(undefined);
-						setToDate(undefined);
-					}}
-				>
-					Clear
-				</Button>
-			</div>
-			<div className="flex items-center my-4 overflow-x-auto border border-black hide-scrollbar">
-				{['All', ...alphabet].map((char) => (
-					<button
-						type="button"
-						key={char}
-						onClick={() => setAlphaFilter(char)}
-						className={`px-3 py-[6px] flex-1 text-xs ${
-							alphaFilter === char ? 'bg-[#343148ff] text-white' : 'bg-[#d7c49e] text-black'
-						}`}
-					>
-						{char}
-					</button>
-				))}
-			</div>
-		</>
+		<div className="mb-5">
+			{enableDateSorting && (
+				<div className="flex flex-col items-center gap-4 md:flex-row">
+					<DateInputField label="From" value={fromDate} onChange={setFromDate} placeholder="Select from date" />
+					<DateInputField label="To" value={toDate} onChange={setToDate} placeholder="Select to date" />
+					<FormButton
+						label="Clear"
+						onClick={() => {
+							setFromDate(undefined);
+							setToDate(undefined);
+						}}
+					/>
+				</div>
+			)}
+
+			{enableLetterSorting && (
+				<div className="flex items-center my-4 overflow-x-auto border border-black rounded-md hide-scrollbar">
+					{['All', ...alphabet].map((char) => (
+						<button
+							type="button"
+							key={char}
+							onClick={() => setAlphaFilter(char)}
+							className={`px-3 py-[6px] flex-1 text-xs transition-colors ${
+								alphaFilter === char ? 'bg-[#343148ff] text-white' : 'bg-[#d7c49e] text-black'
+							}`}
+						>
+							{char}
+						</button>
+					))}
+				</div>
+			)}
+		</div>
 	);
 };
 

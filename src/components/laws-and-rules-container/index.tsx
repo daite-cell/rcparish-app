@@ -1,10 +1,10 @@
 import { InfoHeadingTitle, InfoParagraph } from '@/components';
 import { laws_and_rules } from '@/data/tamil-rules-content';
 import { useRouteName } from '@/utils/getRouteName';
+import { memo } from 'react';
 
-const LawsAndRulesContainer = () => {
+const LawsAndRulesContainer = memo(() => {
 	const rule = useRouteName('rule');
-	console.warn(rule);
 	const lawContent = laws_and_rules.find((law) => law.page === rule);
 
 	if (!lawContent) {
@@ -39,6 +39,6 @@ const LawsAndRulesContainer = () => {
 			))}
 		</div>
 	);
-};
+});
 
 export default LawsAndRulesContainer;

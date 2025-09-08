@@ -1,33 +1,26 @@
-import { DynamicDataTable, TabsLayout } from '@/components';
+import { TabsLayout } from '@/components';
 import { useState } from 'react';
-import { priests, type PriestProps } from '../../data';
 import { useAutoDocumentTitle } from '@/hooks/useAutoDocumentTitle';
+import { RenderReligiousPeopleOverviewContainer, RenderReligiousPeopleTablesContainer } from '../../components';
+import { useRouteName } from '@/utils/getRouteName';
+import { useStore } from '@/store/store';
 
 const ReligiousPeopleGenericPage = () => {
 	useAutoDocumentTitle();
 	const [activeIndex, setActiveIndex] = useState(0);
+	const { selectRow, editRow } = useStore();
+	const type = useRouteName('type');
+
 	const handleToggleTab = (index: number) => {
 		setActiveIndex(index);
 	};
 
-	const handleView = (row: PriestProps): void => {
-		console.warn('View clicked:', row);
-	};
-
-	return (
-		<>
-			<TabsLayout onTabChange={handleToggleTab} activeTabId={activeIndex} tabs={[{ label: 'view' }]}>
-				<DynamicDataTable
-					wrapText={false}
-					data={priests}
-					enableDateAndLetterSorting={true}
-					includeCheckbox
-					onView={handleView}
-					tableId="religious-people"
-					filterKey="name"
-				/>
-			</TabsLayout>
-		</>
+	return selectRow || editRow ? (
+		<RenderReligiousPeopleOverviewContainer pathName={type} />
+	) : (
+		<TabsLayout onTabChange={handleToggleTab} activeTabId={activeIndex} tabs={[{ label: 'View' }]}>
+			{activeIndex === 0 && <RenderReligiousPeopleTablesContainer />}
+		</TabsLayout>
 	);
 };
 

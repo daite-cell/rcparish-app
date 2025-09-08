@@ -1,0 +1,34 @@
+{
+	"family_members_list": [
+		{
+			"activeness": "0",
+			"activeness_content": "Active",
+			"member_name": "Aseervatham",
+			"unique_member_id": "TH032M01",
+			"relation": "Father/Husband",
+			"gender": "Male",
+			"mobile_no": "8248812596",
+			"image": ""
+		},
+		{
+			"activeness": "0",
+			"activeness_content": "Active",
+			"member_name": "Chitra Joyce",
+			"unique_member_id": "TH032M02",
+			"relation": "Mother/Wife",
+			"gender": "Female",
+			"mobile_no": "8248812596",
+			"image": ""
+		},
+		{
+			"activeness": "0",
+			"activeness_content": "Active",
+			"member_name": "Thanisha Mary",
+			"unique_member_id": "TH032M03",
+			"relation": "Daughter",
+			"gender": "Female",
+			"mobile_no": "8248812596",
+			"image": ""
+		}
+	]
+}
