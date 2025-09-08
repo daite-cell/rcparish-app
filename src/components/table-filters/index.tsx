@@ -40,7 +40,7 @@ const TableFilters = ({
 			)}
 
 			{enableLetterSorting && (
-				<div className="flex items-center my-4 overflow-x-auto border border-black rounded-md hide-scrollbar">
+				<div className="flex items-center my-4 overflow-x-auto border border-black hide-scrollbar">
 					{['All', ...alphabet].map((char) => (
 						<button
 							type="button"

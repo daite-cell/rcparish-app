@@ -7,15 +7,10 @@ import {
 	type SortingState,
 	type Table as ReactTableType,
 	type ColumnDef,
-	type CellContext,
-	type Row,
 	type ColumnMeta,
 } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
-import { Eye, Folder, Pencil, Settings, SquarePen, Trash } from 'lucide-react';
-import mockData from '@/data/mock-data/mock-data.json';
 import { PaginationControls, TableFilters, TableHeaderControls, TableDisplay } from '../index';
-import { useStore } from '@/store/store';
 
 interface CustomColumnMeta<T> extends ColumnMeta<T, unknown> {
 	isExportable?: boolean;
@@ -32,9 +27,6 @@ interface DynamicDataTableProps<T extends object, U> {
 	customColumns?: ColumnDef<T, U>[];
 	includeCheckbox?: boolean;
 	includePriorDignitaries?: boolean;
-	onEdit?: (row: T) => void;
-	onDelete?: (row: T) => void;
-	onView?: (row: T) => void;
 	columns?: CustomColumnMeta<T>[];
 	enableDateSorting?: boolean;
 	enableLetterSorting?: boolean;
@@ -42,10 +34,12 @@ interface DynamicDataTableProps<T extends object, U> {
 	showFooter?: boolean;
 	enablePagination?: boolean;
 	enableSearch?: boolean;
+	enableRowFilters?: boolean;
+	filterableKeys?: string[];
 }
 
 const DynamicDataTable = <T extends object, U>({
-	data = mockData as T[],
+	data = [],
 	defaultPageSize = 10,
 	title,
 	isDynamic = true,
@@ -55,15 +49,12 @@ const DynamicDataTable = <T extends object, U>({
 	tableId,
 	filterKey = 'sub_station',
 	customColumns = [],
-	includeCheckbox = false,
-	includePriorDignitaries = false,
 	enableExport = true,
-	onEdit,
-	onDelete,
-	onView,
 	showFooter = false,
 	enablePagination = true,
 	enableSearch = true,
+	enableRowFilters = false,
+	filterableKeys,
 }: DynamicDataTableProps<T, U>) => {
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [pageSize, setPageSize] = useState(defaultPageSize);
@@ -74,29 +65,35 @@ const DynamicDataTable = <T extends object, U>({
 	const generatedTableId = tableId ?? 'dynamic-data-table';
 	const fromDateTime = fromDate?.getTime() ?? null;
 	const toDateTime = toDate?.getTime() ?? null;
-	const { handleSelectRow } = useStore();
 
 	const filteredData = useMemo(() => {
 		let result = [...data];
 
 		if (alphaFilter !== 'All') {
 			const hasFilterKey = !!(filterKey && data.length && filterKey in (data[0] as Record<string, unknown>));
+
 			const key = hasFilterKey
 				? (filterKey as string)
 				: (Object.keys(data[0] || {}).find((k) => typeof (data[0] as Record<string, unknown>)[k] === 'string') as
 						| string
 						| undefined);
+
 			if (key) {
 				result = result.filter((item) => {
 					const v = (item as Record<string, unknown>)[key];
-					return typeof v === 'string'
-						? v.toLowerCase().startsWith(alphaFilter.toLowerCase())
-						: String(v).toLowerCase().startsWith(alphaFilter.toLowerCase());
+
+					if (typeof v === 'string') {
+						const nameWithoutPrefix = v.replace(/^fr\.?\s*/i, '');
+						return nameWithoutPrefix.toLowerCase().startsWith(alphaFilter.toLowerCase());
+					}
+
+					return String(v).toLowerCase().startsWith(alphaFilter.toLowerCase());
 				});
 			}
 		}
 
 		const dateKey = Object.keys(data[0] || {}).find((key) => /date/i.test(key));
+
 		if (dateKey && (fromDateTime || toDateTime)) {
 			result = result.filter((item) => {
 				const itemDateValue = (item as Record<string, unknown>)[dateKey];
@@ -116,112 +113,23 @@ const DynamicDataTable = <T extends object, U>({
 			});
 		}
 
+		if (globalFilter.trim() !== '') {
+			const searchTerm = globalFilter.toLowerCase();
+			result = result.filter((item) =>
+				Object.values(item).some((val) =>
+					typeof val === 'string'
+						? val.toLowerCase().includes(searchTerm)
+						: String(val).toLowerCase().includes(searchTerm)
+				)
+			);
+		}
+
 		return result;
-	}, [data, alphaFilter, filterKey, fromDateTime, toDateTime]);
+	}, [data, alphaFilter, filterKey, fromDateTime, toDateTime, globalFilter]);
 
-	const columns: ColumnDef<T, U>[] = useMemo(() => {
-		if (customColumns?.length) return customColumns;
-
-		if (!data || data.length === 0) return [];
-
-		const formatHeader = (key: string) =>
-			key.replace(/_/g, ' ').replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.slice(1));
-
-		const uniqueKeys = Array.from(new Set(data.flatMap((item) => Object.keys(item as Record<string, unknown>))));
-
-		const baseColumns: ColumnDef<T, U>[] = uniqueKeys.map((key) => ({
-			accessorKey: key,
-			header: formatHeader(key),
-			cell: (info: CellContext<T, U>) => {
-				const value = info.getValue();
-				return value !== undefined && value !== null ? value.toString() : '';
-			},
-		}));
-
-		const columnStart: ColumnDef<T, U>[] = [];
-
-		if (includeCheckbox) {
-			columnStart.push({
-				id: 'select',
-				header: () => <SquarePen className="w-4 h-4 text-center" />,
-				cell: () => <input title="select" type="checkbox" />,
-				enableSorting: false,
-				meta: { isExportable: false },
-				enableHiding: true,
-			});
-		}
-		if (onEdit) {
-			columnStart.push({
-				id: 'edit',
-				header: () => <Settings className="w-4 h-4 text-center" />,
-				cell: ({ row }: CellContext<T, U>) => (
-					<button title="Edit" onClick={() => onEdit(row.original)} className="hover:underline text-xs">
-						<Pencil className="w-4 h-4 text-center" />
-					</button>
-				),
-				meta: { isExportable: false },
-				enableSorting: false,
-				enableHiding: true,
-			});
-		}
-
-		if (onView) {
-			columnStart.push({
-				id: 'view',
-				header: 'Details',
-				cell: ({ row }: CellContext<T, U>) => (
-					<button
-						type="button"
-						onClick={() => {
-							handleSelectRow(row.original);
-							onView(row.original);
-						}}
-						title="View"
-					>
-						<Eye className="w-4 h-4 text-center" />
-					</button>
-				),
-				meta: { isExportable: false },
-				enableSorting: false,
-				enableHiding: true,
-			});
-		}
-
-		if (onDelete) {
-			columnStart.push({
-				id: 'delete',
-				header: 'Delete',
-				cell: ({ row }: { row: Row<T> }) => (
-					<button
-						type="button"
-						title="Delete"
-						onClick={() => onDelete(row.original)}
-						className=" hover:underline text-xs"
-					>
-						<Trash className="w-4 h-4 text-center" />
-					</button>
-				),
-				meta: { isExportable: false },
-				enableSorting: false,
-				enableHiding: true,
-			});
-		}
-
-		if (includePriorDignitaries) {
-			columnStart.push({
-				id: 'Prior Dignitaries',
-				header: 'Prior Dignitaries',
-				cell: () => <Folder className="w-4 h-4 text-center" />,
-				meta: { isExportable: false },
-				enableHiding: true,
-			});
-		}
-
-		return [...columnStart, ...baseColumns, ...customColumns];
-	}, [data, includeCheckbox, includePriorDignitaries, onEdit, onDelete, onView, handleSelectRow, customColumns]);
 	const table = useReactTable({
 		data: filteredData,
-		columns: columns,
+		columns: customColumns?.length ? customColumns : ([] as ColumnDef<T, U>[]),
 		state: { sorting, globalFilter },
 		onSortingChange: isDynamic ? setSorting : undefined,
 		onGlobalFilterChange: setGlobalFilter,
@@ -254,30 +162,30 @@ const DynamicDataTable = <T extends object, U>({
 						enableLetterSorting={enableLetterSorting}
 					/>
 
-					{
-						<TableHeaderControls<T>
-							isDynamic={isDynamic}
-							globalFilter={globalFilter}
-							setGlobalFilter={setGlobalFilter}
-							table={table}
-							pageSize={pageSize}
-							setPageSize={setPageSize}
-							pageSizeOptions={pageSizeOptions}
-							tableId={generatedTableId}
-							data={data}
-							enableExport={enableExport}
-							enableSearch={enableSearch}
-						/>
-					}
+					<TableHeaderControls<T>
+						isDynamic={isDynamic}
+						globalFilter={globalFilter}
+						setGlobalFilter={setGlobalFilter}
+						table={table}
+						pageSize={pageSize}
+						setPageSize={setPageSize}
+						pageSizeOptions={pageSizeOptions}
+						tableId={generatedTableId}
+						data={data}
+						enableExport={enableExport}
+						enableSearch={enableSearch}
+					/>
 
 					<TableDisplay
 						table={table}
 						wrapText={wrapText}
-						columns={columns as unknown as ColumnDef<T, unknown>[]}
+						columns={customColumns as unknown as ColumnDef<T, unknown>[]}
 						isDynamic={isDynamic}
 						data={data}
 						tableId={generatedTableId}
 						showFooter={showFooter}
+						enableRowFilters={enableRowFilters}
+						filterableKeys={filterableKeys}
 					/>
 
 					{enablePagination && <PaginationControls table={table as unknown as ReactTableType<unknown>} />}
