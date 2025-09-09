@@ -11,8 +11,6 @@ const RenderReligiousPeopleTablesContainer = () => {
 			enableDateSorting={true}
 			enableLetterSorting={true}
 			filterKey="priest_name"
-			enableRowFilters={true}
-			filterableKeys={['priest_name', 'present_position']}
 		/>
 	);
 };

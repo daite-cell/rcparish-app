@@ -29,7 +29,7 @@ const DateInputField = React.memo(
 							variant="outline"
 							id="date"
 							type="button"
-							className="w-full mt-2 !h-8 justify-between rounded-[2px] font-normal"
+							className="w-full text-xs mt-2 !h-8 justify-between rounded-[2px] font-normal"
 						>
 							{value ? value?.toLocaleDateString() : placeholder}
 							<CalendarIcon className="w-4 h-4 opacity-50" />

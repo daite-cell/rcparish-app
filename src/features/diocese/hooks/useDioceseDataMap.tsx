@@ -18,12 +18,23 @@ import {
 
 const useDioceseDataMap = (): Record<
 	string,
-	Record<string, { heading?: string; data: object[]; enable_date_sorting?: boolean }>
+	Record<
+		string,
+		{
+			heading?: string;
+			data: object[];
+			enable_date_sorting?: boolean;
+			enable_row_filters?: boolean;
+			filter_able_keys?: string[];
+		}
+	>
 > => ({
 	priests: {
 		main: {
 			data: priests_dummy_data,
 			enable_date_sorting: true,
+			enable_row_filters: true,
+			filter_able_keys: ['name', 'position', 'id'],
 		},
 	},
 
@@ -84,6 +95,8 @@ const useDioceseDataMap = (): Record<
 		main: {
 			data: parish_members_dummy_data,
 			enable_date_sorting: false,
+			enable_row_filters: true,
+			filter_able_keys: ['vicariateName', 'parishName', 'churchName', 'type'],
 		},
 	},
 	properties: {

@@ -62,9 +62,25 @@ const DynamicDataTable = <T extends object, U>({
 	const [alphaFilter, setAlphaFilter] = useState<string>('All');
 	const [fromDate, setFromDate] = useState<Date | undefined>(undefined);
 	const [toDate, setToDate] = useState<Date | undefined>(undefined);
+	const [dateFilterKey, setDateFilterKey] = useState<'birth_date' | 'ordination_date' | null>(null);
+
 	const generatedTableId = tableId ?? 'dynamic-data-table';
 	const fromDateTime = fromDate?.getTime() ?? null;
 	const toDateTime = toDate?.getTime() ?? null;
+	console.warn('Sample row:', data[0], dateFilterKey);
+
+	function parseDate(value: unknown): Date | null {
+		if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+			const [year, month, day] = value.split('-').map(Number);
+			return new Date(year, month - 1, day);
+		}
+		if (typeof value === 'string' || typeof value === 'number') {
+			const d = new Date(value);
+			return isNaN(d.getTime()) ? null : d;
+		}
+		if (value instanceof Date) return value;
+		return null;
+	}
 
 	const filteredData = useMemo(() => {
 		let result = [...data];
@@ -81,33 +97,28 @@ const DynamicDataTable = <T extends object, U>({
 			if (key) {
 				result = result.filter((item) => {
 					const v = (item as Record<string, unknown>)[key];
-
 					if (typeof v === 'string') {
 						const nameWithoutPrefix = v.replace(/^fr\.?\s*/i, '');
 						return nameWithoutPrefix.toLowerCase().startsWith(alphaFilter.toLowerCase());
 					}
-
 					return String(v).toLowerCase().startsWith(alphaFilter.toLowerCase());
 				});
 			}
 		}
 
-		const dateKey = Object.keys(data[0] || {}).find((key) => /date/i.test(key));
-
-		if (dateKey && (fromDateTime || toDateTime)) {
+		if (dateFilterKey && (fromDateTime || toDateTime)) {
 			result = result.filter((item) => {
-				const itemDateValue = (item as Record<string, unknown>)[dateKey];
-				let itemDate: Date | null = null;
+				const rawValue = (item as Record<string, unknown>)[dateFilterKey];
+				const itemDate = parseDate(rawValue);
 
-				if (typeof itemDateValue === 'string' || typeof itemDateValue === 'number') {
-					itemDate = new Date(itemDateValue);
-				} else if (itemDateValue instanceof Date) {
-					itemDate = itemDateValue;
-				}
+				if (!itemDate) return false;
 
-				if (!itemDate || isNaN(itemDate.getTime())) return false;
-				if (fromDateTime && itemDate.getTime() < fromDateTime) return false;
-				if (toDateTime && itemDate.getTime() > toDateTime) return false;
+				const from = fromDateTime ? new Date(fromDateTime).setHours(0, 0, 0, 0) : null;
+				const to = toDateTime ? new Date(toDateTime).setHours(23, 59, 59, 999) : null;
+				const itemTime = itemDate.getTime();
+
+				if (from && itemTime < from) return false;
+				if (to && itemTime > to) return false;
 
 				return true;
 			});
@@ -125,7 +136,7 @@ const DynamicDataTable = <T extends object, U>({
 		}
 
 		return result;
-	}, [data, alphaFilter, filterKey, fromDateTime, toDateTime, globalFilter]);
+	}, [data, alphaFilter, filterKey, fromDateTime, toDateTime, globalFilter, dateFilterKey]);
 
 	const table = useReactTable({
 		data: filteredData,
@@ -160,6 +171,8 @@ const DynamicDataTable = <T extends object, U>({
 						setAlphaFilter={setAlphaFilter}
 						enableDateSorting={enableDateSorting}
 						enableLetterSorting={enableLetterSorting}
+						dateFilterKey={dateFilterKey}
+						setDateFilterKey={setDateFilterKey}
 					/>
 
 					<TableHeaderControls<T>
