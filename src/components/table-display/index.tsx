@@ -1,5 +1,6 @@
 import { flexRender, type Table as ReactTableType, type ColumnDef } from '@tanstack/react-table';
 import { ChevronDown, ChevronUp, ChevronsUpDown } from 'lucide-react';
+import { Fragment } from 'react';
 
 interface TableDisplayProps<T> {
 	table: ReactTableType<T>;
@@ -33,7 +34,7 @@ const TableDisplay = <T extends object>({
 			>
 				<thead>
 					{table.getHeaderGroups().map((headerGroup) => (
-						<>
+						<Fragment key={headerGroup.id}>
 							<tr className="bg-[#d7c49e] text-[#343148ff]">
 								{headerGroup.headers.map((header) => (
 									<th
@@ -81,7 +82,7 @@ const TableDisplay = <T extends object>({
 									))}
 								</tr>
 							)}
-						</>
+						</Fragment>
 					))}
 				</thead>
 
