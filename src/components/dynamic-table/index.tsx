@@ -60,9 +60,11 @@ const DynamicDataTable = <T extends object, U>({
 	const [pageSize, setPageSize] = useState(defaultPageSize);
 	const [globalFilter, setGlobalFilter] = useState('');
 	const [alphaFilter, setAlphaFilter] = useState<string>('All');
+	const [monthFilter, setMonthFilter] = useState<string | number>('');
 	const [fromDate, setFromDate] = useState<Date | undefined>(undefined);
 	const [toDate, setToDate] = useState<Date | undefined>(undefined);
 	const [dateFilterKey, setDateFilterKey] = useState<'birth_date' | 'ordination_date' | null>(null);
+	const [monthFilterKey, setMonthFilterKey] = useState<string | null>(null);
 
 	const generatedTableId = tableId ?? 'dynamic-data-table';
 	const fromDateTime = fromDate?.getTime() ?? null;
@@ -106,22 +108,51 @@ const DynamicDataTable = <T extends object, U>({
 			}
 		}
 
-		if (dateFilterKey && (fromDateTime != null || toDateTime != null)) {
+		if (dateFilterKey && fromDateTime !== null && toDateTime !== null) {
 			result = result.filter((item) => {
 				const rawValue = (item as Record<string, unknown>)[dateFilterKey];
 				const itemDate = parseDate(rawValue);
 
 				if (!itemDate) return false;
 
-				const from = fromDateTime != null ? new Date(fromDateTime).setHours(0, 0, 0, 0) : null;
-				const to = toDateTime != null ? new Date(toDateTime).setHours(23, 59, 59, 999) : null;
+				const from = new Date(fromDateTime).setHours(0, 0, 0, 0);
+				const to = new Date(toDateTime).setHours(23, 59, 59, 999);
 				const itemTime = itemDate.getTime();
 
-				if (from !== null && itemTime < from) return false;
-				if (to !== null && itemTime > to) return false;
-
-				return true;
+				return itemTime >= from && itemTime <= to;
 			});
+		}
+		if (monthFilterKey && monthFilter !== '') {
+			const resolveKey = (key: string | null): string | null => {
+				if (!key) return null;
+				if (!data || data.length === 0) return key;
+				if (key in (data[0] as Record<string, unknown>)) return key;
+				const normalize = (s: string) =>
+					String(s)
+						.toLowerCase()
+						.replace(/[^a-z0-9]/g, '');
+				const target = normalize(key);
+				const found = Object.keys(data[0]).find((k) => {
+					const nk = normalize(k);
+					return nk.includes(target) || target.includes(nk);
+				});
+				return found ?? null;
+			};
+
+			const actualKey = resolveKey(monthFilterKey);
+			if (!actualKey) {
+				console.warn('Month filter key not found on row keys.', {
+					monthFilterKey,
+					sampleRowKeys: data[0] ? Object.keys(data[0]) : [],
+				});
+			} else {
+				result = result.filter((item) => {
+					const raw = (item as Record<string, unknown>)[actualKey];
+					const itemDate = parseDate(raw);
+					if (!itemDate) return false;
+					return itemDate.getMonth() + 1 === Number(monthFilter);
+				});
+			}
 		}
 
 		if (globalFilter.trim() !== '') {
@@ -136,7 +167,17 @@ const DynamicDataTable = <T extends object, U>({
 		}
 
 		return result;
-	}, [data, alphaFilter, filterKey, fromDateTime, toDateTime, globalFilter, dateFilterKey]);
+	}, [
+		data,
+		alphaFilter,
+		filterKey,
+		fromDateTime,
+		toDateTime,
+		globalFilter,
+		dateFilterKey,
+		monthFilter,
+		monthFilterKey,
+	]);
 
 	const table = useReactTable({
 		data: filteredData,
@@ -173,6 +214,10 @@ const DynamicDataTable = <T extends object, U>({
 						enableLetterSorting={enableLetterSorting}
 						dateFilterKey={dateFilterKey}
 						setDateFilterKey={setDateFilterKey}
+						monthFilter={monthFilter}
+						setMonthFilter={setMonthFilter}
+						monthFilterKey={monthFilterKey}
+						setMonthFilterKey={setMonthFilterKey}
 					/>
 
 					<TableHeaderControls<T>
