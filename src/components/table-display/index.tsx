@@ -68,13 +68,18 @@ const TableDisplay = <T extends object>({
 							{enableRowFilters && (
 								<tr className="bg-[#e8e8e8]">
 									{headerGroup.headers.map((header) => (
-										<th key={header.id} className="px-2 py-3 border-0">
-											{filterableKeys?.includes(header.column.id) && header.column.getCanFilter() ? (
+										<th key={header.id} className="px-2 py-3 border-0" colSpan={header.colSpan}>
+											{header.isPlaceholder ? null : filterableKeys?.includes(header.column.id) &&
+											  header.column.getCanFilter() ? (
 												<input
 													type="text"
 													value={(header.column.getFilterValue() ?? '') as string}
 													onChange={(e) => header.column.setFilterValue(e.target.value)}
-													placeholder={`search ${String(header.column.columnDef.header)}`}
+													placeholder={`search ${
+														typeof header.column.columnDef.header === 'string'
+															? header.column.columnDef.header
+															: header.column.id
+													}`}
 													className="w-full border bg-white border-gray-300 font-normal px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-black"
 												/>
 											) : null}

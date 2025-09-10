@@ -108,20 +108,23 @@ const DynamicDataTable = <T extends object, U>({
 			}
 		}
 
-		if (dateFilterKey && fromDateTime !== null && toDateTime !== null) {
+		if (dateFilterKey && (fromDateTime !== null || toDateTime !== null)) {
 			result = result.filter((item) => {
 				const rawValue = (item as Record<string, unknown>)[dateFilterKey];
 				const itemDate = parseDate(rawValue);
 
 				if (!itemDate) return false;
 
-				const from = new Date(fromDateTime).setHours(0, 0, 0, 0);
-				const to = new Date(toDateTime).setHours(23, 59, 59, 999);
+				const from = fromDateTime !== null ? new Date(fromDateTime).setHours(0, 0, 0, 0) : null;
+				const to = toDateTime !== null ? new Date(toDateTime).setHours(23, 59, 59, 999) : null;
 				const itemTime = itemDate.getTime();
 
-				return itemTime >= from && itemTime <= to;
+				if (from !== null && itemTime < from) return false;
+				if (to !== null && itemTime > to) return false;
+				return true;
 			});
 		}
+
 		if (monthFilterKey && monthFilter !== '') {
 			const resolveKey = (key: string | null): string | null => {
 				if (!key) return null;

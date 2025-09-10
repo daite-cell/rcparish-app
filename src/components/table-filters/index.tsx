@@ -50,7 +50,7 @@ const TableFilters = ({
 							onChange={(e) =>
 								setDateFilterKey(e.target.value ? (e.target.value as 'birth_date' | 'ordination_date') : null)
 							}
-							className="w-full mt-1 h-8 border px-3 py-2 text-xs outline-none"
+							className="w-full flex-1 mt-1 h-8 border px-3 py-[6px] text-xs outline-none"
 						>
 							<option value="">Select Date Type</option>
 							<option value="birth_date">Birth Date</option>
@@ -58,9 +58,17 @@ const TableFilters = ({
 						</select>
 					</div>
 
-					<DateInputField label="From" value={fromDate} onChange={setFromDate} placeholder="Select from date" />
-					<DateInputField label="To" value={toDate} onChange={setToDate} placeholder="Select to date" />
-					<FormButton label="Clear" onClick={() => (setFromDate(undefined), setToDate(undefined))} />
+					<div className="flex-1">
+						<DateInputField label="From" value={fromDate} onChange={setFromDate} placeholder="Select from date" />
+					</div>
+
+					<div className="flex-1">
+						<DateInputField label="To" value={toDate} onChange={setToDate} placeholder="Select to date" />
+					</div>
+
+					<div className="flex-1">
+						<FormButton label="Clear" onClick={() => (setFromDate(undefined), setToDate(undefined))} />
+					</div>
 				</div>
 			)}
 

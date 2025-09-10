@@ -275,7 +275,7 @@ const priest_calendar_dummy_data = [
 		name: 'Fr. Alex Valliyamthadathil VC',
 		ordinationDate: '24-04-2000',
 		birthDate: '24-04-1970',
-		mobileNumber: '153',
+		mobileNumber: '',
 		firstProfessionDate: '',
 	},
 	{
