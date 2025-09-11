@@ -3,8 +3,7 @@ import { useRouteName } from '@/utils/getRouteName';
 import { useDioceseColumnsMap, useDioceseDataMap } from '../../hooks';
 
 import { table_with_export_pages } from '../../data';
-import RenderTableWithExport from '../render-table-with-export';
-import TableWithFileUpload from '../table-with-file';
+import { TableWithFileUpload, InstitutionsListTablesContainer, RenderTableWithExport } from '../../components';
 
 const RenderDioceseTablesContainer = () => {
 	const type = useRouteName('type');
@@ -14,7 +13,9 @@ const RenderDioceseTablesContainer = () => {
 	if (type === 'retired_bishops') {
 		return <TableWithFileUpload />;
 	}
-
+	if (type === 'institutions_list') {
+		return <InstitutionsListTablesContainer />;
+	}
 	if (!type) {
 		return <h1 className="text-center mt-10 text-gray-500">Invalid route: No type specified</h1>;
 	}

@@ -7,3 +7,5 @@ export { default as RenderDiocesePeopleDetailsContainer } from './render-people-
 export { default as FormsContainer } from './forms-container';
 export { default as RenderPriestOverviewContainer } from './render-priest-overview-container';
 export { default as RenderMainFormContainer } from './render-main-form-container';
+export { default as InstitutionsListTablesContainer } from './institutions-list-tables-container';
+export { default as RenderTableWithExport } from './render-table-with-export';
