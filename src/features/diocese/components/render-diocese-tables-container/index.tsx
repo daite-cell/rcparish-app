@@ -49,6 +49,8 @@ const RenderDioceseTablesContainer = () => {
 							data={tableData.data}
 							customColumns={columns}
 							tableId={`${type}-${tableKey}`}
+							enableRowFilters={tableData.enable_row_filters ?? false}
+							filterableKeys={tableData.filter_able_keys ?? []}
 						/>
 					</div>
 				);

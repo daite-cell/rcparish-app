@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/sidebar';
 import { ChevronRight, Circle } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { House, Newspaper, Folder, Link as LinkIcon, BookText, CalendarDays } from 'lucide-react';
+import { House, Newspaper, Folder, Link as LinkIcon, BookText, CalendarDays, Gem, IdCard } from 'lucide-react';
 import type { NavLinkProps, NavLinkSectionProps } from '@/types';
 import GenericNavLinks from '@/components/generic-nav-links';
 import { dashboard_roots } from '@/data/side-navbar-content';
@@ -21,6 +21,8 @@ const Icons = {
 	LinkIcon,
 	BookText,
 	CalendarDays,
+	Gem,
+	IdCard,
 };
 
 const NavLinksSection = ({ navData, pathName }: { navData: NavLinkSectionProps[]; pathName: string }) => {

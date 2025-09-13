@@ -1639,6 +1639,17 @@ export type WorkingMember = {
 	mobile?: string;
 };
 
+export type VendorMember = {
+	name?: string;
+	mobile?: string;
+	adhaarNumber?: string;
+};
+
+export interface CemeteryMember {
+	buriedPersonName?: string;
+	buriedDate?: string;
+}
+
 export interface MonthlyCollectionProps {
 	name?: string;
 	occasion?: string;

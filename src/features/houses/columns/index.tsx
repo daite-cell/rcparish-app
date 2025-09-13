@@ -136,6 +136,7 @@ const getWorkingMemberColumns = <TForm extends FieldValues>(control: Control<TFo
 		),
 	},
 ];
+
 export {
 	useInstitutionColumns,
 	useVocationalInstitutionColumns,

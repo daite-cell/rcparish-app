@@ -360,6 +360,24 @@ const vsssFormSchema = z.object({
 	),
 });
 
+const parishesSchema = z.object({
+	parishPlaceName: requiredString('Parish Place Name is required'),
+	vicariate: requiredString('Vicariate is required'),
+	runBy: enumFromArray(['diocese', 'religious', 'others'], 'Run By is required'),
+	patronName: requiredString('Patron / Church Name is required'),
+	parishEmail: requiredString('Parish Mail ID is required'),
+	parishAddress: requiredString('Address is required').optional(),
+	parishImage: fileValidation('Parish Image is required'),
+	hasSubStation: enumFromArray(['yes', 'no'], 'Please select Sub-Station status'),
+	isMissionStation: enumFromArray(['yes', 'no'], 'Please select Mission Station status'),
+	parishMobile: enumFromArray(['same', 'separate'], 'Please select Parish Mobile status'),
+	separateMobileNumber: optionalMobileValidation('Enter a valid 10-digit mobile number'),
+	parishPriestMobile: optionalMobileValidation('Enter a valid 10-digit mobile number'),
+	presentParishPriest: requiredString('Present Parish Priest is required'),
+	presentParishPriestMobile: mobileValidation('Enter a valid 10-digit mobile number'),
+	presentParishPriestEmail: emailValidation('Enter a valid email address'),
+});
+
 type PriestsType = z.infer<typeof priestsSchema>;
 type CommissionsType = z.infer<typeof commissionsSchema>;
 type CommitteeType = z.infer<typeof committeeSchema>;
@@ -375,6 +393,7 @@ type CommissionsFormType = z.infer<typeof commissionsFormSchema>;
 type CommitteesFormType = z.infer<typeof committeesFormSchema>;
 type VSSSFormType = z.infer<typeof vsssFormSchema>;
 type CollegeConsultersFormType = z.infer<typeof collegeConsultersFormSchema>;
+type ParishesType = z.infer<typeof parishesSchema>;
 
 export {
 	commissionsSchema,
@@ -392,6 +411,7 @@ export {
 	committeesFormSchema,
 	vsssFormSchema,
 	collegeConsultersFormSchema,
+	parishesSchema,
 };
 
 export type {
@@ -410,4 +430,5 @@ export type {
 	CommitteesFormType,
 	VSSSFormType,
 	CollegeConsultersFormType,
+	ParishesType,
 };

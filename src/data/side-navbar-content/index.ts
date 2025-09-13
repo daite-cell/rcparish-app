@@ -391,7 +391,7 @@ const side_nav_links = [
 			{
 				path_url: '/sacraments/marriage_registration',
 				label: 'Marriage Register',
-				icon: 'BookText',
+				icon: 'Gem',
 				child_nav_links: [
 					{
 						path_url: '/sacraments/marriage_registration',
@@ -464,13 +464,13 @@ const side_nav_links = [
 			{
 				path_url: '/accounting/church_collections',
 				label: 'Church Collections',
-				icon: 'BookText',
+				icon: 'IdCard',
 				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/accounting/rent_shop',
 				label: 'Rent & Shop',
-				icon: 'BookText',
+				icon: 'Gem',
 				tabs: [{ label: 'rent payment details' }, { label: 'view' }],
 			},
 			{
@@ -496,7 +496,7 @@ const side_nav_links = [
 			{
 				path_url: '/accounting/auditing_income',
 				label: 'For Auditing',
-				icon: 'BookText',
+				icon: 'Gem',
 				child_nav_links: [
 					{
 						path_url: '/accounting/auditing_income',

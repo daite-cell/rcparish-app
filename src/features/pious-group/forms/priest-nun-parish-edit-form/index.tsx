@@ -1,24 +1,20 @@
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-	SingleSelectDropdown,
-	FormButton,
-	CustomFormInput,
-	ControlledRadioGroup,
-	ControlledFileUpload,
-} from '@/components';
+import { SingleSelectDropdown, FormButton, CustomFormInput, ControlledRadioGroup } from '@/components';
 import { priestNunParishSchema, type priestNunParishType } from '../../validation';
+import { subStationOptions } from '@/forms-options-data';
 
-const PriestNunParishForm = () => {
+const PriestNunParishEditForm = () => {
 	const {
 		control,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<priestNunParishType>({
 		resolver: zodResolver(priestNunParishSchema),
-		defaultValues: { addressStatus: 'different' },
+		defaultValues: {
+			addressStatus: 'different',
+		},
 	});
-
 	const addressStatus = useWatch({ control, name: 'addressStatus' });
 
 	const onSubmit = (data: priestNunParishType) => {
@@ -43,8 +39,58 @@ const PriestNunParishForm = () => {
 						error={errors.personName?.message}
 						placeholder="Enter the Religious Person Name"
 					/>
-					<ControlledFileUpload name="image" control={control} label="Image" error={errors.image?.message} />
 
+					<CustomFormInput
+						control={control}
+						name="familyName"
+						label="Family Name"
+						error={errors.familyName?.message}
+						placeholder="Enter the Family Name"
+					/>
+					<SingleSelectDropdown
+						control={control}
+						label="Select the Main-Station / Sub-Station"
+						options={subStationOptions}
+						placeholder="Select Sub-Station"
+						name="subStationName"
+						error={errors.subStationName?.message}
+					/>
+					<SingleSelectDropdown
+						control={control}
+						label="Anbiam"
+						options={[]}
+						placeholder="Select Anbiam"
+						name="selectAnbiam"
+						error={errors.selectAnbiam?.message}
+					/>
+
+					<SingleSelectDropdown
+						name="gender"
+						control={control}
+						label="Select the Gender"
+						options={[
+							{ label: 'Male', value: 'male' },
+							{ label: 'Female', value: 'female' },
+						]}
+						error={errors.gender?.message}
+					/>
+				</div>
+
+				<div className="flex-1 w-full p-5 space-y-5 border border-gray-300 rounded-md">
+					<CustomFormInput
+						control={control}
+						name="relationshipToFamily"
+						label="Relationship to Family"
+						error={errors.relationshipToFamily?.message}
+						placeholder="Enter the Relationship to Family"
+					/>
+					<CustomFormInput
+						control={control}
+						name="familyHead"
+						label="Family Head"
+						error={errors.familyHead?.message}
+						placeholder="Enter the Family Head"
+					/>
 					<CustomFormInput
 						control={control}
 						name="fatherName"
@@ -59,19 +105,6 @@ const PriestNunParishForm = () => {
 						error={errors.motherName?.message}
 						placeholder="Enter the Mother Name"
 					/>
-					<SingleSelectDropdown
-						name="gender"
-						control={control}
-						label="Select the Gender"
-						options={[
-							{ label: 'Male', value: 'male' },
-							{ label: 'Female', value: 'female' },
-						]}
-						error={errors.gender?.message}
-					/>
-				</div>
-
-				<div className="flex-1 w-full p-5 space-y-5 border border-gray-300 rounded-md">
 					<SingleSelectDropdown
 						name="dioceseOrCongregation"
 						control={control}
@@ -174,4 +207,4 @@ const PriestNunParishForm = () => {
 	);
 };
 
-export default PriestNunParishForm;
+export default PriestNunParishEditForm;
