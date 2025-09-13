@@ -878,6 +878,15 @@ const occupationSectorOptions = [
 	{ value: 'Social Service', label: 'Social Service' },
 	{ value: 'Others', label: 'Others' },
 ];
+
+const institutionOptions = [
+	{ label: 'Schools', value: 'schools' },
+	{ label: 'Technical Institute / Study Centre', value: 'technical_institute' },
+	{ label: 'College', value: 'college' },
+	{ label: 'Homage / Orphanage', value: 'homage' },
+	{ label: 'Health Institute', value: 'health_institute' },
+	{ label: 'Hostels/Boardings', value: 'hostels' },
+];
 const parishPlaceNameOptions = [
 	{ label: 'Alapakkam Parish', value: 'alapakkamParish' },
 	{ label: 'Arakkonam Parish', value: 'arakkonamParish' },
@@ -1040,5 +1049,6 @@ export {
 	weekOptions,
 	occasionOptions,
 	collectionTypeOptions,
+	institutionOptions,
 	parishPlaceNameOptions,
 };

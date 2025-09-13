@@ -1202,7 +1202,7 @@ export interface HouseListProps {
 	email: string;
 }
 
-export interface InstitutionDetailsProps {
+export interface SchoolsListProps {
 	details: string;
 	category: string;
 	institutionCategory: string;
@@ -1220,6 +1220,89 @@ export interface InstitutionDetailsProps {
 	medium: string;
 	management: string;
 	contactNumber: string;
+	mailId: string;
+	address: string;
+}
+
+export interface TechnicalInstitutionListProps {
+	category: string;
+	institution_category: string;
+	name: string;
+	place: string;
+	parish: string;
+	vicariate: string;
+	established_year: string;
+	land_ownership: string;
+	gender: string;
+	run_by: string;
+	medium: string;
+	management: string;
+	contact_number_ll: string;
+	mail_id: string;
+	address: string;
+}
+
+export interface CollegeListProps {
+	category: string;
+	college_category: string;
+	name: string;
+	place: string;
+	parish: string;
+	vicariate: string;
+	established_year: string;
+	land_ownership: string;
+	affiliation_with: string;
+	gender: string;
+	run_by: string;
+	medium: string;
+	management: string;
+	contact_number_ll: string;
+	mail_id: string;
+	address: string;
+}
+
+export interface HomageListProps {
+	category: string;
+	name: string;
+	place: string;
+	parish: string;
+	vicariate: string;
+	land_ownership: string;
+	established_year?: string;
+	run_by: string;
+	home_for: string;
+	contact_number_ll?: string;
+	mail_id?: string;
+	address?: string;
+}
+
+export interface HealthInstituteListProps {
+	category: string;
+	healthInstituteCategory: string;
+	name: string;
+	place: string;
+	parish: string;
+	vicariate: string;
+	landOwnership: string;
+	establishedYear: string;
+	runBy: string;
+	contactNumberLL: string;
+	mailId: string;
+	address: string;
+}
+
+export interface HostelListProps {
+	category: string;
+	name: string;
+	campusName: string;
+	place: string;
+	parish: string;
+	vicariate: string;
+	landOwnership: string;
+	specification: string;
+	establishedYear: string;
+	runBy: string;
+	contactNumberLL: string;
 	mailId: string;
 	address: string;
 }
