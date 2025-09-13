@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
 	SingleSelectDropdown,
@@ -6,9 +6,13 @@ import {
 	CustomFormInput,
 	ControlledDateInputField,
 	ControlledRadioGroup,
+	DynamicTableFieldArraysForm,
 } from '@/components';
 import { cemeteryFormSchema, type CemeteryFormType } from '../../validations';
-import { maintainedByParishOptions } from '@/forms-options-data';
+import { familyNameOptions, maintainedByParishOptions } from '@/forms-options-data';
+import type { ColumnDef } from '@tanstack/react-table';
+import { getCemeteryDynamicColumns } from '../../columns';
+import { useMemo } from 'react';
 
 const CemeteryForm = () => {
 	const {
@@ -17,9 +21,15 @@ const CemeteryForm = () => {
 		formState: { errors },
 	} = useForm<CemeteryFormType>({
 		resolver: zodResolver(cemeteryFormSchema),
-		defaultValues: {},
+		defaultValues: {
+			dynamicFormFields: [{ memberId: '', buriedPersonName: '', buriedDate: '' }],
+			from: 'same',
+		},
 	});
 
+	const from = useWatch({ control, name: 'from' });
+
+	const columns = useMemo(() => getCemeteryDynamicColumns(control), [control]);
 	const onSubmit = (data: CemeteryFormType) => {
 		console.warn('Submitted Rent Type:', data);
 	};
@@ -31,26 +41,41 @@ const CemeteryForm = () => {
 						name="from"
 						control={control}
 						options={[
-							{ label: 'Same Parish', value: 'same_parish' },
-							{ label: 'Different Parish', value: 'different_parish' },
+							{ label: 'Same Parish', value: 'same' },
+							{ label: 'Different Parish', value: 'different' },
 						]}
 						label="From"
 						error={errors.from?.message}
 					/>
-					<SingleSelectDropdown
-						name="parishName"
-						control={control}
-						label="Property Maintained by "
-						options={maintainedByParishOptions}
-						error={errors.parishName?.message}
-					/>
-					<CustomFormInput
-						name="familyName"
-						control={control}
-						label="Family Name"
-						placeholder="Enter the Family Name"
-						error={errors.familyName?.message}
-					/>
+
+					{from === 'different' ? (
+						<>
+							<SingleSelectDropdown
+								name="parishName"
+								control={control}
+								label="Property Maintained by "
+								options={maintainedByParishOptions}
+								error={errors.parishName?.message}
+							/>
+							<CustomFormInput
+								name="familyName"
+								control={control}
+								label="Family Name"
+								placeholder="Enter the Family Name"
+								error={errors.familyName?.message}
+							/>
+						</>
+					) : (
+						<SingleSelectDropdown
+							control={control}
+							label="Select the Family Name"
+							options={familyNameOptions}
+							placeholder="Select the Family Name"
+							name="parishFamilyName"
+							error={errors.parishFamilyName?.message}
+						/>
+					)}
+
 					<CustomFormInput
 						name="cemeteryNumber"
 						control={control}
@@ -69,10 +94,10 @@ const CemeteryForm = () => {
 
 				<div className="flex-1 w-full p-5 space-y-5 border border-gray-300 rounded-md">
 					<CustomFormInput
-						name="mobile_no"
+						name="mobileNo"
 						control={control}
 						label="Mobile Number"
-						error={errors.mobile_no?.message}
+						error={errors.mobileNo?.message}
 						placeholder="Enter the Mobile Number"
 					/>
 					<CustomFormInput
@@ -106,7 +131,15 @@ const CemeteryForm = () => {
 					/>
 				</div>
 			</div>
-			<FormButton type="submit" label="Submit" />
+			<DynamicTableFieldArraysForm
+				control={control}
+				fieldName="dynamicFormFields"
+				title="Buried Person Details"
+				columns={columns as ColumnDef<Record<'id', string>, unknown>[]}
+			/>
+			<div className="flex justify-center w-full">
+				<FormButton type="submit" label="Submit" />
+			</div>
 		</form>
 	);
 };

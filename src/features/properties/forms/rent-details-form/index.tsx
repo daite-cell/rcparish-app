@@ -6,9 +6,13 @@ import {
 	CustomFormInput,
 	ControlledDateInputField,
 	ControlledRadioGroup,
+	DynamicTableFieldArraysForm,
 } from '@/components';
 import { rentFormSchema, type RentFormType } from '../../validations';
 import { maintainedByOptions, propertyOwnerOptions, rentTypeOptions, shopTypeOptions } from '@/forms-options-data';
+import type { ColumnDef } from '@tanstack/react-table';
+import { getVendorDynamicColumns } from '../../columns';
+import { useMemo } from 'react';
 
 const RentDetailsForm = () => {
 	const {
@@ -19,8 +23,10 @@ const RentDetailsForm = () => {
 		resolver: zodResolver(rentFormSchema),
 		defaultValues: {
 			rentType: '',
+			dynamicVendorMembers: [{ memberId: '', name: '', mobile: '', adhaarNumber: '' }],
 		},
 	});
+	const columns = useMemo(() => getVendorDynamicColumns(control), [control]);
 
 	const onSubmit = (data: RentFormType) => {
 		console.warn('Submitted Rent Type:', data);
@@ -173,7 +179,15 @@ const RentDetailsForm = () => {
 					/>
 				</div>
 			</div>
-			<FormButton type="submit" label="Submit" />
+			<DynamicTableFieldArraysForm
+				control={control}
+				fieldName="dynamicVendorMembers"
+				title="Vendor Members"
+				columns={columns as ColumnDef<Record<'id', string>, unknown>[]}
+			/>
+			<div className="flex justify-center w-full">
+				<FormButton type="submit" label="Submit" />
+			</div>
 		</form>
 	);
 };

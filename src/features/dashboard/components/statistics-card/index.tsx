@@ -38,7 +38,7 @@ const StatisticsCard = memo<StatisticsCardProps>(({ link, label, value, id, icon
 						{iconElement && <span>{iconElement}</span>}
 						<p className="text-xs font-normal text-gray-700 uppercase">{label}</p>
 					</div>
-					<p id={id} className="text-lg font-semibold">
+					<p id={id} className="text-lg font-bold">
 						{value}
 					</p>
 				</div>

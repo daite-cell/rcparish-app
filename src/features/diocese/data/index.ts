@@ -1171,7 +1171,6 @@ const college_consulters_dummy_data = [
 ];
 
 const member_over_view_pages = ['properties'];
-const people_over_view_pages = ['parishes'];
 const table_with_export_pages = ['curia_members', 'commissions', 'committees', 'college_consulters'];
 
 const curiaMembersDummyData = [
@@ -1375,7 +1374,6 @@ export {
 	institution_details_dummy_data,
 	noviciate_institution_dummy_data,
 	member_over_view_pages,
-	people_over_view_pages,
 	table_with_export_pages,
 	dummy_commission_data,
 	curia_members_dummy_data,

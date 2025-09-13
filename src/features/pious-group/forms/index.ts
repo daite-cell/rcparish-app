@@ -8,3 +8,4 @@ export { default as FamiliesForm } from './families-form';
 export { default as AssociationsClubForm } from './associations-club-form';
 export { default as AssociationsInchargeForm } from './associations-incharge-form';
 export { default as FamilyMembersForm } from './family-members-form';
+export { default as PriestNunParishEditForm } from './priest-nun-parish-edit-form';

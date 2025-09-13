@@ -1,3 +1,4 @@
+import { optionalMobileValidation, optionalString } from './../../../validations/stringValidations';
 import {
 	aadhaarValidation,
 	enumFromArray,
@@ -38,21 +39,41 @@ export const rentFormSchema = z.object({
 	agreementEnd: futureDate('Agreement end date cannot be in the past'),
 
 	priestName: z.string().optional(),
+	dynamicVendorMembers: z
+		.array(
+			z.object({
+				memberId: optionalString(),
+				name: optionalString(),
+				adhaarNumber: optionalString(),
+				mobile: optionalMobileValidation(),
+			})
+		)
+		.optional(),
 });
 
 export type RentFormType = z.infer<typeof rentFormSchema>;
 
 export const cemeteryFormSchema = z.object({
-	from: enumFromArray(['same_parish', 'different_parish'], 'From is required'),
+	from: enumFromArray(['same', 'different'], 'From is required'),
 	parishName: requiredString('Parish name is required'),
 	familyName: requiredString('Family name is required'),
 	cemeteryNumber: requiredString('Cemetery number is required'),
 	maintainedBy: requiredString('Maintained by is required'),
-	mobile_no: mobileValidation(),
+	mobileNo: mobileValidation(),
 	nameOfParish: requiredString('Name of parish is required'),
 	cemeteryAt: requiredString('Cemetery at is required'),
 	address: requiredString('Address at is required'),
 	dug_on: pastDate('Dug on date cannot be in the future'),
+	parishFamilyName: requiredString('Parish family name is required'),
+	dynamicFormFields: z
+		.array(
+			z.object({
+				memberId: optionalString(),
+				buriedPersonName: optionalString(),
+				buriedDate: optionalString(),
+			})
+		)
+		.optional(),
 });
 
 export type CemeteryFormType = z.infer<typeof cemeteryFormSchema>;
