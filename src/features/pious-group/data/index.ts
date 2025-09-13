@@ -20,8 +20,6 @@ const member_dummy_data = {
 	},
 };
 
-const parish_council_pages = ['associations_incharge', 'anbiam_incharge', 'associations_club', 'anbiams'];
-
 const family_member_table_data = [
 	{
 		member_id: 'TH022M01',
@@ -39,4 +37,4 @@ const family_member_table_data = [
 	},
 ];
 
-export { member_dummy_data, parish_council_pages, family_member_table_data };
+export { member_dummy_data, family_member_table_data };
