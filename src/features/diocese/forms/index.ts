@@ -12,3 +12,4 @@ export { default as CommissionsEditForm } from './commissions-edit-form';
 export { default as CommitteesEditForm } from './committees-edit-form';
 export { default as VsssEditForm } from './vsss-edit-form';
 export { default as CollegeConsulterForm } from './college-consulter-form';
+export { default as ParishesForm } from './parishes-form';

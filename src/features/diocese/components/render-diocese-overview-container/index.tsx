@@ -5,13 +5,13 @@ import { memo } from 'react';
 import { getPriestsSectionData } from '../../columns-section';
 import { useStore } from '@/store/store';
 import type { PriestDetailsProps } from '@/types';
-import { people_over_view_pages } from '../../data';
 import GenericDiocesePeopleDetailsContainer from '../generic-diocese-people-details-container';
 import RenderDiocesePeopleDetailsContainer from '../render-people-overview-container';
 import {
 	CommissionsEditForm,
 	CommitteesEditForm,
 	InstitutionsListForm,
+	ParishesForm,
 	PriestsForm,
 	PropertiesForm,
 	VocationalListForm,
@@ -74,16 +74,10 @@ const RenderDioceseOverviewContainer = memo(() => {
 			view: <RenderDiocesePeopleDetailsContainer />,
 			form: <VsssEditForm />,
 		},
-
-		...Object.fromEntries(
-			people_over_view_pages.map((p) => [
-				p,
-				{
-					view: <RenderDiocesePeopleDetailsContainer />,
-					form: <h1 className="text-red-600">Parish Council Forms will be added soon .........</h1>,
-				},
-			])
-		),
+		parishes: {
+			view: <RenderDiocesePeopleDetailsContainer />,
+			form: <ParishesForm />,
+		},
 	};
 
 	return (

@@ -1,14 +1,18 @@
 import { GenericFamilesDetailsOverview } from '@/components';
-import { parish_council_pages } from '@/features/pious-group/data';
 import OverviewTabsLayout from '@/layouts/overview-tabs-layout';
 import CouncilMemberDetailsContainer from '../generic-religious-people-details-container';
 import GenericMembersInFamilesOverviewContainer from '../generic-members-in-familes-overview-container';
 import { memo } from 'react';
 import { useStore } from '@/store/store';
 import {
+	AnbiamInchargeForm,
+	AnbiamsForm,
+	AssociationsClubForm,
+	AssociationsInchargeForm,
 	FamiliesForm,
 	FamilyMembersForm,
 	ParishCouncilMembersForm,
+	PriestNunParishEditForm,
 	ReligiousParishCouncilMembersForm,
 } from '../../forms';
 import GenericPeopleDetailOverviewContainer from '../generic-people-detail-overview-container';
@@ -42,7 +46,7 @@ const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string
 		},
 		priest_nun_parish: {
 			view: <GenericMembersInFamilesOverviewContainer />,
-			form: <h1>Priest Nun Form</h1>,
+			form: <PriestNunParishEditForm />,
 		},
 		religious_people_parish: {
 			view: <GenericPeopleDetailOverviewContainer />,
@@ -52,15 +56,22 @@ const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string
 			view: <CouncilMemberDetailsContainer />,
 			form: <ParishCouncilMembersForm />,
 		},
-		...Object.fromEntries(
-			parish_council_pages.map((p) => [
-				p,
-				{
-					view: <CouncilMemberDetailsContainer />,
-					form: <h1>Parish Council Forms will be added soon .........</h1>,
-				},
-			])
-		),
+		anbiams: {
+			view: <CouncilMemberDetailsContainer />,
+			form: <AnbiamsForm />,
+		},
+		associations_club: {
+			view: <CouncilMemberDetailsContainer />,
+			form: <AssociationsClubForm />,
+		},
+		anbiam_incharge: {
+			view: <CouncilMemberDetailsContainer />,
+			form: <AnbiamInchargeForm />,
+		},
+		associations_incharge: {
+			view: <CouncilMemberDetailsContainer />,
+			form: <AssociationsInchargeForm />,
+		},
 	};
 
 	return (
