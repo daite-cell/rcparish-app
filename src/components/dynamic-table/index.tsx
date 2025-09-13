@@ -36,6 +36,7 @@ interface DynamicDataTableProps<T extends object, U> {
 	enableSearch?: boolean;
 	enableRowFilters?: boolean;
 	filterableKeys?: string[];
+	enableDropdownFilters?: boolean;
 }
 
 const DynamicDataTable = <T extends object, U>({
@@ -55,6 +56,7 @@ const DynamicDataTable = <T extends object, U>({
 	enableSearch = true,
 	enableRowFilters = false,
 	filterableKeys,
+	enableDropdownFilters = true,
 }: DynamicDataTableProps<T, U>) => {
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [pageSize, setPageSize] = useState(defaultPageSize);
@@ -63,7 +65,7 @@ const DynamicDataTable = <T extends object, U>({
 	const [monthFilter, setMonthFilter] = useState<string | number>('');
 	const [fromDate, setFromDate] = useState<Date | undefined>(undefined);
 	const [toDate, setToDate] = useState<Date | undefined>(undefined);
-	const [dateFilterKey, setDateFilterKey] = useState<'birth_date' | 'ordination_date' | null>(null);
+	const [dateFilterKey, setDateFilterKey] = useState<string | null>(null);
 	const [monthFilterKey, setMonthFilterKey] = useState<string | null>(null);
 
 	const generatedTableId = tableId ?? 'dynamic-data-table';
@@ -108,21 +110,36 @@ const DynamicDataTable = <T extends object, U>({
 			}
 		}
 
-		if (dateFilterKey && (fromDateTime !== null || toDateTime !== null)) {
-			result = result.filter((item) => {
-				const rawValue = (item as Record<string, unknown>)[dateFilterKey];
-				const itemDate = parseDate(rawValue);
+		if ((dateFilterKey || fromDateTime !== null || toDateTime !== null) && data.length > 0) {
+			let keysToCheck: string[] = [];
 
-				if (!itemDate) return false;
+			if (dateFilterKey) {
+				keysToCheck = [dateFilterKey];
+			} else {
+				keysToCheck = Object.keys(data[0]).filter((key) => {
+					const value = (data[0] as Record<string, unknown>)[key];
+					const parsed = parseDate(value);
+					return parsed !== null;
+				});
+			}
 
-				const from = fromDateTime !== null ? new Date(fromDateTime).setHours(0, 0, 0, 0) : null;
-				const to = toDateTime !== null ? new Date(toDateTime).setHours(23, 59, 59, 999) : null;
-				const itemTime = itemDate.getTime();
+			if (keysToCheck.length > 0) {
+				result = result.filter((item) => {
+					return keysToCheck.some((key) => {
+						const rawValue = (item as Record<string, unknown>)[key];
+						const itemDate = parseDate(rawValue);
+						if (!itemDate) return false;
 
-				if (from !== null && itemTime < from) return false;
-				if (to !== null && itemTime > to) return false;
-				return true;
-			});
+						const from = fromDateTime !== null ? new Date(fromDateTime).setHours(0, 0, 0, 0) : null;
+						const to = toDateTime !== null ? new Date(toDateTime).setHours(23, 59, 59, 999) : null;
+						const itemTime = itemDate.getTime();
+
+						if (from !== null && itemTime < from) return false;
+						if (to !== null && itemTime > to) return false;
+						return true;
+					});
+				});
+			}
 		}
 
 		if (monthFilterKey && monthFilter !== '') {
@@ -221,6 +238,7 @@ const DynamicDataTable = <T extends object, U>({
 						setMonthFilter={setMonthFilter}
 						monthFilterKey={monthFilterKey}
 						setMonthFilterKey={setMonthFilterKey}
+						enableDropdownFilters={enableDropdownFilters}
 					/>
 
 					<TableHeaderControls<T>

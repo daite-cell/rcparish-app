@@ -4,7 +4,16 @@ import get_employer_salary_list from '../data/get_employer_salary_list.json';
 
 const useAccountingDataMap = (): Record<
 	string,
-	Record<string, { heading?: string; data: object[]; enable_date_sorting?: boolean; enable_footer?: boolean }>
+	Record<
+		string,
+		{
+			heading?: string;
+			data: object[];
+			enable_date_sorting?: boolean;
+			enable_footer?: boolean;
+			enableDropdownFilters?: boolean;
+		}
+	>
 > => ({
 	donations: {
 		table_1: {
@@ -38,8 +47,17 @@ const useAccountingDataMap = (): Record<
 	church_collections: { main: { data: [], enable_date_sorting: false } },
 	workers: { main: { data: get_workers_list.workers_list, enable_date_sorting: false } },
 	employers_salary: { main: { data: get_employer_salary_list.employer_salary_list, enable_date_sorting: false } },
-	subscription: { main: { data: get_subscription_list.subscription_list, enable_date_sorting: false } },
-	day_book: { main: { data: [], enable_date_sorting: true, enable_footer: true } },
+	subscription: {
+		main: { data: get_subscription_list.subscription_list, enable_date_sorting: true, enableDropdownFilters: false },
+	},
+	day_book: {
+		main: {
+			data: [],
+			enable_footer: true,
+			enable_date_sorting: true,
+			enableDropdownFilters: false,
+		},
+	},
 });
 
 export default useAccountingDataMap;

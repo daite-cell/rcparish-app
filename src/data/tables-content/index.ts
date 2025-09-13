@@ -36,4 +36,25 @@ const dateOptions: Record<string, { value: string; label: string }[]> = {
 	],
 };
 
-export { alphabet, months, dateOptions };
+const getDateOptions = (type: string) => {
+	switch (type) {
+		case 'baptism':
+			return [
+				{ value: 'birth_date', label: 'Birth Date' },
+				{ value: 'baptism_date', label: 'Baptism Date' },
+			];
+		case 'holy_communion':
+		case 'confirmations':
+			return [
+				{ value: 'baptism_date', label: 'Baptism Date' },
+				{ value: 'holy_communion_date', label: 'Holy Communion Date' },
+			];
+		default:
+			return [
+				{ value: 'birth_date', label: 'Birth Date' },
+				{ value: 'ordination_date', label: 'Ordination Date' },
+			];
+	}
+};
+
+export { alphabet, months, dateOptions, getDateOptions };
