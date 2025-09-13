@@ -27,6 +27,7 @@ const RenderAccountingTableContainer = () => {
 
 						<DynamicDataTable
 							enableDateSorting={tableData.enable_date_sorting ?? false}
+							enableDropdownFilters={tableData.enableDropdownFilters ?? false}
 							wrapText={false}
 							data={tableData.data || []}
 							customColumns={columns}

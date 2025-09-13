@@ -19,9 +19,7 @@ const RenderRegisterPeopleTables = () => {
 
 				return (
 					<div key={tableKey}>
-						{tableData.heading && (
-							<h2 className="text-xs font-semibold my-2 uppercase underline ml-8">{tableData.heading}</h2>
-						)}
+						{tableData.heading && <h2 className="text-xs font-bold my-4 uppercase underline">{tableData.heading}</h2>}
 						<DynamicDataTable
 							enableDateSorting={tableData.enable_date_sorting ?? false}
 							wrapText={false}
