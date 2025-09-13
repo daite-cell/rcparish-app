@@ -265,18 +265,53 @@ const priests_dummy_data = [
 
 const priest_calendar_dummy_data = [
 	{
-		name: 'Fr. Abraham M',
-		firstProfessionDate: '',
-		ordinationDate: '02-05-1986',
-		birthDate: '09-02-1959',
-		mobileNumber: '9442666951',
-	},
-	{
 		name: 'Fr. Albin Justus P',
-		firstProfessionDate: '',
 		ordinationDate: '05-05-1982',
 		birthDate: '14-10-1953',
 		mobileNumber: '9943244643',
+		firstProfessionDate: '',
+	},
+	{
+		name: 'Fr. Alex Valliyamthadathil VC',
+		ordinationDate: '24-04-2000',
+		birthDate: '24-04-1970',
+		mobileNumber: '',
+		firstProfessionDate: '',
+	},
+	{
+		name: 'Fr. Alexander P',
+		ordinationDate: '16-03-1997',
+		birthDate: '24-10-1967',
+		mobileNumber: '9626064400',
+		firstProfessionDate: '',
+	},
+	{
+		name: 'Fr. Amalraj S',
+		ordinationDate: '03-05-2009',
+		birthDate: '07-06-1978',
+		mobileNumber: '9442640577',
+		firstProfessionDate: '',
+	},
+	{
+		name: 'Fr. Ambrose Arulraj A',
+		ordinationDate: '29-04-2006',
+		birthDate: '27-03-1975',
+		mobileNumber: '9443305197',
+		firstProfessionDate: '',
+	},
+	{
+		name: 'Fr. Amaladoss C',
+		ordinationDate: '30-04-2008',
+		birthDate: '10-06-1972',
+		mobileNumber: '9843057586',
+		firstProfessionDate: '',
+	},
+	{
+		name: 'Fr. Amalraj M',
+		ordinationDate: '01-05-2011',
+		birthDate: '17-05-1981',
+		mobileNumber: '9443645411',
+		firstProfessionDate: '',
 	},
 ];
 
