@@ -7,7 +7,7 @@ import {
 	getNoVocationalListSectionData,
 	getPropertiesSectionData,
 } from '../../columns-section';
-import type { NoviciateInstitutionProps, InstitutionDetailsProps, PropertiesProps } from '@/types';
+import type { NoviciateInstitutionProps, PropertiesProps, SchoolsListProps } from '@/types';
 import { extractUserName } from '@/utils/extractUserName';
 
 const GenericDiocesePeopleDetailsContainer = () => {
@@ -20,7 +20,7 @@ const GenericDiocesePeopleDetailsContainer = () => {
 			case 'vocational_list':
 				return getNoVocationalListSectionData(selectRow as NoviciateInstitutionProps);
 			case 'institutions_list':
-				return getInstitutionDetailsSectionData(selectRow as InstitutionDetailsProps);
+				return getInstitutionDetailsSectionData(selectRow as SchoolsListProps);
 			case 'properties':
 				return getPropertiesSectionData(selectRow as PropertiesProps);
 
