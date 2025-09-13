@@ -65,7 +65,7 @@ const DynamicDataTable = <T extends object, U>({
 	const [monthFilter, setMonthFilter] = useState<string | number>('');
 	const [fromDate, setFromDate] = useState<Date | undefined>(undefined);
 	const [toDate, setToDate] = useState<Date | undefined>(undefined);
-	const [dateFilterKey, setDateFilterKey] = useState<'birth_date' | 'ordination_date' | null>(null);
+	const [dateFilterKey, setDateFilterKey] = useState<string | null>(null);
 	const [monthFilterKey, setMonthFilterKey] = useState<string | null>(null);
 
 	const generatedTableId = tableId ?? 'dynamic-data-table';

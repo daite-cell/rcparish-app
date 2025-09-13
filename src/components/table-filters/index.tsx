@@ -1,7 +1,7 @@
 import { DateInputField, FormButton } from '@/components';
 import { Label } from '../ui/label';
 import { useRouteName } from '@/utils/getRouteName';
-import { alphabet, dateOptions, months } from '@/data/tables-content';
+import { alphabet, dateOptions, getDateOptions, months } from '@/data/tables-content';
 
 interface TableFiltersProps {
 	fromDate: Date | undefined;
@@ -12,8 +12,8 @@ interface TableFiltersProps {
 	setAlphaFilter: (val: string) => void;
 	enableDateSorting?: boolean;
 	enableLetterSorting?: boolean;
-	dateFilterKey: 'birth_date' | 'ordination_date' | null;
-	setDateFilterKey: (key: 'birth_date' | 'ordination_date' | null) => void;
+	dateFilterKey: string | null;
+	setDateFilterKey: (key: string | null) => void;
 	monthFilter?: string | number;
 	setMonthFilter?: (val: string | number) => void;
 	monthFilterKey?: string | null;
@@ -56,8 +56,11 @@ const TableFilters = ({
 								className="w-full flex-1 mt-1 h-8 border px-3 py-[6px] text-xs outline-none"
 							>
 								<option value="">Select Date Type</option>
-								<option value="birth_date">Birth Date</option>
-								<option value="ordination_date">Ordination Date</option>
+								{getDateOptions(type as string).map((opt) => (
+									<option key={opt.value} value={opt.value}>
+										{opt.label}
+									</option>
+								))}
 							</select>
 						</div>
 					)}

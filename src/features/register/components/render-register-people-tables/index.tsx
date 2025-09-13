@@ -22,6 +22,7 @@ const RenderRegisterPeopleTables = () => {
 						{tableData.heading && <h2 className="text-xs font-bold my-4 uppercase underline">{tableData.heading}</h2>}
 						<DynamicDataTable
 							enableDateSorting={tableData.enable_date_sorting ?? false}
+							enableDropdownFilters={tableData.enableDropdownFilters ?? false}
 							wrapText={false}
 							data={tableData.data}
 							customColumns={columns}
