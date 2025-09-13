@@ -408,6 +408,7 @@ const useSubscriptionColumns = (): ColumnDef<SubscriptionProps>[] => {
 					cell: ({ row }) => (
 						<TextLink
 							onClick={() => {
+								handleSelectRow(row.original);
 								handleSelectAccountingNameRow(row.original);
 								handleEditAccountingName(row.original);
 							}}

@@ -2,6 +2,7 @@ import type { StateCreator } from 'zustand';
 import type { AppState } from '@/store/types';
 
 export interface TableSlice<RowType = unknown> {
+	selectPathId: string | null;
 	selectRow: RowType | null;
 	selectFamilyCardRow: RowType | null;
 	selectPriorRow: RowType | null;
@@ -15,12 +16,18 @@ export interface TableSlice<RowType = unknown> {
 	editPriestsRow: RowType | null;
 	editAccountingNameRow: RowType | null;
 
+	routeParams: {
+		subStationId?: string | null;
+		anbiamId?: string | null;
+		uniqueFamilyId?: string | null;
+	} | null;
+
 	handleSelectRow: (row: RowType) => void;
 	handleSelectFamilyCardRow: (row: RowType) => void;
 	handleSelectPriorRow: (row: RowType) => void;
 	handleSelectUploadedFileRow: (row: RowType) => void;
 	handleSelectPriestsRow: (row: RowType) => void;
-
+	handleSelectPathId: (pathId: string) => void;
 	handleSelectAssociationRow: (row: RowType) => void;
 	handleSelectFamilyMembersRow: (row: RowType) => void;
 	handleSelectAccountingNameRow: (row: RowType) => void;
@@ -39,6 +46,14 @@ export interface TableSlice<RowType = unknown> {
 	handleCloseAssociationRow: () => void;
 	handleCloseFamilyMembersRow: () => void;
 	handleCloseAccountingNameRow: () => void;
+	handleClosePathId: () => void;
+
+	handleSetRouteParams: (params: {
+		subStationId?: string | null;
+		anbiamId?: string | null;
+		uniqueFamilyId?: string | null;
+	}) => void;
+	handleClearRouteParams: () => void;
 }
 /**
  * Zustand slice for managing dynamic table state.
@@ -65,10 +80,17 @@ export const createDynamicTableSlice: StateCreator<Partial<AppState> & TableSlic
 	selectPriestsRow: null,
 	selectFamilyMembersRow: null,
 	selectAccountingNameRow: null,
+	selectPathId: null,
 
 	editRow: null,
 	editPriestsRow: null,
 	editAccountingNameRow: null,
+
+	routeParams: {
+		subStationId: null,
+		anbiamId: null,
+		uniqueFamilyId: null,
+	},
 
 	handleSelectRow: (row) => set({ selectRow: row, editRow: null }),
 	handleSelectFamilyCardRow: (row) => set({ selectFamilyCardRow: row }),
@@ -78,6 +100,8 @@ export const createDynamicTableSlice: StateCreator<Partial<AppState> & TableSlic
 	handleSelectPriestsRow: (row) => set({ selectPriestsRow: row, editPriestsRow: null }),
 	handleSelectFamilyMembersRow: (row) => set({ selectFamilyMembersRow: row }),
 	handleSelectAccountingNameRow: (row) => set({ selectAccountingNameRow: row, editAccountingNameRow: null }),
+
+	handleSelectPathId: (pathId) => set({ selectPathId: pathId }),
 
 	handleEditRow: (row) => set({ editRow: row }),
 	handleEditPriestsRow: (row) => set({ editPriestsRow: row }),
@@ -92,6 +116,18 @@ export const createDynamicTableSlice: StateCreator<Partial<AppState> & TableSlic
 	handleCloseEditPriestsRow: () => set({ editPriestsRow: null }),
 	handleCloseAssociationRow: () => set({ selectAssociationRow: null }),
 	handleCloseFamilyMembersRow: () => set({ selectFamilyMembersRow: null }),
+	handleClosePathId: () => set({ selectPathId: null }),
 	handleCloseAccountingNameRow: () =>
 		set({ selectAccountingNameRow: null, editAccountingNameRow: null, selectRow: null }),
+
+	handleSetRouteParams: (params) =>
+		set(() => ({
+			routeParams: {
+				subStationId: params.subStationId ?? null,
+				anbiamId: params.anbiamId ?? null,
+				uniqueFamilyId: params.uniqueFamilyId ?? null,
+			},
+		})),
+
+	handleClearRouteParams: () => set(() => ({ routeParams: null })),
 });

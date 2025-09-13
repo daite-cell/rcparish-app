@@ -8,11 +8,11 @@ import { FamiliesForm } from '../../forms';
 import get_members_link_details from '../../data/get_members_link_details.json';
 
 const RenderAccountingPiousOverView = () => {
-	const { selectAccountingNameRow, editAccountingNameRow, editRow, selectRow } = useStore();
-	console.warn(selectAccountingNameRow);
+	const { selectAccountingNameRow, editAccountingNameRow, editRow, selectRow, routeParams } = useStore();
+
 	const baseRow = (selectAccountingNameRow as Record<string, unknown>) || (selectRow as Record<string, unknown>) || {};
+
 	const userName = extractUserName(baseRow);
-	console.warn(selectRow, 'ahdvgewhfewy');
 
 	const componentMap = {
 		families: {
@@ -23,7 +23,7 @@ const RenderAccountingPiousOverView = () => {
 				/>
 			) : (
 				<GenericFamilesDetailsOverview
-					userName={userName}
+					userName={extractUserName(selectRow as Record<string, unknown>)}
 					sectionData={getFamilesMembersSectionData(selectRow as FamilyDataProps)}
 				/>
 			),
@@ -35,7 +35,7 @@ const RenderAccountingPiousOverView = () => {
 		<OverviewTabsLayout
 			pathName={'families'}
 			componentMap={componentMap}
-			defaultTabLabel={editAccountingNameRow || editRow ? 'edit' : 'profile'}
+			defaultTabLabel={editAccountingNameRow || editRow || routeParams ? 'edit' : 'profile'}
 		/>
 	);
 };
