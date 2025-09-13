@@ -1,13 +1,13 @@
 import type {
 	PriestDetailsProps,
 	NoviciateInstitutionProps,
-	InstitutionDetailsProps,
 	PropertiesProps,
 	DioceseVSSSMemberProps,
 	DioceseSenateMemberProps,
 	VicariateForaneMemberProps,
 	ParishTableDataProps,
 	PriestReligiousProps,
+	SchoolsListProps,
 } from '@/types';
 
 const getPriestsSectionData = (row: PriestDetailsProps) => [
@@ -157,7 +157,7 @@ const getNoVocationalListSectionData = (row: NoviciateInstitutionProps) => [
 	},
 ];
 
-const getInstitutionDetailsSectionData = (row: InstitutionDetailsProps) => [
+const getInstitutionDetailsSectionData = (row: SchoolsListProps) => [
 	{
 		col: 1,
 		sections: [

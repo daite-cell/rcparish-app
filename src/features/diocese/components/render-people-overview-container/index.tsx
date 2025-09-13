@@ -10,11 +10,11 @@ import {
 	getParishesMemberData,
 } from '../../columns-section';
 import type {
-	InstitutionDetailsProps,
 	DioceseVSSSMemberProps,
 	DioceseSenateMemberProps,
 	VicariateForaneMemberProps,
 	ParishTableDataProps,
+	SchoolsListProps,
 } from '@/types';
 import { extractUserName } from '@/utils/extractUserName';
 
@@ -30,7 +30,7 @@ const RenderDiocesePeopleDetailsContainer = () => {
 			case 'senate_members':
 				return getSenateMembersSectionData(selectRow as DioceseSenateMemberProps);
 			case 'institutions_list':
-				return getInstitutionDetailsSectionData(selectRow as InstitutionDetailsProps);
+				return getInstitutionDetailsSectionData(selectRow as SchoolsListProps);
 			case 'vf':
 				return getVicariateForaneMemberData(selectRow as VicariateForaneMemberProps);
 			case 'parishes':

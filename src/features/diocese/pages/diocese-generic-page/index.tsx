@@ -6,6 +6,7 @@ import type { NavLinkProps, PriestDetailsProps } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
 import {
 	FormsContainer,
+	InstitutionsListTablesContainer,
 	RenderDioceseOverviewContainer,
 	RenderDioceseTablesContainer,
 	RenderMainFormContainer,
@@ -113,6 +114,18 @@ const DioceseGenericPage = () => {
 		}
 	};
 
+	if (type === 'institutions_list') {
+		return (
+			<TabsLayout
+				hasPageHeading={tabsData?.[activeIndex]?.label?.toLowerCase() === 'view'}
+				tabs={tabsData || [{ label: 'view' }, { label: 'add' }]}
+				onTabChange={setActiveIndex}
+				activeTabId={activeIndex}
+			>
+				{activeIndex === 0 ? <InstitutionsListTablesContainer /> : <FormsContainer />}
+			</TabsLayout>
+		);
+	}
 	return (
 		<TabsLayout
 			hasPageHeading={tabsData?.[activeIndex]?.label?.toLowerCase() === 'view'}
