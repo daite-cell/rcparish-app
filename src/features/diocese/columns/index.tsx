@@ -134,7 +134,7 @@ const usePriestCalendarColumns = (): ColumnDef<PriestCalendarDetailsProps>[] => 
 ];
 
 const useCommissionColumns = (): ColumnDef<CommissionMemberProps>[] => {
-	const { handleEditRow, handleSelectPriorRow, handleSelectPriestsRow, handleEditPriestsRow } = useStore();
+	const { handleEditRow, handleSelectPriorRow, handleSelectPriestsRow } = useStore();
 
 	return [
 		{
@@ -160,7 +160,6 @@ const useCommissionColumns = (): ColumnDef<CommissionMemberProps>[] => {
 				<TextLink
 					onClick={() => {
 						handleSelectPriestsRow(row.original);
-						handleEditPriestsRow(row.original);
 					}}
 					to={`/diocese/priests/${row.original.id}`}
 				>
@@ -320,8 +319,7 @@ const useCommitteesColumns = (): ColumnDef<CommitteesProps>[] => {
 };
 
 const useDioceseVSSSColumns = (): ColumnDef<DioceseVSSSMemberProps>[] => {
-	const { handleSelectRow, handleSelectPriorRow, handleEditRow, handleSelectPriestsRow, handleEditPriestsRow } =
-		useStore();
+	const { handleSelectRow, handleSelectPriorRow, handleEditRow, handleSelectPriestsRow } = useStore();
 
 	return [
 		...getCommonActionColumns<DioceseVSSSMemberProps>(handleSelectRow, handleEditRow),
@@ -346,7 +344,6 @@ const useDioceseVSSSColumns = (): ColumnDef<DioceseVSSSMemberProps>[] => {
 				<TextLink
 					onClick={() => {
 						handleSelectPriestsRow(row.original);
-						handleEditPriestsRow(row.original);
 					}}
 					to={`/diocese/priests/${row.original.id}`}
 				>
@@ -385,8 +382,7 @@ const useDioceseVSSSColumns = (): ColumnDef<DioceseVSSSMemberProps>[] => {
 };
 
 const useDioceseSenateColumns = (): ColumnDef<DioceseSenateMemberProps>[] => {
-	const { handleSelectRow, handleSelectPriorRow, handleEditRow, handleSelectPriestsRow, handleEditPriestsRow } =
-		useStore();
+	const { handleSelectRow, handleSelectPriorRow, handleEditRow, handleSelectPriestsRow } = useStore();
 
 	return [
 		...getCommonActionColumns<DioceseSenateMemberProps>(handleSelectRow, handleEditRow),
@@ -407,15 +403,12 @@ const useDioceseSenateColumns = (): ColumnDef<DioceseSenateMemberProps>[] => {
 		{
 			accessorKey: 'memberName',
 			header: 'Name of the Priests',
-			cell: ({ row }) => (
+			cell: (ctx) => (
 				<TextLink
-					onClick={() => {
-						handleSelectPriestsRow(row.original);
-						handleEditPriestsRow(row.original);
-					}}
-					to={`/diocese/priests/${row.original.id}`}
+					onClick={() => handleSelectPriestsRow(ctx.row.original)}
+					to={`/diocese/priests/${ctx.row.original.id}`}
 				>
-					{row.original.priestName ?? ''}
+					{(ctx.getValue() as string) ?? ''}
 				</TextLink>
 			),
 		},
@@ -516,8 +509,7 @@ const useVicariateForaneColumns = (): ColumnDef<VicariateForaneMemberProps>[] =>
 };
 
 const useParishColumns = (): ColumnDef<ParishTableDataProps>[] => {
-	const { handleSelectRow, handleSelectPriorRow, handleEditRow, handleSelectPriestsRow, handleEditPriestsRow } =
-		useStore();
+	const { handleSelectRow, handleSelectPriorRow, handleEditRow, handleSelectPriestsRow } = useStore();
 
 	return [
 		...getCommonActionColumns<ParishTableDataProps>(handleSelectRow, handleEditRow),
@@ -541,13 +533,7 @@ const useParishColumns = (): ColumnDef<ParishTableDataProps>[] => {
 			accessorKey: 'priestName',
 			header: 'Present Parish Priest',
 			cell: ({ row }) => (
-				<TextLink
-					onClick={() => {
-						handleSelectPriestsRow(row.original);
-						handleEditPriestsRow(row.original);
-					}}
-					to={`/diocese/priests/${row.original.id}`}
-				>
+				<TextLink onClick={() => handleSelectPriestsRow(row.original)} to={`/diocese/priests/${row.original.id}`}>
 					{row.original.priestName ?? ''}
 				</TextLink>
 			),

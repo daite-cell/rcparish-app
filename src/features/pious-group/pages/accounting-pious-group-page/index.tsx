@@ -19,7 +19,9 @@ const AccountingPiousGroupPage = () => {
 		handleClearRouteParams,
 		routeParams,
 	} = useStore();
+
 	const tabs = [{ label: 'view' }, { label: 'add' }];
+
 	const activeLabel = tabs[activeIndex].label.toLowerCase();
 	const columns = useFamilyOverviewColumns();
 	const { subStationId, anbiamId, uniqueFamilyId } = useParams();
@@ -32,7 +34,7 @@ const AccountingPiousGroupPage = () => {
 		}
 	}, [subStationId, anbiamId, uniqueFamilyId, handleSetRouteParams, handleClearRouteParams]);
 
-	if (selectAccountingNameRow || editRow || selectFamilyCardRow || selectRow || routeParams) {
+	if (selectRow || selectAccountingNameRow || editRow || selectFamilyCardRow || routeParams) {
 		return <RenderAccountingPiousOverView />;
 	}
 	return (

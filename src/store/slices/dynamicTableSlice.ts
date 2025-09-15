@@ -27,7 +27,7 @@ export interface TableSlice<RowType = unknown> {
 	handleSelectPriorRow: (row: RowType) => void;
 	handleSelectUploadedFileRow: (row: RowType) => void;
 	handleSelectPriestsRow: (row: RowType) => void;
-	handleSelectPathId: (pathId: string) => void;
+	handleSelectPathId: (pathId: string | null) => void;
 	handleSelectAssociationRow: (row: RowType) => void;
 	handleSelectFamilyMembersRow: (row: RowType) => void;
 	handleSelectAccountingNameRow: (row: RowType) => void;
@@ -86,11 +86,7 @@ export const createDynamicTableSlice: StateCreator<Partial<AppState> & TableSlic
 	editPriestsRow: null,
 	editAccountingNameRow: null,
 
-	routeParams: {
-		subStationId: null,
-		anbiamId: null,
-		uniqueFamilyId: null,
-	},
+	routeParams: null,
 
 	handleSelectRow: (row) => set({ selectRow: row, editRow: null }),
 	handleSelectFamilyCardRow: (row) => set({ selectFamilyCardRow: row }),
@@ -121,13 +117,15 @@ export const createDynamicTableSlice: StateCreator<Partial<AppState> & TableSlic
 		set({ selectAccountingNameRow: null, editAccountingNameRow: null, selectRow: null }),
 
 	handleSetRouteParams: (params) =>
-		set(() => ({
-			routeParams: {
+		set(() => {
+			const next = {
 				subStationId: params.subStationId ?? null,
 				anbiamId: params.anbiamId ?? null,
 				uniqueFamilyId: params.uniqueFamilyId ?? null,
-			},
-		})),
+			};
+			const hasAny = Boolean(next.subStationId) || Boolean(next.anbiamId) || Boolean(next.uniqueFamilyId);
+			return { routeParams: hasAny ? next : null };
+		}),
 
 	handleClearRouteParams: () => set(() => ({ routeParams: null })),
 });
