@@ -1697,7 +1697,7 @@ export interface RegisterMemberType {
 	image?: string;
 }
 
-export interface TechnicalInstitutionListProps {
+export interface TechnicalInstitutionListRow {
 	details: string;
 	category_content: string;
 	religious_content: string;
@@ -1752,7 +1752,7 @@ export interface HomeInstitutionsListProps {
 	address: string;
 }
 
-export interface HealthInstituteListProps {
+export interface HealthInstituteListRow {
 	details: string;
 	category_content: string;
 	health_category_content: string;
@@ -1780,6 +1780,28 @@ export interface HostelCampusListProps {
 	recognition_date: string;
 	recognition_no: string;
 	run_by_content: string;
+	mobile_no: string;
+	mail_id: string;
+	address: string;
+}
+
+export interface SchoolListRow {
+	religious_content: string;
+	type_content: string;
+	name: string;
+	institute_id: string;
+	place: string;
+	parish: string;
+	land_ownership_content: string;
+	established_year_content: string;
+	recognition_date: string;
+	recognition_no: string;
+	class_from: string;
+	class_to: string;
+	gender_content: string;
+	run_by_content: string;
+	medium_content: string;
+	management_content: string;
 	mobile_no: string;
 	mail_id: string;
 	address: string;

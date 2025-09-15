@@ -4,11 +4,11 @@ import { getCommonActionColumns } from '@/utils/commonActionColumns';
 import type {
 	CollegesListProps,
 	ConventDetailsTypeProps,
-	HealthInstituteListProps,
+	HealthInstituteListRow,
 	HomeInstitutionsListProps,
 	HostelCampusListProps,
-	SchoolsListProps,
-	TechnicalInstitutionListProps,
+	SchoolListRow,
+	TechnicalInstitutionListRow,
 	VocationalInstitutionType,
 	WorkingMember,
 } from '@/types';
@@ -115,11 +115,11 @@ const getWorkingMemberColumns = <TForm extends FieldValues>(control: Control<TFo
 	},
 ];
 
-const useSchoolsListColumns = (): ColumnDef<SchoolsListProps>[] => {
+const useSchoolsListColumns = (): ColumnDef<SchoolListRow>[] => {
 	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<SchoolsListProps>(handleSelectRow, handleEditRow),
+		...getCommonActionColumns<SchoolListRow>(handleSelectRow, handleEditRow),
 
 		{
 			accessorKey: 'category_content',
@@ -196,11 +196,11 @@ const useSchoolsListColumns = (): ColumnDef<SchoolsListProps>[] => {
 	];
 };
 
-const useTechnicalInstitutionsColumns = (): ColumnDef<TechnicalInstitutionListProps>[] => {
+const useTechnicalInstitutionsColumns = (): ColumnDef<TechnicalInstitutionListRow>[] => {
 	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<TechnicalInstitutionListProps>(handleSelectRow, handleEditRow),
+		...getCommonActionColumns<TechnicalInstitutionListRow>(handleSelectRow, handleEditRow),
 
 		{
 			accessorKey: 'category_content',
@@ -393,11 +393,11 @@ const useHomeInstitutionsColumns = (): ColumnDef<HomeInstitutionsListProps>[] =>
 	];
 };
 
-const useHealthInstituteListColumns = (): ColumnDef<HealthInstituteListProps>[] => {
+const useHealthInstituteListColumns = (): ColumnDef<HealthInstituteListRow>[] => {
 	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<HealthInstituteListProps>(handleSelectRow, handleEditRow),
+		...getCommonActionColumns<HealthInstituteListRow>(handleSelectRow, handleEditRow),
 
 		{ accessorKey: 'category_content', header: 'Category' },
 		{ accessorKey: 'health_category_content', header: 'Health Institute Category' },

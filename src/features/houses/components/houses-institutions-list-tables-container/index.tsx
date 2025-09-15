@@ -1,5 +1,5 @@
 import { DynamicDataTable } from '@/components';
-import { Label } from '@radix-ui/react-dropdown-menu';
+import { Label } from '@radix-ui/react-label';
 import { useState } from 'react';
 import { institutionOptions } from '@/forms-options-data';
 import useHousesInstitutionsListColumns from '../../hooks/useHousesInstitutionsListColumns';
