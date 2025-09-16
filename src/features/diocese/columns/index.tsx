@@ -1791,7 +1791,7 @@ const getPriestsServiceRecordColumns = <TForm extends FieldValues>(
 				<span className="h-8 w-1 bg-[#008000]   mr-2"></span>
 				<SingleSelectDropdown
 					control={control}
-					name={`serviceRecord.${row.index}.jobType` as Path<TForm>}
+					name={`serviceRecord.${row.index}.serviceAs` as Path<TForm>}
 					options={priestRoles}
 				/>
 			</div>
@@ -1812,7 +1812,7 @@ const getPriestsServiceRecordColumns = <TForm extends FieldValues>(
 			<CategoryCell
 				control={control}
 				statusName={`serviceRecord.${row.index}.status` as Path<TForm>}
-				category={`serviceRecord.${row.index}.to_date` as Path<TForm>}
+				category={`serviceRecord.${row.index}.category` as Path<TForm>}
 			/>
 		),
 	},
@@ -1823,8 +1823,8 @@ const getPriestsServiceRecordColumns = <TForm extends FieldValues>(
 		cell: ({ row }) => (
 			<CustomFormInput
 				control={control}
-				name={`serviceRecord.${row.index}.name` as Path<TForm>}
-				placeholder="Enter name"
+				name={`serviceRecord.${row.index}.placeName` as Path<TForm>}
+				placeholder="Enter place/parish"
 			/>
 		),
 	},
@@ -1952,7 +1952,7 @@ const getPriestsSacredStudiesRecordColumns = <TForm extends FieldValues>(
 		cell: ({ row }) => (
 			<SingleSelectDropdown
 				control={control}
-				name={`secularStudies.${row.index}.category` as Path<TForm>}
+				name={`sacredStudies.${row.index}.category` as Path<TForm>}
 				options={formationStages}
 			/>
 		),
@@ -1962,7 +1962,7 @@ const getPriestsSacredStudiesRecordColumns = <TForm extends FieldValues>(
 		accessorKey: 'courseName',
 		header: 'Course Name',
 		cell: ({ row }) => (
-			<CustomFormInput control={control} name={`secularStudies.${row.index}.courseName` as Path<TForm>} />
+			<CustomFormInput control={control} name={`sacredStudies.${row.index}.courseName` as Path<TForm>} />
 		),
 	},
 
@@ -1970,14 +1970,14 @@ const getPriestsSacredStudiesRecordColumns = <TForm extends FieldValues>(
 		accessorKey: 'collegeName',
 		header: 'Institution / College',
 		cell: ({ row }) => (
-			<CustomFormInput control={control} name={`secularStudies.${row.index}.collegeName` as Path<TForm>} />
+			<CustomFormInput control={control} name={`sacredStudies.${row.index}.collegeName` as Path<TForm>} />
 		),
 	},
 	{
 		accessorKey: 'placeName',
 		header: 'Place Name',
 		cell: ({ row }) => (
-			<CustomFormInput control={control} name={`secularStudies.${row.index}.placeName` as Path<TForm>} />
+			<CustomFormInput control={control} name={`sacredStudies.${row.index}.placeName` as Path<TForm>} />
 		),
 	},
 	{
@@ -1985,7 +1985,7 @@ const getPriestsSacredStudiesRecordColumns = <TForm extends FieldValues>(
 		header: 'Course Started Year',
 		cell: ({ row }) => (
 			<ControlledDateInputField
-				name={`secularStudies.${row.index}.courseStartDate` as Path<TForm>}
+				name={`sacredStudies.${row.index}.courseStartDate` as Path<TForm>}
 				control={control}
 				placeholder="dd/mm/yyyy"
 				type="date"
@@ -1997,7 +1997,7 @@ const getPriestsSacredStudiesRecordColumns = <TForm extends FieldValues>(
 		header: 'Course Completed Year',
 		cell: ({ row }) => (
 			<ControlledDateInputField
-				name={`secularStudies.${row.index}.courseEndDate` as Path<TForm>}
+				name={`sacredStudies.${row.index}.courseEndDate` as Path<TForm>}
 				control={control}
 				placeholder="dd/mm/yyyy"
 				type="date"
@@ -2008,9 +2008,7 @@ const getPriestsSacredStudiesRecordColumns = <TForm extends FieldValues>(
 	{
 		accessorKey: 'remarks',
 		header: 'Remarks',
-		cell: ({ row }) => (
-			<CustomFormInput control={control} name={`secularStudies.${row.index}.remarks` as Path<TForm>} />
-		),
+		cell: ({ row }) => <CustomFormInput control={control} name={`sacredStudies.${row.index}.remarks` as Path<TForm>} />,
 	},
 	{ header: 'ID' },
 ];
