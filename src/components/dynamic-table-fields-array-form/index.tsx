@@ -22,14 +22,18 @@ interface DynamicFieldArrayProps<
 	title?: string;
 	columns: ColumnDef<FieldArrayWithId<TItem>, unknown>[];
 	defaultValues?: Partial<TItem>;
+	buttonsLabels?: string[];
+	className?: string;
 }
 
 const DynamicTableFieldArraysForm = <TForm extends FieldValues, TFieldName extends ArrayPath<TForm>>({
 	control,
 	fieldName,
-	title = 'Items',
+	title,
 	columns,
 	defaultValues,
+	buttonsLabels = ['Add', 'Remove'],
+	className,
 }: DynamicFieldArrayProps<TForm, TFieldName>) => {
 	type TItem = ArrayElement<TForm[TFieldName]>;
 	type TFieldItem = FieldArray<TForm, TFieldName>;
@@ -65,8 +69,8 @@ const DynamicTableFieldArraysForm = <TForm extends FieldValues, TFieldName exten
 	}, [normalizedColumns, defaultValues]);
 
 	return (
-		<div className="flex-1 w-full p-5 space-y-5 border border-gray-300 rounded-md">
-			<InfoHeadingTitle style="uppercase !text-xs" title={title} />
+		<div className={`flex-1 w-full p-5 space-y-5 border border-gray-300 rounded-md ${className}`}>
+			{title && <InfoHeadingTitle style="uppercase !text-xs" title={title} />}
 
 			<DynamicDataTable
 				enableDateSorting={false}
@@ -80,8 +84,10 @@ const DynamicTableFieldArraysForm = <TForm extends FieldValues, TFieldName exten
 			/>
 
 			<div className="flex gap-4 mt-2 ml-8">
-				<FormButton type="button" onClick={() => append(emptyItem)} label="Add" />
-				{fields.length > 0 && <FormButton type="button" onClick={() => remove(fields.length - 1)} label="Remove" />}
+				<FormButton type="button" onClick={() => append(emptyItem)} label={buttonsLabels[0]} />
+				{fields.length > 0 && (
+					<FormButton type="button" onClick={() => remove(fields.length - 1)} label={buttonsLabels[1]} />
+				)}
 			</div>
 		</div>
 	);
