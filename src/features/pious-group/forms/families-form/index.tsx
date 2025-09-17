@@ -6,6 +6,7 @@ import {
 	CustomFormInput,
 	ControlledDateInputField,
 	ControlledRadioGroup,
+	DynamicTableFieldArraysForm,
 } from '@/components';
 import {
 	activenessOptions,
@@ -18,6 +19,9 @@ import {
 } from '@/forms-options-data';
 import { familesTypeSchema, type FamilesType } from '../../validation';
 import { Label } from '@radix-ui/react-dropdown-menu';
+import { useMemo } from 'react';
+import { getFamilyDynamicColumns } from '../../columns';
+import type { ColumnDef } from '@tanstack/react-table';
 
 const FamilesForm = () => {
 	const {
@@ -30,8 +34,10 @@ const FamilesForm = () => {
 			marriageDateStatus: 'unknown',
 			familyType: 'couple',
 			permanentAddressStatus: 'same_as_temporary',
+			dynamicFamilyMembers: [],
 		},
 	});
+	const columns = useMemo(() => getFamilyDynamicColumns(control), [control]);
 
 	const onSubmit = (data: FamilesType) => {
 		console.warn('Submitted Families Data:', data);
@@ -277,6 +283,12 @@ const FamilesForm = () => {
 					/>
 				</div>
 			</div>
+			<DynamicTableFieldArraysForm
+				control={control}
+				fieldName="dynamicFamilyMembers"
+				title="Family Members"
+				columns={columns as ColumnDef<Record<'id', string>, unknown>[]}
+			/>
 
 			<div className="flex justify-center w-full">
 				<FormButton type="submit" label="Submit" />

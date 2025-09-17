@@ -22,6 +22,7 @@ interface DynamicFieldArrayProps<
 	title?: string;
 	columns: ColumnDef<FieldArrayWithId<TItem>, unknown>[];
 	defaultValues?: Partial<TItem>;
+	initialData?: TItem[];
 }
 
 const DynamicTableFieldArraysForm = <TForm extends FieldValues, TFieldName extends ArrayPath<TForm>>({
@@ -30,15 +31,28 @@ const DynamicTableFieldArraysForm = <TForm extends FieldValues, TFieldName exten
 	title = 'Items',
 	columns,
 	defaultValues,
+	initialData,
 }: DynamicFieldArrayProps<TForm, TFieldName>) => {
 	type TItem = ArrayElement<TForm[TFieldName]>;
 	type TFieldItem = FieldArray<TForm, TFieldName>;
 
-	const { fields, append, remove } = useFieldArray<TForm, TFieldName>({
+	const { fields, append, remove, replace } = useFieldArray<TForm, TFieldName>({
 		control,
 		name: fieldName,
 	});
 
+	React.useEffect(() => {
+		if (initialData && initialData.length > 0) {
+			replace(
+				initialData.map((item, idx) => ({
+					id: `${fieldName}_${idx}`,
+					...(item as Record<string, unknown>),
+				})) as FieldArray<TForm, TFieldName>[]
+			);
+		}
+	}, [initialData, replace, fieldName]);
+
+	// Normalize column IDs to avoid warnings
 	const normalizedColumns = React.useMemo(
 		() =>
 			columns.map((col, idx) => ({
@@ -51,6 +65,7 @@ const DynamicTableFieldArraysForm = <TForm extends FieldValues, TFieldName exten
 		[columns]
 	);
 
+	// Template for new empty row
 	const emptyItem = React.useMemo(() => {
 		const base = {} as TFieldItem;
 

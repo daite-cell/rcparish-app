@@ -979,6 +979,31 @@ const parishPlaceNameOptions = [
 	{ label: 'Zamin Gudalore Parish', value: 'zaminGudaloreParish' },
 ];
 
+const relationOptions = [
+	{ label: 'Son', value: 'Son' },
+	{ label: 'Daughter', value: 'Daughter' },
+	{ label: 'GrandFather', value: 'GrandFather' },
+	{ label: 'GrandMother', value: 'GrandMother' },
+	{ label: 'GrandSon', value: 'GrandSon' },
+	{ label: 'GrandDaughter', value: 'GrandDaughter' },
+	{ label: 'Father/Husband', value: 'Father/Husband' },
+	{ label: 'Mother/Wife', value: 'Mother/Wife' },
+	{ label: 'Father', value: 'Father' },
+	{ label: 'Mother', value: 'Mother' },
+	{ label: 'Brother', value: 'Brother' },
+	{ label: 'Sister', value: 'Sister' },
+	{ label: 'Aunt', value: 'Aunt' },
+	{ label: 'Uncle', value: 'Uncle' },
+	{ label: 'Nephew', value: 'Nephew' },
+	{ label: 'Niece', value: 'Niece' },
+	{ label: 'Father-in-law', value: 'Father-in-law' },
+	{ label: 'Mother-in-law', value: 'Mother-in-law' },
+	{ label: 'Son-in-law', value: 'Son-in-law' },
+	{ label: 'Brother-in-law', value: 'Brother-in-law' },
+	{ label: 'Sister-in-law', value: 'Sister-in-law' },
+	{ label: 'Daughter-in-law', value: 'Daughter-in-law' },
+];
+
 export {
 	categoryOptions,
 	schoolTypeOptions,
@@ -1051,4 +1076,5 @@ export {
 	collectionTypeOptions,
 	institutionOptions,
 	parishPlaceNameOptions,
+	relationOptions,
 };
