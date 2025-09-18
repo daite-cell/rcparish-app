@@ -30,7 +30,6 @@ const ParishesForm = () => {
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="space-y-4 text-sm">
 			<div className="flex flex-wrap w-full gap-4">
-				{/* Block 1 */}
 				<div className="flex-1 w-full p-5 space-y-5 border border-gray-300 rounded-md">
 					<div className="flex items-center relative">
 						<span className="mx-2 h-7 mt-6 w-[4px] bg-red-700 absolute -left-5"></span>
@@ -86,7 +85,6 @@ const ParishesForm = () => {
 					/>
 				</div>
 
-				{/* Block 2 */}
 				<div className="flex-1 w-full p-5 space-y-5 border border-gray-300 rounded-md">
 					<ControlledRadioGroup
 						label="Is it Mission Station?"
@@ -153,7 +151,6 @@ const ParishesForm = () => {
 					/>
 				</div>
 
-				{/* Block 3 */}
 				<div className="flex-1 w-full p-5 space-y-5 border border-gray-300 rounded-md">
 					<CustomFormInput
 						control={control}

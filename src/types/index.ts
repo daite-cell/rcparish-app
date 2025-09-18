@@ -1696,3 +1696,113 @@ export interface RegisterMemberType {
 	mobile?: string;
 	image?: string;
 }
+
+export interface TechnicalInstitutionListRow {
+	details: string;
+	category_content: string;
+	religious_content: string;
+	name: string;
+	place: string;
+	established_year_content: string;
+	recognition_date: string;
+	recognition_no: string;
+	land_ownership_content: string;
+	gender_content: string;
+	run_by_content: string;
+	medium_content: string;
+	management_content: string;
+	mobile_no: string;
+	mail_id: string;
+	address: string;
+}
+
+export interface CollegesListProps {
+	category_content: string;
+	college_category_content: string;
+	name: string;
+	place: string;
+	established_year_content: string;
+	recognition_date: string;
+	recognition_no: string;
+	land_ownership_content: string;
+	affiliation_with_content: string;
+	gender_content: string;
+	run_by_content: string;
+	medium_content: string;
+	management_content: string;
+	mobile_no: string;
+	mail_id: string;
+	address: string;
+	details?: string;
+}
+
+export interface HomeInstitutionsListProps {
+	details: string;
+	category_content: string;
+	name: string;
+	place: string;
+	land_ownership_content: string;
+	established_year_content: string;
+	recognition_date: string;
+	recognition_no: string;
+	run_by_content: string;
+	home_for_content: string;
+	mobile_no: string;
+	mail_id: string;
+	address: string;
+}
+
+export interface HealthInstituteListRow {
+	details: string;
+	category_content: string;
+	health_category_content: string;
+	name: string;
+	place: string;
+	land_ownership_content: string;
+	established_year_content: string;
+	recognition_date: string;
+	recognition_no: string;
+	run_by_content: string;
+	mobile_no: string;
+	mail_id: string;
+	address: string;
+}
+
+export interface HostelCampusListProps {
+	details: string;
+	category_content: string;
+	name: string;
+	campus_name_content: string;
+	place: string;
+	land_ownership_content: string;
+	specification_content: string;
+	established_year_content: string;
+	recognition_date: string;
+	recognition_no: string;
+	run_by_content: string;
+	mobile_no: string;
+	mail_id: string;
+	address: string;
+}
+
+export interface SchoolListRow {
+	religious_content: string;
+	type_content: string;
+	name: string;
+	institute_id: string;
+	place: string;
+	parish: string;
+	land_ownership_content: string;
+	established_year_content: string;
+	recognition_date: string;
+	recognition_no: string;
+	class_from: string;
+	class_to: string;
+	gender_content: string;
+	run_by_content: string;
+	medium_content: string;
+	management_content: string;
+	mobile_no: string;
+	mail_id: string;
+	address: string;
+}
