@@ -397,7 +397,7 @@ export const getFamilesMembersSectionData = (row: FamilyDataProps) => [
 			{
 				heading: 'FAMILY DETAILS',
 				data: {
-					family_head_name: row.family_head,
+					family_head_name: row.family_name ?? '',
 					unique_anbiam_family_number: row.unique_family_id,
 					old_family_number: '',
 					'main_station_/_sub_station': row.sub_station_name,

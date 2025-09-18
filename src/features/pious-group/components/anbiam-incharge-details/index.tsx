@@ -16,8 +16,6 @@ const AnbiamInChargeDetails = () => {
 		(item) => item.anbiam_id === selectAssociationRow.anbiam_id
 	);
 
-	console.warn(selectAssociationRow, getAnbiamInchargeDetails);
-
 	const sectionData = [
 		{
 			col: 1,
