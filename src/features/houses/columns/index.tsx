@@ -2,40 +2,18 @@ import type { ColumnDef } from '@tanstack/react-table';
 import { useStore } from '@/store/store';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
 import type {
-	CongregationInstitutionType,
+	CollegesListProps,
 	ConventDetailsTypeProps,
+	HealthInstituteListRow,
+	HomeInstitutionsListProps,
+	HostelCampusListProps,
+	SchoolListRow,
+	TechnicalInstitutionListRow,
 	VocationalInstitutionType,
 	WorkingMember,
 } from '@/types';
 import type { Control, FieldValues, Path } from 'react-hook-form';
 import { CustomFormInput, SingleSelectDropdown } from '@/components';
-
-const useInstitutionColumns = (): ColumnDef<CongregationInstitutionType>[] => {
-	const { handleSelectRow, handleEditRow } = useStore();
-
-	return [
-		...getCommonActionColumns<CongregationInstitutionType>(handleSelectRow, handleEditRow),
-
-		{ accessorKey: 'category_content', header: 'Category' },
-		{ accessorKey: 'religious_content', header: 'Institution Category' },
-		{ accessorKey: 'type_content', header: 'Institution Type' },
-		{ accessorKey: 'name', header: 'Name' },
-		{ accessorKey: 'place', header: 'Place' },
-		{ accessorKey: 'land_ownership_content', header: 'Land Ownership' },
-		{ accessorKey: 'established_year_content', header: 'Established Year' },
-		{ accessorKey: 'recognition_date', header: 'Recognition Date' },
-		{ accessorKey: 'recognition_no', header: 'Recognition Number' },
-		{ accessorKey: 'class_from', header: 'Classes From' },
-		{ accessorKey: 'class_to', header: 'Classes Upto' },
-		{ accessorKey: 'gender_content', header: 'Gender' },
-		{ accessorKey: 'run_by_content', header: 'Run By' },
-		{ accessorKey: 'medium_content', header: 'Medium' },
-		{ accessorKey: 'management_content', header: 'Management' },
-		{ accessorKey: 'mobile_no', header: 'Contact Number (LL)' },
-		{ accessorKey: 'mail_id', header: 'Mail ID' },
-		{ accessorKey: 'address', header: 'Address' },
-	];
-};
 
 const useVocationalInstitutionColumns = (): ColumnDef<VocationalInstitutionType>[] => {
 	const { handleSelectRow, handleEditRow } = useStore();
@@ -137,9 +115,335 @@ const getWorkingMemberColumns = <TForm extends FieldValues>(control: Control<TFo
 	},
 ];
 
+const useSchoolsListColumns = (): ColumnDef<SchoolListRow>[] => {
+	const { handleSelectRow, handleEditRow } = useStore();
+
+	return [
+		...getCommonActionColumns<SchoolListRow>(handleSelectRow, handleEditRow),
+
+		{
+			accessorKey: 'category_content',
+			header: 'Category',
+		},
+		{
+			accessorKey: 'religious_content',
+			header: 'Institution Category',
+		},
+		{
+			accessorKey: 'type_content',
+			header: 'Institution Type',
+		},
+		{
+			accessorKey: 'name',
+			header: 'Name',
+		},
+		{
+			accessorKey: 'place',
+			header: 'Place',
+		},
+		{
+			accessorKey: 'land_ownership_content',
+			header: 'Land Ownership',
+		},
+		{
+			accessorKey: 'established_year_content',
+			header: 'Established Year',
+		},
+		{
+			accessorKey: 'recognition_date',
+			header: 'Recognition Date',
+		},
+		{
+			accessorKey: 'recognition_no',
+			header: 'Recognition Number',
+		},
+		{
+			accessorKey: 'class_from',
+			header: 'Classes From',
+		},
+		{
+			accessorKey: 'class_to',
+			header: 'Classes Upto',
+		},
+		{
+			accessorKey: 'gender_content',
+			header: 'Gender',
+		},
+		{
+			accessorKey: 'run_by_content',
+			header: 'Run By',
+		},
+		{
+			accessorKey: 'medium_content',
+			header: 'Medium',
+		},
+		{
+			accessorKey: 'management_content',
+			header: 'Management',
+		},
+		{
+			accessorKey: 'mobile_no',
+			header: 'Contact Number (LL)',
+		},
+		{
+			accessorKey: 'mail_id',
+			header: 'Mail ID',
+		},
+		{
+			accessorKey: 'address',
+			header: 'Address',
+		},
+	];
+};
+
+const useTechnicalInstitutionsColumns = (): ColumnDef<TechnicalInstitutionListRow>[] => {
+	const { handleSelectRow, handleEditRow } = useStore();
+
+	return [
+		...getCommonActionColumns<TechnicalInstitutionListRow>(handleSelectRow, handleEditRow),
+
+		{
+			accessorKey: 'category_content',
+			header: 'Category',
+		},
+		{
+			accessorKey: 'religious_content',
+			header: 'Institution Category',
+		},
+		{
+			accessorKey: 'name',
+			header: 'Name',
+		},
+		{
+			accessorKey: 'place',
+			header: 'Place',
+		},
+		{
+			accessorKey: 'established_year_content',
+			header: 'Established Year',
+		},
+		{
+			accessorKey: 'recognition_date',
+			header: 'Recognition Date',
+		},
+		{
+			accessorKey: 'recognition_no',
+			header: 'Recognition Number',
+		},
+		{
+			accessorKey: 'land_ownership_content',
+			header: 'Land Ownership',
+		},
+		{
+			accessorKey: 'gender_content',
+			header: 'Gender',
+		},
+		{
+			accessorKey: 'run_by_content',
+			header: 'Run by',
+		},
+		{
+			accessorKey: 'medium_content',
+			header: 'Medium',
+		},
+		{
+			accessorKey: 'management_content',
+			header: 'Management',
+		},
+		{
+			accessorKey: 'mobile_no',
+			header: 'Contact Number (LL)',
+		},
+		{
+			accessorKey: 'mail_id',
+			header: 'Mail ID',
+		},
+		{
+			accessorKey: 'address',
+			header: 'Address',
+		},
+	];
+};
+const useCollegeInstitutionsColumns = (): ColumnDef<CollegesListProps>[] => {
+	const { handleSelectRow, handleEditRow } = useStore();
+
+	return [
+		...getCommonActionColumns<CollegesListProps>(handleSelectRow, handleEditRow),
+
+		{
+			accessorKey: 'category_content',
+			header: 'Category',
+		},
+		{
+			accessorKey: 'college_category_content',
+			header: 'College Category',
+		},
+		{
+			accessorKey: 'name',
+			header: 'Name',
+		},
+		{
+			accessorKey: 'place',
+			header: 'Place',
+		},
+		{
+			accessorKey: 'established_year_content',
+			header: 'Established Year',
+		},
+		{
+			accessorKey: 'recognition_date',
+			header: 'Recognition Date',
+		},
+		{
+			accessorKey: 'recognition_no',
+			header: 'Recognition Number',
+		},
+		{
+			accessorKey: 'land_ownership_content',
+			header: 'Land Ownership',
+		},
+		{
+			accessorKey: 'affiliation_with_content',
+			header: 'Affiliation With',
+		},
+		{
+			accessorKey: 'gender_content',
+			header: 'Gender',
+		},
+		{
+			accessorKey: 'run_by_content',
+			header: 'Run by',
+		},
+		{
+			accessorKey: 'medium_content',
+			header: 'Medium',
+		},
+		{
+			accessorKey: 'management_content',
+			header: 'Management',
+		},
+		{
+			accessorKey: 'mobile_no',
+			header: 'Contact Number (LL)',
+		},
+		{
+			accessorKey: 'mail_id',
+			header: 'Mail ID',
+		},
+		{
+			accessorKey: 'address',
+			header: 'Address',
+		},
+	];
+};
+const useHomeInstitutionsColumns = (): ColumnDef<HomeInstitutionsListProps>[] => {
+	const { handleSelectRow, handleEditRow } = useStore();
+
+	return [
+		...getCommonActionColumns<HomeInstitutionsListProps>(handleSelectRow, handleEditRow),
+
+		{
+			accessorKey: 'category_content',
+			header: 'Category',
+		},
+		{
+			accessorKey: 'name',
+			header: 'Name',
+		},
+		{
+			accessorKey: 'place',
+			header: 'Place',
+		},
+		{
+			accessorKey: 'land_ownership_content',
+			header: 'Land Ownership',
+		},
+		{
+			accessorKey: 'established_year_content',
+			header: 'Established Year',
+		},
+		{
+			accessorKey: 'recognition_date',
+			header: 'Recognition Date',
+		},
+		{
+			accessorKey: 'recognition_no',
+			header: 'Recognition Number',
+		},
+		{
+			accessorKey: 'run_by_content',
+			header: 'Run by',
+		},
+		{
+			accessorKey: 'home_for_content',
+			header: 'Home For',
+		},
+		{
+			accessorKey: 'mobile_no',
+			header: 'Contact Number (LL)',
+		},
+		{
+			accessorKey: 'mail_id',
+			header: 'Mail ID',
+		},
+		{
+			accessorKey: 'address',
+			header: 'Address',
+		},
+	];
+};
+
+const useHealthInstituteListColumns = (): ColumnDef<HealthInstituteListRow>[] => {
+	const { handleSelectRow, handleEditRow } = useStore();
+
+	return [
+		...getCommonActionColumns<HealthInstituteListRow>(handleSelectRow, handleEditRow),
+
+		{ accessorKey: 'category_content', header: 'Category' },
+		{ accessorKey: 'health_category_content', header: 'Health Institute Category' },
+		{ accessorKey: 'name', header: 'Name' },
+		{ accessorKey: 'place', header: 'Place' },
+		{ accessorKey: 'land_ownership_content', header: 'Land Ownership' },
+		{ accessorKey: 'established_year_content', header: 'Established Year' },
+		{ accessorKey: 'recognition_date', header: 'Recognition Date' },
+		{ accessorKey: 'recognition_no', header: 'Recognition Number' },
+		{ accessorKey: 'run_by_content', header: 'Run by' },
+		{ accessorKey: 'mobile_no', header: 'Contact Number (LL)' },
+		{ accessorKey: 'mail_id', header: 'Mail ID' },
+		{ accessorKey: 'address', header: 'Address' },
+	];
+};
+
+const useHostelListColumns = (): ColumnDef<HostelCampusListProps>[] => {
+	const { handleSelectRow, handleEditRow } = useStore();
+
+	return [
+		...getCommonActionColumns<HostelCampusListProps>(handleSelectRow, handleEditRow),
+
+		{ accessorKey: 'category_content', header: 'Category' },
+		{ accessorKey: 'name', header: 'Name' },
+		{ accessorKey: 'campus_name_content', header: 'Campus Name' },
+		{ accessorKey: 'place', header: 'Place' },
+		{ accessorKey: 'land_ownership_content', header: 'Land Ownership' },
+		{ accessorKey: 'specification_content', header: 'Specification' },
+		{ accessorKey: 'established_year_content', header: 'Established Year' },
+		{ accessorKey: 'recognition_date', header: 'Recognition Date' },
+		{ accessorKey: 'recognition_no', header: 'Recognition Number' },
+		{ accessorKey: 'run_by_content', header: 'Run by' },
+		{ accessorKey: 'mobile_no', header: 'Contact Number (LL)' },
+		{ accessorKey: 'mail_id', header: 'Mail ID' },
+		{ accessorKey: 'address', header: 'Address' },
+	];
+};
+
 export {
-	useInstitutionColumns,
 	useVocationalInstitutionColumns,
 	useCommunitiesDetailsColumns,
 	getWorkingMemberColumns,
+	useSchoolsListColumns,
+	useTechnicalInstitutionsColumns,
+	useCollegeInstitutionsColumns,
+	useHomeInstitutionsColumns,
+	useHealthInstituteListColumns,
+	useHostelListColumns,
 };
