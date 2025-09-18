@@ -22,6 +22,9 @@ const Profile = lazy(() => import('../features/profile/index'));
 const PriestsGenericPage = lazy(() => import('../features/diocese/pages/priests-generic-page'));
 const AccountingPiousGroupPage = lazy(() => import('../features/pious-group/pages/accounting-pious-group-page'));
 const RegisterPiousGroupPage = lazy(() => import('../features/pious-group/pages/register-pious-group-page'));
+const FamilyMembersRegisterGenericPage = lazy(
+	() => import('../features/register/pages/family-members-register-generic-page')
+);
 
 const FamilyMembersHolyCommunionPage = lazy(
 	() => import('../features/register/pages/family-members-holy-communion-page')
@@ -51,6 +54,12 @@ export const appRoutes: AppRoute[] = [
 		path: '/religious_people/:type',
 		name: 'ReligiousPeopleGeneric',
 		element: <ReligiousPeopleGenericPage />,
+		layout: true,
+	},
+	{
+		path: '/sacraments/baptism/:subStationId/:anbiamId/:uniqueFamilyId/:uniqueMemberId',
+		name: 'FamilyMembersRegisterGeneric',
+		element: <FamilyMembersRegisterGenericPage />,
 		layout: true,
 	},
 

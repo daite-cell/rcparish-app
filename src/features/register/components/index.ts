@@ -4,3 +4,4 @@ export { default as GenericRegisterPeopleDetailsContainer } from './generic-regi
 export { default as RenderFormsContainer } from './forms-container';
 export { default as RenderRegisterHolyCommunionOverview } from './render-register-holy-communion-overview';
 export { default as RenderRegisterConfirmationsOverview } from './render-register-confirmations-overview';
+export { default as RenderRegisterPeopleFamilyMemberOverview } from './render-register-family-member-overview';

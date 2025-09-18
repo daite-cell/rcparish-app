@@ -9,7 +9,7 @@ import { PriestsForm } from '../../forms';
 import { extractUserName } from '@/utils/extractUserName';
 
 const RenderPriestOverviewContainer = memo(() => {
-	const { selectPriestsRow, editPriestsRow, editRow, selectRow } = useStore();
+	const { selectPriestsRow, selectRow, selectPathId, editPriestsRow, editRow } = useStore();
 
 	const userNameReligious = extractUserName(selectPriestsRow as Record<string, unknown>);
 	const userName = extractUserName(selectRow as Record<string, unknown>);
@@ -35,7 +35,7 @@ const RenderPriestOverviewContainer = memo(() => {
 		<OverviewTabsLayout
 			pathName={'priests'}
 			componentMap={componentMap}
-			defaultTabLabel={editPriestsRow || editRow ? 'edit' : 'profile'}
+			defaultTabLabel={editPriestsRow || editRow || selectPathId ? 'edit' : 'profile'}
 		/>
 	);
 });

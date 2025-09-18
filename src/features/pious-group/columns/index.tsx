@@ -21,8 +21,18 @@ import type {
 import type { CellContext, ColumnDef } from '@tanstack/react-table';
 import { Trash, IdCard, SquarePen } from 'lucide-react';
 import { useStore } from '@/store/store';
-import { AdminDefaultImage, TableDetailsViewButton, TablePriorDignitariesButton, TextLink } from '@/components';
+import {
+	AdminDefaultImage,
+	CustomFormInput,
+	SingleSelectDropdown,
+	TableDetailsViewButton,
+	TablePriorDignitariesButton,
+	TextLink,
+} from '@/components';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
+import type { Control, FieldValues, Path } from 'react-hook-form';
+import { relationOptions } from '@/forms-options-data';
+import type { FamilesType } from '../validation';
 
 const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[] => {
 	const { handleSelectRow, handleSelectPriorRow, handleEditRow } = useStore();
@@ -895,6 +905,60 @@ const useTotalFamilyMembersColumns = (): ColumnDef<TotalFamilyMembersDetails>[] 
 	];
 };
 
+const getFamilyDynamicColumns = <TForm extends FieldValues>(control: Control<TForm>): ColumnDef<FamilesType>[] => [
+	{
+		accessorKey: 'memberId',
+		header: 'Member Id',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`dynamicFamilyMembers.${row.index}.memberId` as Path<TForm>}
+				placeholder="Enter Member Id"
+			/>
+		),
+	},
+
+	{
+		accessorKey: 'name',
+		header: 'Member Name',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`dynamicFamilyMembers.${row.index}.name` as Path<TForm>}
+				placeholder="Enter name"
+			/>
+		),
+	},
+
+	{
+		accessorKey: 'relation',
+		header: 'Relation (Based on Father / Husband)',
+		cell: ({ row }) => (
+			<SingleSelectDropdown
+				control={control}
+				name={`dynamicFamilyMembers.${row.index}.relation` as Path<TForm>}
+				options={relationOptions}
+				label="Select Relation"
+			/>
+		),
+	},
+	{
+		accessorKey: 'gender',
+		header: 'Gender',
+		cell: ({ row }) => (
+			<SingleSelectDropdown
+				name={`dynamicFamilyMembers.${row.index}.gender` as Path<TForm>}
+				control={control}
+				options={[
+					{ label: 'Male', value: 'male' },
+					{ label: 'Female', value: 'female' },
+				]}
+				label="Select Gender"
+			/>
+		),
+	},
+];
+
 export {
 	useParishCouncilColumns,
 	useFamilyOverviewColumns,
@@ -915,4 +979,5 @@ export {
 	useCollegeStudentsColumns,
 	useAnbiamDetailsColumns,
 	useTotalFamilyMembersColumns,
+	getFamilyDynamicColumns,
 };

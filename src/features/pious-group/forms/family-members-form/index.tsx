@@ -1,5 +1,7 @@
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useNavigate } from 'react-router-dom';
+
 import {
 	SingleSelectDropdown,
 	FormButton,
@@ -28,12 +30,11 @@ import {
 import { Label } from '@radix-ui/react-dropdown-menu';
 import { familesMembersTypeSchema, type FamilesMembersType } from '../../validation';
 import { useStore } from '@/store/store';
-import { useNavigate } from 'react-router-dom';
 import type { MembersInParishFamilyProps } from '@/types';
 
 const FamilyMembersForm = () => {
 	const editRow = useStore((state) => state.editRow as MembersInParishFamilyProps | null);
-	const { handleEditAccountingName } = useStore();
+	const { handleSetRouteParams, handleSelectAccountingNameRow } = useStore();
 	const navigate = useNavigate();
 
 	const {
@@ -435,7 +436,29 @@ const FamilyMembersForm = () => {
 								error={errors.dobRemarks?.message}
 							/>
 						)}
-						<FormButton className="mb-4" type="button" label="Edit" onClick={() => {}} />
+						<FormButton
+							className="mb-4"
+							type="button"
+							label="Edit"
+							onClick={() => {
+								if (!editRow) return;
+								const { sub_station_id, anbiam_id, unique_family_id, unique_member_id } = editRow;
+								if (!sub_station_id || !anbiam_id || !unique_family_id || !unique_member_id) {
+									return;
+								}
+								handleSelectAccountingNameRow(editRow);
+								handleSetRouteParams({
+									subStationId: sub_station_id,
+									anbiamId: anbiam_id,
+									uniqueFamilyId: unique_family_id,
+								});
+								navigate(
+									`/sacraments/baptism/${encodeURIComponent(sub_station_id)}/${encodeURIComponent(anbiam_id)}/${encodeURIComponent(
+										unique_family_id
+									)}/${encodeURIComponent(unique_member_id)}`
+								);
+							}}
+						/>
 					</div>
 
 					<ControlledRadioGroup
@@ -465,7 +488,30 @@ const FamilyMembersForm = () => {
 								error={errors.baptismRemarks?.message}
 							/>
 						)}
-						<FormButton className="mb-4" type="button" label="Edit" onClick={() => {}} />
+						<FormButton
+							className="mb-4"
+							type="button"
+							label="Edit"
+							onClick={() => {
+								if (!editRow) return;
+								const { sub_station_id, anbiam_id, unique_family_id, unique_member_id } = editRow;
+								if (!sub_station_id || !anbiam_id || !unique_family_id || !unique_member_id) {
+									return;
+								}
+
+								handleSetRouteParams({
+									subStationId: sub_station_id,
+									anbiamId: anbiam_id,
+									uniqueFamilyId: unique_family_id,
+								});
+								handleSelectAccountingNameRow(editRow);
+								navigate(
+									`/sacraments/baptism/${encodeURIComponent(sub_station_id)}/${encodeURIComponent(anbiam_id)}/${encodeURIComponent(
+										unique_family_id
+									)}/${encodeURIComponent(unique_member_id)}`
+								);
+							}}
+						/>
 					</div>
 
 					<ControlledRadioGroup
@@ -496,17 +542,29 @@ const FamilyMembersForm = () => {
 								error={errors.holyCommunionRemarks?.message}
 							/>
 						)}
+
 						<FormButton
 							className="mb-4"
 							type="button"
 							label="Edit"
 							onClick={() => {
-								if (editRow) {
-									navigate(
-										`/sacraments/holy_communion/${editRow?.sub_station_id}/${editRow?.anbiam_id}/${editRow?.unique_family_id}/${editRow?.unique_member_id}`
-									);
-									handleEditAccountingName(editRow);
+								if (!editRow) return;
+								const { sub_station_id, anbiam_id, unique_family_id, unique_member_id } = editRow;
+								if (!sub_station_id || !anbiam_id || !unique_family_id || !unique_member_id) {
+									return;
 								}
+
+								handleSetRouteParams({
+									subStationId: sub_station_id,
+									anbiamId: anbiam_id,
+									uniqueFamilyId: unique_family_id,
+								});
+								handleSelectAccountingNameRow(editRow);
+								navigate(
+									`/sacraments/holy_communion/${encodeURIComponent(sub_station_id)}/${encodeURIComponent(anbiam_id)}/${encodeURIComponent(
+										unique_family_id
+									)}/${encodeURIComponent(unique_member_id)}`
+								);
 							}}
 						/>
 					</div>
@@ -539,17 +597,29 @@ const FamilyMembersForm = () => {
 								error={errors.confirmationRemarks?.message}
 							/>
 						)}
+
 						<FormButton
 							className="mb-4"
 							type="button"
 							label="Edit"
 							onClick={() => {
-								if (editRow) {
-									navigate(
-										`/sacraments/confirmations/${editRow?.sub_station_id}/${editRow?.anbiam_id}/${editRow?.unique_family_id}/${editRow?.unique_member_id}`
-									);
-									handleEditAccountingName(editRow);
+								if (!editRow) return;
+								const { sub_station_id, anbiam_id, unique_family_id, unique_member_id } = editRow;
+								if (!sub_station_id || !anbiam_id || !unique_family_id || !unique_member_id) {
+									return;
 								}
+
+								handleSetRouteParams({
+									subStationId: sub_station_id,
+									anbiamId: anbiam_id,
+									uniqueFamilyId: unique_family_id,
+								});
+								handleSelectAccountingNameRow(editRow);
+								navigate(
+									`/sacraments/confirmations/${encodeURIComponent(sub_station_id)}/${encodeURIComponent(anbiam_id)}/${encodeURIComponent(
+										unique_family_id
+									)}/${encodeURIComponent(unique_member_id)}`
+								);
 							}}
 						/>
 					</div>

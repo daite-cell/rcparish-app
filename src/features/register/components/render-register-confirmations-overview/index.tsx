@@ -7,22 +7,21 @@ import { getConfirmationsData } from '../../columns-section';
 import type { ConfirmationRegisteredMemberType } from '@/types';
 
 const RenderRegisterConfirmationsOverview = () => {
-	const { selectAccountingNameRow, editAccountingNameRow, editRow, selectRow } = useStore();
-	console.warn(editAccountingNameRow, 'edit');
-	const baseRow = (selectAccountingNameRow as Record<string, unknown>) || (selectRow as Record<string, unknown>) || {};
-	const userName = extractUserName(baseRow);
+	const { selectAccountingNameRow, editAccountingNameRow, editRow, selectRow, routeParams } = useStore();
+	const activeRow =
+		(editAccountingNameRow as ConfirmationRegisteredMemberType | null) ??
+		(selectRow as ConfirmationRegisteredMemberType | null) ??
+		(selectAccountingNameRow as ConfirmationRegisteredMemberType | null);
+	const userName = extractUserName((activeRow as unknown as Record<string, unknown>) || {});
 
 	const componentMap = {
 		confirmations: {
-			view: editAccountingNameRow ? (
+			view: (
 				<GenericCouncilMemberDetails
 					userName={userName}
-					sectionData={getConfirmationsData(editAccountingNameRow as ConfirmationRegisteredMemberType)}
-				/>
-			) : (
-				<GenericCouncilMemberDetails
-					userName={userName}
-					sectionData={getConfirmationsData(selectRow as ConfirmationRegisteredMemberType)}
+					sectionData={getConfirmationsData(
+						(activeRow ?? ({} as ConfirmationRegisteredMemberType)) as ConfirmationRegisteredMemberType
+					)}
 				/>
 			),
 			form: <HolyCommunionEditForm />,
@@ -32,7 +31,7 @@ const RenderRegisterConfirmationsOverview = () => {
 		<OverviewTabsLayout
 			pathName={'confirmations'}
 			componentMap={componentMap}
-			defaultTabLabel={editAccountingNameRow || editRow ? 'edit' : 'profile'}
+			defaultTabLabel={routeParams || editAccountingNameRow || editRow ? 'edit' : 'profile'}
 		/>
 	);
 };

@@ -1,12 +1,13 @@
 import { DynamicDataTable } from '@/components';
 import { TabsLayout } from '@/layouts';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useConfirmationRegisterColumns, useMemberFromFamiliesColumns } from '../../columns';
 import get_confirmation_list from '../../data/get_confirmation_list.json';
 
 import { useStore } from '@/store/store';
 import { RenderRegisterConfirmationsOverview } from '../../components';
 import { HolyCommunionForm } from '../../forms';
+import { useParams } from 'react-router-dom';
 
 const FamilyMembersConfirmationsPage = () => {
 	const [activeIndex, setActiveIndex] = useState(0);
@@ -14,9 +15,24 @@ const FamilyMembersConfirmationsPage = () => {
 	const activeLabel = tabs[activeIndex].label.toLowerCase();
 	const confirmation_families = useMemberFromFamiliesColumns();
 	const baptism_register = useConfirmationRegisterColumns();
-	const { selectRow, editRow, selectAccountingNameRow, editAccountingNameRow } = useStore();
 
-	if (selectAccountingNameRow || editRow || selectRow || editAccountingNameRow) {
+	const { subStationId, anbiamId, uniqueFamilyId } = useParams<{
+		subStationId: string;
+		anbiamId: string;
+		uniqueFamilyId: string;
+		uniqueMemberId: string;
+	}>();
+	const { selectRow, editRow, routeParams, handleSetRouteParams } = useStore();
+
+	useEffect(() => {
+		handleSetRouteParams({
+			subStationId,
+			anbiamId,
+			uniqueFamilyId,
+		});
+	}, [subStationId, anbiamId, uniqueFamilyId, handleSetRouteParams]);
+
+	if (routeParams || editRow || selectRow) {
 		return <RenderRegisterConfirmationsOverview />;
 	}
 	return (
