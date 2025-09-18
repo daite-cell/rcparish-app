@@ -23,6 +23,14 @@ const PriestsGenericPage = lazy(() => import('../features/diocese/pages/priests-
 const AccountingPiousGroupPage = lazy(() => import('../features/pious-group/pages/accounting-pious-group-page'));
 const RegisterPiousGroupPage = lazy(() => import('../features/pious-group/pages/register-pious-group-page'));
 
+const FamilyMembersHolyCommunionPage = lazy(
+	() => import('../features/register/pages/family-members-holy-communion-page')
+);
+
+const FamilyMembersConfirmationsPage = lazy(
+	() => import('../features/register/pages/family-members-confirmations-page')
+);
+
 export const appRoutes: AppRoute[] = [
 	{ path: '/dashboard', name: 'Dashboard', element: <DashBoardPage />, layout: true },
 	{ path: '/query_from_bishop', name: 'QueriesFormBishop', element: <QueriesFormPage />, layout: true },
@@ -43,6 +51,19 @@ export const appRoutes: AppRoute[] = [
 		path: '/religious_people/:type',
 		name: 'ReligiousPeopleGeneric',
 		element: <ReligiousPeopleGenericPage />,
+		layout: true,
+	},
+
+	{
+		path: '/sacraments/holy_communion/:subStationId/:anbiamId/:uniqueFamilyId/:uniqueMemberId',
+		name: 'FamilyMembersHolyCommunionGeneric',
+		element: <FamilyMembersHolyCommunionPage />,
+		layout: true,
+	},
+	{
+		path: '/sacraments/confirmations/:subStationId/:anbiamId/:uniqueFamilyId/:uniqueMemberId',
+		name: 'FamilyMembersConfirmationsGeneric',
+		element: <FamilyMembersConfirmationsPage />,
 		layout: true,
 	},
 

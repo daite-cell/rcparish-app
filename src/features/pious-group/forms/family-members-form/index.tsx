@@ -27,8 +27,15 @@ import {
 } from '@/forms-options-data';
 import { Label } from '@radix-ui/react-dropdown-menu';
 import { familesMembersTypeSchema, type FamilesMembersType } from '../../validation';
+import { useStore } from '@/store/store';
+import { useNavigate } from 'react-router-dom';
+import type { MembersInParishFamilyProps } from '@/types';
 
 const FamilyMembersForm = () => {
+	const editRow = useStore((state) => state.editRow as MembersInParishFamilyProps | null);
+	const { handleEditAccountingName } = useStore();
+	const navigate = useNavigate();
+
 	const {
 		control,
 		handleSubmit,
@@ -489,7 +496,19 @@ const FamilyMembersForm = () => {
 								error={errors.holyCommunionRemarks?.message}
 							/>
 						)}
-						<FormButton className="mb-4" type="button" label="Edit" onClick={() => {}} />
+						<FormButton
+							className="mb-4"
+							type="button"
+							label="Edit"
+							onClick={() => {
+								if (editRow) {
+									navigate(
+										`/sacraments/holy_communion/${editRow?.sub_station_id}/${editRow?.anbiam_id}/${editRow?.unique_family_id}/${editRow?.unique_member_id}`
+									);
+									handleEditAccountingName(editRow);
+								}
+							}}
+						/>
 					</div>
 
 					<ControlledRadioGroup
@@ -520,7 +539,19 @@ const FamilyMembersForm = () => {
 								error={errors.confirmationRemarks?.message}
 							/>
 						)}
-						<FormButton className="mb-4" type="button" label="Edit" onClick={() => {}} />
+						<FormButton
+							className="mb-4"
+							type="button"
+							label="Edit"
+							onClick={() => {
+								if (editRow) {
+									navigate(
+										`/sacraments/confirmations/${editRow?.sub_station_id}/${editRow?.anbiam_id}/${editRow?.unique_family_id}/${editRow?.unique_member_id}`
+									);
+									handleEditAccountingName(editRow);
+								}
+							}}
+						/>
 					</div>
 
 					<ControlledRadioGroup
