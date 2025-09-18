@@ -71,7 +71,6 @@ const DynamicDataTable = <T extends object, U>({
 	const generatedTableId = tableId ?? 'dynamic-data-table';
 	const fromDateTime = fromDate?.getTime() ?? null;
 	const toDateTime = toDate?.getTime() ?? null;
-	console.warn('Sample row:', data[0], dateFilterKey);
 
 	function parseDate(value: unknown): Date | null {
 		if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
