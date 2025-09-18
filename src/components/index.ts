@@ -73,3 +73,4 @@ export { default as DisplayDynamicFieldsTotal } from './display-dynamic-felids-t
 export { default as ToDateCell } from './date-cell';
 export { default as StatusDropdown } from './status-dropdown';
 export { default as PageSectionHeading } from './page-section-heading';
+export { default as CategoryCell } from './category-cell';

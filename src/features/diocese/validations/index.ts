@@ -166,6 +166,55 @@ const priestsSchema = z.object({
 	youngerSisters: optionalString(),
 	remarks: optionalString(),
 	image: fileValidation('Image file is required'),
+	serviceRecord: z.array(
+		z
+			.object({
+				serviceAs: requiredString('Parish is required'),
+				status: enumFromArray(['Present', 'Past'], 'Status is required'),
+				churchName: optionalString(),
+				toDate: z.string().optional(),
+				details: optionalString(),
+				category: optionalString(),
+				placeName: optionalString(),
+				presentCategory: optionalString(),
+				pastCategory: optionalString(),
+				fromDate: optionalString(),
+				remarks: optionalString(),
+			})
+			.superRefine((member, ctx) => {
+				if (member.status === 'Past' && !member.toDate) {
+					ctx.addIssue({
+						code: z.ZodIssueCode.custom,
+						path: ['toDate'],
+						message: 'To Date is required when status is Past',
+					});
+				}
+			})
+	),
+	secularStudies: z.array(
+		z.object({
+			category: optionalString(),
+			details: optionalString(),
+			courseName: optionalString(),
+			schoolName: optionalString(),
+			place: optionalString(),
+			courseStartDate: optionalString(),
+			courseEndDate: optionalString(),
+			remarks: optionalString(),
+		})
+	),
+	sacredStudies: z.array(
+		z.object({
+			category: optionalString(),
+			details: optionalString(),
+			courseName: optionalString(),
+			collegeName: optionalString(),
+			place: optionalString(),
+			courseStartDate: optionalString(),
+			courseEndDate: optionalString(),
+			remarks: optionalString(),
+		})
+	),
 });
 
 const propertiesSchema = z.object({
