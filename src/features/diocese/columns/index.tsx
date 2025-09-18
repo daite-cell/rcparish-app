@@ -6,6 +6,9 @@ import {
 	TextLink,
 	ToDateCell,
 	StatusDropdown,
+	SingleSelectDropdown,
+	CategoryCell,
+	ControlledDateInputField,
 } from '@/components';
 import { useStore } from '@/store/store';
 import type {
@@ -41,7 +44,14 @@ import type { CellContext, ColumnDef } from '@tanstack/react-table';
 import { SquarePen, Upload } from 'lucide-react';
 import { useMemo } from 'react';
 import type { Control, FieldValues, Path } from 'react-hook-form';
-import type { CommissionsFormType, CommitteesFormType, CuriaMembersFormType, VSSSFormType } from '../validations';
+import type {
+	CommissionsFormType,
+	CommitteesFormType,
+	CuriaMembersFormType,
+	PriestsType,
+	VSSSFormType,
+} from '../validations';
+import { educationLevels, formationStages, priestRoles } from '@/forms-options-data';
 
 const usePriestColumns = (): ColumnDef<PriestDetailsProps>[] => {
 	const { handleSelectRow, handleEditRow } = useStore();
@@ -134,7 +144,7 @@ const usePriestCalendarColumns = (): ColumnDef<PriestCalendarDetailsProps>[] => 
 ];
 
 const useCommissionColumns = (): ColumnDef<CommissionMemberProps>[] => {
-	const { handleEditRow, handleSelectPriorRow } = useStore();
+	const { handleEditRow, handleSelectPriorRow, handleSelectPriestsRow } = useStore();
 
 	return [
 		{
@@ -156,6 +166,16 @@ const useCommissionColumns = (): ColumnDef<CommissionMemberProps>[] => {
 		{
 			accessorKey: 'priestName',
 			header: 'Name of the Priest',
+			cell: ({ row }) => (
+				<TextLink
+					onClick={() => {
+						handleSelectPriestsRow(row.original);
+					}}
+					to={`/diocese/priests/${row.original.id}`}
+				>
+					{row.original.priestName ?? ''}
+				</TextLink>
+			),
 		},
 		{
 			accessorKey: 'presentPosition',
@@ -309,7 +329,7 @@ const useCommitteesColumns = (): ColumnDef<CommitteesProps>[] => {
 };
 
 const useDioceseVSSSColumns = (): ColumnDef<DioceseVSSSMemberProps>[] => {
-	const { handleSelectRow, handleSelectPriorRow, handleEditRow } = useStore();
+	const { handleSelectRow, handleSelectPriorRow, handleEditRow, handleSelectPriestsRow } = useStore();
 
 	return [
 		...getCommonActionColumns<DioceseVSSSMemberProps>(handleSelectRow, handleEditRow),
@@ -330,6 +350,16 @@ const useDioceseVSSSColumns = (): ColumnDef<DioceseVSSSMemberProps>[] => {
 		{
 			accessorKey: 'priestName',
 			header: 'Name of the Priests',
+			cell: ({ row }) => (
+				<TextLink
+					onClick={() => {
+						handleSelectPriestsRow(row.original);
+					}}
+					to={`/diocese/priests/${row.original.id}`}
+				>
+					{row.original.priestName ?? ''}
+				</TextLink>
+			),
 		},
 		{
 			accessorKey: 'presentPosition',
@@ -362,7 +392,7 @@ const useDioceseVSSSColumns = (): ColumnDef<DioceseVSSSMemberProps>[] => {
 };
 
 const useDioceseSenateColumns = (): ColumnDef<DioceseSenateMemberProps>[] => {
-	const { handleSelectRow, handleSelectPriorRow, handleEditRow } = useStore();
+	const { handleSelectRow, handleSelectPriorRow, handleEditRow, handleSelectPriestsRow } = useStore();
 
 	return [
 		...getCommonActionColumns<DioceseSenateMemberProps>(handleSelectRow, handleEditRow),
@@ -383,7 +413,14 @@ const useDioceseSenateColumns = (): ColumnDef<DioceseSenateMemberProps>[] => {
 		{
 			accessorKey: 'memberName',
 			header: 'Name of the Priests',
-			cell: ({ row }) => <TextLink to="">{row.original.memberName ?? ''}</TextLink>,
+			cell: (ctx) => (
+				<TextLink
+					onClick={() => handleSelectPriestsRow(ctx.row.original)}
+					to={`/diocese/priests/${ctx.row.original.id}`}
+				>
+					{(ctx.getValue() as string) ?? ''}
+				</TextLink>
+			),
 		},
 		{
 			accessorKey: 'designation',
@@ -415,7 +452,8 @@ const useDioceseSenateColumns = (): ColumnDef<DioceseSenateMemberProps>[] => {
 	];
 };
 const useVicariateForaneColumns = (): ColumnDef<VicariateForaneMemberProps>[] => {
-	const { handleSelectRow, handleSelectPriorRow, handleEditRow } = useStore();
+	const { handleSelectRow, handleSelectPriorRow, handleEditRow, handleSelectPriestsRow, handleEditPriestsRow } =
+		useStore();
 
 	return [
 		...getCommonActionColumns<VicariateForaneMemberProps>(handleSelectRow, handleEditRow),
@@ -438,7 +476,17 @@ const useVicariateForaneColumns = (): ColumnDef<VicariateForaneMemberProps>[] =>
 		{
 			accessorKey: 'memberName',
 			header: 'Name of the Priests',
-			cell: ({ row }) => <TextLink to="">{row.original.memberName}</TextLink>,
+			cell: ({ row }) => (
+				<TextLink
+					onClick={() => {
+						handleSelectPriestsRow(row.original);
+						handleEditPriestsRow(row.original);
+					}}
+					to={`/diocese/priests/${row.original.id}`}
+				>
+					{row.original.memberName ?? ''}
+				</TextLink>
+			),
 		},
 		{
 			accessorKey: 'presentPosition',
@@ -471,7 +519,7 @@ const useVicariateForaneColumns = (): ColumnDef<VicariateForaneMemberProps>[] =>
 };
 
 const useParishColumns = (): ColumnDef<ParishTableDataProps>[] => {
-	const { handleSelectRow, handleSelectPriorRow, handleEditRow } = useStore();
+	const { handleSelectRow, handleSelectPriorRow, handleEditRow, handleSelectPriestsRow } = useStore();
 
 	return [
 		...getCommonActionColumns<ParishTableDataProps>(handleSelectRow, handleEditRow),
@@ -494,7 +542,11 @@ const useParishColumns = (): ColumnDef<ParishTableDataProps>[] => {
 		{
 			accessorKey: 'priestName',
 			header: 'Present Parish Priest',
-			cell: ({ row }) => <TextLink to="">{row.original.priestName}</TextLink>,
+			cell: ({ row }) => (
+				<TextLink onClick={() => handleSelectPriestsRow(row.original)} to={`/diocese/priests/${row.original.id}`}>
+					{row.original.priestName ?? ''}
+				</TextLink>
+			),
 		},
 		{
 			accessorKey: 'churchName',
@@ -1770,6 +1822,239 @@ const useHostelListColumns = (): ColumnDef<HostelListProps>[] => {
 	];
 };
 
+const getPriestsServiceRecordColumns = <TForm extends FieldValues>(
+	control: Control<TForm>
+): ColumnDef<PriestsType>[] => [
+	{
+		accessorKey: 'serviceAs',
+		header: 'Service As',
+		cell: ({ row }) => (
+			<div className="flex">
+				<span className="h-8 w-1 bg-[#008000]   mr-2"></span>
+				<SingleSelectDropdown
+					control={control}
+					name={`serviceRecord.${row.index}.serviceAs` as Path<TForm>}
+					options={priestRoles}
+				/>
+			</div>
+		),
+	},
+	{ header: 'Details', cell: () => <h1>nill</h1> },
+	{
+		accessorKey: 'status',
+		header: 'Status',
+		cell: ({ row }) => (
+			<StatusDropdown control={control as Control<FieldValues>} name={`serviceRecord.${row.index}.status`} />
+		),
+	},
+	{
+		accessorKey: 'category',
+		header: 'Category',
+		cell: ({ row }) => (
+			<CategoryCell
+				control={control}
+				statusName={`serviceRecord.${row.index}.status` as Path<TForm>}
+				category={`serviceRecord.${row.index}.category` as Path<TForm>}
+			/>
+		),
+	},
+
+	{
+		accessorKey: 'placeName',
+		header: 'Place / Parish Name',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`serviceRecord.${row.index}.placeName` as Path<TForm>}
+				placeholder="Enter place/parish"
+			/>
+		),
+	},
+	{
+		accessorKey: 'churchName',
+		header: 'Church / Institution Name',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`serviceRecord.${row.index}.churchName` as Path<TForm>}
+				placeholder="Enter church name"
+			/>
+		),
+	},
+	{
+		accessorKey: 'fromDate',
+		header: 'Since from',
+		cell: ({ row }) => (
+			<ControlledDateInputField
+				name={`serviceRecord.${row.index}.fromDate` as Path<TForm>}
+				control={control}
+				placeholder="dd/mm/yyyy"
+				type="date"
+			/>
+		),
+	},
+	{
+		accessorKey: 'toDate',
+		header: 'To',
+		cell: ({ row }) => (
+			<ToDateCell
+				control={control}
+				statusName={`serviceRecord.${row.index}.status` as Path<TForm>}
+				toDateName={`serviceRecord.${row.index}.toDate` as Path<TForm>}
+			/>
+		),
+	},
+
+	{
+		accessorKey: 'remarks',
+		header: 'Remarks',
+		cell: ({ row }) => <CustomFormInput control={control} name={`serviceRecord.${row.index}.remarks` as Path<TForm>} />,
+	},
+	{ header: 'ID' },
+];
+
+const getPriestsSecularStudiesRecordColumns = <TForm extends FieldValues>(
+	control: Control<TForm>
+): ColumnDef<PriestsType>[] => [
+	{
+		accessorKey: 'category',
+		header: 'Category',
+		cell: ({ row }) => (
+			<SingleSelectDropdown
+				control={control}
+				name={`secularStudies.${row.index}.category` as Path<TForm>}
+				options={educationLevels}
+			/>
+		),
+	},
+	{ header: 'Details', cell: () => <h1>nill</h1> },
+	{
+		accessorKey: 'courseName',
+		header: 'Course Name',
+		cell: ({ row }) => (
+			<CustomFormInput control={control} name={`secularStudies.${row.index}.courseName` as Path<TForm>} />
+		),
+	},
+
+	{
+		accessorKey: 'schoolName',
+		header: 'School / Institution',
+		cell: ({ row }) => (
+			<CustomFormInput control={control} name={`secularStudies.${row.index}.schoolName` as Path<TForm>} />
+		),
+	},
+	{
+		accessorKey: 'placeName',
+		header: 'Place Name',
+		cell: ({ row }) => (
+			<CustomFormInput control={control} name={`secularStudies.${row.index}.placeName` as Path<TForm>} />
+		),
+	},
+	{
+		accessorKey: 'courseStartDate',
+		header: 'Course Started Year',
+		cell: ({ row }) => (
+			<ControlledDateInputField
+				name={`secularStudies.${row.index}.courseStartDate` as Path<TForm>}
+				control={control}
+				placeholder="dd/mm/yyyy"
+				type="date"
+			/>
+		),
+	},
+	{
+		accessorKey: 'courseEndDate',
+		header: 'Course Completed Year',
+		cell: ({ row }) => (
+			<ControlledDateInputField
+				name={`secularStudies.${row.index}.courseEndDate` as Path<TForm>}
+				control={control}
+				placeholder="dd/mm/yyyy"
+				type="date"
+			/>
+		),
+	},
+
+	{
+		accessorKey: 'remarks',
+		header: 'Remarks',
+		cell: ({ row }) => (
+			<CustomFormInput control={control} name={`secularStudies.${row.index}.remarks` as Path<TForm>} />
+		),
+	},
+	{ header: 'ID' },
+];
+
+const getPriestsSacredStudiesRecordColumns = <TForm extends FieldValues>(
+	control: Control<TForm>
+): ColumnDef<PriestsType>[] => [
+	{
+		accessorKey: 'category',
+		header: 'Category',
+		cell: ({ row }) => (
+			<SingleSelectDropdown
+				control={control}
+				name={`sacredStudies.${row.index}.category` as Path<TForm>}
+				options={formationStages}
+			/>
+		),
+	},
+	{ header: 'Details', cell: () => <h1>nill</h1> },
+	{
+		accessorKey: 'courseName',
+		header: 'Course Name',
+		cell: ({ row }) => (
+			<CustomFormInput control={control} name={`sacredStudies.${row.index}.courseName` as Path<TForm>} />
+		),
+	},
+
+	{
+		accessorKey: 'collegeName',
+		header: 'Institution / College',
+		cell: ({ row }) => (
+			<CustomFormInput control={control} name={`sacredStudies.${row.index}.collegeName` as Path<TForm>} />
+		),
+	},
+	{
+		accessorKey: 'placeName',
+		header: 'Place Name',
+		cell: ({ row }) => (
+			<CustomFormInput control={control} name={`sacredStudies.${row.index}.placeName` as Path<TForm>} />
+		),
+	},
+	{
+		accessorKey: 'courseStartDate',
+		header: 'Course Started Year',
+		cell: ({ row }) => (
+			<ControlledDateInputField
+				name={`sacredStudies.${row.index}.courseStartDate` as Path<TForm>}
+				control={control}
+				placeholder="dd/mm/yyyy"
+				type="date"
+			/>
+		),
+	},
+	{
+		accessorKey: 'courseEndDate',
+		header: 'Course Completed Year',
+		cell: ({ row }) => (
+			<ControlledDateInputField
+				name={`sacredStudies.${row.index}.courseEndDate` as Path<TForm>}
+				control={control}
+				placeholder="dd/mm/yyyy"
+				type="date"
+			/>
+		),
+	},
+
+	{
+		accessorKey: 'remarks',
+		header: 'Remarks',
+		cell: ({ row }) => <CustomFormInput control={control} name={`sacredStudies.${row.index}.remarks` as Path<TForm>} />,
+	},
+	{ header: 'ID' },
+];
+
 export {
 	usePriestColumns,
 	usePriestCalendarColumns,
@@ -1801,4 +2086,7 @@ export {
 	useHomageListColumns,
 	useHealthInstituteListColumns,
 	useHostelListColumns,
+	getPriestsServiceRecordColumns,
+	getPriestsSecularStudiesRecordColumns,
+	getPriestsSacredStudiesRecordColumns,
 };

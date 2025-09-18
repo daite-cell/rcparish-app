@@ -31,6 +31,8 @@ const OverviewTabsLayout = ({
 		handleCloseEditPriestsRow,
 		handleClosePriestsRow,
 		handleCloseAccountingNameRow,
+		handleClosePathId,
+		handleClearRouteParams,
 	} = useStore();
 	const page = String(pathName);
 
@@ -51,6 +53,8 @@ const OverviewTabsLayout = ({
 			handleClosePriestsRow();
 			handleCloseAccountingNameRow();
 			setActiveTabIndex(getTabIndexByLabel('profile'));
+			handleClosePathId();
+			handleClearRouteParams();
 		} else {
 			setActiveTabIndex(index);
 		}

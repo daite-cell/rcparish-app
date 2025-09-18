@@ -9,7 +9,7 @@ import { extractUserName } from '@/utils/extractUserName';
 import { FamiliesForm } from '../../forms';
 
 const RenderRegisterPiousOverView = () => {
-	const { selectAccountingNameRow, editAccountingNameRow, editRow, selectRow } = useStore();
+	const { selectAccountingNameRow, editAccountingNameRow, editRow, selectRow, routeParams } = useStore();
 	const baseRow = (selectAccountingNameRow as Record<string, unknown>) || (selectRow as Record<string, unknown>) || {};
 	const userName = extractUserName(baseRow);
 
@@ -35,7 +35,7 @@ const RenderRegisterPiousOverView = () => {
 		<OverviewTabsLayout
 			pathName={'family_members'}
 			componentMap={componentMap}
-			defaultTabLabel={editAccountingNameRow || editRow ? 'edit' : 'profile'}
+			defaultTabLabel={editAccountingNameRow || editRow || routeParams ? 'edit' : 'profile'}
 		/>
 	);
 };

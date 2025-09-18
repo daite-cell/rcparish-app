@@ -77,7 +77,7 @@ const useChronicleMemberColumns = (): ColumnDef<ChronicleMemberProps>[] => {
 };
 
 const useBaptismMemberColumns = (): ColumnDef<BaptismMemberType>[] => {
-	const { handleSelectRow, handleEditRow, handleSelectAccountingNameRow, handleEditAccountingName } = useStore();
+	const { handleSelectRow, handleEditRow, handleSelectAccountingNameRow } = useStore();
 
 	return [
 		...getCommonActionColumns<BaptismMemberType>(handleSelectRow, handleEditRow),
@@ -88,8 +88,8 @@ const useBaptismMemberColumns = (): ColumnDef<BaptismMemberType>[] => {
 			cell: ({ row }) => (
 				<TextLink
 					onClick={() => {
+						handleSelectRow(row.original);
 						handleSelectAccountingNameRow(row.original);
-						handleEditAccountingName(row.original);
 					}}
 					to={`/pious_group/family_members/${row.original.sub_station_id}/${row.original.anbiam_id}/${row.original.unique_family_id}/${row.original.unique_member_id}`}
 					className="underline text-[#0d73c4]"
@@ -122,7 +122,7 @@ const useBaptismMemberColumns = (): ColumnDef<BaptismMemberType>[] => {
 };
 
 const useMemberFromFamiliesColumns = (): ColumnDef<ConfirmationFromFamilyMemberType>[] => {
-	const { handleSelectRow, handleEditRow, handleSelectAccountingNameRow, handleEditAccountingName } = useStore();
+	const { handleSelectRow, handleEditRow, handleSelectAccountingNameRow } = useStore();
 
 	return [
 		...getCommonActionColumns<ConfirmationFromFamilyMemberType>(handleSelectRow, handleEditRow),
@@ -134,7 +134,7 @@ const useMemberFromFamiliesColumns = (): ColumnDef<ConfirmationFromFamilyMemberT
 				<TextLink
 					onClick={() => {
 						handleSelectAccountingNameRow(row.original);
-						handleEditAccountingName(row.original);
+						// handleEditAccountingName(row.original);
 					}}
 					to={`/pious_group/family_members/${row.original.sub_station_id}/${row.original.anbiam_id}/${row.original.unique_family_id}/${row.original.unique_member_id}`}
 					className="underline text-[#0d73c4]"
