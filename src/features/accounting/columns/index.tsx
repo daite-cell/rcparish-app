@@ -393,7 +393,7 @@ const useEmployersSalaryColumns = (): ColumnDef<EmployersSalaryProps>[] => {
 };
 
 const useSubscriptionColumns = (): ColumnDef<SubscriptionProps>[] => {
-	const { handleSelectRow, handleEditRow, handleSelectAccountingNameRow, handleEditAccountingName } = useStore();
+	const { handleSelectRow, handleEditRow, handleSelectAccountingNameRow } = useStore();
 
 	return [
 		...getCommonActionColumns<SubscriptionProps>(handleSelectRow, handleEditRow),
@@ -408,8 +408,8 @@ const useSubscriptionColumns = (): ColumnDef<SubscriptionProps>[] => {
 					cell: ({ row }) => (
 						<TextLink
 							onClick={() => {
+								handleSelectRow(row.original);
 								handleSelectAccountingNameRow(row.original);
-								handleEditAccountingName(row.original);
 							}}
 							to={`/pious_group/families/${row.original.sub_station_id}/${row.original.anbiam_id}/${row.original.unique_family_id}`}
 						>

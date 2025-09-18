@@ -6,13 +6,17 @@ import type { FamilyDataProps } from '@/types';
 import { extractUserName } from '@/utils/extractUserName';
 import { FamiliesForm } from '../../forms';
 import get_members_link_details from '../../data/get_members_link_details.json';
+import type { JSX } from 'react';
 
 const RenderAccountingPiousOverView = () => {
-	const { selectAccountingNameRow, editAccountingNameRow, editRow, selectRow } = useStore();
-	console.warn(selectAccountingNameRow);
+	const { selectAccountingNameRow, editAccountingNameRow, editRow, selectRow, routeParams } = useStore();
+	console.warn(selectRow, 'row');
+
+	const hasRouteParams =
+		Boolean(routeParams?.subStationId) || Boolean(routeParams?.anbiamId) || Boolean(routeParams?.uniqueFamilyId);
 	const baseRow = (selectAccountingNameRow as Record<string, unknown>) || (selectRow as Record<string, unknown>) || {};
+
 	const userName = extractUserName(baseRow);
-	console.warn(selectRow, 'ahdvgewhfewy');
 
 	const componentMap = {
 		families: {
@@ -27,6 +31,7 @@ const RenderAccountingPiousOverView = () => {
 					sectionData={getFamilesMembersSectionData(selectRow as FamilyDataProps)}
 				/>
 			),
+
 			form: <FamiliesForm />,
 		},
 	};
@@ -34,8 +39,8 @@ const RenderAccountingPiousOverView = () => {
 	return (
 		<OverviewTabsLayout
 			pathName={'families'}
-			componentMap={componentMap}
-			defaultTabLabel={editAccountingNameRow || editRow ? 'edit' : 'profile'}
+			componentMap={componentMap as Record<string, { view: JSX.Element; form: JSX.Element }>}
+			defaultTabLabel={editAccountingNameRow || editRow || hasRouteParams ? 'edit' : 'profile'}
 		/>
 	);
 };
