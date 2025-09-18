@@ -2,3 +2,4 @@ export { default as RenderRegisterPeopleOverview } from './render-register-peopl
 export { default as RenderRegisterPeopleTables } from './render-register-people-tables';
 export { default as GenericRegisterPeopleDetailsContainer } from './generic-register-people-details-container';
 export { default as RenderFormsContainer } from './forms-container';
+export { default as RenderRegisterPeopleFamilyMemberOverview } from './render-register-family-member-overview';
