@@ -7,7 +7,8 @@ import { getBaptismSectionData } from '../../columns-section';
 import type { BaptismMemberType } from '@/types';
 
 const RenderRegisterPeopleFamilyMemberOverview = () => {
-	const { selectAccountingNameRow, editAccountingNameRow, editRow, selectRow } = useStore();
+	const { selectAccountingNameRow, editAccountingNameRow, editRow, selectRow, routeParams } = useStore();
+
 	const activeRow =
 		(editAccountingNameRow as BaptismMemberType | null) ??
 		(selectRow as BaptismMemberType | null) ??
@@ -29,7 +30,7 @@ const RenderRegisterPeopleFamilyMemberOverview = () => {
 		<OverviewTabsLayout
 			pathName={'baptism'}
 			componentMap={componentMap}
-			defaultTabLabel={editAccountingNameRow || editRow ? 'edit' : 'profile'}
+			defaultTabLabel={routeParams || editAccountingNameRow || editRow ? 'edit' : 'profile'}
 		/>
 	);
 };

@@ -34,9 +34,9 @@ import type { MembersInParishFamilyProps } from '@/types';
 
 const FamilyMembersForm = () => {
 	const editRow = useStore((state) => state.editRow as MembersInParishFamilyProps | null);
-	const { handleEditAccountingName } = useStore();
-	console.warn(editRow);
+	const { handleSetRouteParams, handleSelectAccountingNameRow } = useStore();
 	const navigate = useNavigate();
+
 	const {
 		control,
 		handleSubmit,
@@ -446,7 +446,12 @@ const FamilyMembersForm = () => {
 								if (!sub_station_id || !anbiam_id || !unique_family_id || !unique_member_id) {
 									return;
 								}
-								handleEditAccountingName(editRow);
+								handleSelectAccountingNameRow(editRow);
+								handleSetRouteParams({
+									subStationId: sub_station_id,
+									anbiamId: anbiam_id,
+									uniqueFamilyId: unique_family_id,
+								});
 								navigate(
 									`/sacraments/baptism/${encodeURIComponent(sub_station_id)}/${encodeURIComponent(anbiam_id)}/${encodeURIComponent(
 										unique_family_id
@@ -493,7 +498,13 @@ const FamilyMembersForm = () => {
 								if (!sub_station_id || !anbiam_id || !unique_family_id || !unique_member_id) {
 									return;
 								}
-								handleEditAccountingName(editRow);
+
+								handleSetRouteParams({
+									subStationId: sub_station_id,
+									anbiamId: anbiam_id,
+									uniqueFamilyId: unique_family_id,
+								});
+								handleSelectAccountingNameRow(editRow);
 								navigate(
 									`/sacraments/baptism/${encodeURIComponent(sub_station_id)}/${encodeURIComponent(anbiam_id)}/${encodeURIComponent(
 										unique_family_id
