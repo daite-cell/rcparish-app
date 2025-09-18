@@ -8,21 +8,18 @@ import type { BaptismMemberType } from '@/types';
 
 const RenderRegisterPeopleFamilyMemberOverview = () => {
 	const { selectAccountingNameRow, editAccountingNameRow, editRow, selectRow } = useStore();
-	console.warn(editAccountingNameRow, 'edit');
-	const baseRow = (selectAccountingNameRow as Record<string, unknown>) || (selectRow as Record<string, unknown>) || {};
-	const userName = extractUserName(baseRow);
+	const activeRow =
+		(editAccountingNameRow as BaptismMemberType | null) ??
+		(selectRow as BaptismMemberType | null) ??
+		(selectAccountingNameRow as BaptismMemberType | null);
+	const userName = extractUserName((activeRow as unknown as Record<string, unknown>) || {});
 
 	const componentMap = {
 		baptism: {
-			view: editAccountingNameRow ? (
+			view: (
 				<GenericCouncilMemberDetails
 					userName={userName}
-					sectionData={getBaptismSectionData(editAccountingNameRow as BaptismMemberType)}
-				/>
-			) : (
-				<GenericCouncilMemberDetails
-					userName={userName}
-					sectionData={getBaptismSectionData(selectRow as BaptismMemberType)}
+					sectionData={getBaptismSectionData((activeRow ?? ({} as BaptismMemberType)) as BaptismMemberType)}
 				/>
 			),
 			form: <BaptismEditForm />,

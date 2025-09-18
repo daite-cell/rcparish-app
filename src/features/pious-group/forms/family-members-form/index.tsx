@@ -441,12 +441,17 @@ const FamilyMembersForm = () => {
 							type="button"
 							label="Edit"
 							onClick={() => {
-								if (editRow) {
-									navigate(
-										`/sacraments/baptism/${editRow?.sub_station_id}/${editRow?.anbiam_id}/${editRow?.unique_family_id}/${editRow?.unique_member_id}`
-									);
-									handleEditAccountingName(editRow);
+								if (!editRow) return;
+								const { sub_station_id, anbiam_id, unique_family_id, unique_member_id } = editRow;
+								if (!sub_station_id || !anbiam_id || !unique_family_id || !unique_member_id) {
+									return;
 								}
+								handleEditAccountingName(editRow);
+								navigate(
+									`/sacraments/baptism/${encodeURIComponent(sub_station_id)}/${encodeURIComponent(anbiam_id)}/${encodeURIComponent(
+										unique_family_id
+									)}/${encodeURIComponent(unique_member_id)}`
+								);
 							}}
 						/>
 					</div>
@@ -483,12 +488,17 @@ const FamilyMembersForm = () => {
 							type="button"
 							label="Edit"
 							onClick={() => {
-								if (editRow) {
-									navigate(
-										`/sacraments/baptism/${editRow?.sub_station_id}/${editRow?.anbiam_id}/${editRow?.unique_family_id}/${editRow?.unique_member_id}`
-									);
-									handleEditAccountingName(editRow);
+								if (!editRow) return;
+								const { sub_station_id, anbiam_id, unique_family_id, unique_member_id } = editRow;
+								if (!sub_station_id || !anbiam_id || !unique_family_id || !unique_member_id) {
+									return;
 								}
+								handleEditAccountingName(editRow);
+								navigate(
+									`/sacraments/baptism/${encodeURIComponent(sub_station_id)}/${encodeURIComponent(anbiam_id)}/${encodeURIComponent(
+										unique_family_id
+									)}/${encodeURIComponent(unique_member_id)}`
+								);
 							}}
 						/>
 					</div>
