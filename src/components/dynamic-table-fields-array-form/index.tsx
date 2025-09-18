@@ -22,6 +22,7 @@ interface DynamicFieldArrayProps<
 	title?: string;
 	columns: ColumnDef<FieldArrayWithId<TItem>, unknown>[];
 	defaultValues?: Partial<TItem>;
+	initialData?: TItem[];
 	buttonsLabels?: string[];
 	className?: string;
 }
@@ -32,16 +33,28 @@ const DynamicTableFieldArraysForm = <TForm extends FieldValues, TFieldName exten
 	title,
 	columns,
 	defaultValues,
+	initialData,
 	buttonsLabels = ['Add', 'Remove'],
 	className,
 }: DynamicFieldArrayProps<TForm, TFieldName>) => {
 	type TItem = ArrayElement<TForm[TFieldName]>;
 	type TFieldItem = FieldArray<TForm, TFieldName>;
 
-	const { fields, append, remove } = useFieldArray<TForm, TFieldName>({
+	const { fields, append, remove, replace } = useFieldArray<TForm, TFieldName>({
 		control,
 		name: fieldName,
 	});
+
+	React.useEffect(() => {
+		if (initialData && initialData.length > 0) {
+			replace(
+				initialData.map((item, idx) => ({
+					id: `${fieldName}_${idx}`,
+					...(item as Record<string, unknown>),
+				})) as FieldArray<TForm, TFieldName>[]
+			);
+		}
+	}, [initialData, replace, fieldName]);
 
 	const normalizedColumns = React.useMemo(
 		() =>

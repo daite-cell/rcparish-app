@@ -403,6 +403,16 @@ const familesTypeSchema = z.object({
 	email: optionalEmail(),
 	remark: optionalString(),
 	activeness: requiredString('Activeness is required'),
+	dynamicFamilyMembers: z
+		.array(
+			z.object({
+				memberId: optionalString(),
+				name: optionalString(),
+				relation: optionalString(),
+				gender: optionalString(),
+			})
+		)
+		.optional(),
 });
 
 type FamilesType = z.infer<typeof familesTypeSchema>;
