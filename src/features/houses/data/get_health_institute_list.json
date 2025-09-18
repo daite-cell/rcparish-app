@@ -1,0 +1,20 @@
+{
+	"health_institute_list": [
+		{
+			"category_content": "Health Institutes",
+			"health_category_content": "Dispensary",
+			"name": "Sisters of the Destitute Dispensary",
+			"institute_id": "HI0014",
+			"place": "Perumanam",
+			"parish": "V05P10",
+			"land_ownership_content": "Diocese",
+			"established_year_content": "-",
+			"recognition_date": "",
+			"recognition_no": "",
+			"run_by_content": "Religious (Nun)",
+			"mobile_no": "",
+			"mail_id": "",
+			"address": "Sisters of the Destitute Dispensary, Perumanam Post, Tiruvannamalai."
+		}
+	]
+}

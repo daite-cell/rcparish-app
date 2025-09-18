@@ -2,3 +2,4 @@ export { default as RenderHouseMemberOverviewContainer } from './render-house-me
 export { default as RenderHousesTableContainer } from './render-houses-table-container';
 export { default as RenderHouseOverview } from './render-house-overview';
 export { default as RenderFormsContainer } from './render-forms-container';
+export { default as HousesInstitutionsListTablesContainer } from './houses-institutions-list-tables-container';

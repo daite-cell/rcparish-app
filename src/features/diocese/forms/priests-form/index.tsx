@@ -5,12 +5,20 @@ import {
 	ControlledFileUpload,
 	ControlledRadioGroup,
 	CustomFormInput,
+	DynamicTableFieldArraysForm,
 	FormButton,
 	InputWithCheckbox,
 	SingleSelectDropdown,
 } from '@/components';
 import { currentLivingStatusOptions } from '../../../../forms-options-data';
 import { priestsSchema, type PriestsType } from '../../validations';
+import type { ColumnDef } from '@tanstack/react-table';
+import { useMemo } from 'react';
+import {
+	getPriestsServiceRecordColumns,
+	getPriestsSecularStudiesRecordColumns,
+	getPriestsSacredStudiesRecordColumns,
+} from '../../columns';
 
 const PriestsForm = () => {
 	const {
@@ -19,14 +27,24 @@ const PriestsForm = () => {
 		formState: { errors },
 	} = useForm<PriestsType>({
 		resolver: zodResolver(priestsSchema),
+		defaultValues: {
+			serviceRecord: [
+				{
+					status: 'Present',
+				},
+			],
+		},
 	});
+	const columns = useMemo(() => getPriestsServiceRecordColumns(control), [control]);
+	const secularStudiesColumns = useMemo(() => getPriestsSecularStudiesRecordColumns(control), [control]);
+	const sacredStudiesColumns = useMemo(() => getPriestsSacredStudiesRecordColumns(control), [control]);
 
 	const onSubmit = (data: PriestsType) => {
 		alert(JSON.stringify(data, null, 2));
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="space-y-4 text-sm">
+		<form onSubmit={handleSubmit(onSubmit)} className="text-sm ">
 			<div className="flex flex-wrap w-full gap-4">
 				<div className="flex-1 w-full p-5 space-y-5 border border-gray-300 rounded-md">
 					<ControlledRadioGroup
@@ -257,6 +275,56 @@ const PriestsForm = () => {
 					/>
 					<ControlledFileUpload control={control} name="image" label="Upload Image" />
 				</div>
+			</div>
+
+			<div className="flex-1 w-full mt-4 space-y-5 border border-gray-300">
+				<div className="h-[50px] bg-[#343148] text-[12px] p-4">
+					<strong className="text-[#D7C49E]">Service Record</strong>
+				</div>
+				<div className="text-[12px] p-3">
+					<div className="flex flex-wrap ml-6 ">
+						<div className="flex items-center w-full lg:w-1/4 ">
+							<span className="h-8 w-1 bg-[#008000]   mr-2"></span>
+							<h1 className="text-[12px] font-bold pb-6 pt-[20px] pl-4 ">Available</h1>
+						</div>
+
+						<div className="flex items-center w-full lg:w-1/4 ">
+							<span className="w-1 h-8 mr-2 bg-red-500"></span>
+							<h1 className="text-[12px] font-bold pb-6 pt-[20px] pl-4 ">Position Already Holding</h1>
+						</div>
+					</div>
+					<DynamicTableFieldArraysForm
+						control={control}
+						fieldName="serviceRecord"
+						columns={columns as ColumnDef<Record<'id', string>, unknown>[]}
+						buttonsLabels={['Add/Update', 'Remove']}
+						className="!border-none !p-0"
+					/>
+				</div>
+			</div>
+			<div className="flex-1 w-full space-y-5 border border-gray-300 ">
+				<div className="h-[50px] bg-[#343148] text-[12px] p-4">
+					<strong className="text-[#D7C49E]">Secular Studies</strong>
+				</div>
+				<DynamicTableFieldArraysForm
+					control={control}
+					fieldName="secularStudies"
+					columns={secularStudiesColumns as ColumnDef<Record<'id', string>, unknown>[]}
+					buttonsLabels={['Add/Update', 'Remove']}
+					className="!border-none !p-3"
+				/>
+			</div>
+			<div className="w-full border border-gray-300 ">
+				<div className="h-[50px] bg-[#343148] text-[12px] p-4">
+					<strong className="text-[#D7C49E]">Sacred Studies</strong>
+				</div>
+				<DynamicTableFieldArraysForm
+					control={control}
+					fieldName="sacredStudies"
+					columns={sacredStudiesColumns as ColumnDef<Record<'id', string>, unknown>[]}
+					buttonsLabels={['Add/Update', 'Remove']}
+					className="!border-none !p-3"
+				/>
 			</div>
 
 			<div className="flex justify-center w-full">
