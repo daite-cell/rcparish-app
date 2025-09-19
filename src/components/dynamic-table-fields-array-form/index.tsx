@@ -9,6 +9,7 @@ import {
 } from 'react-hook-form';
 import { DynamicDataTable, FormButton, InfoHeadingTitle } from '@/components';
 import type { ColumnDef } from '@tanstack/react-table';
+import { useStore } from '@/store/store';
 
 type ArrayElement<T> = T extends Array<infer U> ? U : never;
 
@@ -25,6 +26,7 @@ interface DynamicFieldArrayProps<
 	initialData?: TItem[];
 	buttonsLabels?: string[];
 	className?: string;
+	enableFamilesForm?: boolean;
 }
 
 const DynamicTableFieldArraysForm = <TForm extends FieldValues, TFieldName extends ArrayPath<TForm>>({
@@ -36,6 +38,7 @@ const DynamicTableFieldArraysForm = <TForm extends FieldValues, TFieldName exten
 	initialData,
 	buttonsLabels = ['Add', 'Remove'],
 	className,
+	enableFamilesForm = false,
 }: DynamicFieldArrayProps<TForm, TFieldName>) => {
 	type TItem = ArrayElement<TForm[TFieldName]>;
 	type TFieldItem = FieldArray<TForm, TFieldName>;
@@ -44,6 +47,8 @@ const DynamicTableFieldArraysForm = <TForm extends FieldValues, TFieldName exten
 		control,
 		name: fieldName,
 	});
+
+	const { handleEnableFamilesForm } = useStore();
 
 	React.useEffect(() => {
 		if (initialData && initialData.length > 0) {
@@ -97,7 +102,17 @@ const DynamicTableFieldArraysForm = <TForm extends FieldValues, TFieldName exten
 			/>
 
 			<div className="flex gap-4 mt-2 ml-8">
-				<FormButton type="button" onClick={() => append(emptyItem)} label={buttonsLabels[0]} />
+				<FormButton
+					type="button"
+					onClick={() => {
+						if (enableFamilesForm) {
+							handleEnableFamilesForm();
+						} else {
+							append(emptyItem);
+						}
+					}}
+					label={buttonsLabels[0]}
+				/>
 				{fields.length > 0 && (
 					<FormButton type="button" onClick={() => remove(fields.length - 1)} label={buttonsLabels[1]} />
 				)}
