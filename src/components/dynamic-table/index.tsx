@@ -143,7 +143,7 @@ const DynamicDataTable = <T extends object, U>({
 			}
 		}
 
-		if (monthFilter !== '') {
+		if (enableMonthFilter && monthFilter !== '') {
 			let keysToCheck: string[] = [];
 
 			if (monthFilterKey) {
@@ -152,20 +152,32 @@ const DynamicDataTable = <T extends object, U>({
 						.toLowerCase()
 						.replace(/[^a-z0-9]/g, '');
 				const target = normalize(monthFilterKey);
+
 				const found = Object.keys(data[0] ?? {}).find((k) => {
 					const nk = normalize(k);
 					return nk.includes(target) || target.includes(nk);
 				});
-				if (found) keysToCheck = [found];
+
+				if (found) {
+					keysToCheck = [found];
+				} else if (data.length > 0) {
+					const first = data[0] as Record<string, unknown>;
+					keysToCheck = Object.keys(first).filter((key) => parseDate(first[key]) !== null);
+				}
 			} else if (data.length > 0) {
-				keysToCheck = Object.keys(data[0]).filter((key) => {
-					const parsed = parseDate((data[0] as Record<string, unknown>)[key]);
-					return parsed !== null;
-				});
+				const allKeys = Object.keys(data[0] as Record<string, unknown>);
+				keysToCheck = allKeys.filter((key) =>
+					data.some((row) => parseDate((row as Record<string, unknown>)[key]) !== null)
+				);
 			}
 
 			if (keysToCheck.length > 0) {
 				const targetMonth = Number(monthFilter);
+
+				if (!Number.isInteger(targetMonth) || targetMonth < 1 || targetMonth > 12) {
+					console.warn(`Skipping month filter due to invalid value: ${monthFilter}`);
+					return result;
+				}
 
 				result = result.filter((item) => {
 					return keysToCheck.some((key) => {
@@ -200,6 +212,7 @@ const DynamicDataTable = <T extends object, U>({
 		dateFilterKey,
 		monthFilter,
 		monthFilterKey,
+		enableMonthFilter,
 	]);
 
 	const table = useReactTable({
