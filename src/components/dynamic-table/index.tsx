@@ -37,6 +37,7 @@ interface DynamicDataTableProps<T extends object, U> {
 	enableRowFilters?: boolean;
 	filterableKeys?: string[];
 	enableDropdownFilters?: boolean;
+	enableMonthFilter?: boolean;
 }
 
 const DynamicDataTable = <T extends object, U>({
@@ -57,6 +58,7 @@ const DynamicDataTable = <T extends object, U>({
 	enableRowFilters = false,
 	filterableKeys,
 	enableDropdownFilters = true,
+	enableMonthFilter = false,
 }: DynamicDataTableProps<T, U>) => {
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [pageSize, setPageSize] = useState(defaultPageSize);
@@ -141,35 +143,37 @@ const DynamicDataTable = <T extends object, U>({
 			}
 		}
 
-		if (monthFilterKey && monthFilter !== '') {
-			const resolveKey = (key: string | null): string | null => {
-				if (!key) return null;
-				if (!data || data.length === 0) return key;
-				if (key in (data[0] as Record<string, unknown>)) return key;
+		if (monthFilter !== '') {
+			let keysToCheck: string[] = [];
+
+			if (monthFilterKey) {
 				const normalize = (s: string) =>
 					String(s)
 						.toLowerCase()
 						.replace(/[^a-z0-9]/g, '');
-				const target = normalize(key);
-				const found = Object.keys(data[0]).find((k) => {
+				const target = normalize(monthFilterKey);
+				const found = Object.keys(data[0] ?? {}).find((k) => {
 					const nk = normalize(k);
 					return nk.includes(target) || target.includes(nk);
 				});
-				return found ?? null;
-			};
-
-			const actualKey = resolveKey(monthFilterKey);
-			if (!actualKey) {
-				console.warn('Month filter key not found on row keys.', {
-					monthFilterKey,
-					sampleRowKeys: data[0] ? Object.keys(data[0]) : [],
+				if (found) keysToCheck = [found];
+			} else if (data.length > 0) {
+				keysToCheck = Object.keys(data[0]).filter((key) => {
+					const parsed = parseDate((data[0] as Record<string, unknown>)[key]);
+					return parsed !== null;
 				});
-			} else {
+			}
+
+			if (keysToCheck.length > 0) {
+				const targetMonth = Number(monthFilter);
+
 				result = result.filter((item) => {
-					const raw = (item as Record<string, unknown>)[actualKey];
-					const itemDate = parseDate(raw);
-					if (!itemDate) return false;
-					return itemDate.getMonth() + 1 === Number(monthFilter);
+					return keysToCheck.some((key) => {
+						const raw = (item as Record<string, unknown>)[key];
+						const itemDate = parseDate(raw);
+						if (!itemDate) return false;
+						return itemDate.getMonth() + 1 === targetMonth;
+					});
 				});
 			}
 		}
@@ -238,6 +242,7 @@ const DynamicDataTable = <T extends object, U>({
 						monthFilterKey={monthFilterKey}
 						setMonthFilterKey={setMonthFilterKey}
 						enableDropdownFilters={enableDropdownFilters}
+						enableMonthFilter={enableMonthFilter}
 					/>
 
 					<TableHeaderControls<T>
