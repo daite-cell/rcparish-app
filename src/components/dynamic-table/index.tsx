@@ -174,19 +174,18 @@ const DynamicDataTable = <T extends object, U>({
 			if (keysToCheck.length > 0) {
 				const targetMonth = Number(monthFilter);
 
-				if (!Number.isInteger(targetMonth) || targetMonth < 1 || targetMonth > 12) {
-					console.warn(`Skipping month filter due to invalid value: ${monthFilter}`);
-					return result;
-				}
-
-				result = result.filter((item) => {
-					return keysToCheck.some((key) => {
-						const raw = (item as Record<string, unknown>)[key];
-						const itemDate = parseDate(raw);
-						if (!itemDate) return false;
-						return itemDate.getMonth() + 1 === targetMonth;
+				if (Number.isInteger(targetMonth) && targetMonth >= 1 && targetMonth <= 12) {
+					result = result.filter((item) => {
+						return keysToCheck.some((key) => {
+							const raw = (item as Record<string, unknown>)[key];
+							const itemDate = parseDate(raw);
+							if (!itemDate) return false;
+							return itemDate.getMonth() + 1 === targetMonth;
+						});
 					});
-				});
+				} else {
+					console.warn(`Skipping month filter due to invalid value: ${monthFilter}`);
+				}
 			}
 		}
 
