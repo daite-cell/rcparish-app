@@ -9,7 +9,7 @@ import {
 	type ColumnDef,
 	type ColumnMeta,
 } from '@tanstack/react-table';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { PaginationControls, TableFilters, TableHeaderControls, TableDisplay } from '../index';
 
 interface CustomColumnMeta<T> extends ColumnMeta<T, unknown> {
@@ -207,8 +207,14 @@ const DynamicDataTable = <T extends object, U>({
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
-		getPaginationRowModel: getPaginationRowModel(),
+		...(enablePagination && { getPaginationRowModel: getPaginationRowModel() }),
 	});
+
+	useEffect(() => {
+		if (!enablePagination) {
+			setPageSize(data.length);
+		}
+	}, [enablePagination, data.length]);
 
 	const pageSizeOptions = useMemo(() => {
 		const baseSizes = [10, 25, 50, 100];

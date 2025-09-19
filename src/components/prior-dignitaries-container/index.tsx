@@ -42,6 +42,7 @@ const PriorDignitariesContainer = <TData extends object>({
 					enablePagination={false}
 					enableSearch={false}
 					enableExport={false}
+					isDynamic={false}
 				/>
 			</div>
 		</>
