@@ -1,4 +1,4 @@
-import type { CongregationInstitutionType, ConventDetailsTypeProps } from '@/types';
+import type { CongregationInstitutionType, ConventDetailsTypeProps, VocationalInstitutionType } from '@/types';
 
 export const getInstitutionSectionData = (row: CongregationInstitutionType) => [
 	{
@@ -94,6 +94,50 @@ export const getCommunitiesSectionData = (row: ConventDetailsTypeProps) => [
 
 					contact_number: row.mobile_no,
 					mail_id: row.mail_id,
+				},
+			},
+		],
+	},
+];
+
+export const getVocationalSectionData = (row: VocationalInstitutionType) => [
+	{
+		col: 1,
+		sections: [
+			{
+				heading: '',
+				data: {
+					place: row.place || '',
+					vocational_id: row.vocational_id || '',
+					parish: row.parish || '',
+					vicariate: '',
+				},
+			},
+		],
+	},
+	{
+		col: 2,
+		sections: [
+			{
+				heading: '',
+				data: {
+					land_ownership: row.land_ownership_content,
+					belongs_to: row.belong_to_content,
+					name_of_the_congregation: row.name,
+					seminary: row.seminary_content,
+				},
+			},
+		],
+	},
+	{
+		col: 3,
+		sections: [
+			{
+				heading: '',
+				data: {
+					contact_number: row.mobile_no,
+					convert_mail_id: row.mail_id,
+					address: row.address,
 				},
 			},
 		],
