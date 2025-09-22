@@ -8,7 +8,7 @@ import { memo } from 'react';
 const RenderAccountingMemberOverviewContainer = memo(() => {
 	const { editRow } = useStore();
 	const pathName = useRouteName('type');
-	const with_out_edit_pages = ['donations', 'church_collections'].includes(pathName as string);
+	const withoutEditPages = ['donations', 'church_collections'].includes(pathName as string);
 
 	const componentMap = {
 		workers: {
@@ -41,13 +41,13 @@ const RenderAccountingMemberOverviewContainer = memo(() => {
 	return (
 		<OverviewTabsLayout
 			tabs={
-				with_out_edit_pages
+				withoutEditPages
 					? [{ label: 'profile' }, { label: 'back' }]
 					: [{ label: 'profile' }, { label: 'edit' }, { label: 'back' }]
 			}
 			pathName={pathName}
 			componentMap={componentMap}
-			defaultTabLabel={editRow ? 'edit' : 'profile'}
+			defaultTabLabel={withoutEditPages ? 'profile' : editRow ? 'edit' : 'profile'}
 		/>
 	);
 });

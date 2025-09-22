@@ -27,8 +27,7 @@ import { extractUserName } from '@/utils/extractUserName';
 const GenericAccountingDetailsContainer = () => {
 	const type = useRouteName('type');
 	const { selectRow } = useStore();
-	console.warn(selectRow);
-	const table_key = JSON.parse(JSON.stringify(selectRow))?.table_key;
+	const table_key = (selectRow as { table_key?: string } | undefined)?.table_key;
 
 	const getSectionData = useCallback(() => {
 		switch (type) {
