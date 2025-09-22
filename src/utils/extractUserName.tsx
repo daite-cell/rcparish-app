@@ -6,6 +6,8 @@ const extractUserName = (row: Record<string, unknown>): string => {
 	if (typeof row.person_name === 'string') return row.person_name;
 	if (typeof row.worker_name === 'string') return row.worker_name;
 	if (typeof row.name === 'string') return row.name;
+	if (typeof row.priest_name === 'string') return row.priest_name;
+	if (typeof row.property_name === 'string') return row.property_name;
 	if (typeof row.memberName === 'string') return row.memberName;
 	if (typeof row.userName === 'string') return row.userName;
 	if (typeof row.noviciateName === 'string') return row.noviciateName;
@@ -16,7 +18,6 @@ const extractUserName = (row: Record<string, unknown>): string => {
 	if (typeof row.parishName === 'string') return row.parishName;
 	if (typeof row.vicariateName === 'string') return row.vicariateName;
 	if (typeof row.dioceseName === 'string') return row.dioceseName;
-	if (typeof row.priestName === 'string') return row.priestName;
 	if (typeof row.religiousPersonName === 'string') return row.religiousPersonName;
 	if (typeof row.familyName === 'string') return row.familyName;
 	if (typeof row.workerName === 'string') return row.workerName;

@@ -1,7 +1,10 @@
 import get_subscription_list from '../data/get_subscription_list.json';
 import get_workers_list from '../data/get_workers_list.json';
 import get_employer_salary_list from '../data/get_employer_salary_list.json';
-
+import get_donations_list from '../data/get_donations_list.json';
+import get_church_collections_list from '../data/get_church_collections_list.json';
+import get_advance_list from '../data/get_advance_list.json';
+import get_day_book_list from '../data/get_day_book_list.json';
 const useAccountingDataMap = (): Record<
 	string,
 	Record<
@@ -18,33 +21,35 @@ const useAccountingDataMap = (): Record<
 	donations: {
 		table_1: {
 			heading: 'ACTIVE MEMBERS',
-			data: [],
+			data: get_donations_list.donations_list,
 			enable_date_sorting: false,
 		},
 		table_2: {
 			heading: 'INACTIVE MEMBERS',
-			data: [],
+			data: get_donations_list.in_donations_list,
 			enable_date_sorting: false,
 		},
 	},
 	rent_shop: {
 		table_1: {
 			heading: 'Rent',
-			data: [],
+			data: get_advance_list.rent_list,
 			enable_date_sorting: false,
 		},
 		table_2: {
 			heading: 'Advance',
-			data: [],
+			data: get_advance_list.advance_list,
 			enable_date_sorting: false,
 		},
 		table_3: {
 			heading: 'LEASE',
-			data: [],
+			data: get_advance_list.lease_list,
 			enable_date_sorting: false,
 		},
 	},
-	church_collections: { main: { data: [], enable_date_sorting: false } },
+	church_collections: {
+		main: { data: get_church_collections_list.church_collections_list, enable_date_sorting: false },
+	},
 	workers: { main: { data: get_workers_list.workers_list, enable_date_sorting: false } },
 	employers_salary: { main: { data: get_employer_salary_list.employer_salary_list, enable_date_sorting: false } },
 	subscription: {
@@ -52,7 +57,7 @@ const useAccountingDataMap = (): Record<
 	},
 	day_book: {
 		main: {
-			data: [],
+			data: get_day_book_list.day_book_list,
 			enable_footer: true,
 			enable_date_sorting: true,
 			enableDropdownFilters: false,
