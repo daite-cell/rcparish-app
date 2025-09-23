@@ -542,7 +542,31 @@ const FamilyMembersForm = () => {
 								error={errors.holyCommunionRemarks?.message}
 							/>
 						)}
-						<FormButton className="mb-4" type="button" label="Edit" onClick={() => {}} />
+
+						<FormButton
+							className="mb-4"
+							type="button"
+							label="Edit"
+							onClick={() => {
+								if (!editRow) return;
+								const { sub_station_id, anbiam_id, unique_family_id, unique_member_id } = editRow;
+								if (!sub_station_id || !anbiam_id || !unique_family_id || !unique_member_id) {
+									return;
+								}
+
+								handleSetRouteParams({
+									subStationId: sub_station_id,
+									anbiamId: anbiam_id,
+									uniqueFamilyId: unique_family_id,
+								});
+								handleSelectAccountingNameRow(editRow);
+								navigate(
+									`/sacraments/holy_communion/${encodeURIComponent(sub_station_id)}/${encodeURIComponent(anbiam_id)}/${encodeURIComponent(
+										unique_family_id
+									)}/${encodeURIComponent(unique_member_id)}`
+								);
+							}}
+						/>
 					</div>
 
 					<ControlledRadioGroup
@@ -573,7 +597,31 @@ const FamilyMembersForm = () => {
 								error={errors.confirmationRemarks?.message}
 							/>
 						)}
-						<FormButton className="mb-4" type="button" label="Edit" onClick={() => {}} />
+
+						<FormButton
+							className="mb-4"
+							type="button"
+							label="Edit"
+							onClick={() => {
+								if (!editRow) return;
+								const { sub_station_id, anbiam_id, unique_family_id, unique_member_id } = editRow;
+								if (!sub_station_id || !anbiam_id || !unique_family_id || !unique_member_id) {
+									return;
+								}
+
+								handleSetRouteParams({
+									subStationId: sub_station_id,
+									anbiamId: anbiam_id,
+									uniqueFamilyId: unique_family_id,
+								});
+								handleSelectAccountingNameRow(editRow);
+								navigate(
+									`/sacraments/confirmations/${encodeURIComponent(sub_station_id)}/${encodeURIComponent(anbiam_id)}/${encodeURIComponent(
+										unique_family_id
+									)}/${encodeURIComponent(unique_member_id)}`
+								);
+							}}
+						/>
 					</div>
 
 					<ControlledRadioGroup
