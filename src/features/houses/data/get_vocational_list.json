@@ -1,1 +1,16 @@
-{ "vocational_list": [] }
+{
+	"vocational_list": [
+		{
+			"parish": "V04P03",
+			"name": "Vignesh Durai",
+			"vocational_id": "VT0005",
+			"place": "kodayanchi",
+			"belong_to_content": "Diocesan",
+			"land_ownership_content": "Diocese",
+			"seminary_content": "Minor seminary",
+			"address": "",
+			"mobile_no": "",
+			"mail_id": ""
+		}
+	]
+}

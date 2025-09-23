@@ -410,6 +410,7 @@ const familesTypeSchema = z.object({
 				name: optionalString(),
 				relation: optionalString(),
 				gender: optionalString(),
+				active: optionalString(),
 			})
 		)
 		.optional(),
@@ -452,6 +453,16 @@ const familyCardSchema = z.object({
 
 type FamilyCardType = z.infer<typeof familyCardSchema>;
 
+const addNewFamilyMemberSchema = z.object({
+	memberId: optionalString(),
+	name: requiredString("Member's Name is required"),
+	relation: requiredString('Relation is required'),
+	gender: enumFromArray(['male', 'female'], 'Gender is required'),
+	active: requiredString('Active is required'),
+});
+
+type AddNewFamilesMembersType = z.infer<typeof addNewFamilyMemberSchema>;
+
 export {
 	parishCouncilMemberSchema,
 	religiousPeopleParishSchema,
@@ -464,6 +475,7 @@ export {
 	associationsInchargeSchema,
 	familyCardSchema,
 	familesMembersTypeSchema,
+	addNewFamilyMemberSchema,
 };
 
 export type {
@@ -478,4 +490,5 @@ export type {
 	AssociationsInchargeType,
 	FamilyCardType,
 	FamilesMembersType,
+	AddNewFamilesMembersType,
 };

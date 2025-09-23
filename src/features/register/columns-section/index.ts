@@ -142,9 +142,9 @@ export const getConfirmationsData = (row: ConfirmationRegisteredMemberType) => [
 			{
 				heading: 'CONFIRMATION DETAILS',
 				data: {
-					fhc_date: row.holy_communion_date || '',
-					fhc_at: row.holy_communion_at || '',
-					fhc_in: row.holy_communion_in || '',
+					confirmation_date: row.holy_communion_date || '',
+					confirmation_at: row.holy_communion_at || '',
+					confirmation_in: row.holy_communion_in || '',
 					minister: row.minister || '',
 					registration_number: '',
 					remarks: row.remarks || '',

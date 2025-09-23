@@ -1,4 +1,5 @@
-import { DisplayInfoRowContainer, DisplayUserName } from '@/components';
+import { DisplayInfoRowContainer, DisplayUserName, DynamicDataTable } from '@/components';
+import { getWorkingMembersDataColumns } from '@/features/houses/columns';
 import { MemberOverviewLayout } from '@/layouts';
 
 type GenericMemberOverviewProps = {
@@ -11,9 +12,18 @@ type GenericMemberOverviewProps = {
 			data: Record<string, string | number | null | undefined>;
 		}[];
 	}[];
+	enableWorkingMembersTable?: boolean;
+	workingMembersData?: Record<string, string | number>[];
 };
 
-const GenericCouncilMemberDetails = ({ userName, heading, sectionData }: GenericMemberOverviewProps) => {
+const GenericCouncilMemberDetails = ({
+	userName,
+	heading,
+	sectionData,
+	enableWorkingMembersTable = false,
+	workingMembersData,
+}: GenericMemberOverviewProps) => {
+	const columns = getWorkingMembersDataColumns();
 	return (
 		<MemberOverviewLayout heading={heading}>
 			<div className="p-6">
@@ -35,6 +45,20 @@ const GenericCouncilMemberDetails = ({ userName, heading, sectionData }: Generic
 						</div>
 					))}
 				</div>
+			</div>
+			<div className="py-6 px-4">
+				{enableWorkingMembersTable && (
+					<DynamicDataTable
+						tableId="working-members"
+						title="Working Members"
+						customColumns={columns}
+						data={workingMembersData || []}
+						enablePagination={false}
+						enableSearch={false}
+						enableExport={false}
+						isDynamic={false}
+					/>
+				)}
 			</div>
 		</MemberOverviewLayout>
 	);

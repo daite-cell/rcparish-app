@@ -6,6 +6,7 @@ import { getSectionByPathName } from '@/utils/getSectionByPathName';
 import { useRouteName } from '@/utils/getRouteName';
 import { useStore } from '@/store/store';
 import {
+	AddNewFamilyMemberContainer,
 	AnbiamInChargeDetails,
 	AssociationDetailsTable,
 	AssociationInchargeDetails,
@@ -16,14 +17,22 @@ import {
 } from '../../components';
 import { usePathName } from '@/utils/getPathName';
 import { CouncilDetailsForm } from '../../forms';
+import get_parish_council_members_dignitaries from '../../data/get_parish_council_members_dignitaries.json';
 
 const RenderPiousGroupTables = lazy(() => import('../../components/render-pious-group-tables'));
 
 const PiousGroupGenericPage = () => {
 	const type = useRouteName('type');
 	const pathName = usePathName();
-	const { selectRow, selectFamilyCardRow, selectPriorRow, editRow, selectAssociationRow, selectFamilyMembersRow } =
-		useStore();
+	const {
+		selectRow,
+		selectFamilyCardRow,
+		selectPriorRow,
+		editRow,
+		selectAssociationRow,
+		selectFamilyMembersRow,
+		enableFamilesForm,
+	} = useStore();
 
 	const [activeIndex, setActiveIndex] = useState(0);
 
@@ -36,8 +45,12 @@ const PiousGroupGenericPage = () => {
 		setActiveIndex(viewIndex !== -1 ? viewIndex : 0);
 	}, [tabsData]);
 
+	if (enableFamilesForm) {
+		return <AddNewFamilyMemberContainer />;
+	}
+
 	if (selectPriorRow) {
-		return <PriorDignitariesContainer />;
+		return <PriorDignitariesContainer data={get_parish_council_members_dignitaries.prior_dignitaries} />;
 	}
 	if (selectAssociationRow && type == 'anbiam_incharge') {
 		return <AnbiamInChargeDetails />;
