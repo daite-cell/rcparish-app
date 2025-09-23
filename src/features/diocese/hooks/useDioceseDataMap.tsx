@@ -25,6 +25,7 @@ const useDioceseDataMap = (): Record<
 			enable_date_sorting?: boolean;
 			enable_row_filters?: boolean;
 			filter_able_keys?: string[];
+			enable_month_filter?: boolean;
 		}
 	>
 > => ({
@@ -41,6 +42,7 @@ const useDioceseDataMap = (): Record<
 		main: {
 			data: priest_calendar_dummy_data,
 			enable_date_sorting: false,
+			enable_month_filter: true,
 		},
 	},
 	commissions: {

@@ -19,6 +19,7 @@ interface TableFiltersProps {
 	monthFilterKey?: string | null;
 	setMonthFilterKey?: (val: string | null) => void;
 	enableDropdownFilters?: boolean;
+	enableMonthFilter?: boolean;
 }
 
 const TableFilters = ({
@@ -37,6 +38,7 @@ const TableFilters = ({
 	monthFilterKey,
 	setMonthFilterKey,
 	enableDropdownFilters,
+	enableMonthFilter,
 }: TableFiltersProps) => {
 	const type = useRouteName('type');
 
@@ -79,7 +81,7 @@ const TableFilters = ({
 				</div>
 			)}
 
-			{['calender_dates', 'family_members', 'families'].includes(type as string) && (
+			{enableMonthFilter && (
 				<>
 					<select
 						title="Select the Month"
