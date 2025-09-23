@@ -26,6 +26,14 @@ const FamilyMembersRegisterGenericPage = lazy(
 	() => import('../features/register/pages/family-members-register-generic-page')
 );
 
+const FamilyMembersHolyCommunionPage = lazy(
+	() => import('../features/register/pages/family-members-holy-communion-page')
+);
+
+const FamilyMembersConfirmationsPage = lazy(
+	() => import('../features/register/pages/family-members-confirmations-page')
+);
+
 export const appRoutes: AppRoute[] = [
 	{ path: '/dashboard', name: 'Dashboard', element: <DashBoardPage />, layout: true },
 	{ path: '/query_from_bishop', name: 'QueriesFormBishop', element: <QueriesFormPage />, layout: true },
@@ -52,6 +60,19 @@ export const appRoutes: AppRoute[] = [
 		path: '/sacraments/baptism/:subStationId/:anbiamId/:uniqueFamilyId/:uniqueMemberId',
 		name: 'FamilyMembersRegisterGeneric',
 		element: <FamilyMembersRegisterGenericPage />,
+		layout: true,
+	},
+
+	{
+		path: '/sacraments/holy_communion/:subStationId/:anbiamId/:uniqueFamilyId/:uniqueMemberId',
+		name: 'FamilyMembersHolyCommunionGeneric',
+		element: <FamilyMembersHolyCommunionPage />,
+		layout: true,
+	},
+	{
+		path: '/sacraments/confirmations/:subStationId/:anbiamId/:uniqueFamilyId/:uniqueMemberId',
+		name: 'FamilyMembersConfirmationsGeneric',
+		element: <FamilyMembersConfirmationsPage />,
 		layout: true,
 	},
 

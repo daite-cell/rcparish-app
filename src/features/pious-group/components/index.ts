@@ -12,3 +12,4 @@ export { default as AnbiamInChargeDetails } from './anbiam-incharge-details';
 export { default as RenderAccountingPiousOverView } from './render-accounting-pious-overview';
 export { default as RenderRegisterPiousOverView } from './render-register-pious-overview';
 export { default as FamilyCardDownloadContainer } from './family-card-download-container';
+export { default as AddNewFamilyMemberContainer } from './add-new-family-member-container';

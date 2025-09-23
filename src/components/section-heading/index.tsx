@@ -2,6 +2,7 @@ import { side_nav_links } from '@/data/side-navbar-content';
 import type { NavLinkProps } from '@/types';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
 import { useLocation } from 'react-router-dom';
+import PageSectionHeading from '../page-section-heading';
 
 const SectionHeading = () => {
 	const location = useLocation();
@@ -30,7 +31,7 @@ const SectionHeading = () => {
 
 	const sectionMainHeading = (dashBoardHeading && 'OPEN Query') || getHeadingBaseFromPath || sectionHeading;
 
-	return <h1 className="text-[16px] font-bold uppercase">{sectionMainHeading}</h1>;
+	return <PageSectionHeading title={sectionMainHeading || ''} />;
 };
 
 export default SectionHeading;

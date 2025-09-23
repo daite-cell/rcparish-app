@@ -26,6 +26,7 @@ const RenderPiousGroupTables = () => {
 							data={tableData.data || []}
 							customColumns={columns}
 							tableId={`${type}-${tableKey}`}
+							enableMonthFilter={tableData.enable_month_filter ?? false}
 						/>
 					</div>
 				);

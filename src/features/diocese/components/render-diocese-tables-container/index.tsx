@@ -51,6 +51,7 @@ const RenderDioceseTablesContainer = () => {
 							tableId={`${type}-${tableKey}`}
 							enableRowFilters={tableData.enable_row_filters ?? false}
 							filterableKeys={tableData.filter_able_keys ?? []}
+							enableMonthFilter={tableData.enable_month_filter ?? false}
 						/>
 					</div>
 				);
