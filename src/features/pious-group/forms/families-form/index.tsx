@@ -288,6 +288,7 @@ const FamilesForm = () => {
 				fieldName="dynamicFamilyMembers"
 				title="Family Members"
 				columns={columns as ColumnDef<Record<'id', string>, unknown>[]}
+				enableFamilesForm={true}
 			/>
 
 			<div className="flex justify-center w-full">

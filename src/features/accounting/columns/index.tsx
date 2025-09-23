@@ -24,7 +24,7 @@ import { getCommonActionColumns } from '@/utils/commonActionColumns';
 import type { Control, FieldValues, Path } from 'react-hook-form';
 import { collectionTypeOptions, occasionOptions, weekOptions } from '@/forms-options-data';
 
-const useActiveDonationColumns = (): ColumnDef<ActiveDonationTableProps>[] => {
+const useActiveDonationColumns = (tableKey: string): ColumnDef<ActiveDonationTableProps>[] => {
 	const { handleSelectRow } = useStore();
 
 	return [
@@ -47,7 +47,14 @@ const useActiveDonationColumns = (): ColumnDef<ActiveDonationTableProps>[] => {
 			id: 'view',
 			header: 'Details',
 			cell: ({ row }: CellContext<ActiveDonationTableProps, unknown>) => (
-				<TableDetailsViewButton onClick={() => handleSelectRow(row.original)} />
+				<TableDetailsViewButton
+					onClick={() =>
+						handleSelectRow({
+							...row.original,
+							table_key: tableKey,
+						})
+					}
+				/>
 			),
 			enableSorting: false,
 			meta: { isExportable: false },
@@ -55,40 +62,40 @@ const useActiveDonationColumns = (): ColumnDef<ActiveDonationTableProps>[] => {
 		},
 
 		{
-			accessorKey: 'familyStatus',
+			accessorKey: 'activeness_content',
 			header: 'Family Status',
 		},
 		{
-			accessorKey: 'familyNumber',
-			header: 'Family Number',
+			accessorKey: 'family_name',
+			header: 'Family Name',
 		},
 		{
-			accessorKey: 'uniqueFamilyId',
-			header: 'Unique Family Id',
+			accessorKey: 'unique_family_id',
+			header: 'Unique Family ID',
 		},
 		{
-			accessorKey: 'mainStation',
+			accessorKey: 'sub_station_name',
 			header: 'Main-Station / Sub-Station',
 		},
 		{
-			accessorKey: 'subStationId',
-			header: 'Sub-Station Id',
+			accessorKey: 'sub_station_id',
+			header: 'Sub-Station ID',
 		},
 		{
-			accessorKey: 'anbiam',
+			accessorKey: 'anbiam_name',
 			header: 'Anbiam',
 		},
 		{
-			accessorKey: 'anbiamId',
-			header: 'Anbiam Id',
+			accessorKey: 'anbiam_id',
+			header: 'Anbiam ID',
 		},
 		{
-			accessorKey: 'totalAmount',
+			accessorKey: 'amount',
 			header: 'Total Amount',
 		},
 	];
 };
-const useInActiveDonationColumns = (): ColumnDef<InActiveDonationTableProps>[] => {
+const useInActiveDonationColumns = (tableKey: string): ColumnDef<InActiveDonationTableProps>[] => {
 	const { handleSelectRow } = useStore();
 
 	return [
@@ -111,7 +118,14 @@ const useInActiveDonationColumns = (): ColumnDef<InActiveDonationTableProps>[] =
 			id: 'view',
 			header: 'Details',
 			cell: ({ row }: CellContext<InActiveDonationTableProps, unknown>) => (
-				<TableDetailsViewButton onClick={() => handleSelectRow(row.original)} />
+				<TableDetailsViewButton
+					onClick={() =>
+						handleSelectRow({
+							...row.original,
+							table_key: tableKey,
+						})
+					}
+				/>
 			),
 			enableSorting: false,
 			meta: { isExportable: false },
@@ -119,15 +133,15 @@ const useInActiveDonationColumns = (): ColumnDef<InActiveDonationTableProps>[] =
 		},
 
 		{
-			accessorKey: 'name',
+			accessorKey: 'member_name',
 			header: 'Name of the Person',
 		},
 		{
-			accessorKey: 'city',
-			header: 'City',
+			accessorKey: 'place',
+			header: 'Place / City',
 		},
 		{
-			accessorKey: 'donationFor',
+			accessorKey: 'donation_for_content',
 			header: 'Donation For',
 		},
 		{
@@ -135,20 +149,36 @@ const useInActiveDonationColumns = (): ColumnDef<InActiveDonationTableProps>[] =
 			header: 'Amount',
 		},
 		{
-			accessorKey: 'voucherNumber',
-			header: 'Voucher Number',
+			accessorKey: 'receipt_no',
+			header: 'Receipt Number',
 		},
 		{
 			accessorKey: 'date',
 			header: 'Date',
 		},
 		{
-			accessorKey: 'mobile',
+			accessorKey: 'mobile_no',
 			header: 'Mobile',
 		},
 		{
 			accessorKey: 'address',
 			header: 'Address',
+		},
+		{
+			accessorKey: 'parish_content',
+			header: 'Parish',
+		},
+		{
+			accessorKey: 'vicariate_content',
+			header: 'Vicariate',
+		},
+		{
+			accessorKey: 'registered_date',
+			header: 'Registered Date',
+		},
+		{
+			accessorKey: 'updated_date',
+			header: 'Updated Date',
 		},
 	];
 };
@@ -158,73 +188,88 @@ const useRentPropertyColumns = (): ColumnDef<RentPropertyProps>[] => {
 
 	return [
 		...getCommonActionColumns<RentPropertyProps>(handleSelectRow),
-		{ accessorKey: 'type', header: 'Type' },
-		{ accessorKey: 'propertyName', header: 'Property Name' },
-		{ accessorKey: 'propertyId', header: 'Property Id' },
+
+		{ accessorKey: 'property_type_content', header: 'Type' },
+		{ accessorKey: 'property_name', header: 'Property Name' },
+		{ accessorKey: 'property_id', header: 'Property Id' },
+
+		{ accessorKey: 'render_name', header: 'Render Name' },
+		{ accessorKey: 'mobile_no', header: 'Mobile Number' },
+
 		{
-			accessorKey: 'paymentHistory',
-			header: 'Payment History',
+			accessorKey: 'now_amount',
+			header: 'Now Rent For',
+			cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
 		},
-		{ accessorKey: 'renderName', header: 'Render Name' },
-		{ accessorKey: 'mobileNumber', header: 'Mobile Number' },
-		{ accessorKey: 'nowRentFor', header: 'Now Rent For' },
 		{
-			accessorKey: 'fixedAmountMonthly',
+			accessorKey: 'type_data_2',
 			header: 'Fixed Amount (monthly)',
-			cell: ({ getValue }) => `₹${getValue()}`,
+			cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
 		},
-		{ accessorKey: 'fixedAmountOn', header: 'Fixed Amount on' },
 		{
-			accessorKey: 'grandPaidAmount',
+			accessorKey: 'type_data_3',
+			header: 'Fixed Amount on',
+		},
+		{
+			accessorKey: 'grand_amount',
 			header: 'Grand Paid Amount',
-			cell: ({ getValue }) => `₹${getValue()}`,
-		},
-		{ accessorKey: 'paidUpto', header: 'Paid upto' },
-		{
-			accessorKey: 'remainingUnpaidAmount',
-			header: 'Remaining Balance UnPaid Amount',
-			cell: ({ getValue }) => `₹${getValue()}`,
+			cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
 		},
 		{
-			accessorKey: 'lastPaidAmount',
+			accessorKey: 'month',
+			header: 'Paid Upto',
+		},
+		{
+			accessorKey: 'balance_amount',
+			header: 'Remaining Balance Unpaid Amount',
+			cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
+		},
+		{
+			accessorKey: 'now_amount',
 			header: 'Last Paid Amount',
-			cell: ({ getValue }) => `₹${getValue()}`,
+			cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
 		},
-		{ accessorKey: 'lastPaidDate', header: 'Last Paid Date' },
+		{
+			accessorKey: 'date',
+			header: 'Last Paid Date',
+		},
 	];
 };
+
 const useAdvanceRentPropertyColumns = (): ColumnDef<AdvanceRentPropertyProps>[] => {
 	const { handleSelectRow } = useStore();
 
 	return [
 		...getCommonActionColumns<AdvanceRentPropertyProps>(handleSelectRow),
-		{ accessorKey: 'type', header: 'Type' },
-		{ accessorKey: 'propertyName', header: 'Property Name' },
-		{ accessorKey: 'propertyId', header: 'Property Id' },
+
+		{ accessorKey: 'property_type_content', header: 'Type' },
+		{ accessorKey: 'property_name', header: 'Property Name' },
+		{ accessorKey: 'property_id', header: 'Property Id' },
+		{ accessorKey: 'render_name', header: 'Render Name' },
+		{ accessorKey: 'mobile_no', header: 'Mobile Number' },
+
 		{
-			accessorKey: 'paymentHistory',
-			header: 'Payment History',
+			accessorKey: 'now_amount',
+			header: 'Now Rent For',
+			cell: ({ getValue }) => (getValue() !== null ? `₹${getValue()}` : '0'),
 		},
-		{ accessorKey: 'renderName', header: 'Render Name' },
-		{ accessorKey: 'mobileNumber', header: 'Mobile Number' },
-		{ accessorKey: 'nowRentFor', header: 'Now Rent For' },
 		{
-			accessorKey: 'fixedAdvanceAmount',
+			accessorKey: 'type_data_2',
 			header: 'Fixed Advance Amount',
-			cell: ({ getValue }) => `₹${getValue()}`,
+			cell: ({ getValue }) => (getValue() !== null ? `₹${getValue()}` : '0'),
 		},
 		{
-			accessorKey: 'paidAdvanceAmount',
+			accessorKey: 'grand_amount',
 			header: 'Paid Advance Amount',
-			cell: ({ getValue }) => `₹${getValue()}`,
+			cell: ({ getValue }) => (getValue() !== null ? `₹${getValue()}` : '0'),
 		},
 		{
-			accessorKey: 'balanceAmount',
-			header: 'After Paid a due (Still Balance Amount)',
-			cell: ({ getValue }) => `₹${getValue()}`,
+			accessorKey: 'balance_amount',
+			header: 'After Paid a Due (Still Balance Amount)',
+			cell: ({ getValue }) => (getValue() !== null ? `₹${getValue()}` : '0'),
 		},
 		{
-			accessorKey: 'lastPaidDate',
+			accessorKey: 'date',
 			header: 'Last Paid Date',
 		},
 	];
@@ -259,61 +304,78 @@ const useChurchCollectionsColumns = (): ColumnDef<ChurchCollectionsProps>[] => {
 			meta: { isExportable: false },
 			enableHiding: true,
 		},
-		{ accessorKey: 'name', header: 'Name of the Priest' },
-		{ accessorKey: 'priestId', header: 'Priest Id' },
-		{ accessorKey: 'monthYear', header: 'Month & Year' },
+		{ accessorKey: 'priest_name', header: 'Name of the Priest' },
+		{ accessorKey: 'priest_id', header: 'Priest ID' },
+		{ accessorKey: 'month', header: 'Month & Year' },
+
 		{
 			id: 'delete1',
 			header: 'Delete',
 			cell: ({ row }: CellContext<ChurchCollectionsProps, unknown>) => (
 				<button title="Delete" onClick={() => handleSelectRow(row.original)}>
-					<Trash2 className="w-4 h-4 text-red-500 cursor-pointer" />
+					<Trash2 className="w-4 h-4  cursor-pointer" />
 				</button>
 			),
 			enableSorting: false,
 			meta: { isExportable: false },
 		},
 		{
-			accessorKey: 'monthly',
+			accessorKey: 'monthly_total',
 			header: 'Monthly',
-			cell: ({ getValue }) => `₹${getValue()}`,
+			cell: ({ getValue }) => {
+				const value = getValue<number | null>();
+				return value !== null ? `₹${value}` : '-';
+			},
 		},
 		{
 			id: 'delete2',
 			header: 'Delete',
 			cell: ({ row }: CellContext<ChurchCollectionsProps, unknown>) => (
 				<button title="Delete" onClick={() => handleSelectRow(row.original)}>
-					<Trash2 className="w-4 h-4 text-red-500 cursor-pointer" />
+					<Trash2 className="w-4 h-4  cursor-pointer" />
 				</button>
 			),
 			enableSorting: false,
 			meta: { isExportable: false },
 		},
 		{
-			accessorKey: 'special',
+			accessorKey: 'special_total',
 			header: 'Special',
-			cell: ({ getValue }) => `₹${getValue()}`,
+			cell: ({ getValue }) => {
+				const value = getValue<number | null>();
+				return value !== null ? `₹${value}` : '0';
+			},
 		},
 		{
 			id: 'delete3',
 			header: 'Delete',
 			cell: ({ row }: CellContext<ChurchCollectionsProps, unknown>) => (
 				<button title="Delete" onClick={() => handleSelectRow(row.original)}>
-					<Trash2 className="w-4 h-4 text-red-500 cursor-pointer" />
+					<Trash2 className="w-4 h-4  cursor-pointer" />
 				</button>
 			),
 			enableSorting: false,
 			meta: { isExportable: false },
 		},
 		{
-			accessorKey: 'other',
+			accessorKey: 'other_total',
 			header: 'Other',
-			cell: ({ getValue }) => `₹${getValue()}`,
+			cell: ({ getValue }) => {
+				const value = getValue<number | null>();
+				return value !== null ? `₹${value}` : '0';
+			},
 		},
 		{
-			accessorKey: 'amount',
-			header: 'Amount',
-			cell: ({ getValue }) => `₹${getValue()}`,
+			id: 'amount',
+			header: 'Total Amount',
+			cell: ({ row }) => {
+				const monthly = row.original.monthly_total ?? 0;
+				const special = row.original.special_total ?? 0;
+				const other = row.original.other_total ?? 0;
+
+				const total = monthly + special + other;
+				return `₹${total}`;
+			},
 		},
 	];
 };
@@ -586,54 +648,46 @@ const useDayBookColumns = (): ColumnDef<DayBookEntry>[] => {
 	return [
 		...getCommonActionColumns<DayBookEntry>(handleSelectRow),
 
+		{ accessorKey: 'date', header: 'Date' },
+		{ accessorKey: 'name', header: 'Name' },
+		{ accessorKey: 'unique_id', header: 'Voucher Number' },
+		{ accessorKey: 't_data_2', header: 'Purpose' },
+		{ accessorKey: 't_data_3', header: 'Description' },
+		{ accessorKey: 't_data_1', header: 'Details' },
+
 		{
-			accessorKey: 'date',
-			header: 'Date',
-		},
-		{
-			accessorKey: 'name',
-			header: 'Name',
-		},
-		{
-			accessorKey: 'voucherNumber',
-			header: 'Voucher Number',
-		},
-		{
-			accessorKey: 'purpose',
-			header: 'Purpose',
-		},
-		{
-			accessorKey: 'description',
-			header: 'Description',
-		},
-		{
-			accessorKey: 'details',
-			header: 'Details',
-		},
-		{
-			accessorKey: 'incomeAmount',
+			id: 'incomeAmount',
 			header: 'Income Amount',
+			cell: ({ row }) => {
+				const amount = row.original.category === 'Income' ? Number(row.original.amount ?? 0) : 0;
+				return `₹${amount.toLocaleString('en-IN')}`;
+			},
 			footer: (info) => {
 				const total = info.table
 					.getFilteredRowModel()
-					.rows.reduce((sum, row) => sum + ((row.getValue('incomeAmount') as number) || 0), 0);
-
+					.rows.reduce(
+						(sum, row) => sum + (row.original.category === 'Income' ? Number(row.original.amount ?? 0) : 0),
+						0
+					);
 				return `Total: ₹${total.toLocaleString('en-IN')}`;
 			},
 		},
+
 		{
-			accessorKey: 'expenseAmount',
+			id: 'expenseAmount',
 			header: 'Expense Amount',
+			cell: ({ row }) =>
+				row.original.category === 'Expense' ? `₹${row.original.amount?.toLocaleString('en-IN') ?? 0}` : '',
 			footer: (info) => {
 				const total = info.table
 					.getFilteredRowModel()
-					.rows.reduce((sum, row) => sum + ((row.getValue('expenseAmount') as number) || 0), 0);
-
+					.rows.reduce((sum, row) => sum + (row.original.category === 'Expense' ? row.original.amount || 0 : 0), 0);
 				return `Total: ₹${total.toLocaleString('en-IN')}`;
 			},
 		},
 	];
 };
+
 const useAuditingColumns = (): ColumnDef<AuditingProps>[] => {
 	return [
 		{

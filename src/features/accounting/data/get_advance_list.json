@@ -1,0 +1,32 @@
+{
+	"advance_list": [
+		{
+			"property_name": "abc",
+			"balance_amount": null,
+			"date": null,
+			"now_amount": null,
+			"property_type_content": "Shop",
+			"property_id": "PR001",
+			"render_name": "Revoh Innovations Pvt Ltd",
+			"mobile_no": "9626919545",
+			"type_data_1": "4332342"
+		}
+	],
+	"rent_list": [
+		{
+			"property_name": "abc",
+			"balance_amount": null,
+			"month": null,
+			"now_amount": null,
+			"date": null,
+			"grand_amount": null,
+			"property_type_content": "Shop",
+			"property_id": "PR001",
+			"render_name": "Revoh Innovations Pvt Ltd",
+			"mobile_no": "9626919545",
+			"type_data_2": "4222",
+			"type_data_3": "2025-06"
+		}
+	],
+	"lease_list": []
+}

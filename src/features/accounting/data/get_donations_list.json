@@ -1,0 +1,34 @@
+{
+	"donations_list": [
+		{
+			"activeness_content": "Active",
+			"family_name": "Micheal Raj-Sandha Mary",
+			"sub_station_name": "Kodaiyanchi Parish",
+			"sub_station_id": "S01",
+			"anbiam_name": "St Xavier Anbiam",
+			"anbiam_id": "S01A02",
+			"unique_family_id": "XA001",
+			"amount": 33333
+		}
+	],
+	"in_donations_list": [
+		{
+			"id": 1,
+			"parish": "V04P03",
+			"parish_content": "Kodaiyanchi Parish",
+			"vicariate": "V04",
+			"vicariate_content": "Tirupattur",
+			"member_name": "ravi kumar",
+			"place": "Chennai",
+			"donation_for": "0",
+			"donation_for_content": "Festival Fund",
+			"amount": "434354",
+			"date": "2025-09-09",
+			"receipt_no": "543534rd",
+			"mobile_no": "09626919545",
+			"address": "No 1, FA, IITM Research Park,",
+			"registered_date": "2025-09-20",
+			"updated_date": ""
+		}
+	]
+}

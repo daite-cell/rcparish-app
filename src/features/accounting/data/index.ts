@@ -1,4 +1,3 @@
-const accounting_pages = ['donations', 'church_collections', 'rent_shop', 'day_book'];
 const auditing_income_sections = [
 	{
 		title: 'Monthly',
@@ -165,4 +164,4 @@ const auditing_expense_sections = [
 	},
 ];
 
-export { accounting_pages, auditing_income_sections, auditing_expense_sections };
+export { auditing_income_sections, auditing_expense_sections };

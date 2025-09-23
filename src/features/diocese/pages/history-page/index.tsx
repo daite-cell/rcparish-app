@@ -5,6 +5,7 @@ import {
 	BulletPointList,
 	ParagraphGroupWithTitle,
 	PDFViewer,
+	PageSectionHeading,
 } from '@/components';
 
 import {
@@ -23,7 +24,8 @@ const HistoryPage = () => {
 	const isDioceseHistory = pathname === '/diocese/history';
 	return (
 		<TabsLayout hasPageHeading={false} tabs={[{ label: 'view' }]}>
-			<h1 className="text-[16px] font-bold uppercase">{isDioceseHistory ? 'DIOCESE HISTORY' : 'PATRON SAINTS'}</h1>
+			<PageSectionHeading title={isDioceseHistory ? 'DIOCESE HISTORY' : 'PATRON SAINTS'} />
+
 			{isDioceseHistory ? (
 				<>
 					<InfoHeadingTitle title="Contents" />
