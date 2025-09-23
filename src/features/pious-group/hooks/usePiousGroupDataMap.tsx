@@ -10,7 +10,16 @@ import get_members from '../data/get_members.json';
 
 const usePiousGroupDataMap = (): Record<
 	string,
-	Record<string, { heading?: string; data: object[]; enable_date_sorting?: boolean; enable_footer?: boolean }>
+	Record<
+		string,
+		{
+			heading?: string;
+			data: object[];
+			enable_date_sorting?: boolean;
+			enable_footer?: boolean;
+			enable_month_filter?: boolean;
+		}
+	>
 > => ({
 	parish_council_members: {
 		main: { data: get_present_parish_council_members.member_list },
@@ -29,12 +38,12 @@ const usePiousGroupDataMap = (): Record<
 	anbiam_incharge: { main: { data: get_present_anbiam_incharge.president_list } },
 	associations_incharge: { main: { data: get_present_association_incharge.president_list } },
 	family_members: {
-		table_1: { heading: 'ACTIVE MEMBERS', data: get_members.members_list },
-		table_2: { heading: 'INACTIVE MEMBERS', data: [] },
+		table_1: { heading: 'ACTIVE MEMBERS', data: get_members.members_list, enable_month_filter: true },
+		table_2: { heading: 'INACTIVE MEMBERS', data: [], enable_month_filter: true },
 	},
 	families: {
-		table_1: { heading: 'ACTIVE MEMBERS', data: get_families.families_list },
-		table_2: { heading: 'INACTIVE MEMBERS', data: [] },
+		table_1: { heading: 'ACTIVE MEMBERS', data: get_families.families_list, enable_month_filter: true },
+		table_2: { heading: 'INACTIVE MEMBERS', data: [], enable_month_filter: true },
 	},
 });
 
