@@ -17,6 +17,7 @@ import {
 } from '../../components';
 import { usePathName } from '@/utils/getPathName';
 import { CouncilDetailsForm } from '../../forms';
+import get_parish_council_members_dignitaries from '../../data/get_parish_council_members_dignitaries.json';
 
 const RenderPiousGroupTables = lazy(() => import('../../components/render-pious-group-tables'));
 
@@ -49,7 +50,7 @@ const PiousGroupGenericPage = () => {
 	}
 
 	if (selectPriorRow) {
-		return <PriorDignitariesContainer />;
+		return <PriorDignitariesContainer data={get_parish_council_members_dignitaries.prior_dignitaries} />;
 	}
 	if (selectAssociationRow && type == 'anbiam_incharge') {
 		return <AnbiamInChargeDetails />;
