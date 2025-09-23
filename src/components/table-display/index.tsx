@@ -28,7 +28,7 @@ const TableDisplay = <T extends object>({
 		<div className="overflow-x-auto hide-scrollbar">
 			<table
 				id={tableId}
-				className={`min-w-full mt-4 text-sm text-left border border-gray-400 ${
+				className={`min-w-full mt-4 text-sm text-left border border-gray-400 text-[#36334b] ${
 					wrapText ? 'whitespace-normal' : 'whitespace-nowrap'
 				}`}
 			>
@@ -40,9 +40,7 @@ const TableDisplay = <T extends object>({
 									<th
 										key={header.id}
 										onClick={isDynamic ? header.column.getToggleSortingHandler() : undefined}
-										className={`px-2 py-2 border text-[13px] font-bold select-none ${
-											isDynamic ? 'cursor-pointer' : ''
-										}`}
+										className={`p-3 border text-[13px] font-bold select-none ${isDynamic ? 'cursor-pointer' : ''}`}
 										colSpan={header.colSpan}
 									>
 										{!header.isPlaceholder && (
@@ -96,7 +94,7 @@ const TableDisplay = <T extends object>({
 						table.getRowModel().rows.map((row) => (
 							<tr key={row.id} className="bg-white border-b border-gray-300">
 								{row.getVisibleCells().map((cell) => (
-									<td key={cell.id} className="px-3 py-2 text-xs border border-[#d7c49e]">
+									<td key={cell.id} className="p-3 text-xs border border-[#e8e8e8]">
 										{flexRender(cell.column.columnDef.cell, cell.getContext())}
 									</td>
 								))}

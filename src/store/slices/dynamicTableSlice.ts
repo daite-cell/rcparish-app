@@ -11,6 +11,7 @@ export interface TableSlice<RowType = unknown> {
 	selectAssociationRow: RowType | null;
 	selectFamilyMembersRow: RowType | null;
 	selectAccountingNameRow: RowType | null;
+	enableFamilesForm: boolean;
 
 	editRow: RowType | null;
 	editPriestsRow: RowType | null;
@@ -31,6 +32,7 @@ export interface TableSlice<RowType = unknown> {
 	handleSelectAssociationRow: (row: RowType) => void;
 	handleSelectFamilyMembersRow: (row: RowType) => void;
 	handleSelectAccountingNameRow: (row: RowType) => void;
+	handleEnableFamilesForm: () => void;
 
 	handleEditRow: (row: RowType) => void;
 	handleEditPriestsRow: (row: RowType) => void;
@@ -47,6 +49,7 @@ export interface TableSlice<RowType = unknown> {
 	handleCloseFamilyMembersRow: () => void;
 	handleCloseAccountingNameRow: () => void;
 	handleClosePathId: () => void;
+	handleCloseFamilesForm: () => void;
 
 	handleSetRouteParams: (params: {
 		subStationId?: string | null;
@@ -81,6 +84,7 @@ export const createDynamicTableSlice: StateCreator<Partial<AppState> & TableSlic
 	selectFamilyMembersRow: null,
 	selectAccountingNameRow: null,
 	selectPathId: null,
+	enableFamilesForm: false,
 
 	editRow: null,
 	editPriestsRow: null,
@@ -96,6 +100,7 @@ export const createDynamicTableSlice: StateCreator<Partial<AppState> & TableSlic
 	handleSelectPriestsRow: (row) => set({ selectPriestsRow: row, editPriestsRow: null }),
 	handleSelectFamilyMembersRow: (row) => set({ selectFamilyMembersRow: row }),
 	handleSelectAccountingNameRow: (row) => set({ selectAccountingNameRow: row, editAccountingNameRow: null }),
+	handleEnableFamilesForm: () => set({ enableFamilesForm: true }),
 
 	handleSelectPathId: (pathId) => set({ selectPathId: pathId }),
 
@@ -113,6 +118,7 @@ export const createDynamicTableSlice: StateCreator<Partial<AppState> & TableSlic
 	handleCloseAssociationRow: () => set({ selectAssociationRow: null }),
 	handleCloseFamilyMembersRow: () => set({ selectFamilyMembersRow: null }),
 	handleClosePathId: () => set({ selectPathId: null }),
+	handleCloseFamilesForm: () => set({ enableFamilesForm: false }),
 	handleCloseAccountingNameRow: () =>
 		set({ selectAccountingNameRow: null, editAccountingNameRow: null, selectRow: null }),
 

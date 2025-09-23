@@ -17,6 +17,7 @@ import type {
 	AnbiamDetailsProps,
 	TotalFamilyMembersDetails,
 	ParishSonsAndDaughtersOtherMemberProps,
+	AddFamilyMemberType,
 } from '@/types';
 import type { CellContext, ColumnDef } from '@tanstack/react-table';
 import { Trash, IdCard, SquarePen } from 'lucide-react';
@@ -31,7 +32,7 @@ import {
 } from '@/components';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
 import type { Control, FieldValues, Path } from 'react-hook-form';
-import { relationOptions } from '@/forms-options-data';
+import { activeToOptions, relationOptions } from '@/forms-options-data';
 import type { FamilesType } from '../validation';
 
 const useParishCouncilColumns = (): ColumnDef<ParishCouncilMemberDetailsProps>[] => {
@@ -938,7 +939,6 @@ const getFamilyDynamicColumns = <TForm extends FieldValues>(control: Control<TFo
 				control={control}
 				name={`dynamicFamilyMembers.${row.index}.relation` as Path<TForm>}
 				options={relationOptions}
-				label="Select Relation"
 			/>
 		),
 	},
@@ -953,7 +953,86 @@ const getFamilyDynamicColumns = <TForm extends FieldValues>(control: Control<TFo
 					{ label: 'Male', value: 'male' },
 					{ label: 'Female', value: 'female' },
 				]}
-				label="Select Gender"
+			/>
+		),
+	},
+
+	{
+		accessorKey: 'active',
+		header: 'Activeness',
+		cell: ({ row }) => (
+			<SingleSelectDropdown
+				control={control}
+				options={activeToOptions}
+				placeholder="Select Activeness"
+				name={`dynamicFamilyMembers.${row.index}.active` as Path<TForm>}
+			/>
+		),
+	},
+];
+
+const getAddFamilyMemberColumns = <TForm extends FieldValues>(
+	control: Control<TForm>
+): ColumnDef<AddFamilyMemberType>[] => [
+	{
+		accessorKey: 'memberId',
+		header: 'Member Id',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`dynamicFamilyMembers.${row.index}.memberId` as Path<TForm>}
+				placeholder="Enter Member Id"
+			/>
+		),
+	},
+
+	{
+		accessorKey: 'name',
+		header: 'Member Name',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`dynamicFamilyMembers.${row.index}.name` as Path<TForm>}
+				placeholder="Enter name"
+			/>
+		),
+	},
+
+	{
+		accessorKey: 'relation',
+		header: 'Relation',
+		cell: ({ row }) => (
+			<SingleSelectDropdown
+				control={control}
+				name={`dynamicFamilyMembers.${row.index}.relation` as Path<TForm>}
+				options={relationOptions}
+			/>
+		),
+	},
+	{
+		accessorKey: 'gender',
+		header: 'Gender',
+		cell: ({ row }) => (
+			<SingleSelectDropdown
+				name={`dynamicFamilyMembers.${row.index}.gender` as Path<TForm>}
+				control={control}
+				options={[
+					{ label: 'Male', value: 'male' },
+					{ label: 'Female', value: 'female' },
+				]}
+			/>
+		),
+	},
+
+	{
+		accessorKey: 'active',
+		header: 'Activeness',
+		cell: ({ row }) => (
+			<SingleSelectDropdown
+				control={control}
+				options={activeToOptions}
+				placeholder="Select Activeness"
+				name={`dynamicFamilyMembers.${row.index}.active` as Path<TForm>}
 			/>
 		),
 	},
@@ -980,4 +1059,5 @@ export {
 	useAnbiamDetailsColumns,
 	useTotalFamilyMembersColumns,
 	getFamilyDynamicColumns,
+	getAddFamilyMemberColumns,
 };
