@@ -5,6 +5,9 @@ const extractUserName = (row: Record<string, unknown>): string => {
 	if (typeof row.association_content === 'string') return row.association_content;
 	if (typeof row.person_name === 'string') return row.person_name;
 	if (typeof row.worker_name === 'string') return row.worker_name;
+	if (typeof row.property_name === 'string') return row.property_name;
+	if (typeof row.village_name === 'string') return row.village_name;
+	if (typeof row.thing_name === 'string') return row.thing_name;
 	if (typeof row.name === 'string') return row.name;
 	if (typeof row.memberName === 'string') return row.memberName;
 	if (typeof row.userName === 'string') return row.userName;
