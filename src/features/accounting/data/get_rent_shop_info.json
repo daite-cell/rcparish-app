@@ -1,0 +1,19 @@
+{
+	"rent_shop_info": [
+		{
+			"type": "Rent",
+			"property_type": "0",
+			"property_type_content": "Shop",
+			"property_name": "abc",
+			"property_id": "PR001",
+			"render_name": "Revoh Innovations Pvt Ltd",
+			"mobile_no": "9626919545",
+			"type_data_1": "4332342",
+			"type_data_2": "4222",
+			"type_data_3": "2025-06",
+			"ag_from": "2025-06",
+			"ag_period": "23",
+			"ag_end_on": "2027-04"
+		}
+	]
+}

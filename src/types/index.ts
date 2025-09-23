@@ -865,65 +865,87 @@ export type CommonPoolMemberAdmittedMemberType = {
 };
 
 export interface ActiveDonationTableProps {
-	familyStatus: string;
-	familyNumber: string;
-	uniqueFamilyId: string;
-	mainStation: string;
-	subStationId: string;
-	anbiam: string;
-	anbiamId: string;
-	totalAmount: number;
+	activeness_content: string;
+	family_name: string;
+	sub_station_name: string;
+	sub_station_id: string;
+	anbiam_name: string;
+	anbiam_id: string;
+	unique_family_id: string;
+	amount: number;
 }
 
 export interface InActiveDonationTableProps {
-	name: string;
-	city: string;
-	donationFor: string;
-	amount: number;
-	voucherNumber: string;
+	id: number;
+	parish: string;
+	parish_content: string;
+	vicariate: string;
+	vicariate_content: string;
+	member_name: string;
+	place: string;
+	donation_for: string;
+	donation_for_content: string;
+	amount: string;
 	date: string;
-	mobile: string;
+	receipt_no: string;
+	mobile_no: string;
 	address: string;
+	registered_date: string;
+	updated_date: string;
 }
 
 export interface RentPropertyProps {
+	property_name: string;
+	balance_amount: number | null;
+	month: string | null;
+	now_amount: number | null;
+	date: string | null;
+	grand_amount: number | null;
+	property_type_content: string;
+	property_id: string;
+	render_name: string;
+	mobile_no: string;
+	type_data_2: string | number;
+	type_data_3: string;
+}
+export interface RentShopInfoProps {
 	type: string;
-	propertyName: string;
-	propertyId: string;
-	renderName: string;
-	mobileNumber: string;
-	nowRentFor: string;
-	fixedAmountMonthly: number;
-	fixedAmountOn: string;
-	grandPaidAmount: number;
-	paidUpto: string;
-	remainingUnpaidAmount: number;
-	lastPaidAmount: number;
-	lastPaidDate: string;
-	paymentHistory: string;
+	property_type: string;
+	property_type_content: string;
+	property_name: string;
+	property_id: string;
+	render_name: string;
+	mobile_no: string;
+	type_data_1: string;
+	type_data_2: string;
+	type_data_3: string;
+	ag_from: string;
+	ag_period: string;
+	ag_end_on: string;
 }
 
 export interface AdvanceRentPropertyProps {
-	type: string;
-	propertyName: string;
-	propertyId: string;
-	renderName: string;
-	mobileNumber: string;
-	nowRentFor: string;
-	fixedAdvanceAmount: number;
-	paidAdvanceAmount: number;
-	balanceAmount: number;
-	lastPaidDate: string;
+	property_name: string;
+	balance_amount: number | null;
+	month: string | null;
+	now_amount: number | null;
+	date: string | null;
+	grand_amount: number | null;
+	property_type_content: string;
+	property_id: string;
+	render_name: string;
+	mobile_no: string;
+	type_data_2: string;
+	type_data_3: string;
 }
 
 export interface ChurchCollectionsProps {
-	name: string;
-	priestId: string;
-	monthYear: string;
-	monthly: number;
-	special: number;
-	other: number;
-	amount: number;
+	priest_id: string;
+	priest_name: string;
+	monthly_total: number | null;
+	special_total: number | null;
+	other_total: number | null;
+	month: string;
 }
 
 export interface WorkerProps {
@@ -1432,12 +1454,14 @@ export interface RentPropertyPaymentProps {
 export interface DayBookEntry {
 	date: string;
 	name: string;
-	voucherNumber: string;
-	purpose: string;
-	description: string;
-	details: string;
-	incomeAmount: number;
-	expenseAmount: number;
+	unique_id: string;
+	type: string;
+	t_data_1: string;
+	t_data_2: string;
+	t_data_3: string;
+	amount: number | null;
+	category: 'Income' | 'Expense';
+	source_content: string;
 }
 
 export type AuditingProps = {

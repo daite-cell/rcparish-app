@@ -12,8 +12,8 @@ import {
 } from '../columns';
 const useAccountingColumnsMap = (): Record<string, Record<string, ColumnDef<object>[]>> => ({
 	donations: {
-		table_1: useActiveDonationColumns() as ColumnDef<object>[],
-		table_2: useInActiveDonationColumns() as ColumnDef<object>[],
+		table_1: useActiveDonationColumns('table_1') as ColumnDef<object>[],
+		table_2: useInActiveDonationColumns('table_2') as ColumnDef<object>[],
 	},
 	rent_shop: {
 		table_1: useRentPropertyColumns() as ColumnDef<object>[],
