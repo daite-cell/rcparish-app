@@ -22,15 +22,15 @@ const useVocationalInstitutionColumns = (): ColumnDef<VocationalInstitutionType>
 		...getCommonActionColumns<VocationalInstitutionType>(handleSelectRow, handleEditRow),
 
 		{
-			accessorKey: 'noviciateName',
-			header: 'Noviciate Name',
+			accessorKey: 'name',
+			header: 'Name',
 		},
-		{ accessorKey: 'place', header: 'Place' },
-		{ accessorKey: 'landOwnership', header: 'Land Ownership' },
-		{ accessorKey: 'belongsTo', header: 'Belongs to' },
-		{ accessorKey: 'seminary', header: 'Seminary' },
-		{ accessorKey: 'contactNumberLL', header: 'Contact Number (LL)' },
-		{ accessorKey: 'mailId', header: 'Mail ID' },
+		{ accessorKey: 'parish', header: 'Parish' },
+		{ accessorKey: 'land_ownership_content', header: 'Land Ownership' },
+		{ accessorKey: 'belong_to_content', header: 'Belongs To' },
+		{ accessorKey: 'seminary_content', header: 'Seminary' },
+		{ accessorKey: 'mobile_no', header: 'Contact Number (LL)' },
+		{ accessorKey: 'mail_id', header: 'Mail ID' },
 		{ accessorKey: 'address', header: 'Address' },
 	];
 };
@@ -436,6 +436,29 @@ const useHostelListColumns = (): ColumnDef<HostelCampusListProps>[] => {
 	];
 };
 
+const getWorkingMembersDataColumns = (): ColumnDef<WorkingMember>[] => {
+	return [
+		{ header: 'ID' },
+
+		{
+			accessorKey: 'name',
+			header: 'Name',
+		},
+		{
+			accessorKey: 'designation',
+			header: 'Designation',
+		},
+		{
+			accessorKey: 'jobType',
+			header: 'Job Type',
+		},
+		{
+			accessorKey: 'mobile',
+			header: 'Mobile Number',
+		},
+	];
+};
+
 export {
 	useVocationalInstitutionColumns,
 	useCommunitiesDetailsColumns,
@@ -446,4 +469,5 @@ export {
 	useHomeInstitutionsColumns,
 	useHealthInstituteListColumns,
 	useHostelListColumns,
+	getWorkingMembersDataColumns,
 };

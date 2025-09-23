@@ -1,9 +1,9 @@
 import { GenericCouncilMemberDetails } from '@/components';
 import { useStore } from '@/store/store';
-import type { CongregationInstitutionType, ConventDetailsTypeProps } from '@/types';
+import type { CongregationInstitutionType, ConventDetailsTypeProps, VocationalInstitutionType } from '@/types';
 import { useRouteName } from '@/utils/getRouteName';
 import { useCallback } from 'react';
-import { getCommunitiesSectionData, getInstitutionSectionData } from '../../columns-section';
+import { getCommunitiesSectionData, getInstitutionSectionData, getVocationalSectionData } from '../../columns-section';
 
 const RenderHouseOverview = () => {
 	const type = useRouteName('type');
@@ -15,13 +15,14 @@ const RenderHouseOverview = () => {
 			case 'communities':
 				return getCommunitiesSectionData(selectRow as ConventDetailsTypeProps);
 			default:
-				return [];
+				return getVocationalSectionData(selectRow as VocationalInstitutionType);
 		}
 	}, [selectRow, type]);
 	return (
 		<GenericCouncilMemberDetails
 			userName={(selectRow as { name?: string })?.name || (selectRow as { conventName?: string })?.conventName || ''}
 			sectionData={getSectionData()}
+			enableWorkingMembersTable={true}
 		/>
 	);
 };

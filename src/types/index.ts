@@ -803,14 +803,16 @@ export interface CongregationInstitutionType {
 }
 
 export interface VocationalInstitutionType {
-	noviciateName: string;
+	parish: string;
+	name: string;
+	vocational_id: string;
 	place: string;
-	landOwnership: string;
-	belongsTo: string;
-	seminary: string;
-	contactNumberLL: string;
-	mailId: string;
+	belong_to_content: string;
+	land_ownership_content: string;
+	seminary_content: string;
 	address: string;
+	mobile_no: string;
+	mail_id: string;
 }
 
 export interface ConventDetailsTypeProps {
