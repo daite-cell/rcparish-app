@@ -1,4 +1,4 @@
-import { DynamicDataTable } from '@/components';
+import { DynamicDataTable, PageSectionHeading } from '@/components';
 import { usePaymentColumns, useRentPaymentColumns } from '../../columns';
 import type { ColumnDef } from '@tanstack/react-table';
 import type { PaymentDetailsProps, RentPropertyPaymentProps } from '@/types';
@@ -13,7 +13,7 @@ const PaymentDetailsTable = ({ label }: { label: string }) => {
 	}
 	return (
 		<div>
-			<h1 className="text-[16px] font-bold uppercase">{label}</h1>
+			<PageSectionHeading title={label} />
 
 			{label === 'payment details' ? (
 				<DynamicDataTable enableDateSorting={true} customColumns={paymentColumns} data={[]} showFooter={true} />

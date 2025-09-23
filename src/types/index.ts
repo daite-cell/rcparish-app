@@ -1806,3 +1806,11 @@ export interface SchoolListRow {
 	mail_id: string;
 	address: string;
 }
+
+export interface AddFamilyMemberType {
+	memberId: string;
+	name: string;
+	relation: string;
+	gender: string;
+	active: string;
+}
