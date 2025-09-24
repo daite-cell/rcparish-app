@@ -4,7 +4,8 @@ import { TableDetailsEditButton, TableDetailsViewButton } from '@/components';
 
 export const getCommonActionColumns = <T,>(
 	handleSelectRow: (row: T) => void,
-	handleEditRow?: (row: T) => void
+	handleEditRow?: (row: T) => void,
+	tableKey?: string
 ): ColumnDef<T>[] => [
 	{
 		id: 'select',
@@ -42,7 +43,7 @@ export const getCommonActionColumns = <T,>(
 		id: 'view',
 		header: 'Details',
 		cell: ({ row }: CellContext<T, unknown>) => (
-			<TableDetailsViewButton onClick={() => handleSelectRow(row.original)} />
+			<TableDetailsViewButton onClick={() => handleSelectRow({ ...row.original, table_key: tableKey })} />
 		),
 		enableSorting: false,
 		meta: { isExportable: false },
