@@ -828,6 +828,7 @@ export interface RentPropertyProps {
 	mobile_no: string;
 	type_data_2: string | number;
 	type_data_3: string;
+	last_amount: string;
 }
 export interface RentShopInfoProps {
 	type: string;
@@ -1872,4 +1873,69 @@ export interface AddFamilyMemberType {
 	relation: string;
 	gender: string;
 	active: string;
+}
+
+export interface DonationMember {
+	member: string;
+	amount: string;
+	donation: string;
+	date: string;
+	voucher_number: string;
+}
+
+export interface ChurchCollectionTableProps {
+	date: string;
+	occasion: string;
+	collection: string;
+	indention: string;
+	box_collection: string;
+	total: string;
+}
+
+export interface DayBookCollectionTableProps {
+	cheque_amount: string | number;
+	cheque_number: string;
+	cheque_on: string;
+	cheque_given_by: string;
+	cheque_to: string;
+	withdraw_method: string;
+}
+
+export interface BalancePaidTableProps {
+	current_month_year: string;
+	total_amount: number | string;
+	grand_paid_amount: number | string;
+	balance_amount: number | string;
+	paid_upto: string;
+}
+
+export interface LastTableTableProps {
+	date: string;
+	amount: number | string;
+	monthly_rent_for: string;
+	voucher_number: string;
+}
+export interface AdvanceTableBalanceProps {
+	total_amount: number | string;
+	paid_amount: number | string;
+	balance_amount: number | string;
+	paid_upto: string;
+}
+
+export interface ToBePaidTableProps {
+	current_month_year: string;
+	total_amount: number | string;
+	total_due_amount: number | string;
+	grand_amount: number | string;
+	total_paid_amount: number | string;
+	balance_amount: number | string;
+	paid_upto: string;
+}
+
+export interface PaymentHistoryTableProps {
+	date: string;
+	amount: number | string;
+	prior_due_amount: number | string;
+	paid_for: string;
+	voucher_number: string;
 }

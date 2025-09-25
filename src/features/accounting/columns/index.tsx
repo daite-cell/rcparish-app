@@ -16,6 +16,14 @@ import type {
 	MonthlyCollectionProps,
 	SpecialCollectionProps,
 	OtherCollectionProps,
+	DonationMember,
+	ChurchCollectionTableProps,
+	DayBookCollectionTableProps,
+	BalancePaidTableProps,
+	LastTableTableProps,
+	AdvanceTableBalanceProps,
+	ToBePaidTableProps,
+	PaymentHistoryTableProps,
 } from '@/types';
 import { SquarePen, Trash2 } from 'lucide-react';
 import type { CellContext } from '@tanstack/react-table';
@@ -183,11 +191,12 @@ const useInActiveDonationColumns = (tableKey: string): ColumnDef<InActiveDonatio
 	];
 };
 
-const useRentPropertyColumns = (): ColumnDef<RentPropertyProps>[] => {
-	const { handleSelectRow } = useStore();
+const useRentPropertyColumns = (tableKey: string): ColumnDef<RentPropertyProps>[] => {
+	const { handleSelectRow, handleEditRow } = useStore();
+	console.warn('useRentPropertyColumns', tableKey);
 
 	return [
-		...getCommonActionColumns<RentPropertyProps>(handleSelectRow),
+		...getCommonActionColumns<RentPropertyProps>(handleSelectRow, handleEditRow, tableKey),
 
 		{ accessorKey: 'property_type_content', header: 'Type' },
 		{ accessorKey: 'property_name', header: 'Property Name' },
@@ -225,7 +234,7 @@ const useRentPropertyColumns = (): ColumnDef<RentPropertyProps>[] => {
 			cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
 		},
 		{
-			accessorKey: 'now_amount',
+			accessorKey: 'last_amount',
 			header: 'Last Paid Amount',
 			cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
 		},
@@ -236,11 +245,11 @@ const useRentPropertyColumns = (): ColumnDef<RentPropertyProps>[] => {
 	];
 };
 
-const useAdvanceRentPropertyColumns = (): ColumnDef<AdvanceRentPropertyProps>[] => {
-	const { handleSelectRow } = useStore();
+const useAdvanceRentPropertyColumns = (tableKey: string): ColumnDef<AdvanceRentPropertyProps>[] => {
+	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<AdvanceRentPropertyProps>(handleSelectRow),
+		...getCommonActionColumns<AdvanceRentPropertyProps>(handleSelectRow, handleEditRow, tableKey),
 
 		{ accessorKey: 'property_type_content', header: 'Type' },
 		{ accessorKey: 'property_name', header: 'Property Name' },
@@ -512,7 +521,7 @@ const useSubscriptionColumns = (): ColumnDef<SubscriptionProps>[] => {
 			id: 'lastPaidDetails',
 			header: 'Last Paid Details',
 			columns: [
-				{ accessorKey: 'now_amount', header: 'Amount' },
+				{ accessorKey: 'last_amount', header: 'Amount' },
 				{ accessorKey: 'date', header: 'Date' },
 				{ accessorKey: 'receipt_no', header: 'Voucher Number' },
 			],
@@ -834,6 +843,253 @@ const getOtherCollectionColumns = <TForm extends FieldValues>(
 	},
 ];
 
+const getDonationsMembersDataColumns: ColumnDef<DonationMember>[] = [
+	{
+		accessorKey: 'member',
+		header: 'Member',
+	},
+	{
+		accessorKey: 'donation',
+		header: 'Donation For',
+	},
+	{
+		accessorKey: 'amount',
+		header: 'Amount',
+	},
+	{
+		accessorKey: 'date',
+		header: 'Date',
+	},
+	{
+		accessorKey: 'voucher_number',
+		header: 'Voucher Number',
+	},
+];
+
+const getMonthlyCollectionTableColumns: ColumnDef<ChurchCollectionTableProps>[] = [
+	{
+		accessorKey: 'date',
+		header: 'Month & Year',
+	},
+	{
+		accessorKey: 'occasion',
+		header: 'Occasion',
+	},
+	{
+		accessorKey: 'collection',
+		header: 'Sunday Collection',
+	},
+	{
+		accessorKey: 'indention',
+		header: 'Mass Indention',
+	},
+	{
+		accessorKey: 'box_collection',
+		header: 'Dump Box Collection',
+	},
+	{
+		accessorKey: 'total',
+		header: 'Total',
+	},
+];
+
+const getSpecialCollectionTableColumns: ColumnDef<ChurchCollectionTableProps>[] = [
+	{
+		accessorKey: 'date',
+		header: 'Month & Year',
+	},
+	{
+		accessorKey: 'occasion',
+		header: 'Occasion',
+	},
+	{
+		accessorKey: 'collection',
+		header: 'Sunday Collection',
+	},
+
+	{
+		accessorKey: 'total',
+		header: 'Total',
+	},
+];
+
+const getDayBookTableColumns: ColumnDef<DayBookCollectionTableProps>[] = [
+	{
+		accessorKey: 'cheque_amount',
+		header: 'Cheque Amount',
+	},
+	{
+		accessorKey: 'cheque_number',
+		header: 'Cheque Number',
+	},
+	{
+		accessorKey: 'cheque_on',
+		header: 'Cheque On',
+	},
+	{
+		accessorKey: 'cheque_given_by',
+		header: 'Cheque Given By',
+	},
+	{
+		accessorKey: 'cheque_to',
+		header: 'Cheque To',
+	},
+	{
+		accessorKey: 'withdraw_method',
+		header: 'Withdraw Method',
+	},
+];
+const getBalancePaidTableColumns: ColumnDef<BalancePaidTableProps>[] = [
+	{
+		accessorKey: 'current_month_year',
+		header: 'Current Month & Year',
+	},
+	{
+		accessorKey: 'total_amount',
+		header: 'Total Amount',
+		cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
+	},
+	{
+		accessorKey: 'grand_paid_amount',
+		header: 'Grand Paid Amount',
+		cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
+	},
+	{
+		accessorKey: 'balance_amount',
+		header: 'Balance Amount',
+		cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
+	},
+	{
+		accessorKey: 'paid_upto',
+		header: 'Paid Upto',
+	},
+];
+
+const getLastPaidDetailsTableColumns: ColumnDef<LastTableTableProps>[] = [
+	{
+		accessorKey: 'date',
+		header: 'Date',
+	},
+	{
+		accessorKey: 'amount',
+		header: 'Amount',
+		cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
+	},
+	{
+		accessorKey: 'monthly_rent_for',
+		header: 'Monthly Rent For',
+	},
+	{
+		accessorKey: 'voucher_number',
+		header: 'Voucher Number',
+	},
+];
+
+const getAdvanceTableBalanceColumns: ColumnDef<AdvanceTableBalanceProps>[] = [
+	{
+		accessorKey: 'total_amount',
+		header: 'Total Amount',
+		cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
+	},
+	{
+		accessorKey: 'paid_amount',
+		header: 'Paid Amount',
+		cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
+	},
+	{
+		accessorKey: 'balance_amount',
+		header: 'Balance Amount',
+		cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
+	},
+	{
+		accessorKey: 'paid_upto',
+		header: 'Paid Upto',
+	},
+];
+
+const getAdvanceTableLastPaidDetailsColumns: ColumnDef<LastTableTableProps>[] = [
+	{
+		accessorKey: 'date',
+		header: 'Date',
+	},
+	{
+		accessorKey: 'amount',
+		header: 'Amount',
+		cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
+	},
+
+	{
+		accessorKey: 'voucher_number',
+		header: 'Voucher Number',
+	},
+];
+
+const getToBePaidTableColumns: ColumnDef<ToBePaidTableProps>[] = [
+	{
+		accessorKey: 'current_month_year',
+		header: 'Current Month & Year',
+	},
+	{
+		header: 'To be Paid Amount',
+		columns: [
+			{
+				accessorKey: 'total_amount',
+				header: 'Total Amount',
+				cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
+			},
+			{
+				accessorKey: 'total_due_amount',
+				header: 'Total Due Amount',
+				cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
+			},
+			{
+				accessorKey: 'grand_amount',
+				header: 'Grand Amount',
+				cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
+			},
+		],
+	},
+	{
+		accessorKey: 'total_paid_amount',
+		header: 'Total Paid Amount',
+		cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
+	},
+	{
+		accessorKey: 'balance_amount',
+		header: 'Balance Amount',
+		cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
+	},
+	{
+		accessorKey: 'paid_upto',
+		header: 'Paid Upto',
+	},
+];
+
+const getPaymentHistoryTableColumns: ColumnDef<PaymentHistoryTableProps>[] = [
+	{
+		accessorKey: 'date',
+		header: 'Date',
+	},
+	{
+		accessorKey: 'amount',
+		header: 'Amount',
+		cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
+	},
+	{
+		accessorKey: 'prior_due_amount',
+		header: 'Prior Due Amount (If Any)',
+		cell: ({ getValue }) => (getValue() ? `₹${getValue()}` : '-'),
+	},
+	{
+		accessorKey: 'paid_for',
+		header: 'Paid For',
+	},
+	{
+		accessorKey: 'voucher_number',
+		header: 'Voucher Number',
+	},
+];
+
 export {
 	useActiveDonationColumns,
 	useInActiveDonationColumns,
@@ -850,4 +1106,14 @@ export {
 	getMonthlyCollectionsColumns,
 	getSpecialCollectionsColumns,
 	getOtherCollectionColumns,
+	getDonationsMembersDataColumns,
+	getMonthlyCollectionTableColumns,
+	getSpecialCollectionTableColumns,
+	getDayBookTableColumns,
+	getBalancePaidTableColumns,
+	getLastPaidDetailsTableColumns,
+	getAdvanceTableBalanceColumns,
+	getAdvanceTableLastPaidDetailsColumns,
+	getToBePaidTableColumns,
+	getPaymentHistoryTableColumns,
 };
