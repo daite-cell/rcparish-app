@@ -420,6 +420,7 @@ const side_nav_links = [
 				path_url: '/properties/rent_details',
 				label: 'Rent House / Shop Details',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/properties/land_properties',
@@ -431,17 +432,20 @@ const side_nav_links = [
 				path_url: '/properties/cemetery',
 				label: 'Cemetery',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 
 			{
 				path_url: '/properties/church_inventory',
 				label: 'Church Inventory',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 			{
 				path_url: '/properties/other_inventory',
 				label: 'Other Inventory',
 				icon: 'BookText',
+				tabs: [{ label: 'view' }, { label: 'add' }],
 			},
 		],
 	},
