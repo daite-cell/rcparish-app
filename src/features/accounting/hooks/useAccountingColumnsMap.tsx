@@ -16,9 +16,9 @@ const useAccountingColumnsMap = (): Record<string, Record<string, ColumnDef<obje
 		table_2: useInActiveDonationColumns('table_2') as ColumnDef<object>[],
 	},
 	rent_shop: {
-		table_1: useRentPropertyColumns() as ColumnDef<object>[],
-		table_2: useAdvanceRentPropertyColumns() as ColumnDef<object>[],
-		table_3: useRentPropertyColumns() as ColumnDef<object>[],
+		table_1: useRentPropertyColumns('table_1') as ColumnDef<object>[],
+		table_2: useAdvanceRentPropertyColumns('table_2') as ColumnDef<object>[],
+		table_3: useRentPropertyColumns('table_3') as ColumnDef<object>[],
 	},
 	church_collections: { main: useChurchCollectionsColumns() as ColumnDef<object>[] },
 	workers: { main: useWorkersColumns() as ColumnDef<object>[] },

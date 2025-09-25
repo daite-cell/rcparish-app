@@ -1,5 +1,6 @@
+import { TableDetailsViewButton } from '@/components';
 import type { ColumnDef, CellContext } from '@tanstack/react-table';
-import { Plus, Settings, SquarePen } from 'lucide-react';
+import { SquarePen } from 'lucide-react';
 
 export function getCommonColumns<T>(handleSelectRow: (row: T) => void): ColumnDef<T, unknown>[] {
 	return [
@@ -17,13 +18,12 @@ export function getCommonColumns<T>(handleSelectRow: (row: T) => void): ColumnDe
 			meta: { isExportable: false },
 			enableHiding: true,
 		},
+
 		{
-			id: 'settings',
-			header: () => <Settings className="w-4 h-4 text-center" />,
+			id: 'view',
+			header: 'Details',
 			cell: ({ row }: CellContext<T, unknown>) => (
-				<button type="button" title="View" onClick={() => handleSelectRow(row.original)}>
-					<Plus className="w-4 h-4 text-center" />
-				</button>
+				<TableDetailsViewButton onClick={() => handleSelectRow(row.original)} />
 			),
 			enableSorting: false,
 			meta: { isExportable: false },

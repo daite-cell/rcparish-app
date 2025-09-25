@@ -242,7 +242,7 @@ const DynamicDataTable = <T extends object, U>({
 		<div className="flex flex-col items-center justify-center">
 			<div className="w-full">
 				<div className="min-w-full py-2">
-					{title && <h1 className="mb-8 font-bold underline uppercase text-start">{title}</h1>}
+					{title && <h1 className="mb-8 text-xs font-bold uppercase text-start">{title}</h1>}
 
 					<TableFilters
 						fromDate={fromDate}

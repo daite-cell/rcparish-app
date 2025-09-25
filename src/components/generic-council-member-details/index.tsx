@@ -1,8 +1,14 @@
 import { DisplayInfoRowContainer, DisplayUserName, DynamicDataTable } from '@/components';
-import { getWorkingMembersDataColumns } from '@/features/houses/columns';
+import type { ColumnDef } from '@tanstack/react-table';
 import { MemberOverviewLayout } from '@/layouts';
 
-type GenericMemberOverviewProps = {
+export type TableSection<T extends object> = {
+	title?: string;
+	columns?: ColumnDef<T>[];
+	data: T[];
+};
+
+type GenericMemberOverviewProps<T extends object> = {
 	userName?: string;
 	heading?: string;
 	sectionData: {
@@ -12,22 +18,22 @@ type GenericMemberOverviewProps = {
 			data: Record<string, string | number | null | undefined>;
 		}[];
 	}[];
-	enableWorkingMembersTable?: boolean;
-	workingMembersData?: Record<string, string | number>[];
+	enableMembersTable?: boolean;
+	membersTables?: TableSection<T>[];
 };
 
-const GenericCouncilMemberDetails = ({
+const GenericCouncilMemberDetails = <T extends object>({
 	userName,
 	heading,
 	sectionData,
-	enableWorkingMembersTable = false,
-	workingMembersData,
-}: GenericMemberOverviewProps) => {
-	const columns = getWorkingMembersDataColumns();
+	enableMembersTable = false,
+	membersTables = [],
+}: GenericMemberOverviewProps<T>) => {
 	return (
 		<MemberOverviewLayout heading={heading}>
 			<div className="p-6">
 				<DisplayUserName userName={userName || ''} />
+
 				<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 					{sectionData.map((column, colIndex) => (
 						<div key={colIndex}>
@@ -46,20 +52,22 @@ const GenericCouncilMemberDetails = ({
 					))}
 				</div>
 			</div>
-			<div className="py-6 px-4">
-				{enableWorkingMembersTable && (
-					<DynamicDataTable
-						tableId="working-members"
-						title="Working Members"
-						customColumns={columns}
-						data={workingMembersData || []}
-						enablePagination={false}
-						enableSearch={false}
-						enableExport={false}
-						isDynamic={false}
-					/>
-				)}
-			</div>
+
+			{enableMembersTable &&
+				membersTables.map((table, index) => (
+					<div key={index} className="py-6 px-4">
+						<DynamicDataTable
+							tableId={`members-table-${index}`}
+							title={table.title || 'Members Table'}
+							customColumns={table.columns as ColumnDef<object>[]}
+							data={table.data}
+							enablePagination={false}
+							enableSearch={false}
+							enableExport={false}
+							isDynamic={false}
+						/>
+					</div>
+				))}
 		</MemberOverviewLayout>
 	);
 };

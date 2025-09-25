@@ -1,0 +1,36 @@
+{
+	"rent_details_list": [
+		{
+			"id": 31,
+			"parish": "V04P03",
+			"parish_content": "Kodaiyanchi Parish",
+			"vicariate": "V04",
+			"vicariate_content": "Tirupattur",
+			"type": "Rent",
+			"property_type": "0",
+			"property_type_content": "Shop",
+			"property_name": "abc",
+			"property_id": "PR001",
+			"own_for": "Parish",
+			"own_for_content": "-",
+			"maintained_by": "1",
+			"maintained_by_content": "Parish Priest",
+			"ownership": "0",
+			"ownership_content": "Bishop",
+			"render_name": "Revoh Innovations Pvt Ltd",
+			"mobile_no": "9626919545",
+			"adhaar_no": "23211423454534",
+			"address": "No 1, FA, IITM Research Park,",
+			"type_data_1": "4332342",
+			"type_data_2": "4222",
+			"type_data_3": "2025-06",
+			"ag_written": "yes",
+			"ag_from": "2025-06",
+			"ag_period": "23",
+			"ag_end_on": "2027-04",
+			"ag_made_by": "charles",
+			"registered_date": "2025-09-20",
+			"updated_date": ""
+		}
+	]
+}

@@ -201,86 +201,7 @@ export type HolyCommunionMemberType = {
 export type TableConfig<T> = {
 	columns: ColumnDef<T, unknown>[];
 };
-export type Property = {
-	details: string;
-	type: string;
-	propertyType: string;
-	propertyName: string;
-	propertyIdOrNo: string;
-	propertyOwnFor: string;
-	propertyMaintainedBy: string;
-	ownershipName: string;
-	renderName: string;
-	mobile: string;
-	adhaar: string;
-	address: string;
-	leaseAmount: string;
-	agreementDocumentWritten: string;
-	agreementFromOn: string;
-	agreementPeriod: string;
-	agreementEndOn: string;
-	agreementMadeBy: string;
-};
 
-export type LandDocument = {
-	document: string;
-	parishName: string;
-	villageName: string;
-	automaticDocumentId: string;
-	dateOfRegistration: string;
-	purchasingAmount: string;
-	purchaserName: string;
-	vendorName: string;
-	oldSurvey: string;
-	newSurvey: string;
-	extentInAcre: string;
-	pattaNo: string;
-	availabilityOfDocument: 'yes' | 'no';
-	landUsage: string;
-	landType: string;
-	remark: string;
-};
-
-export type Cemetery = {
-	details: string;
-	cemeteryNumber: string;
-	forFamily: string;
-	maintainedBy: string;
-	mobile: string;
-	parish: string;
-	cemeteryAt: string;
-	address: string;
-	dugOnLastTime: string;
-};
-
-export interface ChurchInventory {
-	details: string;
-	stationType: string;
-	thingName: string;
-	thingIdOrNo: string;
-	category: string;
-	ratePerItem: number;
-	quantity: number;
-	price: number;
-	purchasedOrSponsored: string;
-	sponsorName: string;
-	dateOn: string;
-	propertyOwnFor: string;
-}
-
-export interface PresbyteryInventory {
-	details: string;
-	thingName: string;
-	thingIdOrNo: string;
-	category: string;
-	ratePerItem: number;
-	quantity: number;
-	price: number;
-	purchasedOrSponsored: string;
-	sponsorName: string;
-	dateOn: string;
-	propertyOwnFor: string;
-}
 export type BishopPositionTableProps = {
 	position: string;
 	name: string;
@@ -923,6 +844,7 @@ export interface RentPropertyProps {
 	mobile_no: string;
 	type_data_2: string | number;
 	type_data_3: string;
+	last_amount: string;
 }
 export interface RentShopInfoProps {
 	type: string;
@@ -1849,10 +1771,187 @@ export interface SchoolListRow {
 	address: string;
 }
 
+export interface RentPropertyEntry {
+	id: number;
+	parish: string;
+	parish_content: string;
+	vicariate: string;
+	vicariate_content: string;
+	type: string;
+	property_type: string;
+	property_type_content: string;
+	property_name: string;
+	property_id: string;
+	own_for: string;
+	own_for_content: string;
+	maintained_by: string;
+	maintained_by_content: string;
+	ownership: string;
+	ownership_content: string;
+	render_name: string;
+	mobile_no: string;
+	adhaar_no: string;
+	address: string;
+	type_data_1: string;
+	type_data_2: string;
+	type_data_3: string;
+	ag_written: string;
+	ag_from: string;
+	ag_period: string;
+	ag_end_on: string;
+	ag_made_by: string;
+	registered_date: string;
+	updated_date: string;
+}
+
+export interface LandRegistrationEntry {
+	id: number;
+	parish: string;
+	parish_content: string;
+	vicariate: string;
+	vicariate_content: string;
+
+	village_name: string;
+	document_no: string;
+	register_no: string;
+	register_date: string;
+	purchasing_amount: string;
+	purchaser_name: string;
+	vendor_name: string;
+	old_survey: string;
+	new_survey: string;
+	extent: string;
+	patta_no: string;
+	document_availability: string;
+	file: string;
+	land_usage: string;
+	land_type: string;
+	remarks: string;
+
+	registered_date: string;
+	updated_date: string;
+}
+
+export interface CemeteryEntry {
+	cemetery_number: string;
+	for_family: string;
+	maintained_by: string;
+	mobile: string;
+	parish: string;
+	cemetery_at: string;
+	address: string;
+	dug_on: string;
+}
+
+export interface ChurchInventoryEntry {
+	parish: string;
+	parish_content: string;
+	vicariate: string;
+	vicariate_content: string;
+	sub_station_name: string;
+	sub_station_id: string;
+	thing_name: string;
+	thing_no: string;
+	category: string;
+	category_content: string;
+	rate: string | number;
+	quantity: string | number;
+	price: string | number;
+	buyer_type: string;
+	buyer_name: string;
+	buying_date: string;
+	own_for: string;
+}
+
+export interface OtherInventoryEntry {
+	id: number;
+	parish: string;
+	parish_content: string;
+	vicariate: string;
+	vicariate_content: string;
+	thing_name: string;
+	thing_no: string;
+	category: string;
+	category_content: string;
+	rate: string | number;
+	quantity: string | number;
+	price: string | number;
+	buyer_type: string;
+	buyer_name: string;
+	buying_date: string;
+	own_for: string;
+	registered_date: string;
+	updated_date: string;
+}
 export interface AddFamilyMemberType {
 	memberId: string;
 	name: string;
 	relation: string;
 	gender: string;
 	active: string;
+}
+
+export interface DonationMember {
+	member: string;
+	amount: string;
+	donation: string;
+	date: string;
+	voucher_number: string;
+}
+
+export interface ChurchCollectionTableProps {
+	date: string;
+	occasion: string;
+	collection: string;
+	indention: string;
+	box_collection: string;
+	total: string;
+}
+
+export interface DayBookCollectionTableProps {
+	cheque_amount: string | number;
+	cheque_number: string;
+	cheque_on: string;
+	cheque_given_by: string;
+	cheque_to: string;
+	withdraw_method: string;
+}
+
+export interface BalancePaidTableProps {
+	current_month_year: string;
+	total_amount: number | string;
+	grand_paid_amount: number | string;
+	balance_amount: number | string;
+	paid_upto: string;
+}
+
+export interface LastTableTableProps {
+	date: string;
+	amount: number | string;
+	monthly_rent_for: string;
+	voucher_number: string;
+}
+export interface AdvanceTableBalanceProps {
+	total_amount: number | string;
+	paid_amount: number | string;
+	balance_amount: number | string;
+	paid_upto: string;
+}
+
+export interface ToBePaidTableProps {
+	current_month_year: string;
+	total_amount: number | string;
+	total_due_amount: number | string;
+	grand_amount: number | string;
+	total_paid_amount: number | string;
+	balance_amount: number | string;
+	paid_upto: string;
+}
+
+export interface PaymentHistoryTableProps {
+	date: string;
+	amount: number | string;
+	prior_due_amount: number | string;
+	paid_for: string;
+	voucher_number: string;
 }

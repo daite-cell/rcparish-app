@@ -4,10 +4,20 @@ import type { CongregationInstitutionType, ConventDetailsTypeProps, VocationalIn
 import { useRouteName } from '@/utils/getRouteName';
 import { useCallback } from 'react';
 import { getCommunitiesSectionData, getInstitutionSectionData, getVocationalSectionData } from '../../columns-section';
+import { getWorkingMembersDataColumns } from '../../columns';
 
 const RenderHouseOverview = () => {
 	const type = useRouteName('type');
 	const { selectRow } = useStore();
+
+	const membersTable = [
+		{
+			title: 'Working Members',
+			columns: getWorkingMembersDataColumns(),
+			data: [{ name: 'Peter', designation: 'Treasurer' }],
+		},
+	];
+
 	const getSectionData = useCallback(() => {
 		switch (type) {
 			case 'institutions':
@@ -18,11 +28,13 @@ const RenderHouseOverview = () => {
 				return getVocationalSectionData(selectRow as VocationalInstitutionType);
 		}
 	}, [selectRow, type]);
+
 	return (
 		<GenericCouncilMemberDetails
 			userName={(selectRow as { name?: string })?.name || (selectRow as { conventName?: string })?.conventName || ''}
 			sectionData={getSectionData()}
-			enableWorkingMembersTable={true}
+			enableMembersTable={true}
+			membersTables={membersTable}
 		/>
 	);
 };

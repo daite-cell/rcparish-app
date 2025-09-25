@@ -1,0 +1,24 @@
+{
+	"other_inventory_list": [
+		{
+			"id": 5,
+			"parish": "V04P03",
+			"parish_content": "Kodaiyanchi Parish",
+			"vicariate": "V04",
+			"vicariate_content": "Tirupattur",
+			"thing_name": "chair",
+			"thing_no": "PI001",
+			"category": "3",
+			"category_content": "Home Appliances",
+			"rate": "44444",
+			"quantity": "1",
+			"price": "44444",
+			"buyer_type": "Sponsored",
+			"buyer_name": "edwin shops",
+			"buying_date": "2025-09-11",
+			"own_for": "Parish Priest",
+			"registered_date": "2025-09-20",
+			"updated_date": ""
+		}
+	]
+}

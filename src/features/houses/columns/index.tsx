@@ -438,8 +438,6 @@ const useHostelListColumns = (): ColumnDef<HostelCampusListProps>[] => {
 
 const getWorkingMembersDataColumns = (): ColumnDef<WorkingMember>[] => {
 	return [
-		{ header: 'ID' },
-
 		{
 			accessorKey: 'name',
 			header: 'Name',
