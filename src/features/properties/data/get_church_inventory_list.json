@@ -1,0 +1,23 @@
+{
+	"church_inventory_list": [
+		{
+			"parish": "V04P03",
+			"parish_content": "Kodaiyanchi Parish",
+			"vicariate": "V04",
+			"vicariate_content": "Tirupattur",
+			"sub_station_name": "Kodaiyanchi Parish",
+			"sub_station_id": "S01",
+			"thing_name": "chair",
+			"thing_no": "CI001",
+			"category": "4",
+			"category_content": "Furniture - Steel and Iron Based",
+			"rate": "2000",
+			"quantity": "1",
+			"price": "2000",
+			"buyer_type": "Purchased",
+			"buyer_name": "edwin shops",
+			"buying_date": "2025-09-18",
+			"own_for": "Parish"
+		}
+	]
+}
