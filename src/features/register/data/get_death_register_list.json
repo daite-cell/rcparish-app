@@ -1,0 +1,23 @@
+{
+	"death_register_list": [],
+	"in_active_list": [
+		{
+			"member_name": "Joseph",
+			"unique_member_id": "ID001",
+			"father_name": "Irudhayanadhan",
+			"mother_name": "Anthoniyammal",
+			"place_name": "KOdaiyanchi",
+			"dob_received": "known",
+			"birth_date": "1933-08-24",
+			"birth_date_remark": "",
+			"birth_place": "Kodaiyanchi",
+			"died_on": "2002-05-08",
+			"died_at": "Kodaiyanchi",
+			"funeral_date": "2002-05-09",
+			"cemetery": "Kodaiyanchi",
+			"minister": "Fr X",
+			"record_no": "",
+			"remarks": ""
+		}
+	]
+}

@@ -1,0 +1,22 @@
+{
+	"chronicles_list": [
+		{
+			"id": 30,
+			"parish": "V04P03",
+			"parish_content": "Kodaiyanchi Parish",
+			"vicariate": "V04",
+			"vicariate_content": "Tirupattur",
+			"event_no": "C0001",
+			"chronicles_date": "2025-08-15",
+			"chronicles_event": "Our Lady of Victories",
+			"descriptions": "Feast",
+			"document_availability": "yes",
+			"attached_document": "attached_document-1758283206051.pdf",
+			"image_f": "first_image-1758283206052.jpg",
+			"image_s": "second_image-1758283234331.jpg",
+			"image_t": "third_image-1758283235885.jpg",
+			"registered_date": "2025-09-19",
+			"updated_date": ""
+		}
+	]
+}

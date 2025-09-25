@@ -8,6 +8,7 @@ const extractUserName = (row: Record<string, unknown>): string => {
 	if (typeof row.name === 'string') return row.name;
 	if (typeof row.priest_name === 'string') return row.priest_name;
 	if (typeof row.property_name === 'string') return row.property_name;
+	if (typeof row.chronicles_event === 'string') return row.chronicles_event;
 	if (typeof row.memberName === 'string') return row.memberName;
 	if (typeof row.userName === 'string') return row.userName;
 	if (typeof row.noviciateName === 'string') return row.noviciateName;

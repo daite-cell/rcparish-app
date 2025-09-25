@@ -1,4 +1,9 @@
-import type { BaptismMemberType, ConfirmationRegisteredMemberType, HolyCommunionMemberType } from '@/types';
+import type {
+	BaptismMemberType,
+	ChronicleMemberProps,
+	ConfirmationRegisteredMemberType,
+	HolyCommunionMemberType,
+} from '@/types';
 
 export const getHolyCommunionData = (row: HolyCommunionMemberType) => [
 	{
@@ -148,6 +153,45 @@ export const getConfirmationsData = (row: ConfirmationRegisteredMemberType) => [
 					minister: row.minister || '',
 					registration_number: '',
 					remarks: row.remarks || '',
+				},
+			},
+		],
+	},
+];
+
+export const getChroniclesSectionData = (row: ChronicleMemberProps) => [
+	{
+		col: 1,
+		sections: [
+			{
+				heading: '',
+				data: {
+					parish_name: row.parish_content || '',
+					event_number: row.event_no || '',
+				},
+			},
+		],
+	},
+	{
+		col: 2,
+		sections: [
+			{
+				heading: '',
+				data: {
+					event_date: row.chronicles_date || '',
+					descriptions: row.descriptions || '',
+				},
+			},
+		],
+	},
+	{
+		col: 3,
+		sections: [
+			{
+				heading: '',
+				data: {
+					availability_of_document: row.document_availability || '',
+					document: 'view',
 				},
 			},
 		],

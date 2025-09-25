@@ -15,7 +15,7 @@ import type {
 import { Link } from 'react-router-dom';
 import { useStore } from '@/store/store';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
-import { TextLink } from '@/components';
+import { AdminDefaultImage, TextLink } from '@/components';
 
 const useHolyCommunionMemberColumns = (): ColumnDef<HolyCommunionMemberType>[] => {
 	const { handleSelectRow, handleEditRow, handleSelectAccountingNameRow, handleEditAccountingName } = useStore();
@@ -65,14 +65,41 @@ const useChronicleMemberColumns = (): ColumnDef<ChronicleMemberProps>[] => {
 	const { handleSelectRow, handleEditRow } = useStore();
 	return [
 		...getCommonActionColumns<ChronicleMemberProps>(handleSelectRow, handleEditRow),
-		{ accessorKey: 'date', header: 'Date' },
-		{ accessorKey: 'event', header: 'Event' },
+		{ accessorKey: 'chronicles_date', header: 'Date' },
+		{ accessorKey: 'chronicles_event', header: 'Event' },
 		{ accessorKey: 'descriptions', header: 'Descriptions' },
-		{ accessorKey: 'documentAttachment', header: 'Attachment of Document' },
-		{ accessorKey: 'image1', header: 'Image 1' },
-		{ accessorKey: 'image2', header: 'Image 2' },
-		{ accessorKey: 'image3', header: 'Image 3' },
-		{ accessorKey: 'eventNo', header: 'Event No' },
+		{ accessorKey: 'document_availability', header: 'Document Available' },
+		{
+			accessorKey: 'attached_document',
+			header: 'Attached Document',
+			cell: ({ row }) => (
+				<Link to={row.original.attached_document} target="_blank" className=" text-[#0d73c4]">
+					view
+				</Link>
+			),
+		},
+		{
+			accessorKey: 'image_f',
+			header: 'Image 1',
+			cell: ({ row }) => (
+				<AdminDefaultImage src={row.original.image_f} height={40} width={40} className="rounded-full" />
+			),
+		},
+		{
+			accessorKey: 'image_s',
+			header: 'Image 2',
+			cell: ({ row }) => (
+				<AdminDefaultImage src={row.original.image_s} height={40} width={40} className="rounded-full" />
+			),
+		},
+		{
+			accessorKey: 'image_t',
+			header: 'Image 3',
+			cell: ({ row }) => (
+				<AdminDefaultImage src={row.original.image_t} height={40} width={40} className="rounded-full" />
+			),
+		},
+		{ accessorKey: 'event_no', header: 'Event No' },
 	];
 };
 
@@ -201,82 +228,21 @@ const useMarriageRegisterAsParishColumns = (): ColumnDef<MarriageRegisterMemberA
 	return [
 		...getCommonActionColumns<MarriageRegisterMemberAsParishType>(handleSelectRow, handleEditRow),
 
-		{
-			header: 'Banns / Rectification',
-			accessorKey: 'bannsOrRectification',
-		},
-		{
-			header: 'Bridegroom Name',
-			accessorKey: 'bridegroomName',
-		},
-		{
-			header: 'Bride Name',
-			accessorKey: 'brideName',
-		},
-		{
-			header: 'Family Name',
-			accessorKey: 'familyName',
-		},
-		{
-			header: 'Unique Family Id',
-			accessorKey: 'familyId',
-		},
-		{
-			header: 'Main-Station / Sub-Station',
-			accessorKey: 'mainStation',
-		},
-		{
-			header: 'Sub-Station Id',
-			accessorKey: 'subStationId',
-		},
-		{
-			header: 'Anbiam Name',
-			accessorKey: 'anbiamName',
-		},
-		{
-			header: 'Anbiam Id',
-			accessorKey: 'anbiamId',
-		},
-		{
-			header: 'Marriage Date',
-			accessorKey: 'marriageDate',
-		},
-		{
-			header: 'Marriage at',
-			accessorKey: 'marriageAt',
-		},
-		{
-			header: 'Marriage in',
-			accessorKey: 'marriageIn',
-		},
-		{
-			header: 'Minister',
-			accessorKey: 'minister',
-		},
-		{
-			header: 'Bridegroom Witness',
-			accessorKey: 'bridegroomWitness',
-		},
-		{
-			header: 'Bridegroom Address',
-			accessorKey: 'bridegroomAddress',
-		},
-		{
-			header: 'Bride Witness',
-			accessorKey: 'brideWitness',
-		},
-		{
-			header: 'Bride Address',
-			accessorKey: 'brideAddress',
-		},
-		{
-			header: 'Registration Number',
-			accessorKey: 'registrationNumber',
-		},
-		{
-			header: 'Remarks',
-			accessorKey: 'remarks',
-		},
+		{ accessorKey: 'marriage_type', header: 'Marriage Type' },
+		{ accessorKey: 'bridegroom_name', header: 'Bridegroom Name' },
+		{ accessorKey: 'bride_name', header: 'Bride Name' },
+		{ accessorKey: 'marriage_date', header: 'Marriage Date' },
+		{ accessorKey: 'marriage_at', header: 'Marriage At' },
+		{ accessorKey: 'marriage_in', header: 'Marriage In' },
+		{ accessorKey: 'minister', header: 'Minister' },
+		{ accessorKey: 'priest_name', header: 'Priest Name' },
+		{ accessorKey: 'bg_witness_1', header: 'Bridegroom Witness' },
+		{ accessorKey: 'bg_address', header: 'Bridegroom Address' },
+		{ accessorKey: 'b_witness_1', header: 'Bride Witness' },
+		{ accessorKey: 'b_address', header: 'Bride Address' },
+		{ accessorKey: 'record_no', header: 'Record Number' },
+		{ accessorKey: 'register_no', header: 'Register Number' },
+		{ accessorKey: 'remarks', header: 'Remarks' },
 	];
 };
 const useMarriageRegisterColumns = (): ColumnDef<MarriageRegisterMemberType>[] => {
@@ -285,31 +251,27 @@ const useMarriageRegisterColumns = (): ColumnDef<MarriageRegisterMemberType>[] =
 	return [
 		...getCommonActionColumns<MarriageRegisterMemberType>(handleSelectRow, handleEditRow),
 
+		{ accessorKey: 'sub_station_name', header: 'Sub Station Name' },
+		{ accessorKey: 'anbiam_name', header: 'Anbiam Name' },
+		{ accessorKey: 'family_name', header: 'Family Name' },
+		{ accessorKey: 'activeness_content', header: 'Activeness' },
+		{ accessorKey: 'marriage_type', header: 'Marriage Type' },
+
 		{
-			header: 'Banns / Rectification',
-			accessorKey: 'bannsOrRectification',
-		},
-		{
+			accessorKey: 'bridegroom_name',
 			header: 'Bridegroom Name',
-			accessorKey: 'bridegroomName',
-			cell: ({ row }) => (
-				<Link to="" className="underline text-[#0d73c4]">
-					{row.original.bridegroomName}
-				</Link>
-			),
 		},
-		{ accessorKey: 'brideName', header: 'Bride Name' },
-		{ accessorKey: 'isMemberInParish', header: 'If Member in Parish' },
-		{ accessorKey: 'marriageDate', header: 'Marriage Date' },
-		{ accessorKey: 'marriageAt', header: 'Marriage at' },
-		{ accessorKey: 'marriageIn', header: 'Marriage in' },
+		{ accessorKey: 'bride_name', header: 'Bride Name' },
+		{ accessorKey: 'marriage_date', header: 'Marriage Date' },
+		{ accessorKey: 'marriage_at', header: 'Marriage At' },
+		{ accessorKey: 'marriage_in', header: 'Marriage In' },
 		{ accessorKey: 'minister', header: 'Minister' },
-		{ accessorKey: 'priestName', header: 'Priest Name' },
-		{ accessorKey: 'bridegroomWitness', header: 'Bridegroom Witness' },
-		{ accessorKey: 'bridegroomAddress', header: 'Bridegroom Address' },
-		{ accessorKey: 'brideWitness', header: 'Bride Witness' },
-		{ accessorKey: 'brideAddress', header: 'Bride Address' },
-		{ accessorKey: 'registrationNumber', header: 'Registration Number' },
+		{ accessorKey: 'bg_witness_1', header: 'Bridegroom Witness' },
+		{ accessorKey: 'bg_address', header: 'Bridegroom Address' },
+		{ accessorKey: 'b_witness_1', header: 'Bride Witness' },
+		{ accessorKey: 'b_address', header: 'Bride Address' },
+		{ accessorKey: 'record_no', header: 'Record Number' },
+		{ accessorKey: 'register_no', header: 'Register Number' },
 		{ accessorKey: 'remarks', header: 'Remarks' },
 	];
 };
@@ -322,18 +284,13 @@ const useMarriageProposalColumns = (): ColumnDef<MarriageProposalMemberType>[] =
 
 		{
 			header: 'Bride / Bridegroom Name',
-			accessorKey: 'memberName',
-			cell: ({ row }) => (
-				<Link to="" className="underline text-[#0d73c4]">
-					{row.original.memberName}
-				</Link>
-			),
+			accessorKey: 'person_name',
 		},
 		{ accessorKey: 'gender', header: 'Gender' },
-		{ accessorKey: 'isMemberInParish', header: 'If Member in Parish' },
-		{ accessorKey: 'fatherName', header: 'Father_name' },
-		{ accessorKey: 'motherName', header: 'Mother Name' },
-		{ accessorKey: 'registrationNumber', header: 'Registration Number' },
+		{ accessorKey: 'father_name', header: 'Father Name' },
+		{ accessorKey: 'mother_name', header: 'Mother Name' },
+		{ accessorKey: 'record_no', header: 'Record Number' },
+		{ accessorKey: 'register_no', header: 'Register Number' },
 	];
 };
 
@@ -408,29 +365,22 @@ const useDeathRegisterAsParishColumns = (): ColumnDef<DeathRegisterMemberAsParis
 
 		{
 			header: 'Person who died',
-			accessorKey: 'memberName',
-			cell: ({ row }) => (
-				<Link to="" className="underline text-[#0d73c4]">
-					{row.original.memberName}
-				</Link>
-			),
+			accessorKey: 'member_name',
 		},
-		{ accessorKey: 'memberId', header: 'unique_member_id' },
-		{ accessorKey: 'isMemberInParish', header: 'If Member in Parish' },
-		{ accessorKey: 'fatherName', header: 'Father Name' },
-		{ accessorKey: 'motherName', header: 'Mother Name' },
-		{ accessorKey: 'birthDate', header: 'Birth Date' },
-		{ accessorKey: 'birthPlace', header: 'Birth Place' },
-		{ accessorKey: 'deathDate', header: 'Died on' },
-		{ accessorKey: 'deathPlace', header: 'Died at' },
-		{ accessorKey: 'burialDate', header: 'Date of Burial' },
+		{ accessorKey: 'unique_member_id', header: 'Unique Member ID' },
+		{ accessorKey: 'father_name', header: 'Father Name' },
+		{ accessorKey: 'mother_name', header: 'Mother Name' },
+		{ accessorKey: 'birth_date', header: 'Birth Date' },
+		{ accessorKey: 'birth_place', header: 'Birth Place' },
+		{ accessorKey: 'died_on', header: 'Died On' },
+		{ accessorKey: 'died_at', header: 'Died At' },
+		{ accessorKey: 'funeral_date', header: 'Date of Burial' },
 		{ accessorKey: 'cemetery', header: 'Buried at Cemetery' },
 		{ accessorKey: 'minister', header: 'Minister' },
-		{ accessorKey: 'registrationNumber', header: 'Registration Number' },
+		{ accessorKey: 'record_no', header: 'Record Number' },
 		{ accessorKey: 'remarks', header: 'Remarks' },
 	];
 };
-
 export {
 	useHolyCommunionMemberColumns,
 	useChronicleMemberColumns,
