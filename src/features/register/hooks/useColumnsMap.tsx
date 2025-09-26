@@ -31,12 +31,12 @@ const useColumnsMap = (): Record<string, Record<string, ColumnDef<object>[]>> =>
 		table_2: useConfirmationRegisterColumns() as ColumnDef<object>[],
 	},
 	marriage_registration: {
-		table_1: useMarriageRegisterColumns() as ColumnDef<object>[],
-		table_2: useMarriageRegisterAsParishColumns() as ColumnDef<object>[],
+		table_1: useMarriageRegisterColumns('table_1') as ColumnDef<object>[],
+		table_2: useMarriageRegisterAsParishColumns('table_2') as ColumnDef<object>[],
 	},
 	marriage_proposal: {
-		table_1: useMarriageProposalFormColumns() as ColumnDef<object>[],
-		table_2: useMarriageProposalColumns() as ColumnDef<object>[],
+		table_1: useMarriageProposalFormColumns('table_1') as ColumnDef<object>[],
+		table_2: useMarriageProposalColumns('table_2') as ColumnDef<object>[],
 	},
 	death_register: {
 		table_1: useDeathRegisterColumns() as ColumnDef<object>[],

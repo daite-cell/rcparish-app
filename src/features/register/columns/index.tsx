@@ -73,9 +73,9 @@ const useChronicleMemberColumns = (): ColumnDef<ChronicleMemberProps>[] => {
 			accessorKey: 'attached_document',
 			header: 'Attached Document',
 			cell: ({ row }) => (
-				<Link to={row.original.attached_document} target="_blank" className=" text-[#0d73c4]">
+				<a target="_blank" id="view_attached_document" href={row.original.attached_document}>
 					view
-				</Link>
+				</a>
 			),
 		},
 		{
@@ -222,11 +222,11 @@ const useConfirmationRegisterColumns = (): ColumnDef<ConfirmationRegisteredMembe
 	];
 };
 
-const useMarriageRegisterAsParishColumns = (): ColumnDef<MarriageRegisterMemberAsParishType>[] => {
+const useMarriageRegisterAsParishColumns = (tableKey: string): ColumnDef<MarriageRegisterMemberAsParishType>[] => {
 	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<MarriageRegisterMemberAsParishType>(handleSelectRow, handleEditRow),
+		...getCommonActionColumns<MarriageRegisterMemberAsParishType>(handleSelectRow, handleEditRow, tableKey),
 
 		{ accessorKey: 'marriage_type', header: 'Marriage Type' },
 		{ accessorKey: 'bridegroom_name', header: 'Bridegroom Name' },
@@ -245,11 +245,11 @@ const useMarriageRegisterAsParishColumns = (): ColumnDef<MarriageRegisterMemberA
 		{ accessorKey: 'remarks', header: 'Remarks' },
 	];
 };
-const useMarriageRegisterColumns = (): ColumnDef<MarriageRegisterMemberType>[] => {
+const useMarriageRegisterColumns = (tableKey: string): ColumnDef<MarriageRegisterMemberType>[] => {
 	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<MarriageRegisterMemberType>(handleSelectRow, handleEditRow),
+		...getCommonActionColumns<MarriageRegisterMemberType>(handleSelectRow, handleEditRow, tableKey),
 
 		{ accessorKey: 'sub_station_name', header: 'Sub Station Name' },
 		{ accessorKey: 'anbiam_name', header: 'Anbiam Name' },
@@ -276,11 +276,11 @@ const useMarriageRegisterColumns = (): ColumnDef<MarriageRegisterMemberType>[] =
 	];
 };
 
-const useMarriageProposalColumns = (): ColumnDef<MarriageProposalMemberType>[] => {
+const useMarriageProposalColumns = (tableKey: string): ColumnDef<MarriageProposalMemberType>[] => {
 	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<MarriageProposalMemberType>(handleSelectRow, handleEditRow),
+		...getCommonActionColumns<MarriageProposalMemberType>(handleSelectRow, handleEditRow, tableKey),
 
 		{
 			header: 'Bride / Bridegroom Name',
@@ -294,11 +294,11 @@ const useMarriageProposalColumns = (): ColumnDef<MarriageProposalMemberType>[] =
 	];
 };
 
-const useMarriageProposalFormColumns = (): ColumnDef<MarriageProposalMemberFormType>[] => {
+const useMarriageProposalFormColumns = (tableKey: string): ColumnDef<MarriageProposalMemberFormType>[] => {
 	const { handleSelectRow, handleEditRow } = useStore();
 
 	return [
-		...getCommonActionColumns<MarriageProposalMemberFormType>(handleSelectRow, handleEditRow),
+		...getCommonActionColumns<MarriageProposalMemberFormType>(handleSelectRow, handleEditRow, tableKey),
 
 		{
 			header: 'Bride / Bridegroom Name',
