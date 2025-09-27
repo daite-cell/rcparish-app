@@ -24,13 +24,14 @@ const RenderParishMemberOverviewContainer = memo(() => {
 			form: <h1>forms will be added</h1>,
 		},
 	};
+	const defaultTabLabel = editRow ? 'edit' : (havingProfileTab[0]?.label ?? 'back');
 
 	return (
 		<OverviewTabsLayout
 			tabs={havingProfileTab}
 			pathName={type}
 			componentMap={componentMap}
-			defaultTabLabel={editRow ? 'edit' : 'profile'}
+			defaultTabLabel={defaultTabLabel}
 		/>
 	);
 });

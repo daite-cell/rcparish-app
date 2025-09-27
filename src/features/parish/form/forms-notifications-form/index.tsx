@@ -35,7 +35,6 @@ const FormNotificationsForm = () => {
 						name="document"
 						control={control}
 						label="Upload Document ( If Any )"
-						error={errors.document?.message}
 					/>
 				</div>
 			</div>

@@ -6,12 +6,16 @@ import type { PresentParishPriest, PriestServiceRecord } from '@/types';
 import { getPriestServiceColumns } from '../../columns';
 
 const PresentParishDetails = () => {
-	const userName = (get_present_parish_priest as { name?: string })?.name || '';
+	const presentParishPriest = {
+		...(get_present_parish_priest.priest_list as Partial<PresentParishPriest>),
+		in_charge_taken_from: get_present_parish_priest.in_charge_from ?? '',
+	} as PresentParishPriest;
+
 	return (
 		<TabsLayout tabs={[{ label: 'view' }]}>
 			<GenericPeopleDetailsOverview
-				userName={userName}
-				sectionData={getPresentParishPriestSectionData(get_present_parish_priest.priest_list as PresentParishPriest)}
+				userName={(presentParishPriest.priest_name as string) ?? ''}
+				sectionData={getPresentParishPriestSectionData(presentParishPriest)}
 			/>
 			<DynamicDataTable
 				title="SERVICE RECORD"
