@@ -1120,6 +1120,22 @@ const formationStages = [
 	{ label: 'Post PhD', value: '7' },
 ];
 
+const congregationFromOptions = [
+	{ label: 'Capuchins (OFM)', value: 'Capuchins (OFM)' },
+	{ label: 'Missionaries of Precious Blood (C.PP.S)', value: 'Missionaries of Precious Blood (C.PP.S)' },
+	{ label: 'Vincentians (VC)', value: 'Vincentians (VC)' },
+	{ label: 'Missionaries of Sacred Heart (MSC)', value: 'Missionaries of Sacred Heart (MSC)' },
+	{ label: 'Salesians of Don Bosco (SDB)', value: 'Salesians of Don Bosco (SDB)' },
+	{ label: 'Society of Jesus (SJ)', value: 'Society of Jesus (SJ)' },
+	{ label: 'The Order of Servants of Mary (OSM)', value: 'The Order of Servants of Mary (OSM)' },
+	{ label: 'Passionists (CP)', value: 'Passionists (CP)' },
+	{ label: 'Order of Mother of God (OMD)', value: 'Order of Mother of God (OMD)' },
+	{ label: 'Missionaries of St. Francis de Sales (MSFS)', value: 'Missionaries of St. Francis de Sales (MSFS)' },
+	{ label: 'Sacred Heart Brothers', value: 'Sacred Heart Brothers' },
+	{ label: 'Heralds of Good News (HGN)', value: 'Heralds of Good News (HGN)' },
+	{ label: 'Others', value: 'Others' },
+];
+
 export {
 	categoryOptions,
 	schoolTypeOptions,
@@ -1197,4 +1213,5 @@ export {
 	priestStatuses,
 	educationLevels,
 	formationStages,
+	congregationFromOptions,
 };
