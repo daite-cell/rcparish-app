@@ -1,4 +1,14 @@
-import { AdminDefaultImage, TextLink } from '@/components';
+import {
+	AdminDefaultImage,
+	ControlledDateInputField,
+	ControlledTimeInputField,
+	CustomFormInput,
+	DayCell,
+	MonthCell,
+	SingleSelectDropdown,
+	TextLink,
+} from '@/components';
+import { anbiamOptions, associationOptions, weekDayOptions, weekOrderOptions } from '@/forms-options-data';
 import { useStore } from '@/store/store';
 import type {
 	AnbiamScheduleTableProps,
@@ -7,12 +17,14 @@ import type {
 	FormsNotificationsTableProps,
 	MassTimingsTableProps,
 	MonthlyMeetingTableProps,
+	ParishActivitiesProps,
 	PriestServiceRecord,
 	SubStationType,
 } from '@/types';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
 import type { CellContext, ColumnDef } from '@tanstack/react-table';
 import { Trash } from 'lucide-react';
+import { type Control, type FieldValues, type Path } from 'react-hook-form';
 
 const useFormerParishPriestColumns = (): ColumnDef<FormerParishPriestTableProps>[] => {
 	const { handleSelectRow, handleEditRow, handleSelectPriestsRow } = useStore();
@@ -71,15 +83,13 @@ const useSubStationColumns = (): ColumnDef<SubStationType>[] => {
 };
 
 const useMassTimingsColumns = (): ColumnDef<MassTimingsTableProps>[] => {
-	const { handleSelectRow, handleEditRow } = useStore();
-
 	return [
-		...getCommonActionColumns<MassTimingsTableProps>(handleSelectRow, handleEditRow),
+		...getCommonActionColumns<MassTimingsTableProps>(),
 		{
 			id: 'delete',
 			header: 'Delete',
-			cell: ({ row }: CellContext<MassTimingsTableProps, unknown>) => (
-				<button type="button" onClick={() => handleSelectRow(row.original)} title="delete">
+			cell: () => (
+				<button type="button" onClick={() => {}} title="delete">
 					<Trash className="w-4 h-4 text-center cursor-pointer" />
 				</button>
 			),
@@ -242,6 +252,339 @@ const getPriestServiceColumns: ColumnDef<PriestServiceRecord>[] = [
 	},
 ];
 
+const getMassTimingsColumns = <TForm extends FieldValues>(
+	control: Control<TForm>
+): ColumnDef<ParishActivitiesProps>[] => [
+	{
+		accessorKey: 'day',
+		header: 'Day',
+		cell: ({ row }) => (
+			<SingleSelectDropdown
+				control={control}
+				name={`massTimings.${row.index}.day` as Path<TForm>}
+				options={weekDayOptions}
+			/>
+		),
+	},
+	{
+		accessorKey: 'time',
+		header: 'Time',
+		cell: ({ row }) => (
+			<ControlledTimeInputField control={control} name={`massTimings.${row.index}.time` as Path<TForm>} />
+		),
+	},
+	{
+		accessorKey: 'title',
+		header: 'Title',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`massTimings.${row.index}.title` as Path<TForm>}
+				placeholder="Enter title"
+			/>
+		),
+	},
+	{
+		accessorKey: 'remarks',
+		header: 'Remarks',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`massTimings.${row.index}.remarks` as Path<TForm>}
+				placeholder="Enter remarks"
+			/>
+		),
+	},
+];
+const getFestivalsDetailsColumns = <TForm extends FieldValues>(
+	control: Control<TForm>
+): ColumnDef<ParishActivitiesProps>[] => [
+	{
+		accessorKey: 'event_type',
+		header: 'Event Type',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`festivalsDetails.${row.index}.eventType` as Path<TForm>}
+				placeholder="Enter Event"
+			/>
+		),
+	},
+	{
+		accessorKey: 'date',
+		header: 'Date',
+		cell: ({ row }) => (
+			<ControlledDateInputField
+				control={control}
+				name={`festivalsDetails.${row.index}.date` as Path<TForm>}
+				placeholder="Enter date"
+			/>
+		),
+	},
+	{
+		accessorKey: 'day',
+		header: 'Day',
+		cell: ({ row }) => <DayCell control={control} name={`festivalsDetails.${row.index}.date` as Path<TForm>} />,
+	},
+	{
+		accessorKey: 'month',
+		header: 'Month',
+		cell: ({ row }) => <MonthCell control={control} name={`festivalsDetails.${row.index}.date` as Path<TForm>} />,
+	},
+	{
+		accessorKey: 'time',
+		header: 'Time',
+		cell: ({ row }) => (
+			<ControlledTimeInputField control={control} name={`festivalsDetails.${row.index}.time` as Path<TForm>} />
+		),
+	},
+	{
+		accessorKey: 'organized_by',
+		header: 'Organized By',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`festivalsDetails.${row.index}.organized_by` as Path<TForm>}
+				placeholder="Enter Name"
+			/>
+		),
+	},
+	{
+		accessorKey: 'remarks',
+		header: 'Remarks',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`festivalsDetails.${row.index}.remarks` as Path<TForm>}
+				placeholder="Enter remarks"
+			/>
+		),
+	},
+];
+
+const getYearPlansColumns = <TForm extends FieldValues>(
+	control: Control<TForm>
+): ColumnDef<ParishActivitiesProps>[] => [
+	{
+		accessorKey: 'date',
+		header: 'Date',
+		cell: ({ row }) => (
+			<ControlledDateInputField
+				control={control}
+				name={`yearPlans.${row.index}.date` as Path<TForm>}
+				placeholder="Enter date"
+			/>
+		),
+	},
+	{
+		accessorKey: 'event_name',
+		header: 'Event ',
+
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`yearPlans.${row.index}.event_name` as Path<TForm>}
+				placeholder="Enter Name"
+			/>
+		),
+	},
+	{
+		accessorKey: 'day',
+		header: 'Day',
+		cell: ({ row }) => <DayCell control={control} name={`yearPlans.${row.index}.date` as Path<TForm>} />,
+	},
+	{
+		accessorKey: 'month',
+		header: 'Month',
+		cell: ({ row }) => <MonthCell control={control} name={`yearPlans.${row.index}.date` as Path<TForm>} />,
+	},
+	{
+		accessorKey: 'time',
+		header: 'Time',
+		cell: ({ row }) => (
+			<ControlledTimeInputField control={control} name={`yearPlans.${row.index}.time` as Path<TForm>} />
+		),
+	},
+	{
+		accessorKey: 'organized_by',
+		header: 'Organized By',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`yearPlans.${row.index}.organized_by` as Path<TForm>}
+				placeholder="Enter Name"
+			/>
+		),
+	},
+	{
+		accessorKey: 'remarks',
+		header: 'Remarks',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`yearPlans.${row.index}.remarks` as Path<TForm>}
+				placeholder="Enter remarks"
+			/>
+		),
+	},
+];
+
+const getMonthlyMeetingsColumns = <TForm extends FieldValues>(
+	control: Control<TForm>
+): ColumnDef<ParishActivitiesProps>[] => [
+	{
+		accessorKey: 'association_name',
+		header: 'Select the Association',
+		cell: ({ row }) => (
+			<SingleSelectDropdown
+				control={control}
+				name={`monthlyMeetings.${row.index}.association_name` as Path<TForm>}
+				options={associationOptions}
+			/>
+		),
+	},
+	{
+		accessorKey: 'week',
+		header: 'Week',
+		cell: ({ row }) => (
+			<SingleSelectDropdown
+				control={control}
+				name={`monthlyMeetings.${row.index}.week` as Path<TForm>}
+				options={weekOrderOptions}
+			/>
+		),
+	},
+	{
+		accessorKey: 'date',
+		header: 'Date',
+		cell: ({ row }) => (
+			<ControlledDateInputField
+				control={control}
+				name={`monthlyMeetings.${row.index}.date` as Path<TForm>}
+				placeholder="Enter date"
+			/>
+		),
+	},
+
+	{
+		accessorKey: 'day',
+		header: 'Day',
+		cell: ({ row }) => <DayCell control={control} name={`monthlyMeetings.${row.index}.date` as Path<TForm>} />,
+	},
+	{
+		accessorKey: 'month',
+		header: 'Month',
+		cell: ({ row }) => <MonthCell control={control} name={`monthlyMeetings.${row.index}.date` as Path<TForm>} />,
+	},
+	{
+		accessorKey: 'time',
+		header: 'Time',
+		cell: ({ row }) => (
+			<ControlledTimeInputField control={control} name={`monthlyMeetings.${row.index}.time` as Path<TForm>} />
+		),
+	},
+	{
+		accessorKey: 'organized_by',
+		header: 'Organized By',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`monthlyMeetings.${row.index}.organized_by` as Path<TForm>}
+				placeholder="Enter Name"
+			/>
+		),
+	},
+	{
+		accessorKey: 'remarks',
+		header: 'Remarks',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`monthlyMeetings.${row.index}.remarks` as Path<TForm>}
+				placeholder="Enter remarks"
+			/>
+		),
+	},
+];
+
+const getAnbiamMeetingsColumns = <TForm extends FieldValues>(
+	control: Control<TForm>
+): ColumnDef<ParishActivitiesProps>[] => [
+	{
+		accessorKey: 'abiam_name',
+		header: 'Select the Abiam',
+		cell: ({ row }) => (
+			<SingleSelectDropdown
+				control={control}
+				name={`anbiamMeetings.${row.index}.abiam_name` as Path<TForm>}
+				options={anbiamOptions}
+			/>
+		),
+	},
+	{
+		accessorKey: 'week',
+		header: 'Week',
+		cell: ({ row }) => (
+			<SingleSelectDropdown
+				control={control}
+				name={`anbiamMeetings.${row.index}.week` as Path<TForm>}
+				options={weekOrderOptions}
+			/>
+		),
+	},
+	{
+		accessorKey: 'date',
+		header: 'Date',
+		cell: ({ row }) => (
+			<ControlledDateInputField
+				control={control}
+				name={`anbiamMeetings.${row.index}.date` as Path<TForm>}
+				placeholder="Enter date"
+			/>
+		),
+	},
+
+	{
+		accessorKey: 'day',
+		header: 'Day',
+		cell: ({ row }) => <DayCell control={control} name={`anbiamMeetings.${row.index}.date` as Path<TForm>} />,
+	},
+	{
+		accessorKey: 'month',
+		header: 'Month',
+		cell: ({ row }) => <MonthCell control={control} name={`anbiamMeetings.${row.index}.date` as Path<TForm>} />,
+	},
+	{
+		accessorKey: 'time',
+		header: 'Time',
+		cell: ({ row }) => (
+			<ControlledTimeInputField control={control} name={`anbiamMeetings.${row.index}.time` as Path<TForm>} />
+		),
+	},
+	{
+		accessorKey: 'organized_by',
+		header: 'Organized By',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`anbiamMeetings.${row.index}.organized_by` as Path<TForm>}
+				placeholder="Enter Name"
+			/>
+		),
+	},
+	{
+		accessorKey: 'remarks',
+		header: 'Remarks',
+		cell: ({ row }) => (
+			<CustomFormInput
+				control={control}
+				name={`anbiamMeetings.${row.index}.remarks` as Path<TForm>}
+				placeholder="Enter remarks"
+			/>
+		),
+	},
+];
+
 export {
 	useFormerParishPriestColumns,
 	useSubStationColumns,
@@ -251,4 +594,9 @@ export {
 	useAnbiamScheduleTableColumns,
 	useFormsNotificationsTableColumns,
 	getPriestServiceColumns,
+	getMassTimingsColumns,
+	getFestivalsDetailsColumns,
+	getYearPlansColumns,
+	getMonthlyMeetingsColumns,
+	getAnbiamMeetingsColumns,
 };

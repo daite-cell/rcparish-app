@@ -2040,3 +2040,15 @@ export interface PriestServiceRecord {
 	from_date: string;
 	to_date: string;
 }
+
+export interface ParishActivitiesProps {
+	day?: string;
+	time?: string;
+	title?: string;
+	remarks?: string;
+	event_type?: string;
+	organized_by?: string;
+	event_name?: string;
+	association?: string;
+	week?: string;
+}

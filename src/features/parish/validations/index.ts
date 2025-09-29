@@ -50,3 +50,89 @@ export const formNotificationsFormSchema = z.object({
 });
 
 export type FormNotificationsFormType = z.infer<typeof formNotificationsFormSchema>;
+
+export const parishActivitiesFormSchema = z.object({
+	subStationName: requiredString('Sub Station Name is required'),
+	massTimings: z
+		.array(
+			z.object({
+				day: optionalString(),
+				time: optionalString(),
+				title: optionalString(),
+				remark: optionalString(),
+			})
+		)
+		.optional(),
+	festivalDetails: z
+		.array(
+			z.object({
+				event_type: optionalString(),
+				day: optionalString(),
+				time: optionalString(),
+				organized_by: optionalString(),
+				remark: optionalString(),
+			})
+		)
+		.optional(),
+	yearPlans: z
+		.array(
+			z.object({
+				event_name: optionalString(),
+				day: optionalString(),
+				time: optionalString(),
+				organized_by: optionalString(),
+				remark: optionalString(),
+			})
+		)
+		.optional(),
+	monthlyMeetings: z
+		.array(
+			z.object({
+				association_name: optionalString(),
+				week: optionalString(),
+				day: optionalString(),
+				time: optionalString(),
+				organized_by: optionalString(),
+				remark: optionalString(),
+			})
+		)
+		.optional(),
+	anbiamMeetings: z
+		.array(
+			z.object({
+				anbiam_name: optionalString(),
+				week: optionalString(),
+				day: optionalString(),
+				time: optionalString(),
+				organized_by: optionalString(),
+				remark: optionalString(),
+			})
+		)
+		.optional(),
+});
+
+export type ParishActivitiesFormType = z.infer<typeof parishActivitiesFormSchema>;
+
+export const subStationsFormFormSchema = z
+	.object({
+		hasSubStation: enumFromArray(['yes', 'no'], 'Please select Sub-Station existence'),
+		parishName: requiredString('Parish Name is required'),
+		subStationName: requiredString('Sub-Station Name is required'),
+		churchAvailability: enumFromArray(['yes', 'no'], 'Please select Church Availability'),
+		subStationChurchName: z.string().optional(),
+		subStationHistory: optionalString(),
+		catechistName: optionalString(),
+		catechistMobile: mobileValidation('Enter a valid 10-digit Mobile Number').optional(),
+		image: requiredImageSchema,
+	})
+	.superRefine((data, ctx) => {
+		if (data.churchAvailability === 'yes' && !data.subStationChurchName?.trim()) {
+			ctx.addIssue({
+				path: ['subStationChurchName'],
+				code: z.ZodIssueCode.custom,
+				message: 'Sub-station Church Name is required when Church Availability is Yes',
+			});
+		}
+	});
+
+export type SubStationsFormType = z.infer<typeof subStationsFormFormSchema>;

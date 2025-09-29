@@ -1,6 +1,6 @@
 import { HistoryForm } from '@/components';
 import { useRouteName } from '@/utils/getRouteName';
-import { FormerParishPriestForm, FormNotificationsForm } from '../../form';
+import { FormerParishPriestForm, FormNotificationsForm, ParishActivitiesForm, SubStationsForm } from '../../form';
 
 const FormsContainer = () => {
 	const type = useRouteName('type');
@@ -22,6 +22,14 @@ const FormsContainer = () => {
 		{
 			pageName: 'forms_notifications',
 			component: <FormNotificationsForm />,
+		},
+		{
+			pageName: 'parish_activities',
+			component: <ParishActivitiesForm />,
+		},
+		{
+			pageName: 'sub_stations',
+			component: <SubStationsForm />,
 		},
 	];
 	return renderForms.find((form) => form.pageName === type)?.component || <h1>forms will be added</h1>;

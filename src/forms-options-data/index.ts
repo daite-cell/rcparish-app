@@ -1136,6 +1136,39 @@ const congregationFromOptions = [
 	{ label: 'Others', value: 'Others' },
 ];
 
+const weekDayOptions = [
+	{ label: 'Sunday', value: 'Sunday' },
+	{ label: 'Monday', value: 'Monday' },
+	{ label: 'Tuesday', value: 'Tuesday' },
+	{ label: 'Wednesday', value: 'Wednesday' },
+	{ label: 'Thursday', value: 'Thursday' },
+	{ label: 'Friday', value: 'Friday' },
+	{ label: 'Saturday', value: 'Saturday' },
+];
+
+const associationOptions = [
+	{ label: 'Vincent de paul Society', value: 'S01C01' },
+	{ label: 'IJC Catechism Students', value: 'S01C02' },
+	{ label: 'JMJ Yputh Association', value: 'S01C03' },
+	{ label: 'Vivasaya Sangam', value: 'S01C04' },
+	{ label: "Woman's Group", value: 'S01C05' },
+	{ label: 'Choir Group', value: 'S01C06' },
+];
+
+const weekOrderOptions = [
+	{ label: '1st', value: '1st' },
+	{ label: '2nd', value: '2nd' },
+	{ label: '3rd', value: '3rd' },
+	{ label: '4th', value: '4th' },
+	{ label: '5th', value: '5th' },
+];
+
+const anbiamOptions = [
+	{ label: 'St Thomas Anbiam', value: 'S01A01' },
+	{ label: 'St Xavier Anbiam', value: 'S01A02' },
+	{ label: 'St Antony Anbiam', value: 'S01A03' },
+	{ label: 'St Vanathu Chinappar Anbiam', value: 'S01A04' },
+];
 export {
 	categoryOptions,
 	schoolTypeOptions,
@@ -1214,4 +1247,8 @@ export {
 	educationLevels,
 	formationStages,
 	congregationFromOptions,
+	weekDayOptions,
+	associationOptions,
+	weekOrderOptions,
+	anbiamOptions,
 };
