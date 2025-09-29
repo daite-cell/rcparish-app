@@ -612,7 +612,7 @@ export interface MarriageRegisterMemberType {
 }
 
 export interface MarriageProposalMemberType {
-	id: number;
+	id?: number;
 	person_name: string;
 	gender: string;
 	father_name: string;
@@ -676,7 +676,7 @@ export interface DeathRegisterMemberType {
 }
 
 export interface DeathRegisterMemberAsParishType {
-	id: number;
+	id?: number;
 	member_name: string;
 	unique_member_id: string;
 	father_name: string;

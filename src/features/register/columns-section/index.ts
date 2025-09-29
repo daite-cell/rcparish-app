@@ -2,6 +2,7 @@ import type {
 	BaptismMemberType,
 	ChronicleMemberProps,
 	ConfirmationRegisteredMemberType,
+	DeathRegisterMemberAsParishType,
 	HolyCommunionMemberType,
 	MarriageProposalMemberType,
 	MarriageProposalTableTwoRecordProps,
@@ -416,6 +417,51 @@ export const getMarriageProposalTableTwoSectionData = (
 				heading: '',
 				data: {
 					whether_received_necessary_sacraments: (row as MarriageProposalTableTwoRecordProps).received || '',
+				},
+			},
+		],
+	},
+];
+
+export const getDeathRegisterInParishSectionData = (row: DeathRegisterMemberAsParishType) => [
+	{
+		col: 1,
+		sections: [
+			{
+				heading: '',
+				data: {
+					active_ness: 'In-Active',
+					unique_member_id: row.unique_member_id || '',
+					parents_name: `${row.father_name || ''} & ${row.mother_name || ''}`,
+					place: row.birth_place || '',
+				},
+			},
+		],
+	},
+	{
+		col: 2,
+		sections: [
+			{
+				heading: '',
+				data: {
+					birth_date: row.birth_date || '',
+					birth_place: row.birth_place || '',
+					died_on: row.died_on || '',
+					died_at: row.died_at || '',
+					funeral_on: row.funeral_date || '',
+				},
+			},
+		],
+	},
+	{
+		col: 3,
+		sections: [
+			{
+				heading: '',
+				data: {
+					buried_at: row.cemetery || '',
+					minister: row.minister || '',
+					remarks: row.remarks || '',
 				},
 			},
 		],

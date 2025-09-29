@@ -6,6 +6,7 @@ import {
 	getBaptismSectionData,
 	getChroniclesSectionData,
 	getConfirmationsData,
+	getDeathRegisterInParishSectionData,
 	getHolyCommunionData,
 	getMarriageProposalTableTwoSectionData,
 	getMarriageRegistrationInDetailsSectionData,
@@ -15,6 +16,7 @@ import type {
 	BaptismMemberType,
 	ChronicleMemberProps,
 	ConfirmationRegisteredMemberType,
+	DeathRegisterMemberAsParishType,
 	HolyCommunionMemberType,
 	MarriageProposalMemberType,
 	MarriageProposalTableTwoRecordProps,
@@ -55,6 +57,11 @@ const GenericRegisterPeopleDetailsContainer = () => {
 				return getMarriageProposalTableTwoSectionData(
 					selectRow as MarriageProposalMemberType | MarriageProposalTableTwoRecordProps
 				);
+
+			case 'death_register':
+				if (table_key === 'table_1') return [];
+
+				return getDeathRegisterInParishSectionData(selectRow as DeathRegisterMemberAsParishType);
 
 			default:
 				return [];

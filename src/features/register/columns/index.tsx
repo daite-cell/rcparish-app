@@ -73,7 +73,7 @@ const useChronicleMemberColumns = (): ColumnDef<ChronicleMemberProps>[] => {
 			accessorKey: 'attached_document',
 			header: 'Attached Document',
 			cell: ({ row }) => (
-				<a target="_blank" id="view_attached_document" href={row.original.attached_document}>
+				<a rel="noopener noreferrer" target="_blank" id="view_attached_document" href={row.original.attached_document}>
 					view
 				</a>
 			),
