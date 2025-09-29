@@ -53,6 +53,7 @@ export type FormNotificationsFormType = z.infer<typeof formNotificationsFormSche
 
 export const parishActivitiesFormSchema = z.object({
 	subStationName: requiredString('Sub Station Name is required'),
+
 	massTimings: z
 		.array(
 			z.object({
@@ -63,10 +64,12 @@ export const parishActivitiesFormSchema = z.object({
 			})
 		)
 		.optional(),
+
 	festivalDetails: z
 		.array(
 			z.object({
 				event_type: optionalString(),
+				date: optionalString(),
 				day: optionalString(),
 				time: optionalString(),
 				organized_by: optionalString(),
@@ -74,9 +77,11 @@ export const parishActivitiesFormSchema = z.object({
 			})
 		)
 		.optional(),
+
 	yearPlans: z
 		.array(
 			z.object({
+				date: optionalString(),
 				event_name: optionalString(),
 				day: optionalString(),
 				time: optionalString(),
@@ -85,6 +90,7 @@ export const parishActivitiesFormSchema = z.object({
 			})
 		)
 		.optional(),
+
 	monthlyMeetings: z
 		.array(
 			z.object({
@@ -97,6 +103,7 @@ export const parishActivitiesFormSchema = z.object({
 			})
 		)
 		.optional(),
+
 	anbiamMeetings: z
 		.array(
 			z.object({
@@ -113,19 +120,44 @@ export const parishActivitiesFormSchema = z.object({
 
 export type ParishActivitiesFormType = z.infer<typeof parishActivitiesFormSchema>;
 
-export const subStationsFormFormSchema = z
+export const subStationsFormSchema = z
 	.object({
 		hasSubStation: enumFromArray(['yes', 'no'], 'Please select Sub-Station existence'),
 		parishName: requiredString('Parish Name is required'),
-		subStationName: requiredString('Sub-Station Name is required'),
-		churchAvailability: enumFromArray(['yes', 'no'], 'Please select Church Availability'),
+
+		subStationName: optionalString(),
+		churchAvailability: enumFromArray(['yes', 'no'], 'Please select Church Availability').optional(),
 		subStationChurchName: z.string().optional(),
 		subStationHistory: optionalString(),
 		catechistName: optionalString(),
 		catechistMobile: mobileValidation('Enter a valid 10-digit Mobile Number').optional(),
-		image: requiredImageSchema,
+		image: requiredImageSchema.optional(),
 	})
 	.superRefine((data, ctx) => {
+		if (data.hasSubStation === 'yes') {
+			if (!data.subStationName?.trim()) {
+				ctx.addIssue({
+					path: ['subStationName'],
+					code: z.ZodIssueCode.custom,
+					message: 'Sub-Station Name is required',
+				});
+			}
+			if (!data.churchAvailability) {
+				ctx.addIssue({
+					path: ['churchAvailability'],
+					code: z.ZodIssueCode.custom,
+					message: 'Please select Church Availability',
+				});
+			}
+			if (!data.image) {
+				ctx.addIssue({
+					path: ['image'],
+					code: z.ZodIssueCode.custom,
+					message: 'Image is required',
+				});
+			}
+		}
+
 		if (data.churchAvailability === 'yes' && !data.subStationChurchName?.trim()) {
 			ctx.addIssue({
 				path: ['subStationChurchName'],
@@ -135,4 +167,4 @@ export const subStationsFormFormSchema = z
 		}
 	});
 
-export type SubStationsFormType = z.infer<typeof subStationsFormFormSchema>;
+export type SubStationsFormType = z.infer<typeof subStationsFormSchema>;

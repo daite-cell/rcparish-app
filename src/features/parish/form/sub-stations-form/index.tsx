@@ -1,7 +1,7 @@
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormButton, CustomFormInput, ControlledRadioGroup, ControlledFileUpload } from '@/components';
-import { subStationsFormFormSchema, type SubStationsFormType } from '../../validations';
+import { subStationsFormSchema, type SubStationsFormType } from '../../validations';
 
 const SubStationsForm = () => {
 	const {
@@ -9,7 +9,7 @@ const SubStationsForm = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<SubStationsFormType>({
-		resolver: zodResolver(subStationsFormFormSchema),
+		resolver: zodResolver(subStationsFormSchema),
 		defaultValues: {
 			hasSubStation: '',
 			parishName: '',
