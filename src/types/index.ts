@@ -1939,3 +1939,116 @@ export interface PaymentHistoryTableProps {
 	paid_for: string;
 	voucher_number: string;
 }
+
+export interface FormerParishPriestTableProps {
+	priest_id: string;
+	type: string;
+	congregation: string;
+	congregation_other: string;
+	priest_name: string;
+	living_status: string;
+	living_status_content: string;
+	service_as: string;
+	service_as_content: string;
+	from_date: string;
+	to_date: string;
+	mobile_no_1: string;
+	death_date: string;
+	image: string;
+}
+export interface SubStationType {
+	sub_station_name: string;
+	sub_station_id: string;
+	church_availability: string;
+	church_name: string;
+	history: string;
+	catist_name: string;
+	catist_mobile_no: string;
+	image: string;
+}
+
+export interface MassTimingsTableProps {
+	parish: string;
+	sub_station_name: string;
+	sub_station_id: string;
+	day: string;
+	timing: string;
+	title: string;
+	remarks: string;
+}
+
+export interface FestivalDetailsTableProps {
+	sub_station_name: string;
+	sub_station_id: string;
+	event: string;
+	date: string;
+	day: string;
+	month: string;
+	timing: string;
+	organised_by: string;
+	remarks: string;
+}
+
+export interface MonthlyMeetingTableProps {
+	sub_station_name: string;
+	sub_station_id: string;
+	association_name: string;
+	association_id: string;
+	week: string;
+	date: string;
+	day: string;
+	month: string;
+	organised_by: string;
+	remarks: string;
+}
+
+export interface AnbiamScheduleTableProps {
+	sub_station_name: string;
+	sub_station_id: string;
+	anbiam_name: string;
+	anbiam_id: string;
+	week: string;
+	date: string;
+	day: string;
+	month: string;
+	organised_by: string;
+	remarks: string;
+}
+export interface FormsNotificationsTableProps {
+	title: string;
+	pdf: string;
+}
+
+export interface PresentParishPriest {
+	priest_id: string;
+	priest_name: string;
+	ordination_date: string;
+	birth_date: string;
+	mobile_no_1: string;
+	mobile_no_2?: string;
+	mail_id: string;
+	address: string;
+	image?: string;
+	in_charge_taken_from: string;
+}
+
+export interface PriestServiceRecord {
+	priest_id: string;
+	service_as_content: string;
+	parish_place_name: string;
+	church_name: string;
+	from_date: string;
+	to_date: string;
+}
+
+export interface ParishActivitiesProps {
+	day?: string;
+	time?: string;
+	title?: string;
+	remarks?: string;
+	event_type?: string;
+	organized_by?: string;
+	event_name?: string;
+	association?: string;
+	week?: string;
+}

@@ -1,0 +1,14 @@
+{
+	"sub_stations_list": [
+		{
+			"sub_station_name": "Kodaiyanchi Parish",
+			"sub_station_id": "S01",
+			"church_availability": "yes",
+			"church_name": "St. Francis Xavier Church",
+			"history": "",
+			"catist_name": "",
+			"catist_mobile_no": "",
+			"image": ""
+		}
+	]
+}
