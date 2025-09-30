@@ -1,0 +1,72 @@
+{
+	"priest_list": {
+		"priest_id": "VDP0142",
+		"priest_name": "Fr. Sekar V",
+		"ordination_date": "2018-04-24",
+		"birth_date": "1989-03-13",
+		"mobile_no_1": "6382754098",
+		"mobile_no_2": "",
+		"mail_id": "sekar.rema@gmail.com",
+		"address": "96/4, NEW CONOLY, KATHIAVADI, AVILAM, VELLORE 632509",
+		"image": ""
+	},
+	"in_charge_from": "2025-07-15",
+	"service_record": [
+		{
+			"priest_id": "VDP0142",
+			"service_as_content": "Parish Priest",
+			"parish_place_name": "Kodaiyanchi Parish",
+			"church_name": "St. Francis Xavier Church",
+			"from_date": "2025-07-15",
+			"to_date": "Till Now"
+		},
+		{
+			"priest_id": "VDP0142",
+			"service_as_content": "Asst.Parish Priest",
+			"parish_place_name": "Arakkonam Parish",
+			"church_name": "Sacred Heart Church",
+			"from_date": "2024-06-01",
+			"to_date": "2025-05-31"
+		},
+		{
+			"priest_id": "VDP0142",
+			"service_as_content": "Asst.Parish Priest",
+			"parish_place_name": "Thachambady Parish",
+			"church_name": "Our Lady of Fatima Church",
+			"from_date": "2022-06-01",
+			"to_date": "2023-05-31"
+		},
+		{
+			"priest_id": "VDP0142",
+			"service_as_content": "Asst.Parish Priest",
+			"parish_place_name": "Chetpet Parish",
+			"church_name": "Our Lady of Lourdes Church",
+			"from_date": "2021-06-01",
+			"to_date": "2022-05-31"
+		},
+		{
+			"priest_id": "VDP0142",
+			"service_as_content": "Asst.Parish Priest",
+			"parish_place_name": "Pathiavaram Parish",
+			"church_name": "St. Anne Church",
+			"from_date": "2020-06-01",
+			"to_date": "2021-05-31"
+		},
+		{
+			"priest_id": "VDP0142",
+			"service_as_content": "Asst.Parish Priest",
+			"parish_place_name": "Thiruvettipuram Parish (Cheyyar)",
+			"church_name": "Our Lady of Dolours Church",
+			"from_date": "2019-06-01",
+			"to_date": "2020-05-31"
+		},
+		{
+			"priest_id": "VDP0142",
+			"service_as_content": "Asst.Parish Priest",
+			"parish_place_name": "Vettavalam Parish",
+			"church_name": "Immaculate Heart of Mary Church",
+			"from_date": "2018-05-28",
+			"to_date": "2019-05-31"
+		}
+	]
+}

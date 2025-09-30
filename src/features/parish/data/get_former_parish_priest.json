@@ -1,0 +1,37 @@
+{
+	"former_parish_priest_list": [
+		{
+			"priest_id": "VDP0007",
+			"type": "Diocese",
+			"congregation": "",
+			"congregation_other": "",
+			"priest_name": "Fr. Amalraj D",
+			"living_status": "0",
+			"living_status_content": "Alive",
+			"service_as": "26",
+			"service_as_content": "Parish Priest",
+			"from_date": "2016-06-06",
+			"to_date": "2018-05-09",
+			"mobile_no_1": "9600868438",
+			"death_date": "-",
+			"image": ""
+		},
+		{
+			"priest_id": "VDP0088",
+			"type": "Diocese",
+			"congregation": "",
+			"congregation_other": "",
+			"priest_name": "Fr. Edward A",
+			"living_status": "0",
+			"living_status_content": "Alive",
+			"service_as": "26",
+			"service_as_content": "Parish Priest",
+			"from_date": "2009-06-01",
+			"to_date": "2016-06-02",
+			"mobile_no_1": "9600391303",
+			"death_date": "-",
+			"image": ""
+		}
+	],
+	"new_former_parish_priest_list": []
+}
