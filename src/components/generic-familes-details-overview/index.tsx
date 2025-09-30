@@ -4,11 +4,9 @@ import YearSelectionForm from '../year-selection-form';
 import { MemberOverviewLayout } from '@/layouts';
 import DisplayUserName from '../display-user-name';
 import DisplayInfoRowContainer from '../display-info-rows-container';
-import InfoHeadingTitle from '../info-heading-title';
 import DynamicDataTable from '../dynamic-table';
-import PDFExporter from '../pdf-exporter';
 import type { FamilyDataProps } from '@/types';
-import { generateColumnsFromData } from '@/utils/generateColumnsFromData';
+import { getFamilyMembersColumns, getRegisterDetailsTableColumns } from '@/features/pious-group/columns';
 type GenericMemberOverviewProps = {
 	userName?: string;
 	heading?: string;
@@ -25,22 +23,9 @@ const FamilyCard = lazy(() => import('../../features/pious-group/components/fami
 
 const GenericFamilesDetailsOverview = ({ sectionData, userName }: GenericMemberOverviewProps) => {
 	const [yearType, setYearType] = useState<string>('current_year');
+	const { routeParams } = useStore();
 
 	const selectFamilyCardRow = useStore((state) => state.selectFamilyCardRow) as FamilyDataProps;
-
-	const family_member_table_data = [
-		{
-			member_id: 'TH022M01',
-			active_ness: 'Active',
-			member: 'Israel',
-			relation: 'Father/Husband',
-			gender: 'Male',
-		},
-	];
-
-	const columns = generateColumnsFromData(family_member_table_data);
-
-	const tableId = 'family-members';
 
 	return (
 		<>
@@ -71,23 +56,27 @@ const GenericFamilesDetailsOverview = ({ sectionData, userName }: GenericMemberO
 								</div>
 							))}
 						</div>
-						<InfoHeadingTitle title="FAMILY MEMBERS" />
-						<DynamicDataTable data={family_member_table_data} isDynamic={false} tableId="family-members" />
-						<div className="flex justify-end float-end w-[120px] ">
-							<Suspense fallback={<div>Loading...</div>}>
-								<PDFExporter
-									className={
-										'text-[#d7c49e] self-end bg-[#343148] text-[12px] !text-center border-none h-7 w-[90px] my-5 mr-2 px-4  transition duration-500 rounded-none font-normal hover:text-[#343148] hover:bg-[#d7c49e] hover:cursor-pointer'
-									}
-									columns={columns}
-									data={family_member_table_data}
-									tableId={tableId}
-									label="Download PDF"
-								/>
-							</Suspense>
-						</div>
+						<DynamicDataTable
+							title="Family Members"
+							customColumns={getFamilyMembersColumns}
+							data={[]}
+							isDynamic={false}
+							tableId="family-members"
+							enablePagination={false}
+							enableSearch={false}
+						/>
+						<DynamicDataTable
+							title="REGISTER DETAILS"
+							customColumns={getRegisterDetailsTableColumns}
+							data={[]}
+							isDynamic={false}
+							tableId="register-details"
+							enablePagination={false}
+							enableSearch={false}
+						/>
 					</div>
 				)}
+				{routeParams && <FamilyCard />}
 			</MemberOverviewLayout>
 		</>
 	);

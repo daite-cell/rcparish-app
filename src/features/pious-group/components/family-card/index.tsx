@@ -1,10 +1,11 @@
 import { toTitleCaseFromSnake } from '@/utils/toTitleCaseFromSnake';
 import InfoRow from '../../../../components/info-row';
 import HeadingWithUnderline from '../../../../components/heading-with-underline';
-import DynamicDataTable from '../../../../components/dynamic-table';
 import FormButton from '../../../../components/form-button';
 import get_families_details from '../../data/get_families_details.json';
 import { familyMemberDetailsTableOneColumns, familyMemberDetailsTableTwoColumns } from '../../columns';
+import DynamicBasicTable, { type TableRow } from '@/components/dynamic-basic-table';
+import type { ColumnDef } from '@tanstack/react-table';
 const FamilyCard = () => {
 	const familyDetails = get_families_details.families;
 	const familyIncome = get_families_details.family_income ?? 0;
@@ -90,16 +91,11 @@ const FamilyCard = () => {
 
 				<div>
 					<HeadingWithUnderline text="Family Members Details" className="text-xs" />
-					<DynamicDataTable
+					<DynamicBasicTable
 						data={family_members}
-						customColumns={familyMemberDetailsTableOneColumns}
-						isDynamic={false}
+						columns={familyMemberDetailsTableOneColumns as ColumnDef<TableRow>[]}
 					/>
-					<DynamicDataTable
-						data={family_members}
-						customColumns={familyMemberDetailsTableTwoColumns}
-						isDynamic={false}
-					/>
+					<DynamicBasicTable data={[]} columns={familyMemberDetailsTableTwoColumns as ColumnDef<TableRow>[]} />
 				</div>
 
 				<div className="flex flex-col md:flex-row justify-between mt-6">

@@ -24,6 +24,8 @@ const RenderDioceseOverviewContainer = memo(() => {
 	const selectRow = useStore((state) => state.selectRow);
 	const editRow = useStore((state) => state.editRow);
 
+	console.warn('Edit Row Data in RenderDioceseOverviewContainer:', selectRow);
+
 	const havingProfileTab =
 		type === 'commissions' || type === 'committees'
 			? [{ label: 'edit' }, { label: 'back' }]

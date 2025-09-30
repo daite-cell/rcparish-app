@@ -7,6 +7,7 @@ import type { PriestDetailsProps, PriestReligiousProps } from '@/types';
 
 import { PriestsForm } from '../../forms';
 import { extractUserName } from '@/utils/extractUserName';
+import get_priest_list from '../../data/get_priest_list.json';
 
 const RenderPriestOverviewContainer = memo(() => {
 	const { selectPriestsRow, selectRow, selectPathId, editPriestsRow, editRow } = useStore();
@@ -25,6 +26,8 @@ const RenderPriestOverviewContainer = memo(() => {
 					showImage={true}
 					userName={selectPriestsRow ? userNameReligious : userName}
 					sectionData={selectPriestsRow ? priestsReligiousSectionData : priestsSectionData}
+					enableRecordTable={true}
+					recordsData={get_priest_list}
 				/>
 			),
 			form: <PriestsForm />,
