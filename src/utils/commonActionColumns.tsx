@@ -3,7 +3,7 @@ import { Settings, SquarePen } from 'lucide-react';
 import { TableDetailsEditButton, TableDetailsViewButton } from '@/components';
 
 export const getCommonActionColumns = <T,>(
-	handleSelectRow: (row: T) => void,
+	handleSelectRow?: (row: T, meta?: { table_key?: string }) => void,
 	handleEditRow?: (row: T) => void,
 	tableKey?: string
 ): ColumnDef<T>[] => [
@@ -28,7 +28,7 @@ export const getCommonActionColumns = <T,>(
 			handleEditRow ? (
 				<TableDetailsEditButton
 					onClick={() => {
-						handleSelectRow(row.original);
+						handleSelectRow?.(row.original);
 						handleEditRow(row.original);
 					}}
 				/>
@@ -43,7 +43,7 @@ export const getCommonActionColumns = <T,>(
 		id: 'view',
 		header: 'Details',
 		cell: ({ row }: CellContext<T, unknown>) => (
-			<TableDetailsViewButton onClick={() => handleSelectRow({ ...row.original, table_key: tableKey })} />
+			<TableDetailsViewButton onClick={() => handleSelectRow?.(row.original, { table_key: tableKey })} />
 		),
 		enableSorting: false,
 		meta: { isExportable: false },

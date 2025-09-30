@@ -1,0 +1,80 @@
+{
+    "mass_timings_list": [
+        {
+            "parish": "V04P03",
+            "sub_station_name": "Kodaiyanchi Parish",
+            "sub_station_id": "S01",
+            "day": "Sunday",
+            "timing": "07:00",
+            "title": "Sunday Mass",
+            "remarks": "Only One Mass in Sundays"
+        },
+        {
+            "parish": "V04P03",
+            "sub_station_name": "Kodaiyanchi Parish",
+            "sub_station_id": "S01",
+            "day": "Monday",
+            "timing": "06:30",
+            "title": "Morning Mass",
+            "remarks": ""
+        },
+        {
+            "parish": "V04P03",
+            "sub_station_name": "Kodaiyanchi Parish",
+            "sub_station_id": "S01",
+            "day": "Tuesday",
+            "timing": "19:00",
+            "title": "Evening Mass",
+            "remarks": ""
+        },
+        {
+            "parish": "V04P03",
+            "sub_station_name": "Kodaiyanchi Parish",
+            "sub_station_id": "S01",
+            "day": "Wednesday",
+            "timing": "06:30",
+            "title": "Morning Mass",
+            "remarks": ""
+        },
+        {
+            "parish": "V04P03",
+            "sub_station_name": "Kodaiyanchi Parish",
+            "sub_station_id": "S01",
+            "day": "Thursday",
+            "timing": "19:00",
+            "title": "Evening Mass",
+            "remarks": ""
+        },
+        {
+            "parish": "V04P03",
+            "sub_station_name": "Kodaiyanchi Parish",
+            "sub_station_id": "S01",
+            "day": "Friday",
+            "timing": "06:30",
+            "title": "Morning Mass",
+            "remarks": ""
+        },
+        {
+            "parish": "V04P03",
+            "sub_station_name": "Kodaiyanchi Parish",
+            "sub_station_id": "S01",
+            "day": "Friday",
+            "timing": "19:00",
+            "title": "Mass & Adarations",
+            "remarks": "in First Friday of the Month"
+        },
+        {
+            "parish": "V04P03",
+            "sub_station_name": "Kodaiyanchi Parish",
+            "sub_station_id": "S01",
+            "day": "Saturday",
+            "timing": "19:00",
+            "title": "Evening Mass",
+            "remarks": ""
+        }
+    ],
+    "festival_details_list": [],
+    "year_plan_list": [],
+    "monthly_meetings_list": [],
+    "anbiam_meetings_list": []
+}

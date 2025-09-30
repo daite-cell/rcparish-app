@@ -1,49 +1,68 @@
-import { DisplayImage, DynamicDataTable, HistoryForm, TabsLayout } from '@/components';
+import { DisplayImage, TabsLayout } from '@/components';
 import { side_nav_links } from '@/data/side-navbar-content';
 import { getSectionByPathName } from '@/utils/getSectionByPathName';
 import { useRouteName } from '@/utils/getRouteName';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import type { NavLinkProps } from '@/types';
+import {
+	FormsContainer,
+	PresentParishDetails,
+	RenderParishMemberOverviewContainer,
+	RenderParishTablesContainer,
+} from '../../components';
+import { useStore } from '@/store/store';
 
 const ParishGenericPage = () => {
 	const location = useLocation();
 	const pathName = useRouteName('type');
 	const [activeIndex, setActiveIndex] = useState(0);
-	const handleToggleTab = (index: number) => {
-		setActiveIndex(index);
-	};
+	const { selectRow, editRow } = useStore();
 
 	const linksData = getSectionByPathName(side_nav_links, location.pathname);
 	const tabsData = linksData?.page_nav_links.find((link: NavLinkProps) => link.path_url === location.pathname)?.tabs;
 
+	const defaultTabs = useMemo(() => [{ label: 'view' }, { label: 'add' }], []);
+	const tabs = tabsData ?? defaultTabs;
+
+	useEffect(() => {
+		if (!tabsData) {
+			setActiveIndex(0);
+			return;
+		}
+		const viewIndex = tabsData.findIndex((tab) => tab.label?.toLowerCase() === 'view');
+		setActiveIndex(viewIndex !== -1 ? viewIndex : 0);
+	}, [tabsData]);
+
+	if (pathName === 'present_parish_priest') return <PresentParishDetails />;
+
+	if (selectRow || editRow) return <RenderParishMemberOverviewContainer />;
+
+	const renderTabContent = (label: string | undefined) => {
+		switch (label?.toLowerCase()) {
+			case 'view':
+				if (pathName === 'parish_history' || pathName === 'patron_saint') {
+					return <DisplayImage image="" />;
+				}
+				return <RenderParishTablesContainer />;
+
+			case 'add':
+				return <FormsContainer />;
+
+			default:
+				return null;
+		}
+	};
+
 	return (
-		<>
-			<TabsLayout
-				onTabChange={handleToggleTab}
-				activeTabId={activeIndex}
-				tabs={tabsData || [{ label: 'view' }, { label: 'add' }]}
-			>
-				<div className="">
-					{['parish_history', 'patron_saint'].includes(pathName as string) && (
-						<>{activeIndex == 0 ? <DisplayImage image="" /> : <HistoryForm />} </>
-					)}
-				</div>
-				<div className="">
-					{['former_parish_priest', 'sub_stations'].includes(pathName as string) && (
-						<>
-							{activeIndex == 0 ? (
-								<DynamicDataTable
-									tableId={pathName === 'former_parish_priest' ? 'former_parish_priest' : 'sub_stations'}
-								/>
-							) : (
-								<h1>table</h1>
-							)}
-						</>
-					)}
-				</div>
-			</TabsLayout>
-		</>
+		<TabsLayout
+			hasPageHeading={tabs[activeIndex]?.label?.toLowerCase() === 'view'}
+			tabs={tabs}
+			onTabChange={setActiveIndex}
+			activeTabId={activeIndex}
+		>
+			{renderTabContent(tabs[activeIndex]?.label)}
+		</TabsLayout>
 	);
 };
 
