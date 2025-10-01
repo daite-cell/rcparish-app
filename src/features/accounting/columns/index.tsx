@@ -211,16 +211,6 @@ const useRentPropertyColumns = (tableKey: string): ColumnDef<RentPropertyProps>[
 			enableHiding: true,
 		},
 
-		{
-			header: 'Payment History',
-			cell: ({ row }: CellContext<RentPropertyProps, unknown>) => (
-				<Folder className="w-4 h-4" onClick={() => handleSelectPriorRow(row.original)} />
-			),
-			enableSorting: false,
-			meta: { isExportable: false },
-			enableHiding: true,
-		},
-
 		{ accessorKey: 'render_name', header: 'Render Name' },
 		{ accessorKey: 'mobile_no', header: 'Mobile Number' },
 

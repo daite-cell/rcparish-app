@@ -7,6 +7,7 @@ export { default as AssociationDetailsTable } from './association-details-table'
 export { default as AssociationInchargeDetails } from './association-Incharge-details';
 export { default as GenericPeopleDetailOverviewContainer } from './generic-people-detail-overview-container';
 export { default as FamilyCard } from './family-card';
+export { default as FamilyCardContainer } from './family-card-container';
 export { default as FamilyMembersInfoWithTable } from './family-members-info-with-table';
 export { default as AnbiamInChargeDetails } from './anbiam-incharge-details';
 export { default as RenderAccountingPiousOverView } from './render-accounting-pious-overview';

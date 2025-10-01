@@ -37,6 +37,7 @@ const AccountingPiousGroupPage = () => {
 	if (selectRow || selectAccountingNameRow || editRow || selectFamilyCardRow || routeParams) {
 		return <RenderAccountingPiousOverView />;
 	}
+
 	return (
 		<TabsLayout tabs={tabs} onTabChange={setActiveIndex} activeTabId={activeIndex}>
 			{activeLabel === 'view' ? (

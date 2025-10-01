@@ -1,13 +1,13 @@
 import React from 'react';
-import { useReactTable, getCoreRowModel, type ColumnDef, flexRender } from '@tanstack/react-table';
+import { useReactTable, getCoreRowModel, type ColumnDef, flexRender, type RowData } from '@tanstack/react-table';
 
 export interface TableRow {
 	[key: string]: string | number;
 }
 
-interface DynamicBasicProps {
-	columns: ColumnDef<TableRow>[];
-	data: TableRow[];
+interface DynamicBasicProps<TData extends RowData = TableRow> {
+	columns: ColumnDef<TData>[];
+	data: TData[];
 }
 
 const DynamicBasicTable: React.FC<DynamicBasicProps> = ({ columns, data }) => {

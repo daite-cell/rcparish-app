@@ -7,9 +7,6 @@ import { useRef } from 'react';
 interface PropertyRentHistoryTableProps<TData extends object> {
 	data?: TData[];
 	customColumns?: ColumnDef<TData, string | number | boolean>[];
-	enableHeading?: boolean;
-	enableCloseButton?: boolean;
-	useTabsLayout?: boolean;
 	headingText?: string;
 }
 

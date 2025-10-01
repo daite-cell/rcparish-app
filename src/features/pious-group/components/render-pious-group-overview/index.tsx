@@ -1,8 +1,7 @@
-import { GenericFamilesDetailsOverview } from '@/components';
 import OverviewTabsLayout from '@/layouts/overview-tabs-layout';
 import CouncilMemberDetailsContainer from '../generic-religious-people-details-container';
 import GenericMembersInFamilesOverviewContainer from '../generic-members-in-familes-overview-container';
-import { memo } from 'react';
+import { lazy, memo, Suspense } from 'react';
 import { useStore } from '@/store/store';
 import {
 	AnbiamInchargeForm,
@@ -19,24 +18,26 @@ import GenericPeopleDetailOverviewContainer from '../generic-people-detail-overv
 import { getFamilesMembersSectionData } from '../../columns-sections';
 import type { FamilyDataProps } from '@/types';
 import { extractUserName } from '@/utils/extractUserName';
+import FamilyCardContainer from '../family-card-container';
+
+const GenericFamilesDetailsOverview = lazy(() => import('@/components/generic-familes-details-overview'));
 
 const RenderPiousGroupOverviewContainer = memo(({ pathName }: { pathName: string | number | undefined }) => {
 	const { selectRow, selectFamilyCardRow, editRow } = useStore();
-
-	const familyRow: FamilyDataProps | undefined =
-		(selectFamilyCardRow as FamilyDataProps | undefined) ?? (selectRow as FamilyDataProps | undefined);
 
 	const tabs = [{ label: 'profile' }, { label: 'edit' }, { label: 'back' }];
 	const rowData = selectFamilyCardRow || selectRow;
 	const componentMap = {
 		families: {
-			view: familyRow ? (
+			view: selectFamilyCardRow ? (
+				<Suspense fallback={<div>Loading...</div>}>
+					<FamilyCardContainer />
+				</Suspense>
+			) : (
 				<GenericFamilesDetailsOverview
 					userName={extractUserName(rowData as Record<string, unknown>)}
-					sectionData={getFamilesMembersSectionData(familyRow)}
+					sectionData={getFamilesMembersSectionData(selectRow as FamilyDataProps)}
 				/>
-			) : (
-				<div className="p-4 text-gray-500">Select a family to view details</div>
 			),
 			form: <FamiliesForm />,
 		},
