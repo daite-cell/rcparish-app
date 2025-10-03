@@ -1,18 +1,15 @@
 const TodayDate = () => {
 	const today = new Date();
 
-	if (!today) {
-		throw new Error('Failed to create date object');
+	if (isNaN(today.getTime())) {
+		console.error('Invalid date object');
+		return null;
 	}
 
 	const month = today.toLocaleString('en-US', { month: 'long' });
 	const day = today.getDate();
 	const weekday = today.toLocaleString('en-US', { weekday: 'long' });
 	const year = today.getFullYear();
-
-	if (!month || !day || !weekday || !year) {
-		throw new Error('Failed to get date parts');
-	}
 
 	const formattedDate = `${month} ${day}, ${weekday}, ${year}`;
 

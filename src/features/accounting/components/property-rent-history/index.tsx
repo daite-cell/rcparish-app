@@ -27,7 +27,7 @@ const PropertyRentHistoryTable = <TData extends object>({
 				<h1 className="hidden text-4xl font-bold print:block">{headingText}</h1>
 				<DynamicDataTable
 					data={data}
-					tableId="prior-dignitaries"
+					tableId="property-rent-history"
 					customColumns={customColumns || []}
 					enablePagination={false}
 					enableSearch={false}

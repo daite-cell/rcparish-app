@@ -65,7 +65,6 @@ const DioceseGenericPage = () => {
 	if (selectRow || editRow) return <RenderDioceseOverviewContainer />;
 
 	const priestsSectionData = getPriestsSectionData(priestData as PriestDetailsProps);
-	console.warn(selectRow);
 
 	const renderTabContent = (label: string | undefined) => {
 		switch (label?.toLowerCase()) {

@@ -7,8 +7,8 @@ import HeadingWithUnderline from '../../../../components/heading-with-underline'
 import FormButton from '../../../../components/form-button';
 import get_families_details from '../../data/get_families_details.json';
 import { familyMemberDetailsTableOneColumns, familyMemberDetailsTableTwoColumns } from '../../columns';
-import { type TableRow } from '@/components/dynamic-basic-table';
 import type { ColumnDef } from '@tanstack/react-table';
+
 const DynamicBasicTable = lazy(() => import('@/components/dynamic-basic-table'));
 
 const FamilyCard = ({ year }: { year?: string }) => {
@@ -73,32 +73,36 @@ const FamilyCard = ({ year }: { year?: string }) => {
 	const handleDownloadPdf = async () => {
 		if (!receiptRef.current) return;
 
-		const canvas = await html2canvas(receiptRef.current, {
-			scale: 2,
-			useCORS: true,
-			allowTaint: true,
-		});
+		try {
+			const canvas = await html2canvas(receiptRef.current, {
+				scale: 2,
+				useCORS: true,
+				allowTaint: true,
+			});
 
-		const imgData = canvas.toDataURL('image/png');
+			const imgData = canvas.toDataURL('image/png');
 
-		const pdf = new jsPDF('p', 'mm', 'a4');
-		const pdfWidth = pdf.internal.pageSize.getWidth();
-		const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+			const pdf = new jsPDF('p', 'mm', 'a4');
+			const pdfWidth = pdf.internal.pageSize.getWidth();
+			const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
 
-		let position = 0;
-		if (pdfHeight < pdf.internal.pageSize.getHeight()) {
-			pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-		} else {
-			let heightLeft = pdfHeight;
-			while (heightLeft > 0) {
-				pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
-				heightLeft -= pdf.internal.pageSize.getHeight();
-				position -= pdf.internal.pageSize.getHeight();
-				if (heightLeft > 0) pdf.addPage();
+			let position = 0;
+			if (pdfHeight < pdf.internal.pageSize.getHeight()) {
+				pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+			} else {
+				let heightLeft = pdfHeight;
+				while (heightLeft > 0) {
+					pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
+					heightLeft -= pdf.internal.pageSize.getHeight();
+					position -= pdf.internal.pageSize.getHeight();
+					if (heightLeft > 0) pdf.addPage();
+				}
 			}
-		}
 
-		pdf.save('family_card.pdf');
+			pdf.save('family_card.pdf');
+		} catch (error) {
+			console.error('Failed to generate PDF:', error);
+		}
 	};
 
 	return (
@@ -134,13 +138,13 @@ const FamilyCard = ({ year }: { year?: string }) => {
 					<Suspense fallback={<div>Loading table...</div>}>
 						<DynamicBasicTable
 							data={family_members}
-							columns={familyMemberDetailsTableOneColumns as ColumnDef<TableRow>[]}
+							columns={familyMemberDetailsTableOneColumns as ColumnDef<object>[]}
 						/>
 					</Suspense>
 					<Suspense fallback={<div>Loading table...</div>}>
 						<DynamicBasicTable
 							data={family_members}
-							columns={familyMemberDetailsTableTwoColumns as ColumnDef<TableRow>[]}
+							columns={familyMemberDetailsTableTwoColumns as ColumnDef<object>[]}
 						/>
 					</Suspense>
 				</div>

@@ -1,16 +1,11 @@
-import React from 'react';
-import { useReactTable, getCoreRowModel, type ColumnDef, flexRender, type RowData } from '@tanstack/react-table';
+import { useReactTable, getCoreRowModel, type ColumnDef, flexRender } from '@tanstack/react-table';
 
-export interface TableRow {
-	[key: string]: string | number;
+interface DynamicBasicProps<T extends object, U> {
+	data: T[];
+	columns: ColumnDef<T, U>[];
 }
 
-interface DynamicBasicProps<TData extends RowData = TableRow> {
-	columns: ColumnDef<TData>[];
-	data: TData[];
-}
-
-const DynamicBasicTable: React.FC<DynamicBasicProps> = ({ columns, data }) => {
+const DynamicBasicTable = <T extends object, U>({ data, columns }: DynamicBasicProps<T, U>) => {
 	const table = useReactTable({
 		data,
 		columns,

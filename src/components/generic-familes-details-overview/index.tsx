@@ -49,7 +49,6 @@ const GenericFamilesDetailsOverview = ({ sectionData, userName }: GenericMemberO
 					<DynamicDataTable
 						title="Family Members"
 						customColumns={getFamilyMembersColumns}
-						data={[]}
 						isDynamic={false}
 						tableId="family-members"
 						enablePagination={false}
@@ -58,7 +57,6 @@ const GenericFamilesDetailsOverview = ({ sectionData, userName }: GenericMemberO
 					<DynamicDataTable
 						title="REGISTER DETAILS"
 						customColumns={getRegisterDetailsTableColumns}
-						data={[]}
 						isDynamic={false}
 						tableId="register-details"
 						enablePagination={false}
