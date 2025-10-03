@@ -245,7 +245,7 @@ export const getMarriageRegistrationSectionData = (row: MarriageRegisterRecordPr
 			{
 				heading: 'BRIDEGROOM / HUSBAND DETAILS',
 				data: {
-					marital_status: (row as MarriageRegisterRecordProps).bg_marital_status_content || '',
+					marital_status: (row as MarriageRegisterRecordProps).b_marital_status_content || '',
 					marriage_preparation_class: (row as MarriageRegisterRecordProps).bg_marriage_class_content || '',
 					attended_date: `${(row as MarriageRegisterRecordProps).bg_mc_data_1 || ''} - ${(row as MarriageRegisterRecordProps).bg_mc_data_2 || ''}`,
 					which_parish: (row as MarriageRegisterRecordProps).bg_parish_name || '',
@@ -288,15 +288,15 @@ export const getMarriageRegistrationSectionData = (row: MarriageRegisterRecordPr
 				},
 			},
 			{
-				heading: 'BRIDEGROOM WITNESSES',
+				heading: 'BRIDE WITNESSES',
 				data: {
-					witness_for_bridegroom: (row as MarriageRegisterRecordProps).b_witness_1 || '',
+					witness_for_bride: (row as MarriageRegisterRecordProps).b_witness_1 || '',
 				},
 			},
 			{
-				heading: 'BRIDEGROOM ADDRESS',
+				heading: 'BRIDE ADDRESS',
 				data: {
-					address_of_bridegroom: (row as MarriageRegisterRecordProps).b_address || '',
+					address_of_bride: (row as MarriageRegisterRecordProps).b_address || '',
 					remarks: (row as MarriageRegisterRecordProps).remarks || '',
 				},
 			},
