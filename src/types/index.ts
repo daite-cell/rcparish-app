@@ -474,15 +474,22 @@ export interface AssociationCouncilMemberProps {
 }
 
 export interface ChronicleMemberProps {
-	details: string;
-	date: string;
-	event: string;
+	id: number;
+	parish: string;
+	parish_content: string;
+	vicariate: string;
+	vicariate_content: string;
+	event_no: string;
+	chronicles_date: string;
+	chronicles_event: string;
 	descriptions: string;
-	documentAttachment: string;
-	image1: string;
-	image2: string;
-	image3: string;
-	eventNo: string;
+	document_availability: string;
+	attached_document: string;
+	image_f: string;
+	image_s: string;
+	image_t: string;
+	registered_date: string;
+	updated_date: string | null;
 }
 
 export interface BaptismMemberType {
@@ -579,51 +586,57 @@ export interface ConfirmationRegisteredMemberType {
 }
 
 export interface MarriageRegisterMemberType {
-	bannsOrRectification: string;
-	bridegroomName: string;
-	brideName: string;
-	familyName: string;
-	familyId: string;
-	mainStation: string;
-	subStationId: string;
-	anbiamName: string;
-	anbiamId: string;
-	marriageDate: string;
-	marriageAt: string;
-	marriageIn: string;
+	id: number;
+	sub_station_name: string;
+	sub_station_id: string;
+	anbiam_name: string;
+	anbiam_id: string;
+	family_name: string;
+	unique_family_id: string;
+	activeness: string;
+	activeness_content: string;
+	marriage_type: string;
+	marriage_date: string;
+	marriage_at: string;
+	marriage_in: string;
 	minister: string;
-	bridegroomWitness: string;
-	bridegroomAddress: string;
-	brideWitness: string;
-	brideAddress: string;
-	registrationNumber: string;
+	bg_witness_1: string;
+	bg_address: string;
+	b_witness_1: string;
+	b_address: string;
+	record_no: string;
+	register_no: string;
 	remarks: string;
+	bridegroom_name: string;
+	bride_name: string;
 }
 
 export interface MarriageProposalMemberType {
-	memberName: string;
+	id?: number;
+	person_name: string;
 	gender: string;
-	isMemberInParish: string | boolean;
-	fatherName: string;
-	motherName: string;
-	registrationNumber: string;
+	father_name: string;
+	mother_name: string;
+	record_no: string;
+	register_no: string;
 }
 
 export interface MarriageRegisterMemberAsParishType {
-	bannsOrRectification: string;
-	bridegroomName: string;
-	brideName: string;
-	isMemberInParish: string | boolean;
-	marriageDate: string;
-	marriageAt: string;
-	marriageIn: string;
+	id: number;
+	bridegroom_name: string;
+	bride_name: string;
+	marriage_type: string;
+	marriage_date: string;
+	marriage_at: string;
+	marriage_in: string;
 	minister: string;
-	priestName: string;
-	bridegroomWitness: string;
-	bridegroomAddress: string;
-	brideWitness: string;
-	brideAddress: string;
-	registrationNumber: string;
+	priest_name: string;
+	bg_witness_1: string;
+	bg_address: string;
+	b_witness_1: string;
+	b_address: string;
+	record_no: string;
+	register_no: string;
 	remarks: string;
 }
 
@@ -663,19 +676,22 @@ export interface DeathRegisterMemberType {
 }
 
 export interface DeathRegisterMemberAsParishType {
-	memberName: string;
-	memberId: string;
-	isMemberInParish: string;
-	fatherName: string;
-	motherName: string;
-	birthDate: string;
-	birthPlace: string;
-	deathDate: string;
-	deathPlace: string;
-	burialDate: string;
+	id?: number;
+	member_name: string;
+	unique_member_id: string;
+	father_name: string;
+	mother_name: string;
+	place_name: string;
+	dob_received: string;
+	birth_date: string;
+	birth_date_remark: string;
+	birth_place: string;
+	died_on: string;
+	died_at: string;
+	funeral_date: string;
 	cemetery: string;
 	minister: string;
-	registrationNumber: string;
+	record_no: string;
 	remarks: string;
 }
 
@@ -1938,6 +1954,153 @@ export interface PaymentHistoryTableProps {
 	prior_due_amount: number | string;
 	paid_for: string;
 	voucher_number: string;
+}
+export interface MarriageRegisterRecordProps {
+	activeness: string;
+	activeness_content: string;
+	unique_family_id: string;
+	sub_station_id: string;
+	anbiam_id: string;
+
+	marriage_type: string;
+	marriage_date: string;
+	marriage_at: string;
+	marriage_in: string;
+	minister: string;
+
+	a_date_1: string;
+	a_date_2: string;
+	a_date_3: string;
+
+	bridegroom_name: string;
+	bg_marital_status: string;
+	bg_marital_status_content: string;
+	bg_ms_data_1: string;
+	bg_ms_data_2: string;
+
+	bg_marriage_class: string;
+	bg_marriage_class_content: string;
+	bg_mc_data_1: string;
+	bg_mc_data_2: string;
+	bg_mc_data_3: string;
+	bg_mc_data_4: string;
+
+	bg_father_name: string;
+	bg_mother_name: string;
+	bg_parish_name: string;
+	bg_religion: string;
+	bg_religion_content: string;
+	bg_r_data_1: string;
+	bg_r_data_2: string;
+	bg_r_data_3: string;
+	bg_r_data_4: string;
+	bg_received: string;
+	bg_received_reason: string;
+	bg_witness_1: string;
+	bg_address: string;
+
+	bride_name: string;
+	b_marital_status: string;
+	b_marital_status_content: string;
+	b_ms_data_1: string;
+	b_ms_data_2: string;
+
+	b_marriage_class: string;
+	b_marriage_class_content: string;
+	b_mc_data_1: string;
+	b_mc_data_2: string;
+	b_mc_data_3: string;
+	b_mc_data_4: string;
+
+	b_father_name: string;
+	b_mother_name: string;
+	b_parish_name: string;
+	b_religion: string;
+	b_religion_content: string;
+	b_r_data_1: string;
+	b_r_data_2: string;
+	b_r_data_3: string;
+	b_r_data_4: string;
+	b_received: string;
+	b_received_reason: string;
+	b_witness_1: string;
+	b_address: string;
+
+	record_no: string;
+	register_no: string;
+	remarks: string;
+}
+
+export interface MarriageProposalTableTwoRecordProps {
+	id: number;
+	parish: string;
+	parish_content: string;
+	vicariate: string;
+	vicariate_content: string;
+	person_name: string;
+	gender: string;
+	marital_status: string;
+	marital_status_content: string;
+	ms_data_1: string;
+	ms_data_2: string;
+	marriage_class: string;
+	marriage_class_content: string;
+	mc_data_1: string;
+	mc_data_2: string;
+	mc_data_3: string;
+	mc_data_4: string;
+	father_name: string;
+	mother_name: string;
+	parish_name: string;
+	religion: string;
+	religion_content: string;
+	r_data_1: string;
+	r_data_2: string;
+	r_data_3: string;
+	r_data_4: string;
+	received: string;
+	received_reason: string;
+	record_no: string;
+	register_no: string;
+	registered_date: string;
+	updated_date: string;
+}
+
+export interface MarriageRegistrationInDetails {
+	id: number;
+	parish: string;
+	parish_content: string;
+	vicariate: string;
+	vicariate_content: string;
+	marriage_type: string;
+	marriage_date: string;
+	marriage_at: string;
+	marriage_in: string;
+	minister: string;
+	priest_name: string;
+	bridegroom_name: string;
+	bg_marital_status: string;
+	bg_marital_status_content: string;
+	bg_ms_data_1: string;
+	bg_ms_data_2: string;
+	bg_father_name: string;
+	bg_mother_name: string;
+	bg_witness_1: string;
+	bg_address: string;
+	bride_name: string;
+	b_marital_status: string;
+	b_marital_status_content: string;
+	b_ms_data_1: string;
+	b_ms_data_2: string;
+	b_father_name: string;
+	b_mother_name: string;
+	b_witness_1: string;
+	b_address: string;
+	record_no: string;
+	register_no: string;
+	remarks: string;
+	registered_date: string;
+	updated_date: string;
 }
 
 export interface FormerParishPriestTableProps {

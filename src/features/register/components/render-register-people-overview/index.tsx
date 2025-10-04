@@ -1,7 +1,15 @@
 import { OverviewTabsLayout } from '@/layouts';
 import GenericRegisterPeopleDetailsContainer from '../generic-register-people-details-container';
 import { useStore } from '@/store/store';
-import { BaptismEditForm, ConfirmationsEditForm, HolyCommunionEditForm } from '../../forms';
+import {
+	BaptismEditForm,
+	ChroniclesForm,
+	ConfirmationsEditForm,
+	DeathRegisterForm,
+	HolyCommunionEditForm,
+	MarriageProposalForm,
+	MarriageRegistrationForm,
+} from '../../forms';
 
 const RenderRegisterPeopleOverview = ({ pathName }: { pathName: string | number | undefined }) => {
 	const { editRow } = useStore();
@@ -22,19 +30,19 @@ const RenderRegisterPeopleOverview = ({ pathName }: { pathName: string | number 
 		},
 		chronicles: {
 			view: <GenericRegisterPeopleDetailsContainer />,
-			form: <h1 className="text-red-600">Edit Chronicles Form will be added soon .........</h1>,
+			form: <ChroniclesForm />,
 		},
 		marriage_registration: {
 			view: <GenericRegisterPeopleDetailsContainer />,
-			form: <h1 className="text-red-600">Edit Marriage Registration Form will be added soon .........</h1>,
+			form: <MarriageRegistrationForm />,
 		},
 		marriage_proposal: {
 			view: <GenericRegisterPeopleDetailsContainer />,
-			form: <h1 className="text-red-600">Edit Marriage Proposal Form will be added soon .........</h1>,
+			form: <MarriageProposalForm />,
 		},
 		death_register: {
 			view: <GenericRegisterPeopleDetailsContainer />,
-			form: <h1 className="text-red-600">Edit Death Register Form will be added soon .........</h1>,
+			form: <DeathRegisterForm />,
 		},
 	};
 	return (
