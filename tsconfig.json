@@ -11,6 +11,7 @@
       "@/store*": ["./src/store/*"]
     },
     "forceConsistentCasingInFileNames": true,
-    "strict": true
+    "strict": true,
+    "resolveJsonModule": true
   }
 }
