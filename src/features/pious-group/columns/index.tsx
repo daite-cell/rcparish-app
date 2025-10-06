@@ -1038,6 +1038,52 @@ const getAddFamilyMemberColumns = <TForm extends FieldValues>(
 	},
 ];
 
+const getFamilyMembersColumns = [
+	{
+		header: 'Member Id',
+		accessorKey: 'member_id',
+	},
+	{
+		header: 'Activeness',
+		accessorKey: 'activeness_content',
+	},
+	{
+		header: 'Member',
+		accessorKey: 'member_name',
+	},
+	{
+		header: 'Relation',
+		accessorKey: 'relation',
+	},
+	{
+		header: 'Gender',
+		accessorKey: 'gender',
+	},
+];
+
+const getRegisterDetailsTableColumns = [
+	{
+		accessorKey: 'member_name',
+		header: 'Member Name',
+	},
+	{
+		accessorKey: 'baptism_register',
+		header: 'Baptism Register',
+	},
+	{
+		accessorKey: 'holy_communion_register',
+		header: 'Holy Communion Register',
+	},
+	{
+		accessorKey: 'confirmation_register',
+		header: 'Confirmation Register',
+	},
+	{
+		accessorKey: 'death_register',
+		header: 'Death Register',
+	},
+];
+
 export {
 	useParishCouncilColumns,
 	useFamilyOverviewColumns,
@@ -1060,4 +1106,6 @@ export {
 	useTotalFamilyMembersColumns,
 	getFamilyDynamicColumns,
 	getAddFamilyMemberColumns,
+	getFamilyMembersColumns,
+	getRegisterDetailsTableColumns,
 };

@@ -6,7 +6,7 @@ import get_members_link_details from '../../data/get_members_link_details.json';
 import { getAccountingFamilesMembersSectionData, getFamilesSectionData } from '../../columns-sections';
 import type { MembersInParishFamilyProps } from '@/types';
 import { extractUserName } from '@/utils/extractUserName';
-import { FamiliesForm } from '../../forms';
+import { FamilyMembersForm } from '../../forms';
 
 const RenderRegisterPiousOverView = () => {
 	const { selectAccountingNameRow, editAccountingNameRow, editRow, selectRow, routeParams } = useStore();
@@ -27,7 +27,7 @@ const RenderRegisterPiousOverView = () => {
 				/>
 			),
 
-			form: <FamiliesForm />,
+			form: <FamilyMembersForm />,
 		},
 	};
 

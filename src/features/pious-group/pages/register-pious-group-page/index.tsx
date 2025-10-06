@@ -6,6 +6,7 @@ import { RenderRegisterPiousOverView } from '../../components';
 import { useStore } from '@/store/store';
 import parish_council_family_members from '../../data/parish_council_family_members.json';
 import { useParams } from 'react-router-dom';
+import { FamilyMembersForm } from '../../forms';
 const RegisterPiousGroupPage = () => {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const { selectRow, editRow, selectAccountingNameRow, handleSetRouteParams, routeParams, handleClearRouteParams } =
@@ -32,7 +33,7 @@ const RegisterPiousGroupPage = () => {
 			{activeLabel === 'view' ? (
 				<DynamicDataTable data={parish_council_family_members.members_list} wrapText={false} customColumns={columns} />
 			) : (
-				<h1>form will be added...</h1>
+				<FamilyMembersForm />
 			)}
 		</TabsLayout>
 	);

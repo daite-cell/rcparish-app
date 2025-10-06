@@ -4,7 +4,6 @@ import {
 	TabsLayout,
 	BulletPointList,
 	ParagraphGroupWithTitle,
-	PDFViewer,
 	PageSectionHeading,
 } from '@/components';
 
@@ -17,7 +16,8 @@ import {
 } from '../../data/history-content';
 import { usePathName } from '@/utils/getPathName';
 import { PDF_URLS } from '@/config/constants';
-
+import { lazy, Suspense } from 'react';
+const PDFViewer = lazy(() => import('@/components/pdf-viewer'));
 const HistoryPage = () => {
 	const pathname = usePathName();
 
@@ -91,7 +91,9 @@ const HistoryPage = () => {
 					))}
 				</>
 			) : (
-				<PDFViewer pdfUrl={PDF_URLS.PATRON_SAINTS} />
+				<Suspense fallback={<div>Loading...</div>}>
+					<PDFViewer pdfUrl={PDF_URLS.PATRON_SAINTS} />
+				</Suspense>
 			)}
 		</TabsLayout>
 	);

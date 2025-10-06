@@ -1,11 +1,19 @@
+import { lazy, Suspense, useRef } from 'react';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas-pro';
 import { toTitleCaseFromSnake } from '@/utils/toTitleCaseFromSnake';
 import InfoRow from '../../../../components/info-row';
 import HeadingWithUnderline from '../../../../components/heading-with-underline';
-import DynamicDataTable from '../../../../components/dynamic-table';
 import FormButton from '../../../../components/form-button';
 import get_families_details from '../../data/get_families_details.json';
 import { familyMemberDetailsTableOneColumns, familyMemberDetailsTableTwoColumns } from '../../columns';
-const FamilyCard = () => {
+import type { ColumnDef } from '@tanstack/react-table';
+
+const DynamicBasicTable = lazy(() => import('@/components/dynamic-basic-table'));
+
+const FamilyCard = ({ year }: { year?: string }) => {
+	const receiptRef = useRef<HTMLDivElement>(null);
+
 	const familyDetails = get_families_details.families;
 	const familyIncome = get_families_details.family_income ?? 0;
 	const permanentAddress = familyDetails.permanent_address ?? '';
@@ -57,19 +65,56 @@ const FamilyCard = () => {
 		},
 	];
 
-	const handleDownloadPdf = () => {};
+	const currentYear = new Date().getFullYear();
+	const nextYear = currentYear + 1;
+
+	const display_year = year === 'current_year' ? currentYear.toString() : nextYear.toString();
+
+	const handleDownloadPdf = async () => {
+		if (!receiptRef.current) return;
+
+		try {
+			const canvas = await html2canvas(receiptRef.current, {
+				scale: 2,
+				useCORS: true,
+				allowTaint: true,
+			});
+
+			const imgData = canvas.toDataURL('image/png');
+
+			const pdf = new jsPDF('p', 'mm', 'a4');
+			const pdfWidth = pdf.internal.pageSize.getWidth();
+			const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+			let position = 0;
+			if (pdfHeight < pdf.internal.pageSize.getHeight()) {
+				pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+			} else {
+				let heightLeft = pdfHeight;
+				while (heightLeft > 0) {
+					pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
+					heightLeft -= pdf.internal.pageSize.getHeight();
+					position -= pdf.internal.pageSize.getHeight();
+					if (heightLeft > 0) pdf.addPage();
+				}
+			}
+
+			pdf.save('family_card.pdf');
+		} catch (error) {
+			console.error('Failed to generate PDF:', error);
+		}
+	};
+
 	return (
-		<div className="flex flex-col p-4 md:p-10">
+		<div className="flex flex-col  ">
 			<FormButton onClick={handleDownloadPdf} className="self-end" label="Download PDF" />
 
-			<div className="bg-white text-black p-6">
+			<div ref={receiptRef} className="bg-white text-black p-4">
 				<HeadingWithUnderline text="Christ the King Church - Perumanam Parish" />
 				<p className="text-sm text-gray-800 text-center underline mb-4">
 					<span className="font-semibold uppercase tracking-wide text-gray-700">FAMILY CARD FOR </span>
-					<span className="font-semibold">2025</span>
-					<span className="text-gray-600"> ( Valid upto </span>
-					<span className="font-semibold">DEC-2027</span>
-					<span className="text-gray-600"> )</span>
+					<span className="font-semibold">{display_year}</span>
+					<span className="text-gray-600 text-xs"> ( Valid upto DEC-2027 )</span>
 				</p>
 
 				<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 my-6">
@@ -90,16 +135,18 @@ const FamilyCard = () => {
 
 				<div>
 					<HeadingWithUnderline text="Family Members Details" className="text-xs" />
-					<DynamicDataTable
-						data={family_members}
-						customColumns={familyMemberDetailsTableOneColumns}
-						isDynamic={false}
-					/>
-					<DynamicDataTable
-						data={family_members}
-						customColumns={familyMemberDetailsTableTwoColumns}
-						isDynamic={false}
-					/>
+					<Suspense fallback={<div>Loading table...</div>}>
+						<DynamicBasicTable
+							data={family_members}
+							columns={familyMemberDetailsTableOneColumns as ColumnDef<object>[]}
+						/>
+					</Suspense>
+					<Suspense fallback={<div>Loading table...</div>}>
+						<DynamicBasicTable
+							data={family_members}
+							columns={familyMemberDetailsTableTwoColumns as ColumnDef<object>[]}
+						/>
+					</Suspense>
 				</div>
 
 				<div className="flex flex-col md:flex-row justify-between mt-6">

@@ -25,7 +25,7 @@ import type {
 	ToBePaidTableProps,
 	PaymentHistoryTableProps,
 } from '@/types';
-import { SquarePen, Trash2 } from 'lucide-react';
+import { Folder, SquarePen, Trash2 } from 'lucide-react';
 import type { CellContext } from '@tanstack/react-table';
 import { CustomFormInput, SingleSelectDropdown, TableDetailsViewButton, TextLink } from '@/components';
 import { getCommonActionColumns } from '@/utils/commonActionColumns';
@@ -192,7 +192,7 @@ const useInActiveDonationColumns = (tableKey: string): ColumnDef<InActiveDonatio
 };
 
 const useRentPropertyColumns = (tableKey: string): ColumnDef<RentPropertyProps>[] => {
-	const { handleSelectRow, handleEditRow } = useStore();
+	const { handleSelectRow, handleEditRow, handleSelectPriorRow } = useStore();
 	console.warn('useRentPropertyColumns', tableKey);
 
 	return [
@@ -201,6 +201,15 @@ const useRentPropertyColumns = (tableKey: string): ColumnDef<RentPropertyProps>[
 		{ accessorKey: 'property_type_content', header: 'Type' },
 		{ accessorKey: 'property_name', header: 'Property Name' },
 		{ accessorKey: 'property_id', header: 'Property Id' },
+		{
+			header: 'Payment History',
+			cell: ({ row }: CellContext<RentPropertyProps, unknown>) => (
+				<Folder className="w-4 h-4" onClick={() => handleSelectPriorRow(row.original)} />
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
 
 		{ accessorKey: 'render_name', header: 'Render Name' },
 		{ accessorKey: 'mobile_no', header: 'Mobile Number' },
@@ -246,7 +255,7 @@ const useRentPropertyColumns = (tableKey: string): ColumnDef<RentPropertyProps>[
 };
 
 const useAdvanceRentPropertyColumns = (tableKey: string): ColumnDef<AdvanceRentPropertyProps>[] => {
-	const { handleSelectRow, handleEditRow } = useStore();
+	const { handleSelectRow, handleEditRow, handleSelectPriorRow } = useStore();
 
 	return [
 		...getCommonActionColumns<AdvanceRentPropertyProps>(handleSelectRow, handleEditRow, tableKey),
@@ -254,6 +263,15 @@ const useAdvanceRentPropertyColumns = (tableKey: string): ColumnDef<AdvanceRentP
 		{ accessorKey: 'property_type_content', header: 'Type' },
 		{ accessorKey: 'property_name', header: 'Property Name' },
 		{ accessorKey: 'property_id', header: 'Property Id' },
+		{
+			header: 'Payment History',
+			cell: ({ row }: CellContext<AdvanceRentPropertyProps, unknown>) => (
+				<Folder className="w-4 h-4" onClick={() => handleSelectPriorRow(row.original)} />
+			),
+			enableSorting: false,
+			meta: { isExportable: false },
+			enableHiding: true,
+		},
 		{ accessorKey: 'render_name', header: 'Render Name' },
 		{ accessorKey: 'mobile_no', header: 'Mobile Number' },
 
@@ -1090,6 +1108,45 @@ const getPaymentHistoryTableColumns: ColumnDef<PaymentHistoryTableProps>[] = [
 	},
 ];
 
+const getPropertyRentHistoryColumns = [
+	{
+		header: 'Property Name',
+		accessorKey: 'property_name',
+	},
+	{
+		header: 'Render Name',
+		accessorKey: 'render_name',
+	},
+	{
+		header: 'Mobile No',
+		accessorKey: 'mobile_no',
+	},
+	{
+		header: 'Agreement',
+		accessorKey: 'agreement',
+	},
+	{
+		header: 'Fixed Monthly Amount',
+		accessorKey: 'fixed_monthly_amount',
+	},
+	{
+		header: 'Amount Paid',
+		accessorKey: 'amount_paid',
+	},
+	{
+		header: 'Monthly Rent For',
+		accessorKey: 'monthly_rent_for',
+	},
+	{
+		header: 'Date',
+		accessorKey: 'date',
+	},
+	{
+		header: 'Receipt',
+		accessorKey: 'receipt',
+	},
+];
+
 export {
 	useActiveDonationColumns,
 	useInActiveDonationColumns,
@@ -1116,4 +1173,5 @@ export {
 	getAdvanceTableLastPaidDetailsColumns,
 	getToBePaidTableColumns,
 	getPaymentHistoryTableColumns,
+	getPropertyRentHistoryColumns,
 };

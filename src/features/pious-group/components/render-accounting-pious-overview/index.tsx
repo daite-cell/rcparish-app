@@ -1,35 +1,41 @@
 import { GenericFamilesDetailsOverview } from '@/components';
 import { OverviewTabsLayout } from '@/layouts';
 import { useStore } from '@/store/store';
-import { getAccountingFamilesMembersSectionData, getFamilesMembersSectionData } from '../../columns-sections';
+import { getFamilesMembersSectionData } from '../../columns-sections';
 import type { FamilyDataProps } from '@/types';
 import { extractUserName } from '@/utils/extractUserName';
 import { FamiliesForm } from '../../forms';
-import get_members_link_details from '../../data/get_members_link_details.json';
-import type { JSX } from 'react';
+import { Suspense, type JSX } from 'react';
+import FamilyCardContainer from '../family-card-container';
 
 const RenderAccountingPiousOverView = () => {
-	const { selectAccountingNameRow, editAccountingNameRow, editRow, selectRow, routeParams } = useStore();
-	console.warn(selectRow, 'row');
+	const { selectAccountingNameRow, editAccountingNameRow, editRow, selectRow, routeParams, selectFamilyCardRow } =
+		useStore();
+
+	console.warn('Edit Row Data in RenderAccountingPiousOverView:', selectFamilyCardRow);
 
 	const hasRouteParams =
 		Boolean(routeParams?.subStationId) || Boolean(routeParams?.anbiamId) || Boolean(routeParams?.uniqueFamilyId);
+
 	const baseRow = (selectAccountingNameRow as Record<string, unknown>) || (selectRow as Record<string, unknown>) || {};
 
 	const userName = extractUserName(baseRow);
 
 	const componentMap = {
 		families: {
-			view: selectAccountingNameRow ? (
-				<GenericFamilesDetailsOverview
-					userName={userName}
-					sectionData={getAccountingFamilesMembersSectionData(get_members_link_details)}
-				/>
+			view: selectFamilyCardRow ? (
+				<Suspense fallback={<div>Loading...</div>}>
+					<FamilyCardContainer />
+				</Suspense>
 			) : (
-				<GenericFamilesDetailsOverview
-					userName={userName}
-					sectionData={getFamilesMembersSectionData(selectRow as FamilyDataProps)}
-				/>
+				selectAccountingNameRow && (
+					<GenericFamilesDetailsOverview
+						userName={userName}
+						sectionData={getFamilesMembersSectionData(
+							selectAccountingNameRow ? (selectAccountingNameRow as FamilyDataProps) : (selectRow as FamilyDataProps)
+						)}
+					/>
+				)
 			),
 
 			form: <FamiliesForm />,

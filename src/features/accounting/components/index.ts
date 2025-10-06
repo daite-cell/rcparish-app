@@ -4,3 +4,4 @@ export { default as GenericAccountingDetailsContainer } from './generic-accounti
 export { default as PaymentDetailsTable } from './payment-details-table';
 export { default as AuditingContainer } from './auditing-container';
 export { default as RenderFormsContainer } from './forms-container';
+export { default as PropertyRentHistoryTable } from './property-rent-history';

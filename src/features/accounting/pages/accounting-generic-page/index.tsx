@@ -6,15 +6,17 @@ import { getSectionByPathName } from '@/utils/getSectionByPathName';
 import { useStore } from '@/store/store';
 import {
 	PaymentDetailsTable,
+	PropertyRentHistoryTable,
 	RenderAccountingMemberOverviewContainer,
 	RenderAccountingTableContainer,
 	RenderFormsContainer,
 } from '../../components';
 import { usePathName } from '@/utils/getPathName';
+import { getPropertyRentHistoryColumns } from '../../columns';
 
 const AccountingGenericPage = () => {
 	const pathName = usePathName();
-	const { selectRow, editRow } = useStore();
+	const { selectRow, editRow, selectPriorRow } = useStore();
 
 	const linksData = getSectionByPathName(side_nav_links, pathName);
 	const tabsData = linksData?.page_nav_links.find((link: NavLinkProps) => link.path_url === pathName)?.tabs || [
@@ -30,6 +32,9 @@ const AccountingGenericPage = () => {
 	const handleToggleTab = (index: number) => {
 		setActiveIndex(index);
 	};
+	if (selectPriorRow) {
+		return <PropertyRentHistoryTable customColumns={getPropertyRentHistoryColumns} />;
+	}
 
 	if (selectRow || editRow) {
 		return <RenderAccountingMemberOverviewContainer />;
